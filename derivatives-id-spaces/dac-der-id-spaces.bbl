@@ -1,0 +1,272 @@
+\begin{thebibliography}{10}
+
+\bibitem{Abe}
+E.~Abe.
+\newblock {\em Hopf algebras}.
+\newblock Cambridge Univ. Press, 1977.
+
+\bibitem{AC-1}
+Gregory Arone and Michael Ching.
+\newblock {\em Operads and Chain Rules for the Calculus of Functors}.
+\newblock Number 338 in Ast\'erisque. Soci\'et\'e Math\'ematique de {F}rance,
+  2011.
+
+\bibitem{AC-coalg}
+Gregory Arone and Michael Ching.
+\newblock A classification of {Taylor} towers of functors of spaces and
+  spectra.
+\newblock {\em Advances in Mathematics}, 272:471–552, Feb 2015.
+
+\bibitem{AC-2}
+Gregory Arone and Michael Ching.
+\newblock Cross-effects and the classification of {Taylor} towers.
+\newblock {\em Geometry and Topology}, 20(3):1445–1537, Jul 2016.
+
+\bibitem{AK}
+Gregory Arone and Marja Kankaanrinta.
+\newblock A functorial model for iterated {Snaith} splitting with applications
+  to calculus of functors.
+\newblock In {\em Fields Institute Communications}, volume~19. Amer. Math.
+  Soc., 1998.
+
+\bibitem{Ar-Mah}
+Gregory Arone and Mark Mahowald.
+\newblock The {Goodwillie} tower of the identity functor and the unstable
+  periodic homotopy of spheres.
+\newblock {\em Inventiones mathematicae}, 135(3):743--788, Feb 1999.
+
+\bibitem{Bast}
+Maria Basterra.
+\newblock {Andr\'e–Quillen} cohomology of commutative {$S$}-algebras.
+\newblock {\em Journal of pure and applied algebra}, 144:111--143, 1999.
+
+\bibitem{Bast-Man}
+Maria Basterra and Michael~A. Mandell.
+\newblock Homology and cohomology of {$E_{\infty}$}-ring spectra.
+\newblock {\em Mathematische Zeitschrift}, 249(4):903–944, 2005.
+
+\bibitem{Bat-box}
+Mikhail~A. Batanin.
+\newblock Coherent categories with respect to monads and coherent prohomotopy
+  theory.
+\newblock {\em Cahiers de Topologie et G\'eom\'etrie Diff\'erentielle
+  Cat\'egoriques}, 34(4):279--304, 1993.
+
+\bibitem{BR-1}
+Mark Behrens and Charles Rezk.
+\newblock The {Bousfield-Kuhn} functor and topological {Andr\'e-Quillen}
+  cohomology, 2017.
+
+\bibitem{BR}
+Mark Behrens and Charles Rezk.
+\newblock Spectral algebra models of unstable $v_n$-periodic homotopy theory.
+\newblock In {\em Bousfield Classes and Ohkawa's Theorem}, volume 309 of {\em
+  Springer Proc. Math. Stat.}, pages 275--323. Springer, 2020.
+
+\bibitem{BM-WConstr}
+Clemens Berger and Ieke Moerdijk.
+\newblock The {Boardman--Vogt} resolution of operads in monoidal model
+  categories.
+\newblock {\em Topology}, 45(5):807--849, 2006.
+
+\bibitem{BM-trees}
+Clemens Berger and Ieke Moerdijk.
+\newblock Resolution of coloured operads and rectification of homotopy
+  algebras.
+\newblock {\em Contemporary Mathematics}, page 31–58, 2007.
+
+\bibitem{BB-chainrule}
+Max Blans and Thomas Blom.
+\newblock On the chain rule in {G}oodwillie calculus, 2024.
+
+\bibitem{BH-charLie}
+Max Blans and Gijs Heuts.
+\newblock A characterization of the spectral {L}ie operad, 2026.
+
+\bibitem{BH}
+Jacobson~R. Blomquist and John~E. Harper.
+\newblock Suspension spectra and higher stabilization, 2016.
+
+\bibitem{BV-1}
+J.~M. Boardman and R.~M. Vogt.
+\newblock Homotopy-everything {$H$}-spaces.
+\newblock {\em Bulletin of the American Mathematical Society},
+  74(6):1117--1123, 1968.
+
+\bibitem{BV}
+J.M. Boardman and R.M. Vogt.
+\newblock {\em Homotopy Invariant Algebraic Structures on Topological Spaces}.
+\newblock Lecture Notes in Mathematics. Springer Berlin Heidelberg, 1973.
+
+\bibitem{BK}
+A.~K. Bousfield and D.~M. Kan.
+\newblock {\em Homotopy limits, completions and localizations}, volume 304 of
+  {\em Lecture Notes in Mathematics}.
+\newblock Springer-Verlag Berlin Heidelberg, 1972.
+
+\bibitem{Bou-BK-functor}
+Aldridge Bousfield.
+\newblock Uniqueness of infinite deloopings for {$K$}-theoretic spaces.
+\newblock {\em Pacific J. Math.}, 129(1):1--31, 1987.
+
+\bibitem{Carl}
+Gunnar Carlsson.
+\newblock Derived completions in stable homotopy theory.
+\newblock {\em J. Pure Appl. Algebra}, 212(3):550--577, 2008.
+
+\bibitem{Ching-thesis}
+Michael Ching.
+\newblock Bar constructions for topological operads and the {Goodwillie}
+  derivatives of the identity.
+\newblock {\em Geometry and Topology}, 9(2):833–934, 2005.
+
+\bibitem{Ching-barcobar}
+Michael Ching.
+\newblock Bar-cobar duality for operads in stable homotopy theory.
+\newblock {\em Journal of Topology}, 5(1):39–80, Jan 2012.
+
+\bibitem{Ching-oplax}
+Michael Ching.
+\newblock A note on the composition product of symmetric sequences.
+\newblock {\em J. Homotopy Relat. Struct.}, 7:237--254, 2012.
+
+\bibitem{Ching-day-conv}
+Michael Ching.
+\newblock Infinity-operads and {Day} convolution in {Goodwillie} calculus.
+\newblock {\em J. London Math. Soc.}, 104(3), 2021.
+
+\bibitem{Ching-Harper-Koszul}
+Michael Ching and John~E. Harper.
+\newblock Derived {Koszul} duality and {$\mathsf{TQ}$}-homology completion of
+  structured ring spectra.
+\newblock {\em Advances in Mathematics}, 341:118–187, Jan 2019.
+
+\bibitem{Clark-1}
+Duncan~A. Clark.
+\newblock On the {G}oodwillie derivatives of the identity in structured ring
+  spectra.
+\newblock {\em Tbilisi Math. J., Special Issue on Homotopy Theory, Spectra, and
+  Structured Ring Spectra}, pages 119--166, 2020.
+
+\bibitem{Coh-May-Tay}
+F.~R. Cohen, J.~P. May, and L.~R. Taylor.
+\newblock Splitting of certain spaces {$CX$}.
+\newblock {\em Mathematical Proceedings of the Cambridge Philosophical
+  Society}, 84(3):465–496, 1978.
+
+\bibitem{Day-St}
+Brian Day and Ross Street.
+\newblock Lax monoids, pseudo-operads, and convolution.
+\newblock In {\em In Diagrammatic Morphisms and Applications, volume 318 of
+  Contemporary Mathematics}, pages 75--96, 2003.
+
+\bibitem{EKMM}
+AD~Elmendorf, I~Kriz, MA~Mandell, and JP~May.
+\newblock {\em Rings, modules, and algebras in stable homotopy theory},
+  volume~47.
+\newblock American Mathematical Soc., 1997.
+
+\bibitem{FG}
+John Francis and Dennis Gaitsgory.
+\newblock Chiral {K}oszul duality.
+\newblock {\em Sel. Math. New Ser.}, 18:27--87, 2012.
+
+\bibitem{Fresse-Koszul}
+Benoit Fresse.
+\newblock Koszul duality of operads and homology of partition posets.
+\newblock In {\em Homotopy theory: relations with algebraic geometry, group
+  cohomology, and algebraic {$K$}-theory}, volume 346 of {\em Contemporary
+  Mathematics}, pages 115--215. American Mathematical Society, 2004.
+
+\bibitem{Ginz-Kap}
+Victor Ginzburg and Mikhail Kapranov.
+\newblock Koszul duality for operads.
+\newblock {\em Duke Math. J.}, 76(1):203--272, 10 1994.
+
+\bibitem{Goo-Calc2}
+Thomas~G. Goodwillie.
+\newblock Calculus {II}: Analytic functors.
+\newblock {\em K-Theory}, 5(4):295--332, 1991/1992.
+
+\bibitem{Goo-Calc3}
+Thomas~G. Goodwillie.
+\newblock Calculus {III}: Taylor series.
+\newblock {\em Geometry and Topology}, 7(2):645–711, 2003.
+
+\bibitem{Har-1}
+John~E. Harper.
+\newblock Homotopy theory of modules over operads in symmetric spectra.
+\newblock {\em Algebraic and Geometric Topology}, 9(3):1637–1680, Aug 2009.
+
+\bibitem{Har-TQ}
+John~E. Harper.
+\newblock Bar constructions and {Quillen} homology of modules over operads.
+\newblock {\em Algebr. Geom. Topol.}, 10(1):87--136, 2010.
+
+\bibitem{Heuts-vn}
+Gijs Heuts.
+\newblock Lie algebras and $v_n$-periodic spaces.
+\newblock {\em Annals of Mathematics}, 193(1):223--301, 2021.
+
+\bibitem{Heu-Moer-trees}
+Gijs Heuts and Ieke Moerdijk.
+\newblock Partition complexes and trees, 2021.
+
+\bibitem{Joh}
+Brenda Johnson.
+\newblock The derivatives of homotopy theory.
+\newblock {\em Transactions of the American Mathematical Society},
+  347(4):1295--1321, 1995.
+
+\bibitem{Klein-Rog}
+John~R Klein and John Rognes.
+\newblock A chain rule in the calculus of homotopy functors.
+\newblock {\em Geometry and Topology}, 6(2):853--887, 2002.
+
+\bibitem{Kuh-BK-functor}
+Nicholas Kuhn.
+\newblock Morava {$K$}-theories and infinite loop spaces.
+\newblock In {\em Algebraic Topology (Arcata, CA, 1986)}, volume 1370 of {\em
+  Lecture Notes in Math.}, page 243–257. Springer, 1989.
+
+\bibitem{Kuh}
+Nicholas~J Kuhn.
+\newblock Localization of {Andr\'e-Quillen-Goodwillie} towers and the periodic
+  homology of infinite loopspaces.
+\newblock {\em Advances in Mathematics}, 201:318--378, 2006.
+
+\bibitem{Kuh-tel}
+Nicholas~J. Kuhn.
+\newblock A guide to telescopic functors.
+\newblock {\em Homology, Homotopy and Applications}, 10(3):291–319, 2008.
+
+\bibitem{MS-box}
+James~E. McClure and Jeffrey~H. Smith.
+\newblock Cosimplical objects and little $n$-cubes, i.
+\newblock {\em American Journal of Mathematics}, 126(5):1109–1153, 2004.
+
+\bibitem{Quillen}
+Daniel Quillen.
+\newblock Rational homotopy theory.
+\newblock {\em Annals of Mathematics}, 90(2):205--295, 1969.
+
+\bibitem{Rezk-thesis}
+Charles Rezk.
+\newblock {\em Spaces of algebra structures and cohomology of operads}.
+\newblock PhD thesis, Massachusetts Institute of Technology, 1996.
+
+\bibitem{Segal-cat-coh}
+Graeme Segal.
+\newblock Categories and cohomology theories.
+\newblock {\em Topology}, 13:293--312, 1974.
+
+\bibitem{Snaith}
+V.~P. Snaith.
+\newblock A stable decomposition of {$\Omega^n S^n X$}.
+\newblock {\em J London Math. Soc.}, 7(2), 1974.
+
+\bibitem{Yeak}
+Sarah Yeakel.
+\newblock A monoidal model for multilinearization, 2017.
+
+\end{thebibliography}
