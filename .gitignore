@@ -1,0 +1,57 @@
+# Only sources and finished PDFs are tracked here: .tex, .bib, the figures
+# they include, the Jupyter notebooks, and the compiled .pdf output.
+# Everything LaTeX generates along the way is ignored.
+
+## Core LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.synctex.gz(busy)
+
+## BibTeX
+*.bbl
+*.blg
+*.brf
+
+## minitoc (per-section tables of contents)
+*.maf
+*.mtc
+*.mtc[0-9]*
+*.mlf
+*.mlt
+*.mtc[0-9]*.mtc
+
+## Index / glossary
+*.idx
+*.ind
+*.ilg
+*.glg
+*.glo
+*.gls
+*.acn
+*.acr
+*.alg
+
+## Beamer / misc
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.dvi
+
+## Editor and OS noise
+*~
+*.swp
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
+
+## Working notes, not part of the published repo
+technical-review.md
