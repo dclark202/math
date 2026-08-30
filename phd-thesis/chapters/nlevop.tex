@@ -1,0 +1,600 @@
+\label{sec:N-lev}
+In this section we develop our theory of $\mathbf{N}=\{0,1,2,\dots\}$-colored operads with levels, which we refer to as $\Nl$-operads. The motivating principle behind our constructions is to provide a framework to fatten-up the usual notion of operads and their algebras. For this section $(\mathsf{C},\otimes, \mathbf{1})$ will denote a given cocomplete closed, symmetric monoidal category with initial object $\ptC$. We first recall the classical theory of colored operads. 
+
+%----------------------------------------------------------------------------------------------------------------------
+\section{Colored operads}
+
+Colored operads (sometimes also referred to as \textit{multicategories}) offer a generalization of operads to encode more nuanced algebraic operations on their algebras. We give an overview of their pertinent details below and refer the reader to Leinster \cite{Lei} or Elmendorf-Mandell \cite{EM-colop} for more information. As before, we will only need to consider colored operads in the category of spectra. 
+
+\begin{definition} Let $C$ be a nonempty set, i.e., a set of \textit{colors}. A \textit{$C$-colored operad} $\Cal{M}$ in $\mathsf{C}$ consists of \begin{itemize}
+    \item Objects $\mathcal{M}(c_1,\dots,c_n;d)\in \mathsf{C}$ for all $(c_1,\dots,c_n;d)\in C^{\times n}\times C$ and $n\geq 0$
+    \item A unit map $\mathbf{1} \to \Cal{M}(c;c)$ for all $c\in C$
+    \item Composition maps of the form \begin{align} \label{eq:colored-op-comp}
+   \Cal{M}(c_1,\dots,c_n;d)\otimes& \Cal{M}(p_{1,1}, \dots, p_{1,k_1};c_1)\otimes \cdots \otimes \Cal{M}(p_{n,1},\dots,p_{n,k_n};c_n) \\
+    &\to \Cal{M}(p_{1,1},\dots, p_{n,k_n};d) \nonumber
+\end{align}
+\end{itemize} 
+subject equivariance, associativity and unitality conditions (see, e.g.,  \cite[2.1]{EM-colop}).
+\end{definition} 
+
+An \textit{algebra} over $\mathcal{M}$ is a $C$-colored object, i.e., $X=\{X_c\}_{c\in C}$ such that $X_c\in \mathsf{C}$ for all $c\in C$, together with maps for each tuple $(c_1,\dots,c_n;d)\in C^{\times n}\times C$ of the form \[\Cal{M}(c_1,\dots,c_n;d)\otimes X_{c_1}\otimes \cdots \otimes X_{c_n} \to X_d\] the collection of which is required to satisfy equivariance, associativity and unitality conditions. 
+
+Berger-Moerdijk provide a list of examples in \cite[\textsection 1.5]{BM-trees}; of note is that for $C=\{\pt\}$, a one-colored operad is just an operad in the classical sense. The following constructions are also motivated by White-Yau \cite{White-Yau} wherein a composition product for $C$-colored operads is provided.
+
+
+\section{$\Nl$-objects}
+The purpose of this section is to introduce the notion of a nonsymmetric, $\mathbf{N}$-colored sequence \textit{with levels} in $\mathsf{C}$. We will refer to these as \textit{$\Nl$-objects}. % and our main focus will be the closed symmetric monoidal category of symmetric spectra $\Spt=(Sp^{\Sigma},\wedge, S)$. 
+In our framework, $\Nl$-objects will play a role analogous to symmetric sequences for classical (one-color) operads, though we note that we do not yet impose any symmetric group actions on our $\Nl$-objects. Let $\mathbf{s}$ denote the set $\{1,\dots,s\}$ (note that $\mathbf{0}=\emptyset$). 
+
+\begin{definition} 
+\label{N-circhat-k}
+For $k\geq 0$, let $\mathbf{N}^{\hat{\circ}k}$ denote the set of tuples of orbits
+\[ 
+\mathbf{N}^{\hat{\circ}k}:=\left\{ \left(n^1,(n^2_1,\cdots,n^2_{n^1})_{\Sigma_{n^1}} , \cdots, (n^{k}_1,\cdots, n^k_{n^{k-1}})_{\Sigma_{n^{k-1}}}\right): n^j_i \geq 0\; \forall i,j\right\}
+\]
+where $n^{j}$ is inductively defined as $\sum_{i=1}^{n^{j-1}} n^j_i$ and we set $n^0:=1$. We then treat $\Ncirc{k}$ as a category with only identity morphisms. 
+\end{definition}
+
+Note that the superscripts in Definition \ref{N-circhat-k} are used for indexing and are not powers, we will adhere to this convention throughout the document. %Moreover we may that our profiles are presented in nondecreasing order, i.e., that $n^j_1\leq n^j_2\leq \cdots \leq n^j_{n^{j-1}}$. 
+Elements $\underline{p}\in \Ncirc{k}$ will be referred to as \textit{profiles}, we will often suppress the orbit subscript and write $(n_1,\dots,n_s)$ for the orbit $(n_1,\dots,n_s)_{\Sigma_s}$.
+
+\begin{definition} Given $\underline{p}=(n^1, \dots, (n^{k}_i)_{i\in \mathbf{n^{k-1}}})\in \Ncirc{k}$, we define the \textit{weight} of $\underline{p}$ to be the integer
+$n^k=\sum_{i\in \mathbf{n^{k-1}}} n^k_i$. For $t\in \mathbf{N}$, we write $\Ncirc{k}[t]$ for the set of profiles $\underline{p}\in \Ncirc{k}$ of weight $t$.
+\end{definition} 
+
+\begin{example}
+\label{Nl-ex-1}Computing small examples we see \begin{align*}
+\Ncirc{0} & = \{\emptyset\},
+&
+\Ncirc{2} & \cong \{ (n, (k_1,\dots,k_n)): n,k_i\geq 0\},
+\\
+\Ncirc{1} & \cong \mathbf{N},
+&
+\Ncirc{3} & \cong \{(n, (k_1,\dots,k_n), (t_1,\dots, t_k): k=k_1+\dots+k_n, n,k_i,t_j\geq 0\}. \nonumber
+\end{align*}
+\end{example}
+
+\begin{remark}
+Note that profiles in $\Ncirc{\ell}$ are in bijective correspondence to indexing factors of $\ell$-fold iterates of $\circhat$ from (\ref{comp-prod-nonsym}), therefore objects indexed on $\Ncirc{\ell}$ naturally arise when evaluating $\ell$-fold iterates of the composition product of symmetric sequences (Definition \ref{comp-prod-def-orb}) from the left. 
+\end{remark}
+
+Given $\underline{p}=(n^1, (n^2_i)_{i\in\mathbf{n^1}}\dots, (n^{\ell}_i)_{i\in\mathbf{n}^{\ell-1}})\in\Ncirc{\ell}[t]$, the term \[(X_1\circ \cdots \circ X_{\ell})[\underline{p}]\] is the collection of factors in $(X_1\circ\cdots \circ X_{\ell})[t]$ corresponding to the indexing tuples \[(n^j_1,\dots,n^j_{n^1})_{\Sigma_{n^{j-1}}}\in\mathsf{Sum}_{n^{j-1}}^{n^j},\] for $j=1,\dots, \ell$.
+
+
+\begin{definition} 
+Given profiles $\underline{p},\underline{q}\in\Ncirc{k}$ we define their \textit{amalgamation} $\underline{p}\amalg \underline{q}$ to be the orbit of the levelwise disjoint union of the two profiles. In other words, given \begin{align*} 
+\underline{p} & =(n^1,(n^2_{i})_{i\in \mathbf{n^1}}, (n^3_{i})_{i\in \mathbf{n^2}},\dots, (n^{k}_{i})_{i\in \mathbf{n^{k-1}}}), \\
+\underline{q} & =(m^1,(m^2_{j})_{j\in \mathbf{m^1}}, (m^3_{j})_{j\in \mathbf{m^2}},\dots, (m^{k}_{j})_{j\in \mathbf{m^{k-1}}}),
+\end{align*}
+then $\underline{p}\amalg\underline{q}$ is given by\begin{equation*}
+\underline{p}\amalg \underline{q}:=\Big((n^1,m^1),\big( (n^2_{i})_{i\in \mathbf{n^1}} \amalg (m^2_{j})_{j\in \mathbf{m^1}} \big) , \dots, \big( (n^{k}_{i})_{i\in \mathbf{n^{k-1}}} \amalg (m^{k}_{j})_{j\in \mathbf{m^{k-1}}}\big) \Big).\end{equation*}
+\end{definition}
+
+\begin{remark} Note that $\underline{p}\amalg \underline{q}$ is \textit{not} an element of any $\Ncirc{k}$ as its first entry is not a singleton. However, if $\underline{p}_i\in \Ncirc{k}[t_i]$ for $i=1,\dots,n$ then \[\big( n, \underline{p_1}\amalg\cdots \amalg \underline{p_n} \big)\in \Ncirc{k+1}[t_1+\cdots+t_n].\]
+
+For instance, if $\underline{p}=(2,(2,3))$ and $\underline{q}=(3,(2,3,4))$ then \[\big(2,\underline{p}\amalg\underline{q}\big)=\big(2,(2,3)_{\Sigma_2},(2,3,2,3,4)_{\Sigma_5}\big)\in \Ncirc{3}[14].\] 
+\end{remark}
+
+\begin{definition} 
+An \textit{$\Nl$-object} $\mathcal{P}$ in a symmetric monoidal category $\mathsf{C}$ is a functor \[ \Cal{P}\colon \coprod_{\ell\geq 0} \Ncirc{\ell}\times \mathbf{N} \to \mathsf{C}.\] 
+
+Equivalently, $\mathcal{P}=(\mathcal{P}_{k})_{k\geq 0}$ such that $\mathcal{P}_{k}$ is a functor $\Ncirc{k}\times \mathbf{N} \to \mathsf{C}$. We also refer to $\Nl$-objects as \textit{$\mathbf{N}$-colored objects with levels}. 
+We further say an $\Nl$-object $\Cal{P}$ is \textit{reduced} if \begin{itemize}
+    \item For $\ell\geq 1$, $\Cal{P}_{\ell}(\underline{p};t)= \ptC$ if $\underline{p}\notin \Ncirc{\ell}[t]$
+    \item $\Cal{P}_0(\emptyset;1)=\mathbf{1}$ 
+    \item $\Cal{P}_0(\emptyset; n)=\ptC$ for $n\neq 1$. 
+\end{itemize} 
+Recall that $\ptC$ denotes the initial object of $\mathsf{C}$.
+\end{definition}
+Note if $\Cal{P}$ is reduced then $\Cal{P}$ is determined by a functor $\coprod_{\ell\geq 0} \Ncirc{\ell} \to \mathsf{C}$. We will mostly be concerned with reduced $\Nl$-objects, but benefit from this more general definition when we discuss algebras in Section \ref{sec:algebras}.
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{A composition product for $\Nl$-objects}
+The aim of this section is develop a monoidal composition product for $\Nl$-objects so that we may encode $\Nl$-operads as monoids. 
+
+\begin{definition}
+\label{circ-dot-composite}
+Let $\underline{p}=(n^1,(n^2_i)_{i\in\mathbf{n^1}},\dots,(n^k_i)_{i\in\mathbf{n^{k-1}}}) \in \Ncirc{k}$ and let $\ell_1,\dots,\ell_k\geq 0$ be given. Let $\underline{Q}$ denote a collection of unordered sequences of profiles $(\underline{q}_1^j,\cdots, \underline{q}^j_{n^{j-1}})$ for $j=1,\dots,k$ such that $\underline{q}^j_i\in\Ncirc{\ell_j}[n^j_i]$. 
+
+We define the \textit{composite} of $\underline{p}$ and $\underline{Q}$ to be the profile $\underline{p}\circ \underline{Q}\in\Ncirc{(\ell_1+\dots+\ell_k)}$ given as follows \[\underline{p}\circ \underline{Q}:=\big(\underline{q^1}, \underline{q}^2_1\amalg \cdots \amalg \underline{q}^2_{n^1}, \cdots, \underline{q}_1^k\amalg \cdots \amalg \underline{q}_{n^{k-1}}^k\big).\]
+\end{definition}
+
+Let \[\Ncirc{k} \ltimes \left(\coprod_{\ell_1,\cdots,\ell_k\geq 0}\Ncirc{\ell_1} \times \cdots \times \Ncirc{\ell_k}\right)\] be the collection of all pairs $(\underline{p}, \underline{Q})$ such that 
+\begin{align*} 
+\underline{p}=(n^1,(n^2_i)_{i\in\mathbf{n^1}},\dots,(n^k_i)_{i\in\mathbf{n^{k-1}}}), \quad \quad
+\underline{Q}=(\underline{q}^1,\cdots ,(\underline{q}^k_j)_{j\in \mathbf{n^{k-1}}})
+\end{align*}
+so that the composite $\underline{p} \circ \underline{Q}$ is defined (i.e., $\underline{q}^j_i\in \Ncirc{\ell_j}[n^j_i]$).  
+
+\begin{remark} \label{rem:trees-n-stuff}
+    It is convenient to think of an element $\underline{p}=(n^1,\dots,(n^k_i))\in \Ncirc{k}[t]$ as describing a family of planar rooted trees (see, e.g. \cite{Ching-thesis}) with $t$ leaves and $k$ levels. More precisely, the numbers $n^j_i$ describe the valence (number of input edges) to the $i$-th node at the $j$-th level, and a tree in this family is determined by a family of morphisms $\varphi_j \colon \mathbf{n^j}\to\mathbf{n^{j-1}}$ for $1\leq j < k$ such that $|\varphi_j^{-1}(i)|=n_i^j$ for all $i,j$. %CITE
+    
+    Let $\underline{Q}$ be so that $\underline{p}\circ \underline{Q}$ is defined. From this perspective, a tree in the family corresponding to $\underline{p}\circ\underline{Q}$ is build by ``blowing up'' each node $n^j_i$ from $\underline{p}$ by a tree from the family corresponding to the profile $\underline{q^j_i}$ from $\underline{Q}$.
+\end{remark}
+
+\begin{definition} \label{def:tensor} We define the \textit{tensor $\tensorhat$} of reduced $\Nl$-objects $\Cal{Q}^1,\cdots,\Cal{Q}^k$ to be the left Kan extension of the following \begin{equation} \xymatrix{ 
+    \coprod_{k\geq 0} \left( \Ncirc{k} \ltimes (\coprod_{\ell_1,\cdots,\ell_k\geq 0}\Ncirc{\ell_1} \times \cdots \times \Ncirc{\ell_k}) \right) \ar[rr]^-{\Cal{Q}^1 \circhat \cdots \circhat \Cal{Q}^k} \ar[d]^-{(\underline{p}, \underline{Q}) \mapsto \underline{p} \circ \underline{Q}} 
+    && \mathsf{C} 
+    \\ \coprod_{\ell\geq 0} \mathbf{N}^{\circhat \ell} \ar[rr]^-{\Cal{Q}^1 \tensorhat \cdots \tensorhat \Cal{Q}^k}_-{\text{left Kan ext.}} 
+    && \mathsf{C} }\end{equation}
+such that if $\underline{p}\circ \underline{Q}\in \Ncirc{\ell_1+\cdots+\ell_k}[t]$, then \[  (\Cal{Q}^1 \circhat \cdots \circhat \Cal{Q}^k)(\underline{p}\circ \underline{Q}; t) :=  \Cal{Q}_{\ell_1}^1 (\underline{q}^1;n^1) \otimes \bigotimes_{i\in \mathbf{n^1}} \Cal{Q}_{\ell_2}^{2}(\underline{q}^2_i;n^2_i) \cdots \otimes \bigotimes_{i\in\mathbf{n^{k-1}}} \Cal{Q}^k_{\ell_k}(\underline{q}^k_i;n^k_i) . \]
+\end{definition}
+
+Note then that $(\Cal{Q}^{\tensorhat k})_{\ell} \cong \coprod_{\ell_1+\dots+\ell_k=\ell} \Cal{Q}_{\ell_1} \hat{\circ} \cdots \hat{\circ} \Cal{Q}_{\ell_k}$, more specifically: \begin{equation}
+   (\Cal{Q}^{\tensorhat k})_{\ell}(\underline{p};t) \cong \coprod_{\ell_1+\dots+\ell_k=\ell} \coprod_{\underline{p}=\underline{p}' \circ \underline{Q}} \; (\Cal{Q} \circhat \cdots \circhat \Cal{Q})(\underline{p}\circ \underline{Q}; t)
+    \end{equation}
+where we note that the summands $\ell_j$ are ordered.
+
+\begin{definition} \label{ccp} 
+Let $\Cal{P}$ and $\Cal{Q}$ be reduced $\Nl$-objects in $\mathsf{C}$. Their \textit{nonsymmetric composition product} $\circdot$ is defined as the coend $\Cal{P}_{-} \otimes_{\mathsf{N}} \Cal{Q}^{\tensorhat -}$ where $\mathsf{N}$ denotes the category of finite sets $\mathbf{n}$ for $n\geq 0$ with only identity morphisms. That is, \[(\Cal{P}{\odot} \Cal{Q})_{\ell}\cong \coprod_{k\geq 0} \Cal{P}_k \tensordot (\Cal{Q}^{\hat{\otimes} k})_{\ell}.
+\]
+\end{definition}
+
+We use the notation $\tensordot$ to designate the product $\Cal{P}_k \tensordot (\Cal{Q}_{\ell_1} \circhat \cdots \circhat \Cal{Q}_{\ell_k})$ is evaluated at a profile $(\underline{p};t)$ as follows \[(\Cal{P}_k \tensordot (\Cal{Q}_{\ell_1}\circhat \cdots \circhat \Cal{Q}_{\ell_k})) (\underline{p};t) \cong \coprod_{\underline{p}=\underline{p}' \circ \underline{Q}} \Cal{P}_k(\underline{p}';s') \otimes (\Cal{Q}^1 \circhat \cdots \circhat \Cal{Q}^k)(\underline{p}\circ \underline{Q}; t) %\bigotimes_{j=1}^{k} \left(\bigotimes_{i\in\mathbf{n^j}} \Cal{Q}_{\ell_j}(\underline{q}^j_i;n^j_i)\right)
+\] 
+where $\underline{p}'\in\Ncirc{k}[s']$ and $\underline{Q}$ is a family $(\underline{q}_i^j)$ as in (\ref{circ-dot-composite}) with $\underline{q}_i^j\in\Ncirc{\ell_{j}}[s_i^j]$.
+
+We necessarily then have \[\label{s-def}
+\underline{p}'=\big(s^1, (s^2_1,\dots,s^2_{s^1}), \dots , (s^k_1,\dots, s^k_{s^{k-1}})\big)\] and can further describe $\Cal{P} \circdot \Cal{Q}$ as \begin{align}\label{p=p'Q} 
+    (\Cal{P} \circdot \Cal{Q})_{\ell}(\underline{p};t) \cong \coprod_{\ell_1+\dots+\ell_k=\ell} \coprod_{\underline{p}=\underline{p}' \circ \underline{Q}} \Cal{P}_k(\underline{p}';s') \otimes \bigotimes_{j=1}^{k} \left( \bigotimes_{i\in\mathbf{n^j}} \Cal{Q}_{\ell_j}(\underline{q}^j_i;n^j_i) \right)
+    \end{align}
+
+
+\begin{example} 
+We will evaluate $(\Cal{P}\circdot\Cal{Q})_3$ at \[\underline{p}=(n, (k_i)_{i\in \mathbf{n}}, (t_j)_{j\in \mathbf{k}})\in\Ncirc{3}[t]\] for $\Cal{P}, \Cal{Q}$ reduced $\Nl$-objects. Set $k:=k_1+\dots+k_n$, we observe \[ \left(\Cal{P}_2\tensordot(\Cal{Q}_1\hat{\circ}\Cal{Q}_2) \right)(\underline{p};t)=
+\coprod_{\underline{p}=(n,(\underline{q}_1\amalg \cdots \amalg \underline{q}_n))} \Cal{P}_2(n, (s_1,\dots,s_n); t)\otimes \left( \Cal{Q}_1(n;n)\otimes \bigotimes_{i\in\mathbf{n}} \Cal{Q}_2 (\underline{q}_i;s_i)\right)\]
+where  $\underline{q}_i\in \Ncirc{2}[s_i]$. 
+
+Using the language of Remark \ref{rem:trees-n-stuff}, we think of the above as partitioning the set of nodes $(t_j)_{j\in\mathbf{k}}$ from $\underline{p}$ into $n$ sets of size $k_1,\dots,k_n$, e.g., by defining a map $\varphi\colon \mathbf{k}\to\mathbf{n}$ such that $|\varphi^{-1}(i)|=k_i$ for $i=1,\dots,n$. Such a partition determines $n$ profiles $\underline{q}_i=(k_i,(t_j)_{j\in\varphi^{-1}(i)}) \in \Ncirc{2}[s_i]$ for $i=1,\dots,n$ where necessarily $s_i$ is the sum $\sum_{j\in \varphi^{-1}(i)} t_j$. This precisely determines all possible ways of expressing the family of trees associated to $\underline{p}$ by a ``vertex blowup'' of the form $\underline{p}=\underline{p}'\circ \Cal{Q}$, where $\underline{p}'\in \Ncirc{2}[t]$, $\underline{q}^1\in \Ncirc{1}[n]$ and each $\underline{q}^2_i\in \Ncirc{2}$. The term $\left(\Cal{P}_2\tensordot(\Cal{Q}_1\hat{\circ}\Cal{Q}_2) \right)(\underline{p};t)$ is then obtained by using $\Cal{P}$ to evaluate $\underline{p}'$ and $\Cal{Q}$ to evaluate the profiles from $\underline{Q}$. %I'd like a nice concise depiction of these tree building pictures here just a few sentences **
+
+
+Similarly, \begin{align*}  
+(\Cal{P}_2\tensordot (\Cal{Q}_2 \circhat \Cal{Q}_1))(\underline{p};t) &
+=\Cal{P}_2 \left(k, (t_j)_{j\in\mathbf{k}};t\right)\otimes \left( \mathcal{Q}_2(n, (k_i)_{i\in \mathbf{n}}; k) \otimes \bigotimes_{j\in\mathbf{k}} \Cal{Q}_1(t_j;t_j) \right), 
+ \\
+(\Cal{P}_1\tensordot \Cal{Q}_3)(\underline{p};t) & = \Cal{P}_1(t;t)\otimes \Cal{Q}_3(\underline{p};t),
+ \\
+(\Cal{P}_3\tensordot(\Cal{Q}_1\circhat\Cal{Q}_1\circhat\Cal{Q}_1))(\underline{p};t) & 
+=\Cal{P}_3(\underline{p};t)\otimes \left( \Cal{Q}_1(n;n) \otimes \bigotimes_{i\in\mathbf{n}} \Cal{Q}_1(k_i;k_i) \otimes \bigotimes_{j\in\mathbf{k}} \Cal{Q}_1(t_j;t_j)\right). 
+\end{align*}
+\end{example}
+
+\begin{proposition} \label{N_l-monoidal}
+The category of $\Nl$-objects equipped with the composition product $\circdot$ is monoidal.
+\end{proposition}
+
+\begin{proof}
+It is straightforward to verify that $\circdot$ has a two-sided unit, $\mathcal{I}$, given by $\mathcal{I}_1(n;n)=\mathbf{1}$ and $\Cal{I}=\ptC$ otherwise. For $\Nl$-objects $\Cal{P},\Cal{Q},\Cal{R}$, there is a natural isomorphism $(\Cal{P}\circdot \Cal{Q})\circdot \Cal{R}\cong \Cal{P}\circdot (\Cal{Q}\circdot \Cal{R})$ induced by the natural isomorphisms \begin{align} \label{asoc-circdot}
+\Big( \Cal{P}_n &\tensordot \big(\Cal{Q}_{k_1}\circhat \cdots \circhat \Cal{Q}_{k_n}\big)\Big)\tensordot \big(\Cal{R}_{\ell_{1,1}}\circhat \cdots \circhat \Cal{R}_{\ell_{n,k_n}}\big) 
+\\
+&\cong \Cal{P}_n \tensordot \Big( \big(\Cal{Q}_{k_1} \tensordot (\Cal{R}_{\ell_{1,1}}\circhat \cdots \circhat \Cal{R}_{\ell_{1,k_1}}) \big) \circhat \cdots \circhat \big(\Cal{Q}_{k_n} \tensordot (\Cal{R}_{\ell_{n,1}}\circhat \cdots \circhat \Cal{R}_{\ell_{n,k_n}}) \big)\Big) \nonumber
+\end{align}
+obtained by a tedious but ultimately straightforward calculation. The remainder of the monoidal category axioms follow from similar observations. 
+\end{proof}
+
+\begin{definition} 
+A \textit{nonsymmetric $\Nl$-operad} is a reduced $\Nl$-object $\Cal{P}$ which is a monoid with respect to $\circdot$. That is, there are unital and associative maps of $\Nl$-objects $\xi\colon \Cal{P}\circdot \Cal{P}\to\Cal{P}$ and $\varepsilon\colon \Cal{I}\to \Cal{P}$, i.e., such that the following diagrams commute \[ \xymatrix{ \Cal{P}\circdot \Cal{P} \circdot \Cal{P} \ar[r]^-{\xi\circdot\id} \ar[d]^-{\id\circdot \xi}& \Cal{P}\circdot \Cal{P} \ar[d]^-{\xi} \\ \Cal{P}\circdot \Cal{P} \ar[r]^-{\xi} & \Cal{P}} \hspace{1cm} \xymatrix{ \Cal{P} \circdot \Cal{I} \ar[r]^-{\id\circdot \varepsilon} & \Cal{P}\circdot \Cal{P} \ar[d]^-{\xi} & \Cal{I} \circdot \Cal{P} \ar[l]_-{\varepsilon \circdot \id} \\ & \Cal{P} \ar[ul]^-{\cong} \ar[ur]_{\cong} }\]
+\end{definition}
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Algebras over a nonsymmetric $\Nl$-operad}
+Let $(\widehat{-})$ denote the inclusion of $\mathbf{N}$-colored objects to $\Nl$-objects given by \[\text{$\widehat{X}_0(\emptyset;n)=X[n]$ and $\widehat{X}_k=\ptC$ for $ k\geq 1$.}\] 
+
+Note that $\widehat{X}$ is not reduced, but a straightforward modification of Definition \ref{def:tensor} provides that $\big(\widehat{X}^{\tensorhat n}\big)_0\cong X^{\circhat n}$ and $\big(\widehat{X}^{\tensorhat n}\big)_k\cong \ptC$ for $k\geq 1$. Similarly, $(\widehat{-})$ is left adjoint to $\mathrm{Ev}_0$ which takes values in nonsymmetric sequences and is defined at an $\Nl$-object $\Cal{P}$ as \[(\mathrm{Ev}_0\Cal{P})[n]:=\Cal{P}_0(\emptyset;n).\] 
+
+If $\Cal{P}$ is a nonsymmetric $\Nl$-operad then $\Cal{P}\circdot \widehat{X}$ remains concentrated at level $0$ and hence defines a monad on $\mathbf{N}$-colored objects \[\Cal{P}\circdot(-)\colon X\mapsto \mathrm{Ev}_0(\Cal{P}\circdot \widehat{X}).\] 
+
+\begin{definition}  \label{def-nonsym}
+We say that an $\mathbf{N}$-colored object $X$ is an \textit{algebra} over an nonsymmetric $\Nl$-operad $\mathcal{P}$ if there is an action map \[\mathcal{P}\circdot (X)\xrightarrow{\;\; \mu\;\;} X\] which is associative and unital in that the following diagrams commute. \[ \xymatrix{ \Cal{P}\circdot \Cal{P} \circdot (X) \ar[r]^<(.3){\xi\circdot\id} \ar[d]^{\id\circdot \mu}& \Cal{P}\circdot (X) \ar[d]^{\mu} \\ \Cal{P}\circdot (X)\ar[r]^{\mu} & X } \hspace{1cm} \xymatrix{ \Cal{P}\circdot (X) \ar[r]^{\mu} & X \\ \Cal{I}\circdot (X)  \ar[u]^{\varepsilon} \ar[ur]_{\cong} }\]
+\end{definition} 
+
+We denote by $\AlgN{P}$ the category of algebras over a nonsymmetric $\Nl$-operad $\Cal{P}$ along with $\Cal{P}$-action preserving maps. Note that an action map $\mu$ consists of pieces \[\mu_k\colon \mathcal{P}_{k} \tensordot (X^{\circhat k})\to X\] for $k\geq 0$ and that $\AlgN{P}$ is complete and cocomplete and moreover that limits are built in the underlying category of $\mathbf{N}$-colored objects. 
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Change of $\Nl$-operads adjunction}
+Given a map of nonsymmetric $\Nl$-operads $\sigma\colon \Cal{P}\to \Cal{Q}$ and a $\Cal{P}$-algebra $X$ we define $\Cal{Q} \circdot_{\Cal{P}}(X)$ by the reflexive coequalizer \begin{equation*}
+\label{circ-dot-over}
+    \Cal{Q}\circdot_{\Cal{P}}(X):= \colim \left( \xymatrix{
+    \Cal{Q}\circdot  (X) & \ar@<-1ex>[l] \ar@<.5ex>[l]  \Cal{Q}\circdot\Cal{P}\circdot (X) }\right).
+\end{equation*}
+The top map above is given by $\Cal{P}\circdot (X)\xrightarrow{\;\mu_{\Cal{P}}\;} X$ and the bottom is induced by the composite \[\Cal{Q}\circdot \Cal{P}\xrightarrow{\,\id \circdot \sigma\,} \Cal{Q}\circdot \Cal{Q}\xrightarrow{\;\xi_{\Cal{Q}}\;} \Cal{Q}.\] 
+
+The resulting object $\Cal{Q}\circdot_{\Cal{P}}(X)$ inherits a natural $\Cal{Q}$ algebra structure and the construction fits into an adjunction as in the following proposition.
+
+\begin{proposition} 
+Given a map of nonsymmetric $\Nl$-operads $\mathcal{P}\xrightarrow{\; \sigma \;}\mathcal{Q}$ there is a change of nonsymmetric $\Nl$-operads adjunction \begin{equation*} \xymatrix{
+    \AlgN{P} \ar@<.75 ex>[r] ^{\Cal{Q}\circdot_{\Cal{P}}(-)} &
+    \AlgN{Q} \ar@<.75ex>[l]^{\sigma^*} }
+\end{equation*}
+with right adjoint $\sigma^*$ given by restriction along $\sigma$. 
+\end{proposition}
+
+\subsection{A forgetful functor to $\mathbf{N}$-colored operads} \label{N_l-is-N}  We describe forgetful functor $\mathbb{U}$ from $\Nl$-operads to $\mathbf{N}$-colored operads (specifically, nonsymmetric $\mathbf{N}$-colored operads). Given $\underline{p}=((n^1,\cdots, (n^{\ell}_i)_{i\in \mathbf{n^{\ell-1}}} )\in\Ncirc{\ell}$, we set $s(\underline{p})$ to be the unordered list of the elements of the levels of $\underline{p}$, i.e., \[s(\underline{p}):=\left\{n^j_i: j\in\{1,\cdots,n\}, i\in \mathbf{n^j} \right\}. \] 
+
+Given an $\Nl$-object $\mathcal{Q}$ we define $\mathbb{U}\Cal{Q}$ by \begin{equation} 
+    (\mathbb{U}\mathcal{Q})(c_1,\dots,c_k;t):=\coprod_{s(\underline{p})=(c_1,\dots,c_k)} \mathcal{Q}_{\ell}(\underline{p};t)
+\end{equation}
+where the coproduct ranges over $\underline{p}\in \coprod_{\ell \geq 0} \Ncirc{\ell}$. We leave the proof of the following proposition to the reader.
+
+\begin{proposition}
+If $\Cal{P}$ is an $\Nl$-operad then $\mathbb{U}\Cal{P}$ is a (nonsymmetric) $\mathbf{N}$-colored operad. Furthermore, the categories $\AlgN{P}$ and $\mathsf{Alg}_{\mathbb{U}\Cal{P}}$ are equivalent. 
+\end{proposition}
+
+%----------------------------------------------------------------------------------------------------------------------
+\section{Symmetric $\Nl$-objects} We now impart symmetric group actions on our $\Nl$-objects in a way that captures operadic composition. Denote by $\Cal{I}^{\Sigma}$ the $\Nl$-object in $(\mathsf{C},\otimes, \mathbf{1})$ with \[\Cal{I}^{\Sigma}_{\ell}(\underline{p};t)=\begin{cases} 
+    \mathbf{\Sigma}[n] & \ell=1, \underline{p}=n=t \\
+    \ptC & \text{otherwise} 
+    \end{cases}\] 
+    
+Recall here that $\mathbf{\Sigma}[n]=\coprod_{\sigma\in\Sigma_n} \mathbf{1}$. Note that $\Cal{I}^{\Sigma}$ is a nonsymmetric $\Nl$-operad whose composition maps are induced by the block matrix inclusions \[ \Sigma_n \times (\Sigma_{k_1}\times\cdots\times \Sigma_{k_n}) \to \Sigma_{k_1+\cdots+k_n}. \]  Moreover the data of an algebra over $\Isym$ is precisely that of a symmetric sequence; i.e.,  $\mathsf{Alg}^{\omega}_{\Cal{I}^{\Sigma}}\cong \SymSeq$. 
+
+\begin{definition}
+An $\Nl$-object $\Cal{P}$ \textit{symmetric} if $\Cal{P}$ has compatible right and left actions of $\Cal{I}^{\Sigma}$ in that the following diagram must commute \begin{equation*} 
+    \xymatrix{
+    \Isym\circdot \Cal{P} \circdot \Isym \ar[rr]^{\mu_{\ell}\circdot\id} \ar[d]^{\id\circdot \mu_{r}} && \Cal{P}\circdot \Isym \ar[d]^{\mu_r}
+    \\
+    \Isym\circdot \Cal{P} \ar[rr]^{\mu_{\ell}} && \Cal{P} }
+\end{equation*}
+where $\mu_{\ell}$ (resp. $\mu_r$) denotes the left (resp. right) action map of $\Isym$ on $\Cal{P}$. 
+\end{definition}
+
+In other words, a symmetric $\Nl$-object is an $(\Isym,\Isym)$-bimodule. Note that $\Isym \circdot(X)\cong \Sigma{\cdot} X$ is the free symmetric sequence on $X$ (see also Remark \ref{def:Sigma-copowered}).
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Symmetric $\Nl$-operads}
+%We introduce a symmetric composition product for symmetric $\Nl$-objects which identifies the right $\Isym$ action on $\Cal{P}$ and left $\Isym$ action on $\Cal{Q}$.
+
+\begin{definition} Let $\Cal{P},\Cal{Q}$ be $(\Isym,\Isym)$-bimodules. We define their \textit{symmetric composition product}, denoted $\Cal{P}\circdot_{\Sigma} \Cal{Q}$, as the (reflexive) coequalizer (calculated in symmetric $\Nl$-objects)\[ 
+    \Cal{P}\circdot_{\Sigma} \Cal{Q} :=\Cal{P}\circdot_{\Cal{I}^{\Sigma}} \Cal{Q}\cong \colim \left( \xymatrix{
+        \Cal{P}\circdot \Cal{Q} &
+        \Cal{P}\circdot \Cal{I}^{\Sigma} \circdot \Cal{Q} \ar@<.5ex>[l] \ar@<-.75ex>[l] }
+    \right) \]
+where the two maps are induced by the left and right actions actions of $\Cal{I}^{\Sigma}$ on $\Cal{Q}$ and $\Cal{P}$.
+\end{definition}
+
+Note that $\Cal{P}\circdot_{\Sigma} \Cal{Q}$ inherits left and right $\Isym$ actions by those on $\Cal{P}$ and $\Cal{Q}$ respectively, and so remains an $(\Isym,\Isym)$-bimodule. Moreover, $\Cal{I}^{\Sigma}$ is a two-sided unit for $\circdot_{\Sigma}$ and symmetric $\Nl$-objects equipped with the product $(\circdot_{\Sigma}, \Isym)$ is a monoidal category. 
+\begin{remark}
+Since $\Isym$ is concentrated at level $1$, is it possible to further describe the object $\Cal{P}\circdot_{\Sigma} \Cal{Q}$ in terms of its constituent parts. In particular, \begin{equation*}
+    (\Cal{P}\circdot_{\Sigma} \Cal{Q})_{\ell} \cong \coprod_{k\geq 0} \coprod_{\ell_1+\dots+\ell_k=\ell} \Cal{P}_{k} \tensordot_{\Sigma} ( \Cal{Q}_{\ell_1}\circhat \cdots \circhat \Cal{Q}_{\ell_k})
+\end{equation*}
+where $\Cal{P}_{k} \tensordot_{\Sigma} ( \Cal{Q}_{\ell_1}\circhat \cdots \circhat \Cal{Q}_{\ell_k})$ is obtained as the coequalizer \begin{equation*}
+    \colim \left( \xymatrix{
+        \Cal{P}_k \tensordot (\Cal{Q}_{\ell_1}\circhat \cdots \circhat \Cal{Q}_{\ell_k}) &
+        \Big( \Cal{P}_k \tensordot (\underbrace{\Isym_1 \circhat \cdots \circhat \Isym_1}_k) \Big) \tensordot  (\Cal{Q}_{\ell_1}\circhat \cdots \circhat \Cal{Q}_{\ell_k}) \ar@<-1ex>[l] \ar@<.5ex>[l]
+    } \right) 
+\end{equation*}
+such that the top is induced by the right action of $\Isym$ on $\Cal{P}$ and the bottom map is induced by the isomorphism (\ref{asoc-circdot}) and the left action of $\Isym$ on $\Cal{Q}$.
+\end{remark}
+
+\begin{definition} \label{def:sym-Nl}
+    A \textit{symmetric $\Nl$-operad} is a reduced symmetric $\Nl$-object $\Cal{P}$, which is a monoid with respect to $\circdot_{\Sigma}$. That is, there is a multiplication map $\xi\colon \Cal{P}\circdot_{\Sigma}\Cal{P}\to \Cal{P}$ and unit map $\varepsilon \colon \Cal{I}^{\Sigma} \to \Cal{P}$ that satisfy the usual associativity and unitality conditions. 
+\end{definition}
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Algebras over symmetric $\Nl$-operads} \label{sec:algebras}
+We now define an algebra over a symmetric $\Nl$-operad $\Cal{P}$. Note than algebra over a symmetric $\Nl$-operad is a symmetric $\Nl$-object concentrated at level $0$, that is, an $\Isym$-algebra or symmetric sequence. As before, given a symmetric $\Nl$-operad $\Cal{P}$, let  \[\Cal{P}\circdot_{\Sigma}(-)\colon X\mapsto \mathrm{Ev}_0(\Cal{P} \circdot_{\Sigma}  \widehat{X})\] be the associated monad on $\SymSeq$.
+
+\begin{definition} 
+    A symmetric sequence $X$ is an \textit{algebra} over a symmetric $\Nl$-operad $\Cal{P}$ if there is an action map $\mu\colon \Cal{P}\circdot_{\Sigma} (X) \to X$ which is associative and unital (as in Definition \ref{def-nonsym} with $\circdot$ replaced by $\circdot_{\Sigma}$ q.v.)
+\end{definition}
+
+We denote by $\AlgSym{P}$ the category of symmetric $\Cal{P}$-algebras with $\Cal{P}$-algebra preserving maps; for simplicity we will frequently use $\Alg{P}$ instead when there is no room for confusion. We note that $\mu$ consists of maps \[\mu_k \colon \Cal{P}_k \tensordot_{\Sigma} (X^{\circhat k})\to X\] where the action of $\Isym$ on $X^{\circhat k}$ agrees with that for symmetric sequences discussed in Section \ref{sec:comp-prod-rmks}. Furthermore, \[\mu_0\colon I\cong \Cal{P}_0\tensordot_{\Sigma}  (X^{\circhat 0}) \to X\] gives a unit map for $X\in \Alg{P}$ and we note that an algebra $X$ over $\Cal{P}$ will always be reduced, i.e., $X[0]=\ptC$.
+
+\begin{example}[Free symmetric $\Cal{P}$-algebra on a symmetric sequence] 
+    Given a symmetric sequence $X$, the object $\Cal{P}\circdot_{\Sigma}(X)$ is the free $\Cal{P}$-algebra on $X$ and fits into an adjunction \[ \xymatrix{ 
+        \SymSeq_{\mathsf{C}} \ar@<.75ex>[r]^-{\Cal{P}\circdot_{\Sigma}(-)} 
+        & 
+        \Alg{P} \ar@<.5ex>[l]^-{\Cal{U}} 
+    }\] where $\Cal{U}$ is the forgetful functor. In particular, $\Oper \circdot_{\Sigma}(X)$ (see Definition \ref{def-of-Oper}) is the \textit{free operad} on $X$ (see, e.g.,  \cite[9.4]{AC-1}).
+\end{example}
+
+We leave the proof of the following to the reader as it follows from standard arguments as in \cite[3.29]{Har-1} or \cite[4.3]{Bor}.
+
+\begin{proposition} If $(\mathsf{C},\otimes,\mathbf{1})$ is closed symmetric monoidal which contains all small limits and colimits, then all small limits and colimits exist in $\Alg{P}$. Limits and filtered colimits are built in the underlying category of symmetric sequences and are further reflected by the forgetful functor $\Cal{U}$.
+
+General colimits shaped on a small diagram $\Cal{D}$ are constructed by the following (reflexive) coequalizer (whose colimits are constructed in $\SymSeq$): \[ \colim_{d\in\Cal{D}} X_d\cong \colim\left( \xymatrix{
+     \Cal{P}\circdot_{\Sigma} \left( \colim_{d\in\Cal{D}} X_d \right) &
+     \Cal{P}\circdot_{\Sigma} \left( \colim_{d\in\Cal{D}} \Cal{P}\circdot_{\Sigma}(X_d)\right) \ar@<.5ex>[l] \ar@<-.5ex>[l] 
+    } \right).\]
+\end{proposition}
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Modules over $\Cal{P}$-algebras}
+
+\begin{definition} \label{A-infty-alg} 
+     Let $\Cal{P}$ be a symmetric $\Nl$-operad and $\Cal{W}$ be a $\Cal{P}$-algebra. Let $M$ be a symmetric sequence. We say that $M$ is an \textit{$\Cal{W}$-module} if there are maps of the form \[\eta_{\ell}\colon \Cal{P}_{\ell} \tensordot_{\Sigma}  \left( \Cal{W}^{\circhat (\ell-1)} \circhat M\right)\to M\] for $\ell\geq 1$ that satisfy associativity (\ref{assoc-A-infty-alg}) and unitality (\ref{unit-A-infty-alg}). If $M$ is concentrated at level $0$ we say that the object $M[0]$ is a \textit{$\Cal{W}$-algebra}. 
+\end{definition}
+
+    Set $\xi\colon \Cal{P}\circdot_{\Sigma} \Cal{P}\to \Cal{P}$ to be the multiplication on $\Cal{P}$ and $\mu\colon \Cal{P}\circdot_{\Sigma} (\Cal{W})\to \Cal{W}$ the action map on $\Cal{W}$. Let $\ell:=\ell_1+\dots+\ell_k$. Associativity and unitality amounts to the commutitivity of the following diagrams \begin{equation} \label{assoc-A-infty-alg}
+        \xymatrix{
+            \left(\Cal{P}_{k}\tensordot_{\Sigma}  (\Cal{P}_{\ell_1}\circhat \cdots \circhat \Cal{P}_{\ell_k})\right) \tensordot_{\Sigma}  \left( \Cal{W}^{\circhat (\ell-1)} \circhat M\right) \ar[r]^<(.2){\xi_{\ell}\otimes_{\Sigma}\id} \ar[d]^{\cong}
+            &
+            \Cal{P}_{\ell} \tensordot_{\Sigma}  \left( \Cal{W}^{\circhat (\ell-1)} \circhat M\right) \ar[dd]^{\eta_{\ell}}
+            \\
+            \Cal{P}_{k}\tensordot_{\Sigma}  \left( (\Cal{P}_{\ell_1}\tensordot_{\Sigma}  \Cal{W}^{\circhat \ell_1} ) \circhat \cdots\circhat (\Cal{P}_{\ell_k} \tensordot_{\Sigma}  ( \Cal{W}^{\circhat \ell_k-1}\circhat M ) ) \right) 
+            \ar[d]^<(.3){\id\tensordot_{\Sigma} (\mu_{\ell_1} \circhat \cdots \circhat \mu_{\ell_{k-1}}\circhat \eta_{\ell_k})}
+            &
+            \\
+            \Cal{P}_k \tensordot_{\Sigma}  \left( \underbrace{\Cal{W}\circhat \cdots \circhat \Cal{W}}_{k-1} \circhat M \right) \ar[r]^{\eta_k}
+            &
+        M,
+        }
+    \end{equation} and
+    \begin{equation} \label{unit-A-infty-alg}
+        \xymatrix{
+            \Cal{P}_2 \tensordot_{\Sigma}  \left( (\Cal{P}_0\tensordot_{\Sigma}  \Cal{W}^{\circhat 0}) \circhat (\Cal{P}_1\tensordot_{\Sigma}  M) \right) \ar[rr]^<(.3){\id\tensordot_{\Sigma} (\mu_0 \circhat \eta_1)} \ar[d]^{\cong}
+            &&
+            \Cal{P}_2\tensordot_{\Sigma}  (\Cal{W} \circhat M) \ar[dd]^{\eta_2}
+            \\
+            \left( \Cal{P}_2 \tensordot_{\Sigma}  (\Cal{P}_0\circhat \Cal{P}_1) \right) \tensordot_{\Sigma}  M \ar[d]^{\xi_1\tensordot_{\Sigma} \id}
+            &&
+            \\
+            \Cal{P}_1 \tensordot_{\Sigma}  M \ar[rr]^{\eta_1}
+            &&
+            M.}
+    \end{equation} Recall that $\mu_0\colon I\cong \Cal{P}_0\tensordot_{\Sigma}  \Cal{W}^{\circhat 0}\to \Cal{W}$ is the unit map for $\Cal{W}$.
+
+\begin{remark}
+    We encourage the reader to compare the above definition with that of modules over algebras over an operad, e.g.,  as in May \cite[Definition 3]{May}. In \cite[1.5.1]{BM-trees} an example of a $2$-colored operad whose algebras are pairs $(A,M)$ of an $\Cal{O}$-algebra $A$ along with an $A$-module $M$ is provided. The pair $(\Cal{W}, M)$ can be described analogously as an algebra over an $\mathbf{N}_+:=\{\pt, 0,1,2,\dots\}$-colored operad with levels, though we will not require such description.  
+\end{remark}
+
+\begin{definition} \label{def:equiv-of-Nl-ops} We say a map $\Cal{P}\to\Cal{Q}$ of (symmetric) $\Nl$-operads in some symmetric monoidal model category $\mathsf{C}$ is an \textit{equivalence} if for any $\underline{p}\in\Ncirc{k}[t]$ the induced map $\Cal{P}_k(\underline{p};t)\to\Cal{Q}_k(\underline{p};t)$ is a weak equivalence in $\mathsf{C}$. We write $\Cal{P}\simeq \Cal{Q}$ if there is a zig-zag of equivalences of (symmetric) $\Nl$-operads connecting $\Cal{P}$ and $\Cal{Q}$. 
+
+In the special case that $\Cal{P}\simeq \Oper$ then we say that a $\Cal{P}$-algebra $\Cal{W}$ is an \textit{$A_{\infty}$-operad} and that modules over $\Cal{W}$ are \textit{$A_{\infty}$-algebras}.
+\end{definition}
+
+\section{Examples of symmetric $\Nl$-operads}
+In this section we describe some examples of symmetric $\Nl$-operads of interest, specifically the coendomorphism $\Nl$-operads on a given cosimplicial symmetric sequence. We begin by describing $\Oper$ -- the symmetric $\Nl$-operad whose algebras are (one-color) operads as some of its properties will be essential in what is to come. Our eventual goal is to prove that the coendomorphism $\Nl$-operad on a $\Sigma$-copowered symmetric sequence $\Cal{X}$ (see Remark \ref{def:Sigma-copowered}) is indeed a symmetric $\Nl$-operad; with the particular example of $\Cal{A}= \mathsf{coEnd}(\SD_+)$ in mind (see Section \ref{sec:A}). 
+
+Though we write most of this section for a general closed cocomplete symmetric monoidal category $\mathsf{C}$, we invite the reader to think particularly of the cases when $\mathsf{C}=\Spt$ or $\Top$.
+
+\subsection{The symmetric $\Nl$-operad $\Oper$} \label{sec:oper-def}
+We begin by describing $\Oper$ for the category $\mathsf{Set}$ of sets.
+
+\begin{definition} \label{def-of-Oper} %Oper in sets???  Tot .
+    Let $\Sigma$ denote the symmetric sequence in $(\mathsf{Set}, \times, \pt)$ with $\Sigma[n]=\Sigma_n$ and define a reduced $\Nl$-object as follows. For $\underline{p}\in \Ncirc{k}[t]$ we set \[ \Oper_{\ell}( \underline{p};t) := \hom\left( \Sigma[t] , \Sigma^{\boxcirc \ell}[\underline{p}] \right)^{\Sigma_t}\]
+\end{definition}
+
+\begin{remark}
+    Note there are isomorphisms \begin{equation} \label{eq:oper-iso} \Oper_{\ell} (\underline{p};t)=\hom \left(\Sigma[t], \Sigma^{\circ \ell}[\underline{p}] \right)^{\Sigma_t} \cong \hom \left(\pt, \Sigma^{\circ \ell} [\underline{p}] \right) \cong \Sigma^{\circ \ell} [\underline{p}].\end{equation}
+    Computing some small examples of $\Oper$, we note that 
+    \begin{align*} 
+    &\Oper_0(\emptyset;1) \cong * && \Oper_1(\emptyset;n) \cong \emptyset \quad (n \neq 1)
+    \\
+    &\Oper_1(n;n) \cong \Sigma_n \quad (n \geq 0) &&  \Oper_1(n;m)\cong \emptyset \quad (n\neq m \geq 0)
+    \\
+    &\Oper_2\left(n, (k_1,\dots,k_n);k\right)  \cong \Sigma_n \times_{\Sigma_{p_1}\times \cdots \times \Sigma_{p_n}} \Sigma_{k}  
+\end{align*}
+where $p_1,\dots,p_m$ denotes the multiplicities of distinct integers among $k_1,\dots,k_n$, $k=\sum_{i=1}^n k_i$, and $\Sigma_{p_1}\times \cdots \times \Sigma_{p_m}$ acts on $\Sigma_k$, e.g.,  by permutation of block matrices \[\Sigma_{k_1} \times \cdots \times \Sigma_{k_n} \leq \Sigma_k.\] Similarly, let $q_1,\dots,q_r$ denotes the multiplicities of the distinct integers among $t_1,\dots,t_k$ and set \[\underline{p} = (n, (k_1,\dots,k_n), (t_1,\dots,t_k)) \in \Ncirc{3}[t].\]  Then \begin{align*}
+    \Oper_3(\underline{p};t) & \cong  \Sigma_n \times_{\Sigma_{p_1}\times \cdots \times \Sigma_{p_m}} \Sigma_k \times_{\Sigma_{q_1}\times \cdots \times \Sigma_{q_r}} \Sigma_t %\\
+    %& \cong \left(  \Sigma_n \cdot_{\Sigma_{p_1} \times \cdots \times \Sigma_{p_m}} \Sigma_k \cdot_{\Sigma_{q_1} \times \cdots \times \Sigma_{q_r}} \Sigma_t \right)_+
+    \end{align*} 
+\end{remark}
+
+\begin{proposition} \label{prop:Oper-is-Nl}
+    $\Oper$ is a symmetric $\Nl$-operad.
+\end{proposition} 
+
+\begin{proof} As we will see, $\Oper$ is particularly special as the structure maps \begin{equation} \label{eq:xi} 
+    \xi_{k,(\ell_1,\dots,\ell_k)}\colon \Oper_{k} \tensordot_{\Sigma} (\Oper_{\ell_1} \circhat \cdots \circhat \Oper_{\ell_k}) \to \Oper_{\ell}
+\end{equation} which comprise $\xi\colon \Oper \circdot_{\Sigma} \Oper \to \Oper$ consist of isomorphisms once evaluated at a profile $\underline{p}\in \Ncirc{\ell}[t]$. 
+
+That $\Oper$ is symmetric follows from the first part of the proof of Proposition \ref{prop:coend-X}.  The unit map $\epsilon \colon \Isym \to \Oper$ is obtained via the identity morphisms \[ \Isym_1(n;n)\cong \Sigma_n \to \Sigma_n \cong \Oper_1(n;n) \] and the initial morphism elsewhere. Let us now produce the desired map (\ref{eq:xi}) at a profile $\underline{p}\in \Ncirc{\ell}[t]$. 
+
+For the reader who finds the following constructions a bit opaque, we first provide the following intuition: for $\ell\geq 0$ let $\circ_{\ell} \colon \SymSeq^{\times \ell}\to \SymSeq$ be the functor $\circ_{\ell} (X_1,\dots,X_{\ell}) =X_1 \circ \cdots \circ X_{\ell}$. Since $\circ$ is strictly monoidal, there are \textit{isomorphisms} \begin{equation} \label{eq:Xi-fo} \Xi_{k,(\ell_1,\cdots,\ell_k)}\colon \circ_k (\circ_{\ell_1},\cdots, \circ_{\ell_k}) \xrightarrow{\cong} \circ_{\ell_1+\cdots+\ell_k}\end{equation} such that $\circ_{\bullet}$ is a \textit{nonsymmetric functor-operad} (see, e.g.,  McClure-Smith \cite[\textsection 4]{MS-box}, omitting the requirement of symmetric group actions). %** citation here?
+Moreover, the composition maps $\xi_{k,(\ell_1,\dots,\ell_k)}$ are precisely the morphisms which prescribe the equivariance of the isomorphism $\Xi_{k,(\ell_1,\dots,\ell_k)}$ once evaluated at a particular string of inputs, given that evaluation at a profile in $\Ncirc{\ell}$ is the same as evaluating a symmetric sequence \textit{from the left}. For instance, $\xi_{3,(2,1,3)}$ provides the isomorphisms (natural in $X_1,\dots,X_6$) \[ (X_1\circ X_2) \circ X_3 \circ (X_4\circ X_5 \circ X_6) \cong  X_1 \circ \cdots \circ X_6\] 
+and moreover, given $\underline{p}\in\Ncirc{\ell}[t]$, the desired map $\xi_{k,(\ell_1,\dots,\ell_k)}[\underline{p}]$ may be thought of a precisely arising from the isomorphism \[ \left(\Sigma^{\circ \ell_1} \circ \cdots \circ \Sigma^{\circ \ell_k}\right)[\underline{p}]\xrightarrow{\cong}\Sigma^{\circ \ell} [\underline{p}].\]
+
+We describe $\xi_{2,(1,2)}$ first and note the general case follows a similar argument. Let $\underline{p}\in \Ncirc{3}[t]$ and note that \[ 
+    \Oper_2 \tensordot_{\Sigma}  (\Oper_1 \circhat \Oper_2) )[\underline{p}] \cong \coprod_{\underline{p}=(n,(\underline{p}_1 \amalg \cdots \amalg \underline{p}_n))} \Oper_2 \tensordot_{\Sigma}  (\Oper_1 \circhat \Oper_2) )[(n, (\underline{p}_1,\dots,\underline{p}_n))]. \] 
+Fix $\underline{p}_i\in \Ncirc{2}[s_i]$ for $i=1,\dots,n$ such that $\underline{p}=(n, (\underline{p_1} \amalg \cdots \amalg \underline{p_n}))$ and set $\underline{p}'=(n,(s_1,\dots,s_n))\in \Ncirc{2}[t]$. We then observe
+\begin{align} \label{al:comp}
+    (\Oper_2 \tensordot_{\Sigma}  (\Oper_1  &\circhat \Oper_2  ) )[(n, (\underline{p}_1,\dots,\underline{p}_n))]
+    \\
+    &\cong \Sigma^{\circ 2}[\underline{p}'] \times_{S(\underline{p}')} \left( \Sigma[n] \times ( \Sigma^{\circ 2} [\underline{p}_1] \times \cdots \times \Sigma^{\circ 2}[\underline{p}_n] \right) \nonumber
+    \\
+    &\cong  \Sigma^{\circ 3} [(n, (\underline{p}_1,\cdots,\underline{p}_n))] \xrightarrow{\iota} \Sigma^{\circ 3}[\underline{p}] \cong \Oper_3(\underline{p};t)\nonumber
+\end{align}
+such that $S(\underline{p'})=\Sigma_n \times \prod_{i=1} \Sigma_{s_i}$ and $\iota$ is the natural inclusion obtained from the assumption $\underline{p}=(n, (\underline{p}_1 \amalg \cdots \amalg \underline{p}_n))$.
+
+The desired map $\xi_{2,(1,2)}[\underline{p}]$ is induced by the coproduct of composites (\ref{al:comp}) for all $\underline{p}=(n,(\underline{p}_1,\dots,\underline{p}_n))$. Note further that \textit{as sets} there is an isomorphism \[ 
+    \coprod_{\underline{p}=(n,(\underline{p}_1 \amalg \cdots \amalg \underline{p}_n))} \Sigma^{\circ 3} [(n,(\underline{p}_1,\cdots, \underline{p}_n))] \cong \Sigma^{\circ 3}[\underline{p}]
+\] 
+since $\circ$ is strictly monoidal in the category of symmetric sequences of sets. Thus, $\xi_{2,(1,2)}[\underline{p}]$ is invertible and more generally $\xi_{k,(\ell_1,\dots,\ell_k)}$ evaluated at any profile in $\Ncirc{\ell}$ is also invertible.
+
+Associativity of $\xi$ then follows from the associativity $\Xi$ as in (\ref{eq:Xi-fo}). That is, for $(n,(k_1,\dots,k_n))\in \Ncirc{2}[k]$ and for $i=1,\dots,n$, $\underline{q}_i=(k_i,(\ell_{i,1},\cdots,\ell_{i,k_i})) \in \Ncirc{2}[t_i]$ %with $k=k_1+\cdots+k_n$ and $j=1,\dots,k_i$, let $\ell_{i,j}\geq 0$ such that $\ell_{i,1}+\cdots \ell_{i,k_i}=t_i$, 
+the associativity relation \begin{align*}
+     \xi_{k,(\ell_{1,1},\cdots, \ell_{n,k_n})}\,& ( \xi_{n,(k_1,\cdots,k_n)} \tensordot_{\Sigma} \id) \\
+     &=\xi_{n,(t_1,\cdots,t_n)} \, \big(\id \tensordot_{\Sigma}  (\xi_{k_1,(\ell_{1,1},\cdots,\ell_{1,k_1})} \circhat \cdots \circhat \xi_{k_n,(\ell_{n,1},\cdots,\ell_{n,k_n})})\big)\end{align*}
+evaluated at some $\underline{p}\in \Ncirc{\ell}$ follows from the commutative square of isomorphisms
+\[ \xymatrix{
+    \left(\left(\Sigma^{\circ \ell_{1,1}} {\circ} \cdots {\circ} \Sigma^{\circ \ell_{1,k_1}}\right){\circ} \cdots {\circ} \left(\Sigma^{\circ \ell_{n,1}} {\circ} \cdots {\circ} \Sigma^{\circ \ell_{n,k_n}}\right)\right) [\underline{p}] \ar[r] \ar[d] 
+    & 
+    \left(\Sigma^{\circ t_1} {\circ} \cdots {\circ} \Sigma^{\circ t_n}\right) [\underline{p}] \ar[d]
+    \\
+    \left( \Sigma^{\circ \ell_{1,1}} {\circ}  \cdots {\circ} \Sigma^{\circ \ell_{n,k_n}}\right)[\underline{p}] \ar[r]
+    &
+    \Sigma^{\circ \ell}[\underline{p}]
+}\]
+
+Similarly, the unitality condition is satisfied by the more obvious isomorphisms \[ \left( ( \underbrace{\Sigma \circ \cdots \circ \Sigma}_{n}) \right)[\underline{p}] \cong \Sigma^{\circ n}[\underline{p}] \cong \left( \underbrace{(\Sigma) \circ \cdots \circ (\Sigma)}_{n} \right)[\underline{p}]\] for all $n\geq 0$ and $\underline{p}\in \Ncirc{1}$ (i.e., $\underline{p}=p\geq 0$). 
+\end{proof} 
+
+\begin{remark}
+    Let $(\mathsf{C},\otimes, \mathbf{1})$ be a closed symmetric monoidal category with finite coproducts. We write $\Oper^{\mathsf{C}}$ for the image of $\Oper$ in $\mathsf{C}$ under $\Sigma_n\mapsto \mathbf{\Sigma}[n]\cong \coprod_{\sigma\in \Sigma_n} \mathbf{1}$. That is, given a profile $\underline{p}\in \Ncirc{k}[t]$ we set \[ \Oper^{\mathsf{C}}(\underline{p};t)= \Map^{\mathsf{C}}\left( \mathbf{\Sigma}[t], \mathbf{\Sigma}^{\circ k} [\underline{p}] \right)^{\Sigma_t}.\]
+\end{remark}
+
+
+Before showing that $\Oper$ encodes (one-color) operads as its algebras we first demonstrate another class of symmetric $\Nl$-operads. 
+
+\subsection{Coendomorphism symmetric $\Nl$-operads}
+Recall as in Section 6 that $(\mathsf{C}, \otimes, \mathbf{1})$ denotes a closed cocomplete symmetric monoidal category and $\mathbf{\Sigma}$ is the symmetric sequence in $\mathsf{C}$ with $\mathbf{\Sigma}[k]=\coprod_{\sigma\in \Sigma_k} \mathbf{1}.$
+\begin{definition} \label{def:coend}
+    Let $\Cal{X}\in \SymSeq_{\mathsf{C}}^{\bdel}$ and set $\mathsf{coEnd}(\Cal{X})$ to be the reduced  $\Nl$-object given at $(\underline{p};t)\in \Ncirc{\ell}[t]$ by \[ \mathsf{coEnd}(\Cal{X})_{\ell}(\underline{p};t):= \Map_{\Dres} \left( \Cal{X}[t] , \Cal{X}^{\boxcirc \ell} [\underline{p}] \right)^{\Sigma_t}.\]
+\end{definition}
+
+\begin{example} Unravelling the above definition, $\mathsf{coEnd}(\Cal{X})_1(k;k)$ consists of all $\Sigma_k$-equivariant cosimplicial maps $\Cal{X}[k] \to \Cal{X}[k]$. Let $(\underline{q};k)=(n,(k_1,\dots,k_n);k)\in \Ncirc{2}[k]$ and recall the description of $H(k_1,\dots,k_n)\leq \Sigma_k$ from Definition \ref{def:H}. Then, $\mathsf{coEnd}(\Cal{X})_2(\underline{q};k)$ consists of all $\Sigma_k$-equivariant cosimplicial maps of the form \[ 
+    \Cal{X}[k] \to (\Cal{X}\boxcirc \Cal{X}) [\underline{q}]\cong \mathbf{\Sigma}[k] \otimes_{H(k_1,\dots,k_n)} \Cal{X}[n] \square (\Cal{X}[k_1] \otimes\cdots \otimes \Cal{X}[k_n]).
+\] 
+
+Further, $\mathsf{coEnd}(\Cal{X})$ is \textit{quadratic} in that it is generated by its first two levels as follows: let $\underline{p}=(n, (k_i)_{i\in \mathbf{n}}, (t_j)_{j\in \mathbf{k}}$) and set $k:=\sum_{i=1}^n k_i$ and $t:=\sum_{j=1}^k t_j$. Then, $\mathsf{coEnd}(\Cal{X})_3(\underline{p};t)$ consists of cosimplicial maps $\psi$ that fit into the following $\Sigma_t$-equivariant diagram \begin{equation*}
+\xymatrix{
+    \Cal{X} [t] \ar[r]^{\psi_1} \ar[dr]_{\psi} & 
+    (\Cal{X}\boxcirc\Cal{X})[k, (t_j)_{j\in\mathbf{k}}] \ar[d]^{\psi_2\boxcirc \textrm{id}} 
+    \\ 
+    & (\Cal{X}\boxcirc\Cal{X}\boxcirc \Cal{X}) [ n, (k_i)_{i\in\mathbf{n}}, (t_j)_{j\in\mathbf{k}}].
+    }
+\end{equation*}
+such that $\psi_2\in \mathsf{coEnd}(\Cal{X})_2(n,(k_1,\dots,k_n);k)$, i.e., $\psi_2\colon \Cal{X}[k]\to (\Cal{X}\boxcirc \Cal{X})[n,(k_1,\dots,k_n)]$ is $\Sigma_k$-equivariant. Said differently, there is an isomorphism \[
+    \mathsf{coEnd}(\mathcal{X})_3(\underline{p};t)\cong  \mathsf{coEnd}(\mathcal{X})_2(n, (k_i)_{i\in\mathbf{n}};k) \otimes_{\Sigma_k} \mathsf{coEnd}(\mathcal{X})_2(k, (t_j)_{j\in\mathbf{k}}; t)
+\] where $\Sigma_k$ acts by shuffling the factors $t_1,\dots,t_k$ of $\Cal{X}_2(k, (t_j)_{j\in\mathbf{k}};t)$ in accordance to the $\Sigma_k$ equivariance of maps in $\Cal{X}_2(n, (k_i)_{i\in\mathbf{n}};k)$. In general, given a profile \[\underline{p}=(n^1,(n^2_i)_{i\in\mathbf{n^1}}, \dots, (n^{\ell}_i)_{i\in \mathbf{n^{\ell-1}}}) \in\Ncirc{\ell}\] the object $\mathsf{coEnd}(\mathcal{X})_{\ell} (\underline{p};n^{\ell})$ is isomorphic to  \begin{align} \label{eq:coEnd-quad}
+     \mathsf{coEnd}(\mathcal{X})_2\big(n^1, (n^2_i)_{i\in \mathbf{n^1}};n^2\big) \otimes_{\Sigma_{n^2}}  \cdots   \otimes_{\Sigma_{n^{\ell-1}}} \mathsf{coEnd}(\mathcal{X})_2\big(n^{\ell-1}, (n^{\ell}_i)_{i\in\mathbf{n^{\ell-1}}};n^{\ell}\big).\end{align} \end{example}
+
+\begin{remark} \label{def:Sigma-copowered}
+    We would like to be able to say that $\coend{X}$ is a symmetric $\Nl$-operad for \textit{any} cosimplicial symmetric sequence $\Cal{X}$, however this seems to not be the case. The issue seems to be based on the potential non-invertibility of $\theta$ (and similarly how $\boxcirc$ fails to be a \textit{strictly} monoidal product for cosimplicial symmetric sequences). However, there is a class of cosimplicial symmetric sequences on which we get the desired symmetric $\Nl$-structure on $\coend{\Cal{X}}$. 
+    
+    Let us say that $\Cal{X}$ is \textit{$\Sigma$-copowered} if there is a sequence $\{\Cal{Y}[n]\}_{n\geq 0}$ of cosimplicial objects in $\mathsf{C}$ with \[ \Cal{X}[n] = \Sigma_n {\cdot} \Cal{Y}[n] \cong \mathbf{\Sigma}[n]\otimes \Cal{Y}[n]\]
+    and such that the $\Sigma_n$ action on $\Cal{X}[n]$ is trivial on $\Cal{Y}[n]$ for all $n$. In such case we write $\Cal{X}= \Sigma {\cdot} \Cal{Y}$. The benefit for us is that if $\Cal{X}$ is $\Sigma$-copowered, then $\theta$ has an inverse (which is constructed in the following proposition), and so $\boxcirc$ \textit{is} a monoidal product when restricted to $\Sigma$-copowered cosimplicial symmetric sequences.
+\end{remark}
+
+
+\begin{proposition} \label{prop:coend-X}
+    If $\Cal{X}\in \SymSeq_{\mathsf{C}}^{\bdel}$ is $\Sigma$-copowered, then $\mathsf{coEnd}(\Cal{X})$ is a symmetric $\Nl$-operad.
+\end{proposition}
+
+\begin{proof}
+    This argument is rather long and somewhat tedious, so we break it up into several steps. The first step is to show that $\mathsf{coEnd}(\Cal{X})$ is symmetric, in fact $\Sigma$-copoweredness is not required for this part. 
+    
+    Let $\ell\geq 0$. The left action of $\Isym$ on $\coend{X}_{\ell}$ is obtained by $\Sigma_t$ action on the maps $\Cal{X}[t]\to \Cal{X}^{\boxcirc \ell}[\underline{p}]$ which comprise $\coend{X}_{\ell}$. The right action of $\Isym\circhat \cdots \circhat \Isym$ on $\coend{X}_{\ell}$ is obtained, e.g., , at $\ell=2$ as follows. For a profile $\underline{q}=(n,(k_1,\cdots,k_n))$, we observe \[(\Isym\circhat \Isym)(\underline{q};k)\cong \Sigma_n\ltimes (\Sigma_{k_1} \times \cdots \times \Sigma_{k_n}) \leq \Sigma_k\] acts via the $\Sigma_k$-equivariance of \[ 
+        \Cal{X}[k] \to \mathbf{\Sigma}[k]\otimes_{H(k_1,\dots,k_n)} \Cal{X}[n] \square (\Cal{X}[k_1] \otimes\cdots \otimes \Cal{X}[k_n]).
+    \] 
+    The general case follows a similar argument. 
+    
+    Second, we produce a multiplication map \[\xi\colon \coend{X}\circdot_{\Sigma} \coend{X}\to \coend{X}.\] Two ingredients are crucial to this step. First, is the existence of maps \begin{equation} \mu_{\ell_1,\dots,\ell_k} \colon \Cal{X}^{\boxcirc \ell_1} \boxcirc \cdots \boxcirc \Cal{X}^{\boxcirc \ell_k} \to \Cal{X}^{\boxcirc \ell}\end{equation} 
+    for each tuple $\ell_1,\dots,\ell_k$ such that $\ell_1+\cdots + \ell_k=\ell$ which are inverse to the induced map by $\theta$ (see (\ref{eq:theta})). It is this step for which $\Sigma$-copoweredness of $\Cal{X}$ seems essential and such maps $\mu$ are granted by utilizing the structure of $\Oper$. Write $\Cal{X}=\Sigma {\cdot} \Cal{Y}$ and for $\underline{p}=(n^1, \cdots, (n^k_i)_{i\in \mathbf{n^{k-1}}})$ set \[ \Cal{Y}^{\square k}[\underline{p}]=\Cal{Y}[n^1] \square \left(\bigotimes_{i\in \mathbf{n^1}} \Cal{Y}[n^2_i] \right) \square \cdots \square \left( \bigotimes_{i\in \mathbf{n^{k-1}}} \Cal{Y}[n^k_i] \right).\]
+    Note in the above, we are utilizing the box product for $\mathsf{C}^{\bdel}$ which is strictly monoidal. 
+    
+    For simplicity we describe the map $\mu_{1,2}\colon \Cal{X} \boxcirc (\Cal{X} \boxcirc \Cal{X})\to \Cal{X}^{\boxcirc 3}$ and note the general case follows from a similar argument . Note that $\Cal{X} \boxcirc (\Cal{X} \boxcirc \Cal{X})$ takes as inputs profiles of the form $(n,(\underline{p_1},\cdots, \underline{p_n}))$ for some unordered list of profiles $\underline{p_i}\in \Ncirc{2}$. 
+    
+    Fix a specific profile $(n,(\underline{p_1}\amalg \cdots \amalg \underline{p_n}))=\underline{p}$ and for $i=1,\dots,n$, write $\underline{p_i}=(k_i, (t_{i,1},\cdots, t_{i,k_i})) \in \Ncirc{2}[t_i]$. There is an inclusion induced as follows \begin{align} 
+         \Cal{X} &\boxcirc (\Cal{X} \boxcirc \Cal{X}) ) [n, (\underline{p_1},\cdots,\underline{p_n})] 
+         \\
+        & \cong (\mathbf{\Sigma}[n] \otimes  \Cal{Y}[n]) \square \left( \left( \mathbf{\Sigma}^{\circ 2}[\underline{p_1}] \otimes \Cal{Y}^{\square 2}[\underline{p_1}]\right)  \otimes \cdots \otimes \left( \mathbf{\Sigma}^{\circ 2}[\underline{p_n}] \otimes \Cal{Y}^{\square 2}[\underline{p_n}]\right) \right) \nonumber
+        \\
+        & \cong \left(\mathbf{\Sigma}[n] \otimes_{\Sigma_n} \Big(\coprod_{\dagger}\mathbf{\Sigma}[t] \otimes_{\Sigma_{t_1} \times \cdots \times \Sigma_{t_n}} \mathbf{\Sigma}^{\circ 2}[\underline{p_1}] \times \cdots \times \mathbf{\Sigma}^{\circ 2}[\underline{p_n}] \Big) \right) \otimes \Cal{Y}^{\square 3}[\underline{p}] \nonumber 
+        \\ 
+        & \cong \mathbf{\Sigma}^{\circ 3} [n, (\underline{p_1},\cdots, \underline{p_n})] \otimes \Cal{Y}^{\square 3}[\underline{p}] \xrightarrow{(*)} \mathbf{\Sigma}^{\circ 3}[\underline{p}] \otimes \Cal{Y}^{\square 3}[\underline{p}]  \cong \Cal{X}^{\boxcirc 3} [\underline{p}] \nonumber
+    \end{align}
+    where $\dagger$ runs over all $\Sigma_n$ permutations of $t_1,\cdots,t_n$ and $(*)$ is induced by the natural inclusion $\iota\colon \Sigma^{\circ 3} [n, (\underline{p_1},\cdots, \underline{p_n})] \to \Sigma^{\circ 3} [\underline{p}]$. Moreover, the map $\mu_{1,2}$ at profile $\underline{p}$ is then induced from the inclusion described above via the isomorphism\[
+        \Big(\Cal{X}\boxcirc (\Cal{X} \boxcirc \Cal{X}) \Big)[\underline{p}] \cong \coprod_{(n,(\underline{p_1}\amalg \cdots \amalg \underline{p_n}))=\underline{p}} \Big(\Cal{X}\boxcirc (\Cal{X} \boxcirc \Cal{X}) \Big)\big [n,(\underline{p_1},\dots,\underline{p_n})\big].
+    \]
+    A straightforward computation then shows that $\mu_{1,2}$ is inverse to $\theta$.
+    
+    The second ingredient to producing $\xi$ is a map \begin{equation} \label{eq:def-Gamma}
+        \coend{X}_{\ell_1} \circhat \cdots \circhat \, \coend{X}_{\ell_k} \xrightarrow{\;\;\Gamma\;\;} \Map_{\Dres} \left(\Cal{X}^{\boxcirc k}, \Cal{X}^{\boxcirc \ell_1} \boxcirc \cdots \boxcirc \Cal{X}^{\boxcirc \ell_k} \right)^{\Sigma}
+    \end{equation}
+    which we construct as follows. Let $\alpha_i\colon \Cal{X}\to \Cal{X}^{\boxcirc \ell_i}$ for $i=1,\dots, k$. The map $\Gamma$ is induced by the assignment $(\alpha_1,\dots,\alpha_k)\mapsto \alpha_1 \boxcirc \cdots \boxcirc \alpha_k$,  where, e.g.,  if $k=2$ and $\underline{p}=(n,(t_1,\cdots,t_n))\in \Ncirc{2}[t]$ then \[(\alpha_1\boxcirc \alpha_2)[\underline{p}] \colon \Cal{X}^{\boxcirc 2}[\underline{p}] \to (\Cal{X}^{\ell_1} \boxcirc \Cal{X}^{\ell_2})[\underline{p}]\] is obtained levelwise by the maps $\alpha_1[n] \colon \Cal{X}[n]\to \Cal{X}^{\boxcirc \ell_1}[n]$ and $\alpha_2[t_i]\colon \Cal{X}^{\boxcirc \ell_2}[t_i]$ for $i=1,\dots,n$.
+
+   With these two ingredients in place, the composition $\xi$ is obtained via the composition \begin{align*} 
+            \Map_{\Dres}&\left(\Cal{X},\Cal{X}^{\boxcirc k}\right)^{\Sigma} \tensordot_{\Sigma}\left( \Map_{\Dres}\left(\Cal{X},\Cal{X}^{\boxcirc \ell_1}\right)^{\Sigma}  \circhat \cdots \circhat \Map_{\Dres}\left(\Cal{X},\Cal{X}^{\boxcirc \ell_k}\right)^{\Sigma} \right)
+            \\
+            &\xrightarrow{\id \tensordot_{\Sigma}  \Gamma}  
+            \Map_{\Dres} \left(\Cal{X},\Cal{X}^{\boxcirc k}\right)^{\Sigma} \tensordot_{\Sigma}  \Map_{\Dres} \left(\Cal{X}^{\boxcirc k},  \Cal{X}^{\boxcirc \ell_1} \boxcirc \cdots \boxcirc \Cal{X}^{\boxcirc \ell_k} \right)^{\Sigma} 
+            \\
+            &\xrightarrow{\text{comp.}} 
+            \Map_{\Dres} \left(\Cal{X}, \Cal{X}^{\boxcirc \ell_1} \boxcirc \cdots \boxcirc \Cal{X}^{\boxcirc \ell_k}\right)^{\Sigma} \\
+            &\xrightarrow{(\mu_{\ell_1,\dots,\ell_k})_*}
+            \Map_{\Dres}\left(\Cal{X},\Cal{X}^{\boxcirc \ell}\right)^{\Sigma}.
+        \end{align*}
+    
+    Fortunately, the unit map is simpler to describe. We obtain $\varepsilon\colon \Isym\to \coend{X}$ as the morphism \[\mathbf{\Sigma}[n]\to \Map_{\Dres}(\Cal{X}[n], \Cal{X}[n])^{\Sigma_n}\]  adjoint to the action map $\mathbf{\Sigma}[n] \otimes \Cal{X}[n] \to \Cal{X}[n]$ which expresses the $\Sigma_n$ equivariance of $\Cal{X}[n]$. 
+    
+    Showing that $\xi$ and $\varepsilon$ satisfy the appropriate associativity and unitality conditions is a tedious though ultimately straightforward and may be adapted from the (somewhat simpler) proof of Proposition \ref{main-1} found in Section \ref{sec:1a}. 
+\end{proof}
+
+
+\subsection{$\Oper$-algebras are operads}
+Our aim is now to show that $\Oper$-algebras indeed model (one-color) operads. 
+
+\begin{proposition} 
+\label{Oper-is-operads}
+There is an equivalence of categories between algebras over $\Oper^{\mathsf{C}}$ and operads in $\mathsf{C}$.
+\end{proposition}
+
+\begin{proof} 
+We show that a symmetric $\Oper$-algebra is necessarily an operad and note that the argument is readily reversed to show the converse statement. Suppose $\Cal{W}$ is a symmetric $\Oper$-algebra. Note, $\Oper_2\tensordot_{\Sigma}  \Cal{W}^{\circhat 2}\to \Cal{W}$ consists of maps \begin{equation} \label{Oper-alg-1}
+    \Oper_2 (n, (k_1,\dots,k_n);k)\tensordot_{\Sigma} \left( \Cal{W}[n] \otimes \Cal{W}[k_1] \otimes \cdots \otimes \Cal{W}[k_n]\right) \to \Cal{W}[k]
+\end{equation}
+for each $\underline{p}=(n,(k_1,\dots,k_n))\in\Ncirc{2}$. Fix such a profile $\underline{p}$ and let $p_1,\dots,p_m$ be the multiplicities of the distinct factors $d_1,\dots,d_m$ among $k_1,\dots,k_n$. Coequalizing the actions of $\Isym$ identifies the symmetric group actions (resp. with $k_i$ replacing $n$) \[ \mathbf{\Sigma}[n] \otimes \Cal{W}[n]\to \Cal{W}[n]\] with the right action of $\Isym$ given in the proof of Proposition \ref{prop:coend-X}. Thus, (\ref{Oper-alg-1}) yields $\Sigma_k$-equivariant map of the form\begin{equation}
+\label{Oper-alg-2}
+    \mathbf{\Sigma}[k] \otimes_{H(k_1,\dots,k_n)} \Cal{W}[n]\otimes \Cal{W}[k_1]\otimes \cdots \otimes \Cal{W}[k_n]\to \Cal{W}[k]
+\end{equation} which moreover obeys the correct equivariance, e.g.,  as  described in May \cite{May}. Said differently, (\ref{Oper-alg-2}) is the factor $(\Cal{W}\circ \Cal{W})[n,(k_1,\dots,k_n)]$ (as in Definition \ref{comp-prod-def-orb}) and the collection of all such maps then pieces together to form \[m\colon \Cal{W}\circ \Cal{W}\to \Cal{W}.\] 
+
+Since $\Cal{W}\in \Alg{\Oper}$ there is a commutative diagram of the form
+\[ \xymatrix{
+    \left( \Oper_2 \tensordot_{\Sigma}  (\Oper_1 \circhat \Oper_2) \right) \tensordot_{\Sigma}  (\Cal{W}^{\circhat 3})
+    \ar[r]^<(.1){\cong} \ar[dd]^{\xi_{2,(1,2)}\tensordot_{\Sigma}  \id}
+    &
+    \Oper_2 \tensordot_{\Sigma}  \left( ( \Oper_1\tensordot_{\Sigma}  (\Cal{W})) \circhat (\Oper_2 \tensordot_{\Sigma}  (\Cal{W}^{\circhat 2})) \right) \ar[d]^{\id \tensordot_{\Sigma} (\mu_1\circhat \mu_2)}
+    \\
+    & \Oper_2 \tensordot_{\Sigma}  (\Cal{W}\circhat \Cal{W}) \ar[d]^{\mu_2}
+    \\
+    \Oper_3 \tensordot_{\Sigma}  (\Cal{W}^{\circhat 3}) \ar[r]^{\mu_3} & \Cal{W}. }
+\] 
+
+The composite of the right side maps describes \[\Cal{W}\circ (\Cal{W}\circ \Cal{W})\xrightarrow{\, \id\circ m\,} \Cal{W}\circ \Cal{W} \xrightarrow{\; m\;} \Cal{W}\] and by construction the bottom map describes \[(\Cal{W}\circ \Cal{W})\circ \Cal{W} \xrightarrow{\, m\circ \id\,} \Cal{W}\circ \Cal{W} \xrightarrow{\; m\;} \Cal{W}.\] Associativity of $m$ follows as $\xi_{2,(1,2)}$ is an isomorphism. 
+
+To produce the unit $u\colon I\to \Cal{W}$ we first recall that \[\mu_0\colon I\cong \Cal{P}_0\tensordot_{\Sigma}  (\Cal{W}^{\circhat 0}) \to \Cal{W}\] provides the unit map $u$ on $\Cal{W}$. There is then a commuting diagram \begin{equation*}
+        \xymatrix{
+            \Oper_2 \tensordot_{\Sigma}  \left( (\Oper_0\tensordot_{\Sigma}  (\Cal{W}^{\circhat 0})) \circhat (\Oper_1\tensordot_{\Sigma}  (\Cal{W})) \right) \ar[rr]^<(.2){\id\tensordot_{\Sigma} (\mu_0 \circhat \mu_1)} \ar[d]^{\cong}
+            &&
+            \Oper_2\tensordot_{\Sigma}  (\Cal{W} \circhat \Cal{W}) \ar[dd]^{\mu_2}
+            \\
+            \left( \Oper_2 \tensordot_{\Sigma}  (\Oper_0\circhat \Oper_1) \right) \tensordot_{\Sigma}  (\Cal{W}) \ar[d]^{\xi_1\tensordot_{\Sigma} \id}
+            &&
+            \\
+            \Oper_1 \tensordot_{\Sigma} ( \Cal{W}) \ar[rr]^{\mu_1}
+            &&
+            \Cal{W}}
+    \end{equation*} the composite of top and right arrows of which results in \[I\circ \Cal{W}\xrightarrow{\;u \circ \id\;} \Cal{W}\circ \Cal{W} \xrightarrow{\;m\;} \Cal{W}\] and the left and bottom arrows are all isomorphisms. Commutativity of the other unitality diagram follows a similar analysis.
+\end{proof} 
+
+\begin{corollary}
+\label{oper-oper}
+    Let $\Cal{W}$ be an operad, i.e., $\Oper$-algebra. Let $M\in \mathsf{C}$ and denote by $\bar{M}$ the symmetric sequence concentrated at level $0$ with $\bar{M}[0]=M$. Then, $M$ is an $\Cal{W}$-algebra (in the sense of Definition \ref{A-infty-alg}) if and only if $M$ is an $\Cal{W}$-algebra in the classic sense. 
+\end{corollary}
+
+\begin{proof}
+    As in Definition \ref{A-infty-alg}, a $\Cal{W}$-algebra consists of maps \[\Oper_{\ell} \tensordot_{\Sigma}  (\Cal{W}^{\circhat (\ell-1)} \circhat \bar{M})\to \bar{M}.\] 
+    
+    Note, since $\bar{M}$ is concentrated at $0$, the only nontrivial contributors to such maps will have profiles which end in a string of $0$. In particular, for $\ell=2$ there are maps of the form \[\Oper_2(n,(0,\dots,0);0)\tensordot_{\Sigma}  \left( \Cal{W}[n] \otimes M^{\otimes n}\right)\to M.\] 
+    
+    Since $\Oper_2(n,(0,\dots,0);0)\cong \mathbf{\Sigma}[0]\cong \mathbf{1}$, the above maps descends to \[\Cal{W}[n]\otimes_{\Sigma_n} M^{\otimes n} \to M\] after coequalizing. Associativity and unitality follow a similar argument as the proof of Proposition \ref{Oper-is-operads}.
+\end{proof}
+
+\begin{remark}
+ \label{trees-rmk}
+    Though our description of $\Oper$ is new, descriptions of an $\mathbf{N}$-colored operad whose algebras are operads is not new. Berger-Moerdijk describe an $\mathbf{N}$-colored operad $\Cal{M}_{\textsf{Op}}$ in terms of trees whose algebras are operads in \cite[1.5.6]{BM-trees} (see also Dehling-Vallette \cite{Deh-Val}). Applying the forgetful functor $\mathbb{U}$ from Section \ref{N_l-is-N} to $\Oper$ yields an isomorphic $\mathbf{N}$-colored operad to that of Berger-Moerdijk, i.e., $\mathbb{U}\Oper\cong \Cal{M}_{\mathsf{Op}}$.
+\end{remark}
+
+\subsection{A model for $A_{\infty}$-operads} \label{sec:A}
+We will now focus on a particular coendomorphism $\Nl$-operad in $\mathsf{Top}$, namely that on the cosimplicial symmetric sequence $\SD$ with $\SD[n]=\Sigma_n {\cdot} \Delta^{\bullet}$. 
+
+\begin{proposition}\label{A-equiv-to-E} 
+There is an equivalence of $\Nl$-operads $\mathsf{coEnd}(\SD) \to \Oper^{\mathsf{Top}}$. %** Do I still get/need a *map* here?
+\end{proposition}
+
+\begin{proof} Note that equivalences of $\Nl$-operads are computed levelwise (Definition \ref{def:equiv-of-Nl-ops}) and that a morphism $f\colon X\to Y$ of cosimplicial objects in $\mathsf{Top}$ induces a map $(\Sigma {\cdot} X)^{\boxcirc k}\to (\Sigma {\cdot} Y)^{\boxcirc k}$ for $k\geq 1$. If additionally there is a retract $r\colon Y\to X$ of $f$ there is a map $\mathsf{coEnd}(\Sigma {\cdot} X)\to \mathsf{coEnd}(\Sigma{\cdot} Y)$ on coendomorphism operads induced by post-composition with $f$ and pre-composition with $r$.
+
+Since there are morphisms $\pt \xrightarrow{\sim}\Delta^n\xrightarrow{\sim} \pt$ for all $n \geq 0$ (i.e., by inclusion at a vertex) we then have  \begin{align*}
+    \Map_{\Dres}\left(\SD,(\SD)^{\boxcirc k}\right)^{\Sigma}
+    \xrightarrow{(\dagger)}\Map_{\Dres}\left(\Sigma{\cdot}\underline{\pt}, (\Sigma{\cdot}\underline{\pt})^{\boxcirc k}\right)^{\Sigma}\cong \Map\left(\mathbf{\Sigma}, \mathbf{\Sigma}^{\circ k}\right)^{\Sigma}
+\end{align*}
+for all $k \geq 0$, where $\underline{\pt}$ denotes the constant cosimplicial object on $\pt\in \mathsf{Top}$. Moreover, since $\pt \to \Delta^n\to \pt$ consists of weak equivalences between fibrant and cofibrant objects for all $n$, the indicated map $(\dagger)$ is a weak equivalence in $\mathsf{Top}$.
+\end{proof}
+
+Note that for $\underline{p}\in \Ncirc{k}[t]$, $\Oper^{\mathsf{Top}}_{k}(\underline{p};t)$ is just the discrete space $\mathbf{\Sigma}^{\circ k}[\underline{p}]$. Similarly, $\Oper^{\Top}\cong \Oper^{\mathsf{Top}}_+$ will encode operads in $(\Top, \wedge, S^0)$ and thus also in $\Spt$ via the tensoring of $\Spt$ over $\Top$. 
+
+\begin{remark} \label{rem:rho}Note the functor $(-)_+ \colon (\mathsf{Top}, \times, \pt) \to (\Top, \wedge, S^0)$ which adds a disjoint basepoint induces isomorphisms of pointed spaces \[ \Map_{\Dres}^{\Top}  \left( \SD_+, (\SD_+)^{\boxcirc k} \right)^{\Sigma}\cong \Map_{\Dres}^{\mathsf{Top}} \left( \SD, (\SD)^{\boxcirc k} \right)^{\Sigma}_+. \]
+Thus, there is an isomorphism \[\mathsf{coEnd}(\SD_+)\cong \mathsf{coEnd}(\SD)_+\] of $\Nl$-operads in $\Top$. For ease of notation we write $\Cal{A}$ for this $\Nl$-operad and note that Proposition \ref{A-equiv-to-E} provides a map $\rho\colon \Cal{A}\xrightarrow{\sim} \Oper^{\Top}$, i.e., $\Cal{A}$ is a suitably ``fattened-up'' version of $\Oper$ which will encode $A_{\infty}$-operads as its algebras, similar to $\mathbb{A}$ encoding $A_{\infty}$-monoids in Example \ref{ex:loop-space-A-infty-monoid}. 
+\end{remark}

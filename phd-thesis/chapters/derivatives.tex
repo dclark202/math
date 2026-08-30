@@ -1,0 +1,301 @@
+\section{An operad structure for the derivatives of the identity in $\Alg{O}$}\label{sec:algO-derv}
+
+The aim of this final section is to prove Theorem \ref{main}. We begin by proving Proposition \ref{main-1} which as a corollary provides a proof of the Theorem \ref{main}(a). In Section \ref{O-and-dern-equiv} we prove Theorem \ref{main}(b).
+
+\subsection{Proof of Theorem \ref{main}(a)} \label{sec:1a} Since $C(\Cal{O})$ is a $\boxcirc$-monoid (see Proposition \ref{def:box-circ-prod-map}), Theorem \ref{main}(a) will follow from Proposition \ref{main-1}, which we prove below. 
+
+\begin{proof}[Proof of Proposition \ref{main-1}]
+
+Let $\Cal{X}$ be a $\boxcirc$-monoid in $\SymSeq^{\bdel}_{\Spt}$ whose multiplication we denote by $m\colon \Cal{X}\boxcirc \Cal{X}\to\Cal{X}$. We aim to show that $\Tot \Cal{X}$ is an algebra over $\Cal{A}$. We define maps $\lambda_{\ell}$ as follows (note the notation $\dot{\wedge}$ as $\tensordot$ from Definition \ref{ccp} for the monoidal category $(\Spt,\wedge,S)$)\[
+    \lambda_{\ell}\colon \Cal{A}_{\ell}\dot{\wedge}_{\Sigma} (\Tot \Cal{X})^{\circhat \ell} \to \Tot \Cal{X}    %\lambda_{\ell}\colon \Cal{A}_{\ell}\tensordot_{\Sigma}  \left(\homu_{\Dres}\left(\SD, \Cal{X} \right)^{\Sigma} \right)^{\circhat \ell} \to\homu_{\Dres}\left(\SD, \Cal{X}\right)^{\Sigma}.
+\]
+
+For simplicity we first describe the $\ell=2$ case. Let $\underline{p}=(n,(k_1,\dots,k_n))\in\Ncirc{2}[k]$. Let $\psi\in \mathcal{A}_2(\underline{p};t)$, and let $\alpha,\beta\colon \SD_+\to \Cal{X}$ be maps of cosimplicial symmetric sequences. Define $\gamma$ at level $k$ by the composite\begin{equation*} 
+\xymatrix{
+    (\SD_+)^{\boxcirc 2} [n, (k_1,\dots,k_n)] \ar[rr]^-{\alpha[n]\boxcirc \beta[k_1,\dots,k_n]} 
+    && (\Cal{X}^{\boxcirc2})[n, (k_1,\dots,k_n)] \ar[d]^{m_*}\\
+    (\SD_+)[k] \ar[u]^-{\psi[k]} \ar@{.>}[rr]^{\gamma[k]} && \Cal{X}[k] }
+\end{equation*}
+where $\alpha[n] \boxcirc \beta[k_1,\dots,k_n]$ is provided via the map $\Gamma$ from (\ref{eq:def-Gamma}), the construction of which may be readily altered to give a map  \[
+        \Gamma \colon \left( \Map_{\Dres}^{\Spt} \left(\SD_+, \Cal{X}\right)^{\Sigma}\right)^{\circhat \ell} \to \Map_{\Dres}^{\Spt}\left((\SD_+)^{\boxcirc \ell}, \Cal{X}^{\boxcirc \ell}\right)^{\Sigma}.\] 
+
+In general, $\lambda_{\ell}$ is given by the following composite (compare with \cite[(1.13)]{AC-coalg}) \begin{align*}
+    \Map_{\Dres}^{\Top} &\left(\SD_+, (\SD_+)^{\boxcirc \ell}\right)^{\Sigma}\dot{\wedge}_{\Sigma}  \left(\Map_{\Dres}^{\Spt}\left(\SD_+, \Cal{X}\right)^{\Sigma}\right)^{\circhat \ell}\\
+    &
+    \xrightarrow{\id\dot{\wedge}_{\Sigma}  \Gamma} 
+    \Map_{\Dres}^{\Top}\left(\SD_+, (\SD_+)^{\boxcirc\ell} \right)^{\Sigma} \dot{\wedge}_{\Sigma}  \Map_{\Dres}^{\Spt}\left((\SD_+)^{\boxcirc \ell}, \Cal{X}^{\boxcirc \ell}\right)^{\Sigma} 
+    \\
+    &
+    \xrightarrow{\text{compose}} \Map_{\Dres}^{\Spt}\left(\SD_+, \Cal{X}^{\boxcirc \ell} \right)^{\Sigma} 
+    \\
+    & \xrightarrow{m_*} \Map_{\Dres}^{\Spt}\left(\SD_+, \Cal{X}\right)^{\Sigma}
+\end{align*}
+where the composition map is adjoint to the composite of evaluation maps
+\begin{align}
+    &\SD_+ \wedge \Map_{\Dres}^{\Top}( \SD_+, (\SD_+)^{\boxcirc \ell} )^{\Sigma} \to  (\SD)^{\boxcirc \ell}_+, \\
+    &(\SD_+)^{\boxcirc \ell} \dot{\wedge}_{\Sigma} \Map_{\Dres}^{\Spt} ((\SD_+)^{\boxcirc \ell}, \Cal{X}^{\boxcirc \ell} )^{\Sigma} \to \Cal{X}^{\boxcirc \ell}.
+    \nonumber \end{align}
+and $m_*$ is induced by the $\boxcirc$-monoid structure on $\Cal{X}$.
+%which defines for $\alpha_1,\dots,\alpha_{\ell}\in \Tot \Cal{X}$ and $\psi\in \Cal{A}_{\ell}$ a composite $\lambda_{\ell}(\psi;\alpha_1,\dots,\alpha_{\ell})$.
+
+%We now show that $\lambda$ is associative. Let $k=k_1+\dots+k_n$ and pick $\beta_{i,j}\in \Tot \Cal{X}$ for $i=1,\dots,n$, $j=1,\dots,k_i$. Further, pick $\psi'\in \Cal{A}_n$ and $\psi_i\in \Cal{A}_{k_i}$ for $i=1,\dots,n$. For $i=1,\dots, n$, set $\alpha_i = \lambda_{k_i}(\psi_i;\beta_{i,1},\dots,\beta_{i,k_i})$ and define $\gamma'=\lambda_n(\psi'; \alpha_1,\dots,\alpha_n).$ We claim that $\gamma'$ agrees with $\gamma=\lambda_k(\psi;\beta_{1,1},\dots,\beta_{n,k_n})$, where $\psi\in \Cal{A}_k$ is determined by $\psi_1,\dots,\psi_n)$. Consider the following diagram where $\dagger$ is the map $(\beta_{1,1}\boxcirc \cdots \boxcirc\beta_{1,k_1}) \boxcirc \cdots \boxcirc(\beta_{n,1}\boxcirc \cdots \boxcirc \beta_{n,k_n})$. From the normal oplax monoid structure on $\Cal{X}$ the right triangle commutes and thus the claim follows. 
+
+
+
+To show that $\lambda$ is associative we consider the following diagram, with $\psi'\in \Cal{A}_n$, $\psi_i \in \Cal{A}_{k_i}$ for $i=1,\dots,n$ such that the composite $\xi(\psi';\psi_1,\dots,\psi_n)=\psi \in \Cal{A}_k$. 
+
+\[ \xymatrix{
+    &(\SD_+)^{\boxcirc k} \ar[rr]%^{\beta_{1,1}\boxcirc \cdots \boxcirc \beta_{n,k_n}}
+    &&
+    \Cal{X}^{\boxcirc k} \ar[dl]^-{\theta_*} \ar@/^2pc/[dddl]^{m_*}
+    \\
+    (\SD_+)^{\boxcirc k_1} \boxcirc \cdots \boxcirc (\SD_+)^{\boxcirc k_n} \ar[ur]^-{\mu_{k_1,\dots,k_n}} \ar[rr]%^<(.4){\dagger} a%_{\tiny \begin{aligned}  \end{aligned}} 
+        &&
+    {\Cal{X}^{\boxcirc k_1}\boxcirc \cdots \boxcirc \Cal{X}^{\boxcirc k_n}}  \ar[d]^-{m_*\boxcirc \cdots \boxcirc m_*} &
+    \\ 
+    (\SD_+)^{\boxcirc n} \ar[u]^{\psi_1\boxcirc \cdots \boxcirc\psi_n} \ar[rr]%_{\alpha_1\boxcirc \cdots \boxcirc\alpha_n} 
+    &&
+    \Cal{X}\boxcirc \cdots \boxcirc \Cal{X} \ar[d]^-{m_*} &
+    \\ 
+    \SD_+ \ar[u]^<(.3){\psi'} \ar@{.>}@/^1pc/[rr]_{\gamma'} \ar@{.>}@/_1pc/[rr]_{\gamma} \ar@/_2pc/[uuur]|!{[u];[ur]}\hole|!{[uu];[uur]}\hole^<(.6){\psi}  
+    &&
+    \Cal{X}
+    }\]
+Note here that $m_*$ is induced by repeatedly applying the pairing $m\colon \Cal{X}\boxcirc \Cal{X}\to\Cal{X}$ from the left, i.e., \[ \Cal{X}\boxcirc \Cal{X} \boxcirc \cdots \boxcirc \Cal{X} \xrightarrow{m\boxcirc \id\boxcirc \cdots \boxcirc \id} \cdots \xrightarrow{m\boxcirc \id\boxcirc\id} \Cal{X} \boxcirc \Cal{X} \boxcirc \Cal{X} \xrightarrow{m\boxcirc \id}\Cal{X} \boxcirc \Cal{X} \xrightarrow{m} \Cal{X}.\] 
+
+The dashed morphisms $\gamma$ and $\gamma'$ are induced, respectively, by  $\lambda_k \xi_{n,(k_1,\dots,k_n)}$ and $\lambda_n (\id \tensordot_{\Sigma} (\lambda_{k_1} \circhat \cdots \circhat \lambda_{k_n})$. Note as well that $\mu_{k_1,\dots,k_n}$ is as in the proof of Proposition \ref{prop:coend-X}, and $\theta_*$ is the grouping map induced by $\theta$ (see Section \ref{boxcirc-monoid}), by which it follows that $\gamma$ and $\gamma'$ must agree. 
+
+For unitality we recall that  $\epsilon\colon \Isym\to \Cal{A}$ is induced by the inclusion at $\id_{\bdel}$ and therefore the composite $\lambda_1[n]\varepsilon[n]$ in the following diagram \[
+\xymatrix{
+    \Cal{A}_1(n;n) \wedge_{\Sigma_n} \Map_{\Dres}^{\Spt} \left(\SD_+[n],\Cal{X}[n]\right)^{\Sigma_n}
+    \ar[r]^-{\lambda_1[n]} & \Map_{\Dres}^{\Spt}\left(\SD_+[n],\Cal{X}[n]\right)^{\Sigma_n}
+    \\ 
+    \left( \Sigma_n \right)_+ \wedge_{\Sigma_n} \Map_{\Dres}^{\Spt}\left(\SD_+[n],\Cal{X}[n]\right)^{\Sigma_n}
+    \ar[u]^-{\epsilon[n]} \ar[ru]_-{\cong}  &
+}\]
+is given by $S^0\wedge \Tot \Cal{X}[n]\xrightarrow{\cong} \Tot \Cal{X}[n]$.
+\end{proof}
+
+
+
+\subsection{An equivalence of $A_{\infty}$-operads between $\Cal{O}$ and $\partial_* \Id_{\Alg{O}}$} \label{O-and-dern-equiv}
+We now show that the induced operad structure on $\partial_* \Id_{\Alg{O}}$ from Proposition \ref{main-1} agrees with the induced $\Cal{A}$-algebra structure on $\Cal{O}$, thus proving Theorem \ref{main}(b). Let $\rho \colon \Cal{A}\xrightarrow{\sim} \Oper$ be the map described in Remark \ref{rem:rho} and note an operad $\Cal{O}\in \Alg{\mathsf{Oper}}$ is in algebra over $\Cal{A}$ via the forgetful functor $\rho^*$.
+
+
+\begin{proof}[Proof of Theorem \ref{main}(b)]
+     By equivalence of $A_{\infty}$-operads we mean equivalence of $\Cal{A}$-algebras which restricts to an equivalence of underlying symmetric sequences. 
+     
+     Recall there is a natural coaugmentation $\Cal{O}\to C(\Cal{O})$ via $\Cal{O}\to J$. We have shown in Section \ref{sec:fibrant-model} that the coface $k$-cubes associated to \[ \Cal{O}\to C(\Cal{O}) \quad \text{and} \quad \partial_*\Id_{\Alg{O}}\to \holim_{\bdel^{\leq n-1}} \partial_* ( (UQ)^{\bullet+1})\]  are equivalent. Denoting these $k$-cubes by $\Cal{X}_k$ and $\Cal{Y}_k$, respectively, we note for $k\geq n\geq 1$ that as $\Cal{Y}_k[n]$ is homotopy cartesian so is $\Cal{X}_k[n]$. That is to say, for all $n\geq 1$ \begin{equation*}
+    \label{On-->der_n}
+        \Cal{O}[n] \xrightarrow{\sim} \holim_{\bdel}(  C(\Cal{O})[n]).
+    \end{equation*}
+    
+    Let $\underline{\Cal{O}}$ be the constant cosimplicial object in $\SymSeq$ on $\Cal{O}$. From the above, the coaugmentation $\Cal{O}\to C(\Cal{O})$ induces a map of cosimplicial symmetric sequences $\varphi\colon \underline{\Cal{O}} \to  C(\Cal{O})$ such that  $\Tot \underline{\Cal{O}} \xrightarrow{\sim} \Tot C(\Cal{O})$. Moreover, $\underline{\Cal{O}}$ inherits a natural $\boxcirc$-monoid structure induced by the operad structure maps $\Cal{O}\circ\Cal{O}\to\Cal{O}$ and $I\to \Cal{O}$, and $\varphi$ respects this structure (i.e., is a map of $\boxcirc$-monoids).
+    
+    For each $n\geq 0$ we have \begin{align*}
+        \Map_{\Dres}^{\Spt} (\Sigma_n {\cdot} \Delta^{\bullet}_+, \underline{\Cal{O}}[n])^{\Sigma_n}\xrightarrow{\sim}& 
+        \Map_{\Dres}^{\Spt} (\Sigma_n {\cdot} \underline{\Delta^0}_+, \underline{\Cal{O}}[n])^{\Sigma_n} \\
+        \cong& \Map^{\Spt}( \Sigma_n {\cdot} S^0, \Cal{O}[n])^{\Sigma_n}\cong \Map^{\Spt}(S^0, \Cal{O}[n])\cong \Cal{O}[n].
+    \end{align*} and therefore, $\Tot \underline{\Cal{O}}\xrightarrow{\sim} \Cal{O}$. Thus, there are commuting diagrams for all $n\geq 0$ \begin{equation} \xymatrix{
+    \Cal{A}_n \tensordot_{\Sigma}  (\rho^*\Cal{O})^{\circhat n} \ar[d]
+    & 
+    \Cal{A}_n \tensordot_{\Sigma}  (\Tot \underline{\Cal{O}})^{\circhat n} \ar[d] \ar[r] \ar[l]
+    &
+    \Cal{A}_n \tensordot_{\Sigma}  (\Tot C(\Cal{O}))^{\circhat n} \ar[d]
+    \\
+    \rho^*\Cal{O}
+    &
+    \Tot \underline{\Cal{O}} \ar[r]^-{\sim} \ar[l]_-{\sim}
+    &
+    \Tot C(\Cal{O}) 
+    }\end{equation}
+    where the left is the $\Cal{A}$-algebra structure map on $\rho^* \Cal{O}$ (which must factor through $\Oper$) and the right is the $\Cal{A}$-algebra structure map on $\partial_* \Id_{\Alg{O}}$.\end{proof}
+
+\subsection{A class of $\partial_* \Id_{\Alg{O}}$-algebras} 
+Though it will follow abstractly from Theorem \ref{O-and-dern-equiv}, the following corollary show that it is possible to describe an action of $\partial_* \Id_{\Alg{O}}$ explicitly on the $\TQ$-completion of sufficiently connected $\Cal{O}$-algebras. Recall that $X\simeq X_{\TQ}^{\wedge}$ for $0$-connected $X \in \Alg{O}$.
+
+\begin{corollary} \label{TQ-completion-is-der-alg}
+    Any $0$-connected $\Cal{O}$-algebra $X$ is weakly equivalent to an algebra over $\partial_* \Id_{\Alg{O}}$ via $X\mapsto X_{\TQ}^{\wedge}$. 
+\end{corollary}    
+    
+\begin{proof}
+    A straightforward modification of the proof of Proposition \ref{def:box-circ-prod-map} permits a well-defined map of cosimplicial diagrams \[r\colon  C(\Cal{O}) \boxcirc C(X)\to C(X)\] which endows $C(X)$ with the structure of a left module over $ C(\Cal{O})$. Strictly speaking we do need to be careful here, as $ C(\Cal{O})$ is not a strict monoid, so the module structure is obtained by replacing the right-most instances of $ C(\Cal{O})$ with $C(X)$ in (\ref{eq:assoc-boxcirc}) and (\ref{eq:unit-boxcirc}). Nonetheless, a straightforward adaptation of the proof of Proposition \ref{main-1} demonstrates maps \[\Cal{A}_{\ell} \tensordot_{\Sigma}  \left( (\Tot C(\Cal{O}))^{\circhat (\ell-1)} \circhat \bar{X}_{\TQ}^{\wedge}\right)\to \bar{X}_{\TQ}^{\wedge}\] where $\bar{X}_{\TQ}^{\wedge}$ is the symmetric sequence concentrated at level $0$ with value $X_{\TQ}^{\wedge}$, as required of Definition \ref{A-infty-alg}.
+\end{proof}
+
+\begin{remark}
+    One intent of the above is to motivate the analogous statement for algebras over the derivatives of the identity in \textit{spaces}, which \textit{a priori} seems a bit more mysterious. Using the model $\partial_* \Id_{\mathsf{Top}_*} =\holim_{\bdel} C(\underline{S})$  we further show in \cite{Clark-2} that for any $\underline{S}$-coalgebra $Y$ in spectra (e.g., $Y=\Sp X$) the derived primitives $\Prim_{\underline{S}}(Y)$ inherits the structure of an algebra over $\partial_* \Id_{\mathsf{Top}_*}$ via a pairing of cosimplicial objects with respect to $\boxcirc$ (see also \cite{Ching-thesis}, \cite{Heuts-vn}, \cite{BR}).
+    
+    In this framework, Corollary \ref{TQ-completion-is-der-alg} tells us that any $0$-connected $X\in \Alg{O}$ is equivalent to its derived primitives $\Prim_{B(\Cal{O})}( \TQ(X) )$ (with respect to a suitable coalgebra structure on $B(\Cal{O})$, see Section \ref{B(O)}) as $\partial_* \Id_{\Alg{O}}\simeq \Cal{O}$-algebras. Note also that $\mathsf{Prim}_{B(\Cal{O})}(\TQ(X))\simeq X^{\wedge}_{\TQ}$. As such, one possible future avenue for our work is to try to push this result to work for any nilpotent $\Cal{O}$-algebra. This could potentially be used to prove that any nilpotent $\Cal{O}$-algebra is equivalent to its $\TQ$-completion (see also \cite{Blom}, \cite{Niko}, and further compare with \cite{BK}, \cite{AK}, \cite{Carl}, \cite{BH-2} that any nilpotent space is equivalent to its completion with respect to $\U \Sp$).
+    \end{remark}
+    
+\section{An operad structure on the derivatives of the identity in spaces}
+
+We are now prepared to show that $C(\uS)$ admits $\boxcirc$-monoidal structure. We need a technical lemma first; note the following is similar to the ``tree ungrafting'' argument from \cite{Ching-thesis}. 
+
+\begin{lemma} \label{lem:tech}
+    For $k,p,q\geq 0$, there is a $\Sigma_k$-equivariant ``decomposition'' map \[\Psi_{k,(p,q)} \colon P(k)_{p+q}\to \prod_{\alpha\in P(k)_2 } P(n)_p\times  P(k_1)_q\times \cdots \times  P(k_n)_q\]
+    where $n$ and $k_1,\dots,k_n$ are obtained by setting $| \alpha |=(n,(k_1,\dots,k_n))$.
+\end{lemma}
+
+
+\begin{proof}
+    Let $n\geq 1$ and $T_1,\dots,T_n$ be a partition of $\mathbf{k}$. Let $\beta_j\in P(T_j)_q$ be given by $\mu_0^j\leq \cdots \leq m^j_q$ for $j=1,\dots,n$, $\gamma\in P(n)_p$ given by $\lambda_0 \leq \cdots \leq \lambda_p$, and let $\lambda'_j$ denote the partition obtained by replacing a set $\{\gamma_s\}_{s\in S}\in \lambda_j$ by $\coprod_{s\in S} T_s$. There is then an element $\gamma\circ (\beta_1,\cdots,\beta_n) \in P(k)_{p+q}$ given by \[ \lambda_0'\leq \cdots \leq \lambda_{p-1}' \leq \lambda_p' \cong \coprod_{i=1}^{n} \mu^i_0 \leq \coprod_{i=1}^n \mu^i_1 \leq \cdots \leq \coprod_{i=1}^n \mu^i_q.\]
+    
+    Given $\alpha\in P(k)_2$, let $T_1,\cdots,T_n$ be the corresponding partition of $\mathbf{k}$ determined. Given $\gamma'\in P(k)_{p+q}$, the image $\Psi_{k,(p,q)}(\gamma')$ at the $\alpha$-factor of the product is defined to be the string $(\gamma,\beta_1,\cdots,\beta_n)$ if there is a decomposition $\gamma'=\gamma\circ (\beta_1,\cdots,\beta_n)$ where $\gamma\in P(n)_p$ and $\beta_j\in P(T_j)_q$ for $j=1,\dots,n$, and by the basepoint otherwise. 
+\end{proof}
+
+\begin{proposition} \label{prop:m_p,q}
+    For $p,q\geq 0$ there are maps $m_{p,q} \colon C(\uS)^p \circ C(\uS)^q \longrightarrow C(\uS)^{p+q}$.
+\end{proposition}
+
+\begin{proof}
+    Let $p,q\geq 0$. For $k\geq 1$, $m_{p,q}$ at level $k$ is given by the following composite
+     \begin{align*}
+        ( C(\uS)^p \circ C(\uS)^q)[k] & 
+        = \bigvee_{\alpha\in P(k)_2} \left( \left( \prod_{P(n)_p} S\right) \wedge \bigwedge_{i=1}^{n} \left(\prod_{P(k_i)_q} S\right) \right)\\ 
+        & \to \bigvee_{\alpha \in P(k)_2} \left( \prod_{P(n)_p} S  \wedge \prod_{P(k_1)_q \times \cdots \times P(k_n)_q}  S\wedge\cdots \wedge S \right)\\
+        & \to \prod_{\prod_{\alpha\in P(k)_2} P(n)_p \times P(k_1)_q \times \cdots \times P(k_n)_q} S\wedge S\wedge \cdots \wedge S\\
+        & \xrightarrow{\Psi_{k,(p,q)}^*} \prod_{P(k)_{p+q}} S\wedge S \wedge \cdots \wedge S\cong C(\uS)^{p+q}[k]
+    \end{align*}
+    where $n,k_1,\dots,k_n$ are such that $ |\alpha|=(n,(k_1,\dots,k_n))$. 
+\end{proof}
+
+\begin{proposition}
+    \label{def:box-circ-prod-map-top}
+    The cosimplicial symmetric sequence $C(\uS)$ admits a natural $\boxcirc$-monoid structure, i.e., there are maps $m\colon C(\uS)\boxcirc C(\uS)\to C(\uS)$ and $u \colon \underline{I}\to C(\uS)$ which satisfy associativity and unitality. 
+\end{proposition}
+
+\begin{proof}
+    The map $m$ is induced as follows. For $p+q=n$, the maps described in Proposition \ref{prop:m_p,q} fit into the following commuting squares \[ \xymatrix{ 
+        C(\uS)^p \circ C(\uS)^{q+1} \ar[r]^-{m_{p,q+1}}
+        &
+        C(\uS)^{p+q+1}
+        \\
+        C(\uS)^p\circ C(\uS)^{q} \ar[u]^-{\id \circ d^0} \ar[r]^-{d^{p+1} \circ \id}
+        &
+        C(\uS)^{p+1} \circ C(\uS)^{q} \ar[u]_-{m_{p+1,q}}
+    }\]
+    which induce $m$ at level $n+1$ upon taking colimits. 
+    
+    The unit map is induced by the coaugmentation $I\to C(\uS)$ given by the identity on $I$. Associativity and unitality of $m$ and $u$ follow from the same argument as in \cite[Proposition 5.8]{Clark-1} with $C(\Cal{O})$ \footnote{Though, perhaps to reflect the notation in this article, the cosimplicial object $C(\Cal{O})$ in \cite{Clark-1} should be written as $C(B(\Cal{O}))$, as the bar construction $B(\Cal{O})$ is a cooperad \cite{Ching-thesis}, \textit{not} $\Cal{O}$.} replaced by $C(\uS)$.
+\end{proof}
+
+
+\begin{proof}[Proof of Theorem \ref{thm:main-1}]
+    From Proposition \ref{prop:model-equiv}, we know $\partial_* \Id \simeq \Tot C(\uS)$. The theorem then follows from \cite[Poroposition 5.9]{Clark-1}.
+\end{proof}
+
+\subsection{Derived primitives are spectral Lie algebras}
+Arone-Ching have shown that the operad $\partial_*\Id$ plays a central role in homotopy theory \cite{AC-coalg}, \cite{AC-2}. We now show explicitly that the derived primitives of a $\uS$-coalgebra $Y$ admit a left action by this operad. In particular, this defines a functor \[ \Xi \colon \Top \to \mathsf{Alg}_{\partial_*\Id}, \quad \quad X\mapsto \Tot C(\Sp X)\]
+
+It is known that $\Xi$ induces an equivalences after localizations with respect to certain equivalences on $v_n$-periodic homotopy groups \cite{Heuts-vn}. The author is particularly interested in understanding whether $\Xi$ induces an equivalence without localizations, or in describing a similar equivalence between a suitable model category $\mathsf{C}$ and the category of $\partial_*\Id_{\mathsf{C}}$-algebras \footnote{Assuming that a suitable model for $\partial_*\Id_{\mathsf{C}}$ as an operad can be described---this is the matter of ongoing work, though see \cite{Ching-day-conv} for a recent approach via $\infty$-categories.}.
+
+
+%Note that the results of this section may be thought of as a homotopical analog of a classic theorem from commutative algebra; that the primitives of a Hopf algebra (or more generally, a bi-algebra) naturally form a Lie algebra. In this case, the \textit{spectral Lie operad} is given by the operad $\partial_* \Id$.
+
+\begin{proof}[Proof of Theorem \ref{thm:main-2}]The idea is to show that $C(Y)$ is a left $\boxcirc$-module over $C(\uS)$ concentrated in symmetric sequence level $0$. That is, the following associativity \eqref{eq:assoc} and unitality \eqref{eq:unit} diagrams commute \begin{equation} \label{eq:assoc}
+    \xymatrix{
+        C(\uS)\boxcirc C(\uS)\boxcirc C(Y) \ar[r]^{\theta} \ar[d]^-{\cong}
+        &
+        C(\uS)\boxcirc (C(\uS)\boxcirc C(Y)) \ar[r]^-{\id\boxcirc \mu}
+        &
+        C(\uS) \boxcirc C(Y) \ar[d]^-{\mu}
+        \\
+        (C(\uS)\boxcirc C(\uS))\boxcirc C(Y) \ar[r]^{m\boxcirc \id}
+        &
+        C(\uS)\boxcirc C(Y) \ar[r]^-{\mu}
+        & 
+        C(Y)
+    }
+    \end{equation}
+    and 
+    \begin{equation} \label{eq:unit} \xymatrix{
+        C(\uS) \boxcirc C(Y) \ar[r]^{\mu}
+        &
+        C(Y)
+        \\
+        \underline{I}\boxcirc C(Y) \ar[u]^-{u \boxcirc \id} \ar[ur]^-{\cong}
+    }
+    \end{equation}
+Once we have shown this structure, it follows that $\Tot C(Y)$ is a $\partial_*\Id$-algebra in the sense of \cite[Definition 6.32]{Clark-1}. We first produce maps $\mu_{p,q}\colon C(\uS)^p \circ C(Y)^q \to C(Y)^{p+q}$. 
+
+Let $p,q\geq 0$ be given, $\mu_{p,q}$ is then the composite \begin{align*} 
+         C(&\uS)^p \circ C(Y)^q  = \bigvee_{n\geq 1} C(\uS)^p[n] \wedge_{\Sigma_n} (C(Y)^q)^n \\
+         & \to \prod_{n\geq 1} \left( \prod_{P(n)_p} S \right) \wedge_{\Sigma_n} \left( \bigwedge_{i=1}^n \prod_{k_i\geq 1}\left(  \prod_{P(k_i)_q} Y^{\wedge k_i} \right)_{\Sigma_{k_i}} \, \right)
+         \\
+         & \to \prod_{n\geq 1} \left( \prod_{P(n)_p} S \right) \wedge_{\Sigma_n} \left( \prod_{k\geq 1} \prod_{k=k_1+\dots+k_n} \bigwedge_{i=1}^n \left( \prod_{P(k_i)_q} Y^{k_i} \right)_{\Sigma_{k_i}} \, \right)
+         \\
+         & \to \prod_{k\geq 1} \prod_{n\geq 1}  \left(\prod_{P(n)_p} S\right) \wedge_{\Sigma_n} \left( \prod_{k=k_1+\cdots+k_n} \left(\prod_{P(k_1)_q\times \cdots \times P(k_n)_q} \bigwedge_{i=1}^n Y^{\wedge k_i}\right)_{\Sigma_{k_1}\times \cdots \times \Sigma_{k_n}}\right)
+         \\
+         & \cong \prod_{k\geq 1}  \left(  \prod_{\alpha\in P(k)_2} \prod_{P(n)_p\times P(k_1)_q\times \cdots \times P(k_n)_q}  Y^{\wedge k}\right)_{\Sigma_k} \\
+         & \xrightarrow{\Psi_{k,(p,q)}^*} \prod_{k \geq 1} \left( \prod_{P(k)_{p+q}} Y^{\wedge k} \right)_{\Sigma_k}
+    \end{align*}
+    
+    The map $\mu \colon C(\uS)\boxcirc C(Y)\to C(Y)$ is induced at cosimplicial level $0$ by \[ C(\uS)^0\circ C(Y)^0\cong S\wedge Y\xrightarrow{\cong} Y\] and for $n\geq 0$ at level $n+1$ by the commuting squares \[\xymatrix{
+        C(\uS)^{p}\circ C(Y)^{q+1} \ar[r]^-{\mu_{p,q+1}} 
+        &
+        C(Y)^{p+q+1}
+        \\
+        C(\uS)^{p} \circ C(Y)^{q} \ar[u]^-{\id \circ d^{q+1}} \ar[r]^-{d^0 \circ \id}
+        &
+        C(\uS)^{p+1}\circ C(Y)^{q} \ar[u]_-{\mu_{p+1,q}}
+    }\]
+    Here $p,q\geq 0$ are such that $p+q=n$.
+    
+    Associativity and unitality of $\mu$ again follows from a similar straightforward modification of the  argument from \cite[Proposition 5.8]{Clark-1} (see also Corollary 8.4 and Remark 8.5 in  \cite{Clark-1}). 
+\end{proof}
+
+\begin{remark}
+    It is worth remarking that a straightforward modification to the proofs of Theorems \ref{thm:main-1} and \ref{thm:main-2} presented in this document shows that $\Tot C(\Cal{Q})$ is an $A_{\infty}$-operad and, if $Y$ is a $\Cal{Q}$-coalgebra, that $C(Y)$ is an algebra over this operad. In particular, our constructions provide a point-set model for $\Tot C(\Cal{Q})$ as a (homotopy coherent) operad which is \textit{Koszul dual} to $\Cal{Q}$, and $Y\to \Tot C(Y)$ provides a comparison from $\Cal{Q}$-coalgebras to algebras over this operad (see \cite{FG}). 
+\end{remark}
+    
+\section{Conjectures and future work}
+\label{sec:conj}
+
+\subsection{A chain rule for functors of structured ring spectra}
+We expect that our techniques from Section \ref{sec:algO-derv} which underlie our proof that the derivatives of the identity in $\Alg{O}$ form an operad should allow for a description of a ``highly homotopy coherent chain rule'' for functors of structured ring spectra. Essentially, a chain rule describes an equivalence of Goodwillie derivatives \begin{equation} \label{eq:chain-rule} \partial_*F \circ_{\partial_*\Id_{\mathsf{C}}} \partial_*G \simeq \partial_*(FG)\end{equation} for functors $\mathsf{D} \xrightarrow{G} \mathsf{C} \xrightarrow{F} \mathsf{E}$ (where $\mathsf{C},\mathsf{D},\mathsf{E}$ are suitable model categories such as $\Spt$ or $\Top$.
+
+Arone-Ching \cite{AC-1} give a full description of a chain rule for functors between $\Top$ and $\Spt$, building off a chain rule for functors of $\Spt$ described by Ching \cite{Ching-chain-rule} (see also Klein-Rognes \cite{Klein-Rog}, Ching \cite{Ching-chain-rule}, and Yeakel \cite{Yeak}). The chain rule may be thought of a homotopical analog to the Fa\`a di Bruno formula \cite{Faa} for functions of a single real variable, which describes the $n$-th derivative of a composition $f\circ g$ in terms of the derivatives of $f$ and $g$ separately. 
+
+Note that by setting either $F$ or $G$ to be the identity in \eqref{eq:chain-rule}, the chain rule describes a $(\partial_*\Id_{\mathsf{E}},\partial_*\Id_{\mathsf{D}})$-bimodule structure on the derivatives of a homotopy functor $\mathsf{D}\to\mathsf{E}$, that is, assuming that an operad structure can be described on $\partial_*\Id_{\mathsf{E}}$ and $\partial_*\Id_{\mathsf{D}}$ to begin with.
+
+\begin{conjecture} \label{conj:chain-rule}
+    Let $\Cal{O},\Cal{O}',$ and $\Cal{O}''$ be operads of spectra and $F,G$ be finitary simplicial functors $\Alg{O}\xrightarrow{G} \Alg{O'} \xrightarrow{F} \Alg{O''}$. Then there exists \begin{enumerate}[label=(\roman*)]
+        \item A ``highly homotopy coherent'' chain rule map $\partial_*F\circ \partial_*G\to \partial_*(FG)$ 
+        \item An equivalence of $(\Cal{O}'', \Cal{O})$-bimodules of the form $\partial_*F\circ_{\Cal{O}'} \partial_*G\simeq \partial_*(FG)$
+    \end{enumerate}
+\end{conjecture}
+
+Our method is to resolve the functors $F$ and $G$ by the stabilization adjunction, as done before with the identity, in order to build the desired map \ref{conj:chain-rule}(i) above by a $\boxcirc$ pairing of cosimplicial symmetric sequences. When $F$ and $G$ are determined by a cofibrant $(\Cal{O}'',\Cal{O}')$-bimodule $M$ and cofibrant $(\Cal{O}',\Cal{O})$-bimodule $N$, respectively, our techniques provide the desired result. Specifically, we require that $F\simeq  |\Barr(M,\Cal{O},-)|$ and $G\simeq |\Barr(N,\Cal{O}',-)|$ and that $M,N$ consist of terms which are $(-1)$-connected. The desired map \ref{conj:chain-rule}(i) then necessarily takes the form a map \[\Cal{A}_2 \tensordot_{\Sigma} (\partial_* F \circhat \partial_* G) \to \partial_*(FG).\]
+
+In this case, however, since $\partial_*F\simeq M$, $\partial_*G\simeq N$, and $\partial_*(FG)\simeq M\circ_{\Cal{O}'}N$ (Proposition \ref{eq:taylor-tower-FM-AlgOO}), the map \ref{conj:chain-rule}(i) is merely homotopic to the quotient map \[ M\circ N\to M \circ_{\Cal{O}'} N.\] Our second conjecture addresses the extend to which such functors tell us about how to build a functor of structured ring spectra from its derivatives. 
+
+Arone-Ching \cite{AC-coalg} use their chain rule to show that the functor $F\mapsto \partial_*F$ which assigns a homotopy functor its sequence of Goodwillie derivatives admits a right adjoint $\Phi$ of the form
+\begin{equation} \label{eq:deriv-coalg} \xymatrix{ \operatorname{Fun} (\mathsf{C},\mathsf{D}) \ar@<1ex>[r]^-{\partial_*} & \mathsf{BiMod}_{(\partial_* \Id_{\mathsf{D}},\partial_*\Id_{\mathsf{C}})} \ar@<.5ex>[l]^-{\Phi} }\end{equation}
+where $\mathsf{C}$ and $\mathsf{D}$ are either $\Top$ or $\Spt$ which is \textit{comonadic} \cite{Hess}. Here $\operatorname{Fun}(\mathsf{C},\mathsf{D})$ denotes the category of finitary, simplicial homotopy functors $\mathsf{C}\to\mathsf{D}$, and this adjunction being comonadic essentially tells us that the Taylor tower of such a functor $F\colon \mathsf{C}\to\mathsf{D}$ may be reconstructed from its sequence of derivatives $\partial_*F$ along with the action of the associated comonad $\partial_* \Phi$. 
+
+Assuming the existence of a suitable chain rule for Goodwillie derivatives, we conjecture the following 
+
+\begin{conjecture}
+The functor  \[ \partial_* \colon \operatorname{Fun} (\Alg{O},\Alg{O}')\to  \mathsf{BiMod}_{(\Cal{O}',\Cal{O})}, \quad \quad F\mapsto \partial_*F \] admits a right adjoint given by $\Phi\colon M\mapsto M\circ_{\Cal{O}}(-)$. Moreover, the functors $\partial_*$ and $\Phi$ induce an equivalence of homotopy categories. 
+\end{conjecture}
+
+%\[ \xymatrix{ \operatorname{Fun} (\Alg{O},\Alg{O}') \ar@<1ex>[r]^-{\partial_*} & \mathsf{BiMod}_{(\Cal{O}',\Cal{O})} \ar@<.5ex>[l]^-{\Phi} }\]
+
+\subsection{An operad structure on the derivatives of the identity in a general model category} We additionally expect that the constructions in this document may be used as a general approach to describe an operad structure on the derivatives of the identity in a suitable model category (or perhaps $\infty$-category) $\mathsf{C}$, i.e., one which admits a stabilization adjunction $(\Sp_{\mathsf{C}},\U_{\mathsf{C}})$ to a ``nice'' model for its stabilization $\Spt(\mathsf{C})$. We will outline a possible approach.
+
+Similarly to the cases described before, we begin with the cosimplicial resolution of $\Id_{\mathsf{C}}$ via the stabilization adjunction. Either by analogous estimates from \cite{BH}, \cite{Blom} or via a modification of \cite[16.1]{AC-1}, it should follow that $\partial_n \Id_{\mathsf{C}}$ can be constructed as the totalization of the cosimplicial diagram built from $\partial_n ((\U_{\mathsf{C}} \Sp_{\mathsf{C}})^{k+1})$ for $k\geq 0$. In nice cases, this cosimplicial diagram---call it $C(\Id_{\mathsf{C}})$---is essentially the cobar complex on $\partial_* K$ (here, $K=\Sp_{\mathsf{C}}\U_{\mathsf{C}}$) with respect to the natural cooperad structure induced by the comultiplication $K\to KK$ together with a suitable chain rule from item \textbf{(1)} above. However, it is more likely that this cooperad structure is defined only up to homotopy and is thus not rigid enough to provide a cobar resolution.
+One main benefit to our work is that we only need that the resultant diagram cosimplicial diagram admits a monoidal pairing with respect to $\boxcirc$. This would have to built by hand, but should be possible if we can provide a Snaith splitting of the counit $K$ (compare with the Snaith splitting for $\Alg{O}$ is described in Section \ref{sec:Snaith-O}). This is essentially our approach for $\mathsf{C}=\Alg{O}$, wherein we use a specific model for iterates of stabilization $UQ=\U_{\Alg{O}}\Sp_{\Alg{O}}$ provided by \cite{KuhPer} to obtain the diagram $C(\Cal{O})$.
+
+
+\subsection*{``Classifying operads'' and homotopy descent} Once this operad structure has been established, it is reasonable to wonder how much of the original homotopy theory of $\mathsf{C}$ is captured by the category of algebras over $\partial_* \Id_{\mathsf{C}}$ (a problem suggested by Haynes Miller). In the best case, we would obtain that $\mathsf{C}$ is equivalent to the category of algebras over $\partial_* \Id_{\mathsf{C}}$. As suggested by the results of \cite{BH}, \cite{Ching-Harper-Koszul}, it is more likely this equivalence will hold only after restricting to a ``nice'' subclass of objects. 
+We expect our box product pairings to provide a useful tool for obtaining such a result and outline one possible approach as follows. 
+
+The assignment $X\mapsto \Sp_{\mathsf{C}} X$, produces a functor from $\mathsf{C}$ to $K$-coalgebras whose right adjoint is given by taking ``derived primitives''. This adjunction is an equivalence is whenever the stabilization adjunction is \textit{comonadic} (see \cite{Hess}), which we conjecture holds precisely when restricted to elements of $\mathsf{C}$ such that the Taylor tower of $\Id_{\mathsf{C}}$ converges. A Snaith splitting is key in translating the resultant $K$-coalgebra structure to a ``Tate coalgebra'' structure over a the cooperad $\partial_*K$ \cite{Heuts-thesis}. This is part may be tricky, as even in the best known cases so far, the Snaith splitting only produces such an equivalence up to homotopy. However, this is precisely one benefit to our technique; %we eschew the need for a strict cooperad structure on $\partial_*K$ and 
+We only need to show that the resulting diagram $C(\Sp_{\mathsf{C}} X)$ admits a (left) module structure over $C(\Id_{\mathsf{C}})$ with respect to the box product. 
+
+%rewrite this part
+A theoretical comparison $\Xi$ from $\mathsf{C}$ to $\partial_*\Id_{\mathsf{C}}$-algebras in $\Spt(\mathsf{C})$ is  obtained as \[X\mapsto \Tot C(\Sp_{\mathsf{C}}X).\] To show that $\Xi$ induces an equivalence, we conjecture there should be a natural coaugmentation $\Phi_{\mathsf{C}}(X)\to C(\Sp_{\mathsf{C}}X)$ (which may be possible only after localization, in which case $\Phi_{\mathsf{C}}$ is essentially the localization functor), whose connectivity may be analyzed via the cubical analysis techniques developed in \cite{Dundas-1}, \cite{Blom}, \cite{BH}, \cite{Ching-Harper-BM}. In $\Alg{O}$, this coaugmentation is the unit map $X\to UQ(X)$ which induces an equivalence \[X \simeq \Prim_{B(\Cal{O})}\Sp_{\Alg{O}}X\simeq X^{\wedge}_{\TQ}\] for connective $X$ \cite{Clark-1}. In $\Top$ this coaugmentation is obtained via the \textit{Bousfield-Kuhn functor} \cite{Kuh-BK-functor}, \cite{Bou-BK-functor}, as shown by Heuts in  \cite{Heuts-vn}. 
+
+
+

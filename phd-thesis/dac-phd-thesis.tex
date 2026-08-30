@@ -1,0 +1,271 @@
+\documentclass[11pt, twoside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[top=1 in, right=1in, left=1in, bottom=1in, headheight=15pt,  includehead,includefoot]{geometry}
+
+\usepackage[all]{xy}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{titlesec} 
+\usepackage{fancyhdr}
+
+\setstretch{2}
+\setcounter{tocdepth}{1}
+
+\newtheorem{theorem}[subsection]{Theorem}
+\newtheorem{lemma}[subsection]{Lemma}
+\newtheorem{proposition}[subsection]{Proposition}
+\newtheorem{corollary}[subsection]{Corollary}
+\newtheorem{conjecture}[subsection]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[subsection]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{example}[subsection]{Example}
+\newtheorem{remark}[subsection]{Remark}
+\newtheorem{question}[subsection]{Question}
+\newtheorem{warning}[subsection]{Warning}
+\newtheorem{assumption}[subsection]{Assumption}
+\newtheorem{requirement}[subsection]{Requirement}
+
+\makeatletter
+\let\c@equation\c@subsection
+\def\theequation{\thesubsection}
+\makeatother %includes figures in thm counter
+
+\newcommand{\Top}{\mathsf{Top}_*}
+\newcommand{\sSet}{\mathsf{sSet}}
+\newcommand{\Spt}{\mathsf{Spt}}
+\newcommand{\TQ}{\mathsf{TQ}}
+\newcommand{\Sp}{\Sigma^{\infty}}
+\newcommand{\U}{\Omega^{\infty}}
+\newcommand{\Tot}{\operatorname{\mathsf{Tot}}}
+\newcommand{\holim}{\operatorname{holim}}
+\newcommand{\Mod}[1]{\mathsf{Mod}_{#1}}
+\newcommand{\LMod}[1]{\mathsf{Mod}_{#1}}
+\newcommand{\RMod}[1]{\mathsf{RMod}_{#1}}
+\newcommand{\Alg}[1]{ {\mathsf{Alg}_{\mathcal{#1}}} }
+\newcommand{\Algh}[1]{\mathsf{Alg}^h_{#1}}
+\newcommand{\AlgN}[1]{\mathsf{Alg}^{\omega}_{\mathsf{lev}}\left(\mathcal{#1}\right)}
+\newcommand{\AlgSym}[1]{\mathsf{Alg}^{\Sigma}_{\mathsf{lev}}\left(\mathcal{#1}\right)}
+\newcommand{\AlgL}[1]{\mathsf{Alg}_{\mathsf{lev}}\left(\mathcal{#1}\right)}
+\newcommand{\Algg}[1]{ \mathbb{R}{#1} }
+\newcommand{\SymSeq}{\mathsf{SymSeq}}
+\newcommand{\Ass}{\mathsf{Ass}}
+\newcommand{\Com}{\mathsf{Com}}
+\newcommand{\Oper}{\mathsf{Oper}}
+\newcommand{\End}{\mathsf{End}}
+\newcommand{\Map}{\operatorname{Map}}
+\newcommand{\cro}{\operatorname{cr}}
+\newcommand{\Sco}{\mathsf{S}}
+\newcommand{\I}{\mathsf{I}}
+\newcommand{\hofib}{\operatorname{hofib}}
+\newcommand{\sk}{\operatorname{sk}}
+\newcommand{\tohofib}{\operatorname{tohofib}}
+\newcommand{\tohocofib}{\operatorname{tohocofib}}
+\newcommand{\colim}{\operatorname{colim}}
+\newcommand{\Mapp}{\operatorname{Map}_*}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Id}{\mathtt{Id}}
+\newcommand{\Cobar}{\operatorname{Cobar}}
+\newcommand{\Barr}{\operatorname{Bar}}
+\newcommand{\homu}{\operatorname{\mathbf{hom}}}
+\newcommand{\rmk}{\noindent \textit{Remark. }}
+\newcommand{\pt}{*}
+\newcommand{\Op}{\mathcal{O}}
+\newcommand{\Cal}[1]{\mathcal{#1}}
+\newcommand{\Ncirc}[1]{\mathbf{N}^{\hat{\circ}#1}}
+\newcommand{\otimesdot}{\dot{\otimes}}
+\newcommand{\circhat}{\hat{\circ}}
+\newcommand{\circdot}{{\odot}}
+\newcommand{\tensorhat}{\hat{\otimes}}
+\newcommand{\tensordot}{\dot{\otimes}}
+\newcommand{\boxcirc}{\mathring{\square}}
+\newcommand{\boxcirchat}{\hat{\mathring{\square}}}
+\newcommand{\Nl}{\mathbf{N}_{\mathsf{lev}}}
+\newcommand{\Nsym}{\mathbf{N}_{\mathsf{lev}}^{\Sigma}}
+\newcommand{\Isym}{\Cal{I}^{\Sigma}}
+\newcommand{\capequation}[1]{\begin{center} \footnotesize{#1} \end{center}}
+\newcommand{\cop}[1]{~_{\dot{\tiny{#1}}}}
+\newcommand{\Mop}{\mathcal{M}_{\mathsf{Op}}}
+\newcommand{\der}[1]{\partial_* \Id}
+\newcommand{\Spc}{\mathsf{S}_*}
+\newcommand{\SD}{\Sigma{\cdot}\Delta^{\bullet}}
+\newcommand{\bdel}{\mathbf{\Delta}}
+\newcommand{\hocolim}{\operatorname{hocolim}}
+\newcommand{\tdotsym}{\tensordot_{\Sigma} }
+\newcommand{\odotsym}{\circdot_{\Sigma}}
+\newcommand{\coend}[1]{\mathsf{coEnd}(\Cal{#1})}
+\newcommand{\Dres}{\bdel^{\mathsf{res}}}
+\newcommand{\Prim}{\operatorname{\mathsf{Prim}}}
+\newcommand{\CGH}{\mathsf{CGHaus}}
+\newcommand{\fco}{C(\Cal{O})} 
+\newcommand{\tone}[1]{(\tau_1\Cal{O})^{(#1)}}
+\newcommand{\ptC}{\pmb{\phi}}
+\newcommand{\uS}{\underline{S}}
+\newcommand{\Par}{\mathsf{Par}}
+\newcommand{\ccirc}{\check{\circ}}
+\newcommand{\fCS}{\mathfrak{C}(\uS)}
+\newcommand{\f}[1]{{#1}^{\mathsf{fib}}}
+\newcommand{\Sym}{\operatorname{Sym}}
+
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\centering}{\centering\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}
+{0pt}{50pt}{40pt} %center titles for chapter headers
+
+\pagestyle{fancy}
+\fancyhead[LE,RO]{\thepage} %alternate page number on top
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[]{}
+
+\counterwithout{footnote}{chapter}
+
+
+
+\begin{document}
+\pagenumbering{roman}
+
+%%title page
+\begingroup
+\setstretch{1.0}
+
+\thispagestyle{empty}
+\begin{center}
+    {\Huge The title of my dissertation will go here} \\
+    $~$\\
+    $~$\\
+    \Large Dissertation \\
+$~$\\
+$~$\\
+$~$\\
+    Presented in Partial Fulfillment of the Requirements for
+the Degree Doctor of Philosophy in the Graduate School of The Ohio State University\\
+$~$\\
+$~$\\
+By \\
+$~$\\
+$~$\\
+    Duncan A. Clark, B.S., M.S.,\\
+    Graduate Program in Mathematics\\
+$~$\\
+$~$\\
+$~$\\
+Ohio State University\\
+2021\\
+$~$\\
+$~$\\
+$~$\\
+Dissertation committee:\\
+$~$\\
+Dr. John E. Harper \\
+Dr. Niles Johnson \\
+Dr. Crichton Ogle 
+    
+\end{center}
+
+\newpage
+
+
+%%copyright page
+
+\thispagestyle{empty}
+\begin{center}
+$~$\vspace{3in}
+
+\textit{Copyright by Duncan A. Clark}\\
+\textit{2021}
+\vfill
+\end{center}
+\newpage
+
+
+%%abstract
+\setcounter{page}{1}
+\chapter*{Abstract}
+Abstract goes here
+
+
+
+\chapter*{}
+\begin{center} 
+\textit{To my wife Amanda and our cat Leo...}
+\end{center}
+\chapter*{Acknowledgements}
+I want to thank...
+
+
+\chapter*{Vita}
+ 
+1992 \dotfill Born in Kettering, Ohio\\
+
+\noindent 2015 \dotfill B.S. with honors in Mathematics\\
+ $~$ \hfill Ohio State University\\
+ $~$ \hfill Columbus, OH, USA\\
+ 
+\noindent 2019 \dotfill M.S. in Mathematics\\
+ $~$ \hfill Ohio State University\\
+ $~$ \hfill Columbus, OH, USA\\
+
+\begin{center}
+    \huge \textbf{Fields of Study}
+\end{center}
+$~$\newline 
+
+\noindent \textbf{Major field}: Mathematics \\
+\noindent \textbf{Specialization}: Algebraic topology, homotopy theory
+\endgroup %end single spacing
+ 
+
+\tableofcontents
+
+
+
+%%doc begins
+\chapter{Introduction}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\input{chapters/intro}
+
+
+\chapter{Operads and their algebras}
+\input{chapters/background}
+
+\chapter[Functor calculus]{An overview of functor calculus} 
+\input{chapters/functorcalc}
+
+\chapter[The box product]{The box product and box monoids}
+\input{chapters/boxprod}
+
+\chapter[N-colored operads with levels]{$\mathbf{N}$-colored operads with levels}
+\input{chapters/nlevop}
+
+\chapter[Derivatives of the identity]{Homotopy coherent operad structures on the derivatives of the identity}
+\input{chapters/derivatives}
+
+\begingroup
+\setstretch{1.0}
+\bibliographystyle{plain}
+\bibliography{biblo}
+\endgroup
+
+\appendix
+
+\chapter[]{Proof of Proposition {\ref{prop:tay-tow-FM}}(i)}
+\label{app:n-ex}
+\input{chapters/appendix-a}
+
+\chapter{Cooperads and their coalgebras}
+\label{app:coop}
+\input{chapters/appendix-b}
+
+
+
+\end{document}

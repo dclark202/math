@@ -1,0 +1,147 @@
+\section{The box-product of cosimplicial objects}
+The aim of this section is to introduce the box product $\square$ for cosimplicial objects in a monoidal category $(\mathsf{C}, \otimes, \mathbf{1})$ as first introduced by Batanin \cite{Bat-box}. For nice categories $\mathsf{C}$ (e.g.,  $\mathsf{C}$ closed, symmetric monoidal), the box product endows $\mathsf{C}^{\bdel}$ with a monoidal structure, and cosimplicial objects which admits a monoidal pairing with respect to $\square$ inherit an $A_{\infty}$-monoidal pairing on their totalizations (see, e.g.,  McClure-Smith \cite[3.1]{MS-box}).
+
+Our main use of the box product will be to produce a homotopy-coherent (i.e., $A_{\infty}$-) composition on the derivatives of the identity in $\Cal{O}$-algebras, modeled as $\Tot C(\Cal{O})$, by demonstrating a natural pairing $C(\Cal{O})\square C(\Cal{O})\to C(\Cal{O})$ (Example \ref{ex:C(O)-box}).
+
+\begin{definition} \label{def:box-product} 
+Let $(\mathsf{C}, \otimes, \mathbf{1})$ be a monoidal category and $X,Y\in \textsf{C}^{\bdel}$. Define their \textit{box product} $X\square Y\in \textsf{C}^{\bdel}$ at level $n$ by \[
+(X\square Y)^n:=
+\colim \left( \xymatrix{ 
+    \displaystyle{\coprod_{p+q=n}} X^{p}\otimes Y^{q} & 
+    \ar@<-1 ex>[l] \ar@<.5 ex>[l] 
+    \displaystyle{\coprod_{r+s=n-1}} X^{r}\otimes Y^{s} 
+}\right) \]
+where the maps are induced by $\id\otimes d^0$ and $d^{r+1}\otimes \id$. The object $X\square Y$ inherits cosimplicial structure via coface maps $d^i\colon (X\square Y)^{n}\to (X\square Y)^{n+1}$ induced by
+\[\begin{cases} 
+X^p\otimes Y^q \xrightarrow{\;\; d^i\otimes \id\;\;} X^{p+1}\otimes Y^{q} & i \leq p
+\\
+X^p\otimes Y^q \xrightarrow{\;\; \id \otimes d^{i-p} \;\;} X^{p}\otimes Y^{q+1} & i > p
+\end{cases}
+\]
+and codegeneracy maps $s^j\colon (X\square Y)^n \to (X\square Y)^{n-1}$ induced by
+\[\begin{cases} 
+X^p\otimes Y^q \xrightarrow{\;\; s^j\otimes \id\;\;} X^{p-1}\otimes Y^{q} & j < p
+\\
+X^p\otimes Y^q \xrightarrow{\;\; \id \otimes s^{j-p} \;\;} X^{p}\otimes Y^{q-1} & j \geq p
+\end{cases}
+\]
+see also Ching-Harper \cite[\textsection 4]{Ching-Harper-Koszul}.
+\end{definition}
+
+\begin{remark}Note, $(X\square Y)^0\cong X^0\otimes Y^0$, $(X\square Y)^{1}$ and $(X\square Y)^{2}$ may be computed as the colimits of \[ \xymatrix{ X^0 \otimes Y^1 & \\ X^0 \otimes Y^0 \ar[r]_-{d^1\otimes \id} \ar[u]^-{\id \otimes d^0} & X^1 \otimes Y^0} \; \raisebox{-8ex}{\text{ and }}  \; \xymatrix{ 
+    X^0 \otimes Y^2 & &
+    \\ 
+    X^0 \otimes Y^1 \ar[r]_-{d^1\otimes \id} \ar[u]^-{\id \otimes d^0} 
+    & 
+    X^1 \otimes Y^1 & \\
+    & X^1 \otimes Y^0 \ar[u]^-{\id \otimes d^0} \ar[r]_-{d^2\otimes \id} 
+    &
+    X^2 \otimes Y^0}
+    \] respectively, and in general $(X\square Y)^n$ may be computed as the colimit of the staircase diagram \begin{equation}\xymatrix{
+    X^0 \otimes Y^n & &\\
+    X^0 \otimes Y^{n-1} \ar[r]_{d^1\otimes \id} \ar[u]^{\id\otimes d^0} & X^1 \otimes Y^{n-1} &\\
+    & \ddots \ar[u] \ar[r]& X^{n-1}\otimes Y^1 &\\
+    && X^{n-1}\otimes Y^0 \ar[u]^{\id\otimes d^0} \ar[r]_{d^n\otimes \id} &X^n\otimes Y^0 
+}\end{equation}
+\end{remark}
+
+In particular, if $(\mathsf{C},\otimes, \mathbf{1})$ is closed, symmetric monoidal then $\square$ defines a monoidal category $(\textsf{C}^{\bdel}, \square, \underline{\mathbf{1}})$, here $\underline{\mathbf{1}}$ is the constant cosimplicial object on the unit $\mathbf{1}\in\mathsf{C}$ (see, e.g.,  Batanin \cite{Bat-box}). %We include the following as a motivating example for our $A_{\infty}$-operad structure on $\partial_* \Id$. 
+
+\begin{example} \label{ex:C(O)-box}
+Recall the cosimplicial symmetric sequence $C(\Cal{O})=J^{(\bullet+1)}$ from \eqref{al:CO}. We observe that $C(\Cal{O})$ admits a pairing $C(\Cal{O}) \boxcirc C(\Cal{O}) \xrightarrow{m} C(\Cal{O})$, where $\boxcirc$ denotes the box product in $\SymSeq^{\bdel}_{\Spt}$, induced as follows. Let $c$ denote the operad composition map $c\colon J\circ J\to J$. Then, \begin{align*} 
+    &(C(\Cal{O}) \boxcirc C(\Cal{O}))^0\cong J \circ J \xrightarrow{c} J=C(\Cal{O})^0 \end{align*}
+    
+For level $1$ we observe that there are maps \[ m_{0,1} \colon J\circ J\circ_{\Cal{O}} J \to J\circ_{\Cal{O}} J \; \text{ and } \; m_{1,0} \colon J \circ_{\Cal{O}} J \circ J \to J\circ_{\Cal{O}} J \]
+induced by $J\circ J\to J$ which induces $m$ via the following commuting square
+\begin{equation}\xymatrix{
+    J \circ J\circ_{\Cal{O}} J \ar[r]^-{m_{0,1}}
+    & 
+    J \circ_{\Cal{O}} J 
+    \\
+    J \circ J \ar[u]^-{\id\circ  d^0} \ar[r]^-{d^1\circ \id}
+    &
+    J\circ_{\Cal{O}} J\circ J \ar[u]^-{m_{1,0}}
+} 
+\end{equation}
+
+More generally, there are maps of the form \[m_{p,q}\colon J^{(p)} \circ J^{(q)} \to J^{(p+q)} \;\; \text{for $p+q=n$, $p,q\geq 0$}\] induced by $c$, which induces the pairing $m$ at level $n$. 
+\end{example}
+
+\begin{remark}
+    The above construction is entirely analogous to the following example found in McClure-Smith \cite{MS-box} that the based loop space $\Omega X$ of $X\in \Top$ admits an $A_{\infty}$ composition induced by an underlying $\square$-pairing. In this case, $\Omega X$ is modeled as the totalization of the cobar complex $c(X)$ built with respect to the natural comultiplication (with coaugmentation) given by the diagonal $\delta\colon X\to X\times X$. 
+    
+    It follows that $c(X)^{p}\cong X^{\times p}$ and the pairing $c(X)\square c(X)\to c(X)$ is induced by the natural isomorphisms $X^{\times p}\times X^{\times q}\cong X^{\times p+q}$. Further, McClure-Smith  show that $\Tot c(X)$ is an algebra over the (nonsymmetric) coendmorphism operad on $\Delta^{\bullet}$, i.e., \[ \mathbb{A}[n]=\Map_{\Dres}^{\mathsf{Top}}\left(\Delta^{\bullet}, (\Delta^{\bullet})^{\square n} \right)\] which satisfies $\mathbb{A}[0]=\pt$ and $\mathbb{A}[n]\xrightarrow{\sim} \pt$ for $n\geq 1$ (in fact $\Delta^n$ and $(\Delta^{\bullet} \square \Delta^{\bullet})^n$ are \textit{homeomorphic}), and that with respect to this structure $\Tot c(X)\simeq \Omega X$ as $A_{\infty}$-monoids.  \label{ex:loop-space-A-infty-monoid}
+\end{remark}
+
+
+\section{The box product in $\SymSeq^{\bdel}$}
+Our aim now is to build a framework in which we can work with the structure captured by Example \ref{ex:C(O)-box}, e.g.,  by considering the box-product in the category of cosimplicial objects in $(\SymSeq_{\mathsf{C}}, \circ, I)$ of symmetric sequences for $(\mathsf{C},\otimes, \mathbf{1})$ some closed symmetric monoidal category. 
+
+The main difficulty is that the composition product of symmetric sequences does not always commute with colimits taken in the right hand entry. That is, for $B\colon \mathcal{I}\to \SymSeq_{\mathsf{C}}$ a small diagram and $A\in \SymSeq_{\mathsf{C}}$, the universal map \begin{equation} \label{eq:colim-circ}\colim_{i\in \mathcal{I}} (A\circ B_i) \to A \circ (\colim_{i\in \mathcal{I}} B_i) \end{equation} is not an isomorphism in general. Thus the box-product fails to be strictly monoidal in this setting. 
+
+Let us write $\SymSeq=\SymSeq_{\mathsf{C}}$ and $\boxcirc$ for the box-product in $\SymSeq^{\bdel}$ (in words we refer to $\boxcirc$ as the \textit{box-circle product}). Let $\Cal{X},\Cal{Y},\Cal{Z}, \dots$ be cosimplicial symmetric sequences. We will systematically interpret expressions of the form $\Cal{X} \boxcirc \Cal{Y} \boxcirc \Cal{Z}$ to be expanded \textit{from the left}, i.e., 
+    \[\Cal{X} \boxcirc \Cal{Y} \boxcirc \Cal{Z} := (\Cal{X} \boxcirc \Cal{Y}) \boxcirc \Cal{Z}, \; \Cal{X} \boxcirc \Cal{Y} \boxcirc \Cal{Z} \boxcirc \Cal{W} := ((\Cal{X} \boxcirc \Cal{Y}) \boxcirc \Cal{Z} ) \boxcirc \Cal{W}, \;\dots \]
+and note that via the universal map in (\ref{eq:colim-circ}) there is always a canonical comparison map $\theta$ of the form    
+    \begin{equation} \label{eq:theta} \theta\colon  \Cal{X}\boxcirc \Cal{Y}\boxcirc \Cal{Z}=(\Cal{X} \boxcirc \Cal{Y}) \boxcirc \Cal{Z}  \to \Cal{X} \boxcirc (\Cal{Y} \boxcirc \Cal{Z})\end{equation}
+which likely fails to be invertible. However, $\theta$ is sufficient to provide a suitable description of monoids with respect to $\boxcirc$, i.e., Definition \ref{boxcirc-monoid}, below. First, we note that the unit $I\in \SymSeq_{\mathsf{C}}$ induces a unit $\underline{I} \in \SymSeq_{\mathsf{C}}$ as the constant cosimplicial object on $I$ in that there are isomorphisms \[ \Cal{X} \boxcirc \underline{I} \cong \Cal{X} \cong \underline{I} \boxcirc \Cal{X}.\] 
+
+For instance, the right isomorphism is obtained by noting that for any $p,q$ the map $d^{p+1}\circ\id$ in the following \[ \xymatrix{
+        \underline{I}^p \circ \Cal{X}^{q+1} 
+        & \\
+        \underline{I}^p \circ \Cal{X}^q \ar[u]^-{\id\circ d^0} \ar[r]^-{d^{p+1}\circ \id}
+        &
+        \underline{I}^{p+1} \circ \Cal{X}^{q} 
+        } \]
+    is just the identity (and hence has an inverse). Therefore, the inclusion of the vertex $\underline{I}^0\circ \Cal{X}^n$ into the diagram defining $(\Cal{X}\boxcirc \Cal{X})^n$ is right cofinal (i.e., induces an isomorphism on colimits). 
+    
+
+\begin{definition} \label{boxcirc-monoid} By $\boxcirc$-monoid in $\SymSeq^{\bdel}$, we mean a cosimplicial symmetric sequence $\Cal{X}$ together with maps $m\colon \Cal{X} \boxcirc \Cal{X} \to \Cal{X}$ and $u\colon \underline{I} \to \Cal{X}$ so that the following associativity (\ref{eq:assoc-boxcirc}) and unitality (\ref{eq:unit-boxcirc}) diagrams commute
+    \begin{equation} \label{eq:assoc-boxcirc} \xymatrix{  
+        \Cal{X} \boxcirc \Cal{X} \boxcirc \Cal{X} \ar[r]^{\theta} \ar[d]^-{=}&
+        \Cal{X} \boxcirc (\Cal{X} \boxcirc \Cal{X}) \ar[r]^-{\id \boxcirc m} &
+        \Cal{X} \boxcirc \Cal{X} \ar[d]^-{m} \\
+        (\Cal{X} \boxcirc \Cal{X}) \boxcirc \Cal{X} \ar[r]^-{m \boxcirc \id} &
+        \Cal{X} \boxcirc \Cal{X} \ar[r]^-{m} &
+        \Cal{X}
+        }\end{equation}
+    and
+   \begin{equation} \label{eq:unit-boxcirc} \xymatrix{ 
+        \Cal{X} \boxcirc \underline{I} \ar[r]^-{\id\boxcirc u} \ar[dr]_-{\cong}
+        &
+        \Cal{X} \boxcirc \Cal{X} \ar[d]^-{m}
+        & 
+        \underline{I}\boxcirc \Cal{X} \ar[l]_-{u\boxcirc \id} \ar[dl]^-{\cong}\\
+        & \Cal{X}  &
+        } 
+    \end{equation}
+\end{definition} 
+
+\begin{remark}
+We remark that in the language of Ching \cite{Ching-oplax} (see also Day-Street \cite{Day-St}), $\boxcirc$ admits a \textit{normal oplax monoidal structure} by defining \[ \Cal{X}_1\boxcirc \cdots \boxcirc \Cal{X}_k:= (\cdots (( \Cal{X}_1 \boxcirc \Cal{X}_2) \boxcirc \Cal{X}_3) \cdots)  \boxcirc \Cal{X}_k \] and obtaining grouping maps from the universal map in (\ref{eq:colim-circ}). Our notion of $\boxcirc$-monoids are \textit{normal oplax monoids} with respect to such structure by appealing to Ching \cite[3.4]{Ching-oplax}, noting in particular that four-fold and higher associativity diagrams are known to commute given the commutativity of (\ref{eq:assoc-boxcirc}).
+\end{remark}
+
+\begin{proposition}
+    \label{def:box-circ-prod-map}
+    The cosimplicial symmetric sequence $C(\Cal{O})$ (see \eqref{al:CO}) admits a natural $\boxcirc$-monoid structure, i.e., there are maps $m\colon C(\Cal{O})\boxcirc C(\Cal{O})\to C(\Cal{O})$ and $u \colon \underline{I}\to C(\Cal{O})$ which satisfy associativity and unitality. 
+\end{proposition}
+
+\begin{proof}
+    The map $m$ is that constructed in Example \ref{ex:C(O)-box}. The unit $I\to J$ provides a coaugmentation $I\to C(\Cal{O})$ which in turn induces a map $u\colon \underline{I}\to C(\Cal{O})$. 
+    
+    Associativity (\ref{eq:assoc-boxcirc}) follows from a routine calculation, observing that \[d^0 \colon (\fco \boxcirc \fco)^{q} \to (\fco \boxcirc \fco)^{q+1}\] is induced by $d^0 \circ \id\colon \fco^r\circ \fco^s\to \fco^{r+1} \circ \fco^s$ for $r+s=q$. Similarly, the right-hand triangle from the unitality diagram (\ref{eq:unit-boxcirc}) is granted by the following commuting diagrams\[ \xymatrix{
+        \underline{I}^p \circ C(\Cal{O})^q \ar[r]^-{u^p\circ \id} \ar[d]^-{\cong}
+        & 
+        C(\Cal{O})^p \circ \fco^q \ar[d]^-{m_{p,q}}
+        \\ 
+        \fco^q \ar[r]^-{d^0\cdots d^0} 
+        & 
+        \fco^{p+q}
+        }\]
+    for all $p,q$. A similar argument provides the commutativity of the other side of the unitality diagram. 
+\end{proof}
+
+Theorem \ref{main}(a) is then obtained as a corollary to the following proposition, the proof of which is deferred to Section \ref{sec:1a}. As such, the aim of the following sections is to set up a precise framework to describe what is meant by $A_{\infty}$-operad.
+
+\begin{proposition}  \label{main-1}
+    If $\Cal{X}$ is a $\boxcirc$-monoid in $\SymSeq_{\Spt}^{\bdel}$, then $\Tot \Cal{X}$ is an $A_{\infty}$-monoid with respect to the composition product (i.e., $A_{\infty}$-operad). 
+\end{proposition}

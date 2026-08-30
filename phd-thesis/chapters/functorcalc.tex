@@ -1,0 +1,425 @@
+
+
+%----------------------------------------------------------------------------------------------------------------------
+%-------[Functor Calc]-------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+
+Functor calculus was introduced by Goodwillie in a landmark series of papers \cite{Goo-Calc1, Goo-Calc2,Goo-Calc3} as a means of analyzing homotopy functors to or from $\Top$ or $\Spt$. Since, the theory been recognized as a general phenomenon which, in particular, relates a suitable model category to its stabilization. We refer the reader to \cite{Handbook} for an overview and exposition of some recent applications of the theory. 
+
+In what follows we consider functors $F\colon \mathsf{C}\to\mathsf{D}$ between suitable pointed simplicial model categories $\mathsf{C}$ and $\mathsf{D}$. Our main examples are when $\mathsf{C},\mathsf{D}$ are either $\Top$, $\Spt$ or when $\mathsf{C},\mathsf{D}$ are categories of structured ring spectra described as algebras over reduced operads in spectra. We refer the reader to Pereira \cite{Per-thesis} for a more detail on functor calculus in categories of structured ring spectra.
+
+\section{The Taylor tower} 
+
+\begin{definition}
+A functor $F\colon \mathsf{C}\to\mathsf{D}$ is $n$-excisive if $F$ takes any strongly cocartesian $(n+1)$-cube in $\mathsf{C}$ to a cartesian $(n+1)$-cube in $\mathsf{D}$. 
+\end{definition}
+Note, when $n=1$ this is precisely the excisive condition discussed in the introduction, as a strongly cocartesian 2-cube is just a homotopy pushout cube. 
+
+\begin{example} One nugget of intuition for the above definition is that $n$-excisive functors are ``determined'' by their values on $n+1$ points, similar to polynomial functions $f\colon \mathbf{R}\to\mathbf{R}$, as follows. Let $X\in \Top$ and let $\mathcal{X}$ be the strongly cocartesian $(n+1)$-cube in $\Top$ with $\Cal{X}(\emptyset)=X$ and $\Cal{X}(\{k\})= CX$, the cone on $X$ with $\Cal{X}(\emptyset)\to \Cal{X}(\{k\})$ the usual inclusion, for $1\leq k\leq n+1$. A functor $F\colon \Top\to \Top$ being $n$-excisive in particular asks that $F(\Cal{X})$ be a cartesian $(n+1)$-cube in $\Top$. Unravelling definitions, this tells us that $F(X)=F(\Cal{X}(\emptyset))$ be recovered by the homotopy limit of the cube $F(\Cal{X}|\Cal{P}_0(n+1))$; which is in turn determined by the values of $F(\pt)\simeq F(CX)=F(\Cal{X}(\{k\}))$ for $1\leq k\leq n+1$.
+\end{example}
+
+%----------------------------------------------------------------------------------------------------------------------
+A central construction in functor calculus is that of the \textit{Taylor tower} (sometimes referred to also as the \textit{Goodwillie tower}) of $n$-excisive approximations associated to a  functor $F\colon \mathsf{C}\to\mathsf{D}$ as follows
+\begin{equation}\label{Taylor-tower}
+    \xymatrix{
+    & & D_nF\ar[d] & &&\\
+    F\ar[r] & \cdots \ar[r] & P_nF \ar[r] & P_{n-1}F \ar[r] & \cdots \ar[r] & P_0F.}
+\end{equation}
+
+The functor $P_nF$ is called the \textit{$n$-th excisive approximation} to $F$ and is initial in the homotopy category of $n$-excisive functors receiving a map from $F$. In this work, all of our approximations are based at the zero object $\pt \in \mathsf{C}$, though approximations based at arbitrary spaces $Y\in \Top$ are described in \cite{Goo-Calc3}. The functor $D_n F$ is called the \textit{$n$-th homogeneous layer} and is defined as \[D_nF :=\hofib(P_nF\to P_{n-1}F).\]
+
+Note that $P_0F$ is a constant functor taking value $F(\pt)$. We call $F$ \textit{reduced} if $F(\pt)\simeq \pt$ and note that for reduced functors we have $P_1F\simeq D_1F$. Recipes for constructing $P_n F$ are provided in \cite{Goo-Calc3} for functors of $\Top$ and $\Spt$, and \cite{Per-thesis} for functors of structured ring spectra.
+
+
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Analytic functors}  If $F$ satisfies additional connectivity conditions on certain cubical diagrams (e.g.,  if $F$ is suitably stably $n$-excisive for all $n$ as in \cite[4.1]{Goo-Calc2}) we call $F$ \textit{analytic}, or more specifically \textit{$\rho$-analytic}: a key feature being that an analytic functor $F$ may be recovered as the homotopy limit of the tower (\ref{Taylor-tower}) on $\rho$-connected inputs $X$, i.e., \[F(X)\simeq \holim_{n} P_n F(X).\] 
+
+For instance, the identity functor on $\Top$ is $1$-analytic by the higher Blakers-Massey theorems (see, e.g.,  \cite[\textsection 2]{Goo-Calc2}) and the analogous results for structured ring spectra of Ching-Harper \cite{Ching-Harper-BM} demonstrate that the identity functor on $\Alg{O}$ is $0$-analytic. %Other analytic functors include Waldhausen's $A$ theory functor, and $\Map(K,-)$ for $K$ a finite CW complex (see \cite[\textsection 4]{Goo-Calc2}). 
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Cross effects and derivatives}
+Let $\Cal{S}_n(X_1,\dots,X_n)$ denote the $n$-cube \[\text{$T\mapsto \bigvee_{t\notin T} X_t$, for $T\in \Cal{P}(n)$.}\] The \textit{$n$-th cross effect} of $G$ is the $n$-variable functor defined by \[\cro_n G(X_1,\dots,X_n):= \tohofib G( \Cal{S}_n(X_1,\dots, X_n)).\]
+
+Our work concerns the derivatives of a functor $F$, which are certain spectra which classify the homogeneous layers $D_nF$ (under some mild conditions on $F$) and are computable via cross effects. We recall first that a functor $G$ is \textit{$n$-homogeneous} if $G$ is $n$-excisive and $P_k G\simeq \pt$ for $k<n$ and that $G$ is \textit{finitary} if $G$ commutes with filtered homotopy colimits. 
+
+A major triumph of functor calculus is the classification of $n$-homogeneous functors. Proposition \ref{prop:functor-calc-recap-top} below is summarized from Goodwillie \cite{Goo-Calc3} (for functors of spaces and spectra) and highlights the relevant properties of the homogeneous layers $D_nF$ and derivatives $\partial_n F$ associated to a functor $F$.
+
+\begin{proposition}
+\label{prop:functor-calc-recap-top}
+Let $F\colon \Top\to \Top$ be a homotopy functor and $n\geq 1$. Then: \begin{itemize}
+\item $D_nF$ is \textit{$n$-homogeneous}.
+
+\item $D_nF$ naturally factors through $\Spt$ as $ D_nF\simeq \U \circ \mathbb{D}_nF \circ \Sp$ such that $\mathbb{D}_n F$ is $n$-homogeneous.
+
+\item $D_nF$ is characterized by a spectrum with (right) $\Sigma_n$-action, $\partial_n F$ called the \textit{$n$-th derivative} of $F$, and there is an equivalence \footnote{For $X$ which have the homotopy type of a finite CW-complexes; or on an arbitrary space $X$ if $F$ commutes with filtered colimits (i.e., $F$ is \textit{finitary}). } \[
+    D_n F(X) \simeq \U (\partial_nF \wedge_{\Sigma_n} (\Sp X)^{\wedge n}).\]
+    
+\item The spectrum $\partial_nF$ may be calculated via cross effects \cite[\textsection 3]{Goo-Calc3} as \[\partial_n F \simeq \cro_n \mathbb{D}_n F (S,\dots,S)\] with $\Sigma_n$-action given by permutting the inputs $S$.
+\end{itemize}
+\end{proposition} 
+
+\section{Functor calculus in categories of structured ring spectra} We have a similar proposition for functors of structured ring spectra, summarized from \cite{Per-thesis}. For notational convenience we let $\widetilde{\TQ}$ denote the composite $g_* \TQ \simeq \tau_1\Cal{O} \circ^{\mathsf{h}}_{\Cal{O}}(-)$.
+
+\begin{proposition}
+\label{prop:functor-calc-recap}
+Let $F\colon \Alg{O}\to \Alg{O}$ be a homotopy functor, $X\in \Alg{O}$, and $n\geq 1$. Then: \begin{enumerate}[label=(\roman*)]
+    \item $D_nF$ is \textit{$n$-homogeneous}.
+
+    \item There are $n$-homogeneous functors $\mathbb{D}_n F$ and $\widetilde{\mathbb{D}_n}F$ such that the following diagram commutes
+    \begin{equation} \label{eq:fact}
+    \xymatrix{
+    \Alg{O} \ar[r]^{Q} \ar[d]^-{D_nF} &
+    \mathsf{Alg}_{J} \ar[r]^{g_*} \ar[d]^-{\mathbb{D}_n F} &
+    \mathsf{Mod}_{\Cal{O}[1]}  \ar[d]^-{\widetilde{\mathbb{D}_n}F} \\
+    \Alg{O}  &
+    \mathsf{Alg}_{J} \ar[l]^{U}  &
+    \mathsf{Mod}_{\Cal{O}[1]} \ar[l]^{g^*}
+    }  
+\end{equation}
+
+    \item There is a $(J,J)$-bimodule $\partial_*F$, whose $n$-th entry $\partial_n F$ is called the \textit{$n$-th Goodwillie derivative of $F$}, and such that there are equivalences of underlying spectra \begin{equation*}\label{homog-layer-2}
+    D_n F(X) \simeq  i_n (\partial_* F) \circ^{\mathsf{h}}_J (\TQ(X)) \end{equation*} 
+    
+    \item $D_nF$ is characterized by an $(\Cal{O}[1],\Sigma_n \wr \Cal{O}[1])$-bimodule\footnote{That is, a left module over $\Cal{O}[1]$ and right module over $\Sigma_n \wr \Cal{O}[1]$
+        (see Definition \ref{rem:wreath-products} for the definition of the wreath product $\Sigma_n \wr \Cal{O}[1]$)
+    } $\widetilde{\partial_n}F$ which has underlying spectrum equivalent to that of $\partial_nF$. 
+    
+    \item There are equivalences of underlying spectra \begin{equation}\label{homog-layer-1}
+    D_n F(X) \simeq (\widetilde{\partial_n} F \wedge^{\mathsf{L}}_{\Cal{O}[1]^{\wedge n}} \widetilde{\TQ}(X)^{\wedge^{\mathsf{L}} n})_{h\Sigma_n}
+    \simeq \widetilde{\partial_n} F\wedge^{\mathsf{L}}_{\Sigma_n \wr \Cal{O}[1]} \widetilde{\TQ}(X)^{\wedge^{\mathsf{L}} n}. \end{equation}
+
+    \item The $n$-th derivative may be calculated via $n$-th cross effects $\cro_n$ as \[\partial_n F \simeq \widetilde{\partial_n}F\simeq \cro_n \widetilde{\mathbb{D}_n} F (\Cal{O}[1],\dots, \Cal{O}[1])\] with right $\Sigma_n \wr \Cal{O}[1]$-action granted by permuting the inputs.
+\end{enumerate}
+\end{proposition}
+
+\begin{remark} 
+    The above equivalence (\ref{homog-layer-1}) hold in general for finite cell $\Cal{O}$-algebras $X$ and, if $F$ further is \textit{finitary} (i.e., $F$ commutes with filtered homotopy colimits), then the equivalences may be extended to arbitrary $\Cal{O}$-algebras $X$. The notation $\wedge^{\mathsf{L}}$ and $\circ^{\mathsf{h}}$ denote the derived smash product and circle product, respectively. We will often omit the latter notation and understand our constructions to be implicitly derived.\end{remark}
+
+    The careful reader might note that the $n$-th Goodwillie derivative of $F$ is only defined up to weak equivalence, and so the choice $\partial_n F$ vs. $\widetilde{\partial_n}F$ for functors of structured ring spectra may seem a pedantic distinction. For our purposes, this distinction is beneficial to the readibility of several of the upcoming proofs. Further, there are equivalences \[ \mathsf{L} g_* \partial_n F \simeq \widetilde{\partial_n} F \text{ and } \partial_n F \simeq \mathsf{R} g^* \widetilde{\partial_n}F, \] and for concreteness, the model for the derivatives of the identity we employ is as a $(J,J)$-bimodule, $\Tot C(\Cal{O})$ (see (\ref{al:CO})).
+    
+
+    Of note is that the choice of $\mathbb{D}_nF$ (resp. $\widetilde{\mathbb{D}_n}F$) may be made functorial in $F$ by a straightforward modification of the argument presented in \cite[2.7]{AC-1}. In particular if $F$ is finitary, then for any $Y\in \mathsf{Mod}_{\Cal{O}[1]}$ we have \begin{equation} \label{eq:D_nF(Y)} \widetilde{\mathbb{D}_n} F(Y)\simeq \widetilde{\partial_n} F\wedge_{\Sigma_n \wr \Cal{O}[1]} Y^{\wedge n}.\end{equation}
+
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{A note on wreath products}
+We use $\Sigma_n \wr \Cal{O}[1]$ to denote the twisted group ring (i.e., \textit{wreath product}) $(\Sigma_n)_+\wedge \Cal{O}[1]^{\wedge n}$. We recall some pertinent details of wreath products of ring spectra below.
+
+\begin{definition} \label{rem:wreath-products}
+    Given a ring spectrum $\Cal{R}$ we define \[
+        \Sigma_n \wr \Cal{R}:= \Sigma_n {\cdot} \Cal{R}^{\wedge n}\cong (\Sigma_n)_+\wedge \Cal{R}^{\wedge n}\]
+    with multiplication given by \[(\sigma \wedge x) \wedge (\tau \wedge y)\mapsto \sigma\tau \wedge x\sigma(y).\] 
+\end{definition}
+
+Our main use of such objects stems from the following proposition (see also \cite[Lemma 14]{Law-1}, \cite[\textsection 2]{KuhPer}). Note that a right $\Sigma_n \wr \Cal{R}$-module is a (right) $\Sigma_n$ object via the unit map $I\to \Cal{R}$. 
+
+\begin{proposition} \label{eq:wreath-product-coeq}
+    Let $\Cal{R}$ be a ring spectrum, $X$ a left $\Cal{R}$-module and $M$ a right $\Cal{R}$-module with $n$ commuting actions of $\Cal{R}$ (i.e., right $\Cal{R}^{\wedge n}$-module). Then, there is an isomorphism \begin{equation*} 
+        (M \wedge_{\Cal{R}^{\wedge n}} X^{\wedge n})_{\Sigma_n}\cong M\wedge_{\Sigma_n \wr \Cal{R}} X^{\wedge n}.
+    \end{equation*}
+\end{proposition}
+
+
+\begin{remark}The right-hand equivalence of (\ref{homog-layer-1}) is an instance of this equivalence. Of note is that if $X$ is a cofibrant $\Cal{O}$-algebra, then $\TQ(X)$ is cofibrant in $\mathsf{Mod}_{\Cal{O}[1]}$ and therefore Proposition \ref{eq:wreath-product-coeq} provides that $\TQ(X)^{\wedge n}$ is a cofibrant as a left $\Sigma_n \wr \Cal{O}[1]$-module. 
+\end{remark}
+
+In addition, the $(\Cal{O}[1], \Sigma_n \wr \Cal{O}[1])$-bimodule structure on the derivatives $\widetilde{\partial_n} F$ for all $n\geq 1$ induces $(\tau_1\Cal{O}, \tau_1\Cal{O})$-bimodule structure on the symmetric sequence $\widetilde{\partial_*} F$ which is further compatible with the $(J,J)$-bimodule structure on $\partial_*F$ via the $(g_*,g^*)$ adjunction. In the simplified case that $\Cal{O}[1]\cong S$, an $(S,\Sigma_n \wr S)$-bimodule is just a spectrum with a right action by $\Sigma_n$ and (\ref{homog-layer-1}) reduces to an equivalence of underlying spectra \[D_n F(X)\simeq \widetilde{\partial_n}F\wedge_{\Sigma_n} \widetilde{\TQ}(X)^{\wedge n}.\]
+
+\subsection{Taylor towers of certain functors $\Alg{O}\to \Alg{O'}$}
+Let $\Cal{O}$, $\Cal{O}'$ be reduced operads in spectra and $M$ be a cofibrant $(\Cal{O}', \Cal{O})$-bimodule with $M[0]=\pt$ whose terms are $(-1)$-connected. We define a functor $F_M\colon \Alg{O}\to \Alg{O}'$ at $X\in \Alg{O}$ by the simplicial bar construction \begin{equation} 
+    F_M(X) = |\Barr(M,\Cal{O},X)| \simeq M \circ^{\mathsf{h}}_{\Cal{O}}(X).\end{equation}
+
+Note $F_M$ is finitary and the left $\Cal{O}'$ action on $M$ induces a left $\Cal{O}'$ action on $F_M(X)$. The following proposition may be summarized from Harper-Hess \cite{Har-Hess} and Kuhn-Pereira \cite[\textsection 2.7]{KuhPer} and further provides a model for the Taylor tower of functors $F_M$. For completion, we sketch proofs of the relevant details. 
+
+ 
+\begin{proposition} \label{prop:tay-tow-FM}
+    Let $M$ and $F_M$ be as described above. Then there are equivalences (natural in $M$) \begin{enumerate}[label=(\roman*) ]
+        \item $P_n F_M\simeq \tau_n M \circ^{\mathsf{h}}_{\Cal{O}} (-)$
+        
+        \item $D_n F_M\simeq i_n M\circ^{\mathsf{h}}_{\Cal{O}}(-) \simeq i_n M \circ^{\mathsf{h}}_J (\TQ(-))$ 
+        
+        \item $\widetilde{\mathbb{D}_n} F_M (-)\simeq M[n] \wedge^{\mathsf{L}}_{\Sigma_n \wr \Cal{O}[1]} (-)^{\wedge n}$
+        
+        \item $\widetilde{\partial_n} F_M \simeq M[n]$
+    \end{enumerate}
+    such that the Taylor tower for $F_M$ is equivalent to \[\label{eq:taylor-tower-FM-AlgOO}
+    \xymatrix{
+    && i_n M \circ^{\mathsf{h}}_{\Cal{O}}(-) \ar[d] & & 
+    \\
+    F_M\ar[r] & 
+    \cdots \ar[r] & 
+    \tau_n M \circ^{\mathsf{h}}_{\Cal{O}} (-) \ar[r] & 
+    \tau_{n-1} M\circ^{\mathsf{h}}_{\Cal{O}}(-) \ar[r] & \cdots \ar[r] & \tau_1M \circ^{\mathsf{h}}_{\Cal{O}}(-).
+    }\]
+\end{proposition}
+
+\begin{proof}
+We will write $\circ$ for $\circ^{\mathsf{h}}$ and $\wedge$ for $\wedge^{\mathsf{L}}$. The equivalence (i) is proved in Appendix \ref{app:n-ex} (see also \cite[4.3]{Per-thesis}). For (ii) we note that morphisms $\tau_n M \to \tau_{n-1} M$ give rise to the comparison maps on excisive approximations $P_n F_M\xrightarrow{q_n} P_{n-1} F_M$ and moreover the fiber sequence \[ i_n M \to \tau_n M\to \tau_{n-1} M\] identifies $i_n M\circ_{\Cal{O}} (-)$ with the fiber of $q_n$. Moreover, as the right $\Cal{O}$-action on $i_n M$ factors through $\tau_1\Cal{O}$ there are then equivalences of underlying spectra
+\begin{align*} 
+    D_n F_M(X) &\simeq (i_n M\circ_{\tau_1 \Cal{O}} \tau_1\Cal{O}) \circ_{\Cal{O}}(X) \\
+               &\simeq i_n M  \circ_{\tau_1\Cal{O}} (\tau_1 \circ_{\Cal{O}}(X)) 
+               \simeq i_n M \circ_J (\TQ(X)).
+    \end{align*} Note that (iii) follows from the observation that any $Y\in \mathsf{Mod}_{\Cal{O}[1]}$ \[ 
+        i_n M \circ_{\tau_1{\Cal{O}}} (Y)\simeq M[n] \wedge_{\Sigma_n \wr \Cal{O}[1]} Y^{\wedge n}. \] 
+    
+The proof of (iv) follows from the equivalence $\cro_n F\simeq\cro^nF$ between cross-effects and \textit{co-cross-effects} of functors landing in a stable category as in Ching \cite{Ching-chain-rule} (see also McCarthy \cite{McC-dual}), where latter is defined dually to $\cro_n$ as follows \[\cro^n G(X_1,\dots,X_n)=\tohocofib\left(\Cal{P}(n)\ni T\mapsto G\left( \prod_{t\in T} X_t\right) \right).\]
+
+In particular, taking co-cross-effects will commute with $\wedge_{\Sigma_n \wr \Cal{O}[1]}$ and so 
+    \[ \cro_n \widetilde{\mathbb{D}_n} F_M \simeq \cro_n (M[n]\wedge_{\Sigma_n \wr \Cal{O}[1]} (-)^{\wedge n})\simeq  M[n]  \wedge_{\Sigma_n \wr \Cal{O}[1]} \cro_n ((-)^{\wedge n}).\] 
+Via the computation $\cro_n ((-)^{\wedge n})\simeq (\Sigma_n)_+ \wedge (-)^{\wedge n}$ we then obtain \[\widetilde{\partial_n}F_M \simeq M[n]\wedge_{\Sigma_n \wr \Cal{O}[1]} (\Sigma_n \wr \Cal{O}[1])\simeq M[n].\]
+\end{proof}
+
+
+
+\begin{definition}
+    For functors of the form $F_M$ we take as our models for $P_n F_M$, $D_n F_M$ and $\widetilde{\partial_n} F_M$ those from Proposition \ref{prop:tay-tow-FM}. A map $M\to M'$ of cofibrant $(\Cal{O}, \Cal{O})$-bimodules induces natural transformations $P_n F_M \to P_n F_{M'}$ and $D_n F_M\to D_n F_{M'}$, and also that $\widetilde{\partial_n} F_M \to \widetilde{\partial_n} F_{M'}$ is equivalent to $M[n]\to M'[n]$.
+\end{definition}
+
+%----------------------------------------------------------------------------------------------------------------------
+\section{The Taylor tower of the identity on $\Alg{O}$}
+Note that for $M=\Cal{O}$, the functor $F_{\Cal{O}}$ is equivalent to the identity via $\Cal{O} \circ_{\Cal{O}} (-)\simeq \Id_{\Alg{O}}$. Moreover, there are natural transformations $\Id_{\Alg{O}} \to \tau_n \Cal{O}\circ_{\Cal{O}}(-)$ provided by the unit map of the change of operads adjunction (Section \ref{change-of-Op}) applied to the map of operads $\Cal{O}\to \tau_n \Cal{O}$. The Taylor tower of the identity in $\Alg{O}$ then is equivalent to 
+\begin{equation}\label{eq:taylor-tower-Id-AlgOO}
+    \xymatrix{
+    && i_n \Cal{O} \circ_{\Cal{O}}(-) \ar[d] & & 
+    \\
+    \Id_{\Alg{O}}\ar[r] & 
+    \cdots \ar[r] & 
+    \tau_n\Cal{O}\circ_{\Cal{O}} (-) \ar[r] & 
+    \tau_{n-1}\Cal{O}\circ_{\Cal{O}}(-) \ar[r] & \cdots \ar[r] & \tau_1\Cal{O}\circ_{\Cal{O}}(-)
+    }
+\end{equation}
+
+This tower (\ref{eq:taylor-tower-Id-AlgOO}) has previously been studied by Harper-Hess \cite{Har-Hess} in relation to homotopy completion of $\Cal{O}$-algebras (see also Kuhn \cite{Kuh} and McCarthy-Minasian \cite{MM}). Moreover, Ching-Harper provide $\Alg{O}$ analogues of the higher Blakers-Massey theorems in \cite{Ching-Harper-BM}  which in particular show that $\Id_{\Alg{O}}$ is $0$-analytic. That is, for $0$-connected $X$ the following comparison map is an equivalence \[X \to \holim_n \tau_n \Cal{O} \circ_{\Cal{O}}(X).\] 
+
+As a corollary to Proposition \ref{prop:tay-tow-FM}, we obtain equivalences of underlying spectra (see also \cite{Har-Hess}) \[
+    D_n \Id_{\Alg{O}}(X)\simeq i_n \Cal{O} \circ_{\Cal{O}}(X)\simeq \Cal{O}[n] \wedge_{\Sigma_n \wr \Cal{O}[1]} \widetilde{\TQ}(X)^{\wedge n}\] 
+and also observe that $\widetilde{\partial_n} \Id_{\Alg{O}}\simeq \Cal{O}[n]$ as a $(\Cal{O}[1], \Sigma_n \wr \Cal{O}[1])$-bimodule for all $n\geq 1$. Therefore, with a view toward the operad structure on $\partial_*\Id_{\mathsf{Top}_*}$ constructed by Ching in \cite{Ching-thesis} we are lead to the following question, found in Arone-Ching \cite{AC-1}: \textit{Is it possible to endow $\partial_* \Id_{\Alg{O}}$ with a naturally occurring operad structure such that $\partial_* \Id_{\Alg{O}}\simeq \Cal{O}$ \textit{as operads}?}
+
+A key idea to our approach is taken from Arone-Kankaanrinta \cite{AK} where they show that $\partial_* \Id_{\mathsf{Top}_*}$ may be better understood by utilizing the cosimplicial resolution from the stabilization adjunction $(\Sp,\U)$ by means of the Snaith splitting. Within the realm of $0$-connected $\Cal{O}$-algebras, the $(Q,U)$ adjunction between $\Alg{O}$ and $\mathsf{Alg}_J$ (the latter, recall, is Quillen equivalent to $\mathsf{Mod}_{\Cal{O}[1]}$) is the exact analogue of stabilization. We provide an $\Alg{O}$ analogue of the Snaith splitting in Section \ref{sec:Snaith-O}.
+
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{A model for derivatives of the identity in $\Alg{O}$}
+The aim of this section is to describe specifically the model for the derivatives of the identity we employ, as $\Tot$ of a certain cosimplicial symmetric sequence $C(\Cal{O})$ which may be motivated as the totalization of the cosimplicial object arising from a calculation of the $n$-th derivative of $(QU)^k$ via the Snaith splitting in $\Alg{O}$. We are further motivated by work of Arone-Kankaanrinta \cite{AK} which utilizes the Snaith splitting in spaces (\ref{sec:snaith-spl}) to provide a model for the derivatives of the identity in spaces. 
+
+\subsection{The Snaith splitting in $\Alg{O}$}
+\label{sec:Snaith-O}There is an analogous result for $\Cal{O}$-algebras, wherein the adjunction $(\Sp, \U)$ is replaced by $(Q, U)$ from (\ref{stab-of-O-alg}). Let $B(\Cal{O})$ be the $(J,J)$-bimodule \[B(\Cal{O})= J\circ^{\mathsf{h}}_{\Cal{O}}J\simeq |\Barr(J,\Cal{O},J)|\] and note that given $Y\in \mathsf{Alg}_J$ cofibrant there is a zig-zag of equivalences. 
+\[ QU(Y) \xleftarrow{\sim} |\Barr(J, \Cal{O}, Y)| \xrightarrow{\sim} |\Barr(J, \Cal{O}, J)| \circ_J (Y)= B(\Cal{O}) \circ_J (Y).\]
+
+The \textit{$\Alg{O}$ Snaith splitting} is then the equivalence \begin{equation} \label{eq:TQ-Snaith}
+    Q U(Y)\simeq B(\Cal{O}) \circ_J (Y).
+\end{equation}
+
+\begin{remark} 
+    At first blush, \eqref{eq:TQ-Snaith} may not seem like a proper ``splitting'' in the style of the classic Snaith splitting for $\Top$ (see Section \ref{sec:snaith-spl}), which declares an equivalence \[ \Sp \U \Sp X\simeq \bigvee_{k\geq 1} \Sp X^{\wedge k}_{h\Sigma_k}\] for $X\in \Top$. This is more an artifact of our use of $\mathsf{Alg}_J$ for the stabilization of $\Alg{O}$. Indeed, given instead $\widetilde{Y}\in \mathsf{Mod}_{\Cal{O}[1]}$, the associated comonad arising from the adjunction $(g_*Q, Ug^*)$ between $\Alg{O}$ and $\mathsf{Mod}_{\Cal{O}[1]}$ has a natural splitting \[
+    g_* Q Ug^* (\widetilde{Y})\simeq \bigvee_{k\geq 1} \widetilde{B}(\Cal{O})[k] \wedge_{\Cal{O}[1]^{\wr k}} \widetilde{Y}^{\wedge k}\]
+    such that $\widetilde{B}(\Cal{O})\simeq B(\Cal{O})$ via \[\widetilde{B}(\Cal{O})= \tau_1\Cal{O} \circ^{\mathsf{h}}_{\Cal{O}} \tau_1 \Cal{O} \simeq |\Barr(\tau_1\Cal{O}, \Cal{O}, \tau_1\Cal{O})| \simeq |\Barr(J,\Cal{O},J)|\simeq B(\Cal{O}).\]
+\end{remark}
+    
+\subsection{Cooperad structure on $B(\Cal{O})$} \label{B(O)} It is known that $B(\Cal{O})$ (resp. $\widetilde{B}(\Cal{O})$) is a coaugmented cooperad, at least in the homotopy category of spectra (see, e.g.,  Ching \cite{Ching-thesis} for the topological case, Lurie \cite[\textsection 5]{Lur} for an $\infty$-categorical approach, or Ginzburg-Kapranov \cite{Ginz-Kap} for the chain complexes case) via the natural comultiplication  \[ J \circ^{\mathsf{h}}_{\Cal{O}} J \simeq J \circ^{\mathsf{h}}_{\Cal{O}} \Cal{O} \circ^{\mathsf{h}}_{\Cal{O}} J \to J \circ^{\mathsf{h}}_{\Cal{O}} J \circ^{\mathsf{h}}_{\Cal{O}} J \simeq (J \circ^{\mathsf{h}}_{\Cal{O}} J) \circ_J (J \circ^{\mathsf{h}}_{\Cal{O}} J) .\]
+    
+    We would like to say that the $\Alg{O}$ Snaith splitting allows one to immediately recognize $\partial_* \Id_{\Alg{O}}$ as the cobar construction on $B(\Cal{O})$, however the splittings provided seem to be too weak to justify this claim (a similar problem is enocuntered in Arone-Kankaanrinta \cite{AK} for the classic Snaith splitting). As such, one benefit of our work is that we do not require any more rigid cooperad structure on $B(\Cal{O})$ to produce our model for $\partial_* \Id_{\Alg{O}}$. 
+    
+    Also of note is that the $\Alg{O}$ Snaith splitting may be interpreted to say that any $Y\in \mathsf{Alg}_J$ (resp. $\widetilde{Y}\in \mathsf{Mod}_{\Cal{O}[1]}$) is naturally a divided power coalgebra over $B(\Cal{O})$ (resp. $\widetilde{B}(\Cal{O})$), at least in the homotopy category, and that the functor $X\mapsto \TQ(X)$ underlies the left-adjoint to the conjectured Quillen equivalence (i.e., Koszul duality equivalence) between nilpotent $\Cal{O}$-algebras and nilpotent divided power $B(\Cal{O})$-coalgebras from Francis-Gaitsgory \cite{FG} (which has since been partially resolved by Ching-Harper \cite{Ching-Harper-Koszul}). 
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Interaction of the stabilization resolution with Taylor towers} \label{sec:fibrant-model}
+We now provide the explicit model we employ for $\partial_* \Id_{\Alg{O}}$. Our argument is essentially to show that one can ``move the $\partial_*$ inside the $\holim$'' on the right hand side of (\ref{TQ-res-1}) by higher stabilization and then use the $\Alg{O}$ Snaith splitting to recognize the resulting diagram. Let us write $\Id$ for $\Id_{\Alg{O}}$.
+
+\begin{proposition} \label{eq:P_n-equiv}
+Let $k\geq n\geq 1$, then $P_n \Id \xrightarrow{\sim} \holim_{\bdel^{\leq k-1}} P_n ((UQ)^{\bullet+1})$.
+\end{proposition} 
+
+\begin{proof} 
+The estimates from Proposition \ref{higher-stabilization} suffice to show that  the map \[c_k\colon \Id\to \holim_{\bdel^{\leq k-1}} C(-)\] agrees to order $n$ on the subcategory of $0$-connected objects (see \cite[1.2]{Goo-Calc3}) in which case $P_n (c_k)$ is an equivalence via \cite[1.6]{Goo-Calc3}. Further, \[P_n (\holim_{\bdel^{\leq k-1}} C(-)) \simeq \holim_{\bdel^{\leq k-1}} P_n  ((UQ)^{\bullet+1})\] as $P_n(-)$ commutes with \textit{very finite}\footnote{
+    Recall that a \textit{very finite} homotopy limit is one taken over a diagram whose nerve has only finitely many nondegenerate simplices, and that such homotopy limits will commute with filtered homotopy colimits. Homotopy limits over $n$-cubes and punctured $n$-cubes are very finite
+} homotopy limits by construction (cf. Section \ref{delta-leq-k}).  
+\end{proof} 
+
+Since $D_n(-)$ and $\partial_n(-)$ are built from $P_n(-)$ by very finite homotopy limits, Proposition \ref{eq:P_n-equiv} extends to an equivalence on homogeneous layers and derivatives as well. Moreover, the restriction map \[\holim_{\bdel} P_n((UQ)^{\bullet+1})\to \holim_{\bdel^{\leq k-1}} P_n ((UQ)^{\bullet+1})\] 
+is an equivalence for $k\geq n\geq1$ as the objects as a corollary to the higher stabilization estimates from Proposition \ref{higher-stabilization} (resp. for $D_n$ and $\partial_n$). 
+
+Let $M$ be an $(\Cal{O}, \Cal{O})$-bimodule. For notational convenience, for $k\geq 1$, we set \begin{equation} \label{eq:Mcirck} 
+    M^{(k)} = \underbrace{M\circ_{\Cal{O}} \cdots \circ_{\Cal{O}} M}_k.
+    \end{equation} Note that $J^{(k)}$ is a cofibrant $(\Cal{O}, \Cal{O})$-bimodule with $(UQ)^{k+1}(X)= J^{(k+1)}\circ_{\Cal{O}} (X)$. By Proposition \ref{prop:tay-tow-FM}, there are then equivalences  \begin{align*}
+    P_n \Id \xrightarrow{\sim} & \holim_{\bdel^{\leq k-1}} \left( \xymatrix{
+    P_n (UQ) \ar@<-.5ex>[r] \ar@<.5ex>[r] &
+    P_n ((UQ)^2) \ar@<-1ex>[r] \ar[r] \ar@<1ex>[r] & 
+    P_n ((UQ)^3) \cdots
+    }\right)\\
+      \simeq & \holim_{\bdel^{\leq k-1}} \left(\xymatrix{ 
+    \tau_n J^{(1)}\circ_{\Cal{O}}(-) \ar@<.5 ex>[r] \ar@<-.5ex>[r] &
+    \tau_n J^{(2)} \circ_{\Cal{O}}(-) \ar@<1 ex>[r] \ar[r] \ar@<-1 ex>[r] &
+    \tau_n J^{(3)} \circ_{\Cal{O}}(-) \cdots }\right) 
+\end{align*}
+and \begin{align*}
+    D_n \Id \xrightarrow{\sim} & \holim_{\bdel^{\leq k-1}} \left( \xymatrix{
+    D_n (UQ) \ar@<-.5ex>[r] \ar@<.5ex>[r] &
+    D_n ((UQ)^2)  \ar@<-1ex>[r] \ar[r] \ar@<1ex>[r] & 
+    D_n ((UQ)^3) \cdots
+    }\right) \\
+     \simeq & \holim_{\bdel^{\leq k-1}} \left(\xymatrix{ 
+    i_n J^{(1)}\circ_{\Cal{O}}(-) \ar@<.5 ex>[r] \ar@<-.5ex>[r] &
+    i_n J^{(2)} \circ_{\Cal{O}}(-) \ar@<1 ex>[r] \ar[r] \ar@<-1 ex>[r] &
+    i_n J^{(3)} \circ_{\Cal{O}}(-) \cdots }\right)
+\end{align*}
+whenever $k\geq n\geq 1$. 
+
+Note there is an equivalence of restricted diagrams \[(\tau_n J^{(\bullet+1)}\circ_{\Cal{O}}(-) )|_{\bdel^{\leq k-1}} \simeq P_n((UQ)^{\bullet+1})|_{\bdel^{\leq k-1}}\] (resp. $(i_n J^{(\bullet+1)}\circ_{\Cal{O}}(-))|_{\bdel^{\leq k-1}} \simeq D_n((UQ)^{\bullet+1})|_{\bdel^{\leq k-1}}$) by first replacing the coface $k$-cube associated to \[\Id \to (UQ)^{\bullet+1}\] by the $k$-cube $\Cal{Z}_k$ (see (\ref{eq:Z_k}) below) and then applying $\tau_n$ (resp. $i_n$) objectwise. \begin{equation} \label{eq:Z_k} \{\Cal{P}(k) \ni T \mapsto \Cal{Z}_k(T) = (Z_1 \circ_{\Cal{O}} \cdots \circ_{\Cal{O}} Z_k) \circ_{\Cal{O}} (-) \}  \text{ such that $Z_i=\begin{cases} J & i\in T \\ \Cal{O} & i \notin T \end{cases}$} \end{equation} 
+
+ We then use the corresponding models for $\widetilde{\mathbb{D}_n}$ from Proposition \ref{prop:tay-tow-FM} and compute the $n$-th derivatives via cross effects to obtain equivalences \begin{align} \label{eq:model-for-nth-deriv}
+    \widetilde{\partial_n} \Id \xrightarrow{\sim} & 
+    \holim_{\bdel^{\leq k-1}} \left( \xymatrix{
+    \widetilde{\partial_n} (UQ) \ar@<-.5ex>[r] \ar@<.5ex>[r] &
+    \widetilde{\partial_n} ((UQ)^2) \ar@<-1ex>[r] \ar[r] \ar@<1ex>[r] & 
+    \widetilde{\partial_n} ((UQ)^3) \cdots
+    }\right) 
+    \\
+    \simeq & \holim_{\bdel^{\leq k-1}} \left(\xymatrix{ 
+     (\tau_1\Cal{O})^{(1)}[n] \ar@<.5 ex>[r] \ar@<-.5ex>[r] &
+    (\tau_1\Cal{O})^{(2)}[n] \ar@<1 ex>[r] \ar[r] \ar@<-1 ex>[r] &
+    (\tau_1\Cal{O})^{(3)}[n] \cdots }\right). \nonumber
+\end{align}
+for $k\geq n\geq 1$.
+
+\begin{example} \label{ex:C(O)} We sketch this process for $k=n=2$. Note, there is an isomorphism of square diagrams of the form \[ 
+    \xymatrix{ \Id \ar[r]^-{d^0} \ar[d]^-{d^0} & UQ \ar[d]^-{d^0} \\ UQ \ar[r]^-{d^1} & UQUQ } \;\; \raisebox{-4ex}{$\cong$} \;\; 
+    \xymatrix{ (\Cal{O} \circ_{\Cal{O}} \Cal{O}) \circ_{\Cal{O}} (-) \ar[r]^-{d^0} \ar[d]^-{d^0} &
+        (\Cal{O} \circ_{\Cal{O}} J) \circ_{\Cal{O}} (-) \ar[d]^-{d^0} \\
+        (J \circ_{\Cal{O}} \Cal{O}) \circ_{\Cal{O}} (-) \ar[r]^-{d^1} &
+        (J \circ_{\Cal{O}} J)\circ_{\Cal{O}} (-).}\]
+Taking $2$-homogeneous layers, we obtain an equivalence of homotopy pullback squares
+\[ 
+    \xymatrix{ D_2\Id \ar[r]^-{d^0} \ar[d]^-{d^0} & D_2(UQ) \ar[d]^-{d^0} \\ D_2(UQ) \ar[r]^-{d^1} & D_2(UQUQ) } \;\; \raisebox{-4ex}{$\simeq$} \;\; 
+    \xymatrix{ i_2(\Cal{O} \circ_{\Cal{O}} \Cal{O}) \circ_{\Cal{O}} (-) \ar[r]^-{d^0} \ar[d]^-{d^0} &
+        i_2(\Cal{O} \circ_{\Cal{O}} J) \circ_{\Cal{O}} (-) \ar[d]^-{d^0} \\
+        i_2(J \circ_{\Cal{O}} \Cal{O}) \circ_{\Cal{O}} (-) \ar[r]^-{d^1} &
+        i_2(J \circ_{\Cal{O}} J)\circ_{\Cal{O}} (-).}\]
+
+The associated lifts $\widetilde{\mathbb{D}_2}(-)$ to functors on $\mathsf{Mod}_{\Cal{O}[1]}$ from Proposition \ref{prop:tay-tow-FM} then fit into a homotopy pullback square
+\[ 
+    \xymatrix{ 
+        \widetilde{\mathbb{D}_2}\Id \ar[r]^-{d^0} \ar[d]^-{d^0} & 
+        (\Cal{O}\circ_{\Cal{O}} \tau_1 \Cal{O})[2] \wedge_{\Cal{O}[1]^{\wr 2}} (-)^{\wedge 2} \ar[d]^-{d^0} \\
+        (\tau_1 \Cal{O} \circ_{\Cal{O}} \Cal{O})[2] \wedge_{\Cal{O}[1]^{\wr 2}} (-)^{\wedge 2} \ar[r]^-{d^1} &
+        (\tau_1 \Cal{O} \circ_{\Cal{O}} \tau_1 \Cal{O} )[2] \wedge_{\Cal{O}[1]^{\wr 2}} (-)^{\wedge 2}  }\]
+which by taking cross effects $\cro_2$ then provides an equivalence of homotopy pullback squares 
+\[ 
+    \xymatrix{ \widetilde{\partial_2}\Id \ar[r]^-{d^0} \ar[d]^-{d^0} & \widetilde{\partial_2} (UQ) \ar[d]^-{d^0} \\ \widetilde{\partial_2}(UQ) \ar[r]^-{d^1} & \widetilde{\partial_2} (UQUQ) }  \raisebox{-4ex}{$\simeq$}  
+    \xymatrix{ \widetilde{\partial_2} \Id \ar[d]^-{d^0} \ar[r]^-{d^0} &
+        \tau_1 \Cal{O}[2] \ar[d]^-{d^0} \\
+        \tau_1 \Cal{O} [2]\ar[r]^-{d^1} &
+        (\tau_1\Cal{O} \circ_{\Cal{O}} \tau_1\Cal{O})[2]}
+        \raisebox{-4ex}{$\simeq$} 
+    \xymatrix{ \partial_2 \Id \ar[d]^-{d^0} \ar[r]^-{d^0} &
+        J[2] \ar[d]^-{d^0} \\
+        J[2]\ar[r]^-{d^1} &
+        (J\circ_{\Cal{O}} J)[2].}\]
+\end{example}
+
+\begin{remark} \label{prop:der_n-model-equivs} It follows then that $\partial_* \Id$ is obtained as $\holim_{\bdel} C(\Cal{O})\simeq \Tot C(\Cal{O})$, where $C(\Cal{O})$ is the following cosimplicial diagram (showing only coface maps)\begin{align} \label{al:CO}
+    C(\Cal{O}) &= \left( \xymatrix{
+    J\circ_{\Cal{O}} \Cal{O} \ar@<-.5ex>[r] \ar@<.5ex>[r] &
+    J\circ_{\Cal{O}} J\circ_{\Cal{O}}\Cal{O} \ar@<-1ex>[r] \ar[r] \ar@<1ex>[r] & 
+    J\circ_{\Cal{O}} J\circ_{\Cal{O}} J\circ_{\Cal{O}}\Cal{O} \cdots
+    }\right) 
+    \\
+    & \cong \left( \xymatrix{
+    J \ar@<-.5ex>[r] \ar@<.5ex>[r] &
+    J\circ_{\Cal{O}} J \ar@<-1ex>[r] \ar[r] \ar@<1ex>[r] & 
+    J\circ_{\Cal{O}} J\circ_{\Cal{O}} J\cdots
+    }\right), \nonumber
+\end{align}
+with coface maps as in (\ref{TQ-res-1}), i.e., $C(\Cal{O})= J^{(\bullet+1)}$. In other words $C(\Cal{O})$ provides a rigidification of the diagram $\partial_* (UQ)^{\bullet+1}$ whose terms are \textit{a priori} defined only up to homotopy.
+\end{remark} 
+
+%----------------------------------------------------------------------------------------------------------------------
+\section{The Taylor tower of the identity functor in spaces} 
+The Taylor tower of the identity is a central object of homotopy theory. From the definitions in \cite{Goo-Calc3}, is not hard to show \begin{equation} \label{P_1Id}
+    P_1\Id(X)\simeq D_1\Id(X)\simeq \U \Sp (X)
+    \end{equation}
+the stabilization of a space $X$. The higher Blakers-Massey theorems \cite[2.1]{Goo-Calc2} show that $\Id$ is $1$-analytic and therefore the Taylor tower of the identity in $\Top$ offers an interpolation between a simply connected space $X\simeq \holim_n P_n\Id(X)$ and its stabilization $\U \Sp X$. 
+
+The equivalences from (\ref{P_1Id}) show that the first derivative of $\Id$ is just the sphere spectrum $S$. Johnson \cite{Joh} and later Arone-Mahowald \cite{Ar-Mah} give a description of the higher homogeneous layers and derivatives of $\Id$ in terms of the\textit{ partition poset complex} (Definition \ref{def:par-poset}). Specifically, they show 
+\begin{equation} \label{D_n I}
+    D_n \Id (X)\simeq \U\Big( \Map \big(\mathsf{Par}(n), \Sp X^{\wedge n}\big)_{h \Sigma_n}\Big)
+\end{equation}
+and similarly \begin{equation} \label{der_n I}\partial_n \Id\simeq \Map( \mathsf{Par}(n), S)\end{equation}
+for all $n\geq 1$. In particular, the $n$-th derivative of $\Id$ is just the Spanier-Whitehead dual to $\Par(n)$.
+
+
+
+\subsection{The partition poset complex}
+For $n\geq 0$ we denote by $\mathbf{n}$ the set $\{1,\dots,n\}$, note that $\mathbf{0}=\emptyset$. A \textit{partition} $\lambda$ of $\mathbf{n}$ is a decomposition $\mathbf{n}=\coprod_{i\in I} T_i$ into nonempty subsets (here $I$ is required to be a nonempty set). Given partition $\lambda=\{T_i\}_{i\in I}$ and $\lambda'=\{T'_j\}_{j\in J}$ of $\mathbf{n}$ we say that $\lambda \leq \lambda'$ if there is a surjection $f\colon J\to I$ such that $T_i=\coprod_{j\in f^{-1}(i)} T'_j$ for all $i\in I$. 
+
+Note that the set of partitions of $\mathbf{n}$ has a minimal element $\mathsf{min}$ consisting of only the trivial partition $\{1,\dots,n\}$, and a maximal element $\mathsf{max}$ consisting of the partition of $\mathbf{n}$ into singletons, i.e. $\{\{1\},\dots, \{n\}\}$. The set of partitions of $\mathbf{n}$ then forms a poset with respect to $\leq$, and so may be interpreted as a category. The partition poset complex as defined below is (a quotient of) the nerve of this category.
+
+\begin{definition} \label{def:par-poset} Define the \textit{$n$-th partition poset complex} $\Par(n)$ to be the geometric realization of the pointed simplicial set $P(n)$ defined as follows. The $k$-simplices of $P(n)$ are given by sequences \[ \lambda_0 \leq \lambda_1 \leq \cdots \leq \lambda_{k-1} \leq \lambda_k \] of partitions of $\mathbf{n}$ such that any chain that does not satisfy $\lambda_0=\mathsf{min}$ and $\lambda_k=\mathsf{max}$ is identified with the basepoint. 
+
+Face maps $d_i\colon P(n)_k\to P(n)_{k-1}$ are given by removing the $i$-th entry $\lambda_i$ and degeneracy maps $s_j\colon P(n)_k\to P(n)_{k+1}$ are given by repeating the $j$-th entry $\lambda_j$. Note, that the image of $d_0$ (resp. $d_k$) is only the basepoint if $\lambda_1\neq \mathsf{min}$ (resp. $\lambda_{k-1}\neq \mathsf{max}$).
+\end{definition}
+
+More generally, for a finite set $T$ we define $\Par(T)$ analogously, e.g. by setting $|T|=n$ and specifying a bijection $T\cong \mathbf{n}$. 
+
+\begin{remark}
+    Note that $\Par(n)$ inherits a natural action of $\Sigma_n$ by permuting the elements of $\mathbf{n}$. A useful observation is that non-basepoint elements $\alpha \in P(n)_k$ are in bijective correspondence with isomorphism classes of planar, rooted trees with $n$ labelled leaves and $k$ levels, up to planar isomorphism. 
+\end{remark}
+
+\begin{example}
+    It is possible to calculate some low dimensional examples of partition poset complexes. For instance, $\Par(0)=\pt$, $\Par(1)\cong S^0$ and $\Par(2)\cong S^1$ with trivial $\Sigma_2$ action. Similarly, $\Par(3)$ may be identified with the $2$-sphere with a disc glued-in at the equator, $\Sigma_3$ acts on $\Par(3)$ by permuting the three $2$-discs (top hemisphere, bottom hemisphere and equator).
+    
+    Moreover, it is known that there is a (nonequivaraint) equivalence (see \cite{Joh}, \cite{Ar-Mah}) \[\Par(n)\simeq \bigvee_{i=1}^{(n-1)!}S^{n-1}.\] 
+\end{example}
+
+We briefly describe one route of arriving at the model \eqref{der_n I}, using the approach of Arone-Kankaanrinta \cite{AK} to analyze $\Id$ by the Snaith splitting. 
+
+\subsection{Analysis of the Taylor tower of the identity by higher stabilization}
+Associated to the stabilization adjunction $(\Sp, \U)$ between $\Top$ and $\Spt$, for any space $X$, there is a coaugmented cosimplicial diagram $X\to C(\Sp X)$. Here, $C(\Sp X)$ is the cobar resolution \[C(\Sp X):=\Cobar(\U, \Sp\U, \Sp X)\] and the coaugmented is provided by the unit map $X\to \U \Sp X$. $C(\Sp X)$ is functorial in $X$ and provides a cosimplicial functor \begin{equation}
+\label{eq:loop-susp-cosimplicial-res}
+    C(\Sp -) = \left( \xymatrix{
+    \U \Sp  \ar@<.5 ex>[r] \ar@<-.5ex>[r] &
+    (\U \Sp)^2 \ar@<1 ex>[r] \ar[r] \ar@<-1 ex>[r] &
+    (\U \Sp)^3 \cdots
+    }\right)
+\end{equation} whose coface maps are induced by inserting the unit map $\Id \to Q:= \U \Sp$ and codegeneracy maps are induced by the counit map $\Sp\U=: \mathsf{K}\to \Id_{\Spt}$. 
+
+Blomquist-Harper \cite{BH} utilize the cubical higher Blakers-Massey theorems of \cite{Goo-Calc2} to recover a classical result of Bousfield-Kan \cite{BK} (see also \cite{Carl}) that simply connected spaces are equivalent to their completion with respect to stabilization. Specifically, if $X\in \Top$ is $1$-connected, then \[X\xrightarrow{\sim} \holim_{\Delta}C(X)\simeq X_{\U \Sp}^{\wedge}.\] The key to their proof is strong connectivity estimates of the following form.
+
+\begin{proposition}
+\label{higher-stabilization-top}
+The comparison map $X\to \holim_{\Delta^{\leq k-1}} C(\Sp X)$ is $(c(k+1)+1)$-connected for $X\in \Top$ $c$-connected.
+\end{proposition}
+
+We make use of the above connectivity estimates to show that $P_n \Id$ may be recovered as the totalization of $P_n (Q^{\bullet+1})$ (see also \cite[\textsection 16]{AC-1}).
+
+\begin{corollary}
+Let $k\geq n\geq 1$, then $P_n \Id \xrightarrow{\sim} \holim_{\Delta^{\leq k-1}} P_n (Q^{\bullet+1})$.
+\end{corollary} 
+
+\begin{proof}
+    Using the estimates from Proposition \ref{higher-stabilization-top}, this follows from the same argument as in \cite[Proposition 4.7]{Clark-1}.
+\end{proof}
+
+The above corollary readily extends to equivalences on $D_n$ and $\partial_n$ as well. The upshot for us is that $\partial_n (Q^{k+1})$ is readily computable via the Snaith splitting, as follows. 
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{The Snaith splitting} \label{sec:snaith-spl}
+Let $\uS$ denote the symmteric sequence in $\Spt$ such that $\uS[n]=S$ with trivial $\Sigma_n$ action. The \textit{Snaith splitting} (see e.g., \cite{Snaith}, \cite{Coh-May-Tay}) provides equivalences
+\begin{equation} 
+\label{Snaith}
+    \Sp \U \Sp X \simeq \bigvee_{k\geq 1} \Sp X^{\wedge k}_{h\Sigma_k} \simeq \bigvee_{k\geq 1} S\wedge_{\Sigma_k} (\Sp X)^{\wedge k}
+\end{equation}
+Said differently, the Taylor tower for $\mathsf{K}=\U\Sp$ splits as a coproduct of its homogeneous layers when evaluated on a suspension spectrum and that $\partial_* \mathsf{K}\simeq \uS$. 
+
+A result of Arone-Kankaanrinta \cite{AK} uses the above splittings to recover the model for $n$-th homogeneous layers and $n$-th derivatives of the identity in spaces in (\ref{D_n I}) and (\ref{der_n I}), respectively. The crux of their argument is that iterating the Snaith splitting provides equivalences \[\partial_n (Q^{k+1})\simeq \partial_n (\mathsf{K}^{k})\simeq \uS ^{\circ k}[n].\] 
+Here, $\uS^{\circ k}$ denotes the $k$-fold composition of the symmetric sequence $\uS$.
+
+
+\begin{remark}A key observation is that $\uS^{\circ k}[n]$ is just a wedge of copies of the sphere spectrum $S$ indexed by the $k$-simplices of $P(n)$. This symmetric sequence $\uS$ admits both an operad and \textit{cooperad} structure, the derivatives of the identity may be further recognized as the totalization of the cobar complex with respect to this cooperad structure. That is, \[ \partial_* \Id_{\Top}\simeq \Tot C(\uS).\]
+
+We defer a full discussion of cooperads and their coalgebras to Appendix \ref{app:coop}. 
+\end{remark}
+
+
+

@@ -1,0 +1,140 @@
+
+The aim of this section is to describe what we mean by cooperads and their coalgebras in the context of this document. We recall that an operad $\Cal{O}$ is just a monoid for the composition product $\circ$ of symmetric sequences; the dual notion of cooperad is a more delicate matter.
+
+\section{Reinterpreting the composition product}
+We now adopt the notation of Chapter \ref{sec:N-lev} regarding $\Nl$-objects. Given a non-basepoint element $\alpha\in P(n)_k$, we let $|\alpha|$ denote the corresponding profile in $\Ncirc{k}[n]$ and $\alpha_{j,i}$ be such that \[|\alpha|=\left(\alpha_{1,1}, (\alpha_{2,1},\cdots,\alpha_{2,\alpha_1}), \cdots, (\alpha_{k,1},\cdots,\alpha_{k,\alpha_{k-1}} ) \right).\]
+
+Here, $\alpha_j$ is inductively defined as $\alpha_j :=\alpha_{j,1}+\dots + \alpha_{j,\alpha_{j-1}}$. Note $n=\alpha_k$. Said differently, $\alpha_j$ is the number of partitions in $\lambda_j$, and $\alpha_{j,1},\dots, \alpha_{j,\alpha_{j-1}}$ is the size of the partitions appearing in $\lambda_{j-1}$ for $j=1,\dots,k$. Note that $|\alpha|$ is \textit{not} uniquely determined by $\alpha$. 
+
+
+\begin{definition} \label{comp-prod} Let $A_1,\dots,A_k$ be reduced symmetric sequences. We define their \textit{composition product} as follows.
+\[(A_1{\circ} A_2 {\circ} \cdots {\circ} A_k)[n]=\bigvee_{\alpha\in P(n)_k} (A_1 \otimes \cdots \otimes A_k)[\alpha] \]
+Here, we use the notation \[
+    (A_1 \otimes \cdots \otimes A_k)[\alpha]=
+        A_1[\alpha_1] \wedge \bigwedge_{i=1}^{\alpha_1} A_2[\alpha_{2,i}] \wedge \cdots \wedge \bigwedge_{i=1}^{\alpha_{k-1}} A_k[\alpha_{k,i}]
+        \]  as $\Sigma_{\alpha}$-objects \footnote{We denote by $\Sigma_{\alpha}\leq \Sigma_n$ the subgroup of permutations $\sigma$ which fix the partition $\alpha$.} if $\alpha$ is not the basepoint, and set $(A_1\otimes \cdots \otimes A_n)$ of the basepoint to be the terminal spectrum $*$. There is a $\Sigma_n$ action by permutation on $P(n)_k$.
+
+Similarly, their \textit{dual composition product} is defined as \[ (A_1\ccirc A_2 \ccirc \cdots \ccirc A_k)[n]=\prod_{\alpha \in P(n)_k} (A_1 \otimes \cdots \otimes A_k)[\alpha]. \]
+\end{definition}
+
+We write $A^{\otimes k}$ for the $k$-fold product $A\otimes \cdots \otimes A$ and note that $A^{\otimes 0}:= I$. Note that this symbol $\otimes$ is different from the tensor of symmetric sequences as in \cite{Rezk-thesis}, \cite{Har-1}. Let $P(n)^{\circ}_k$ denote the set of non-basepoint $k$-simplices of $P(n)$. Since $\Spt$ is \textit{stable}, finite coproducts and products are equivalent and hence the natural comparison \begin{equation} \label{comp} A_1{\circ} \cdots {\circ} A_k\xrightarrow{\;\sim\;} A_1\ccirc \cdots \ccirc A_k\end{equation} is a weak equivalence of symmetric sequences. 
+
+\begin{remark} 
+The dual composition product is rarely strictly associative, and therefore we cannot say that a cooperad is a comonoid with respect to $\ccirc$. The issue is that the smash product of spectra will rarely commute with limits; however for $F$ a small diagram of spectra and $X \in \Spt$, the induced maps  $(\lim F ) \wedge X\to \lim ( F\wedge X)$ make $\ccirc$ \textit{oplax monoidal} (see, e.g. \cite{Day-St}, \cite{Ching-oplax}). 
+
+We eschew the full development of (op)lax (co)monoids and only state what we need for a symmetric sequence $\Cal{Q}$ to be a \textit{cooperad}. Note that what we are calling a cooperad is more precisely a \textit{coaugmented cooperad with divided powers}; similarly, our notion of coalgebra is that of a \textit{coalgebra with divided powers} \cite{FG}.
+\end{remark} 
+
+\section{Cooperads} 
+Informally, a cooperad is a reduced symmetric sequence $\Cal{Q}$ that admits \textit{cocomposition} maps of the form \[ \delta \colon \Cal{Q}[k]\to \Cal{Q}[n] \wedge \Cal{Q}[k_1] \wedge \cdots \wedge \Cal{Q}[k_n] \] for all $n,k=k_1+\dots+ k_n\geq 1$, along with a \textit{counit} $\epsilon \colon \Cal{Q}[1]\to S$, which satisfy certain associativity, unitality and equivariance conditions. 
+
+Equivalently, we may write the above cocomposition maps as a collection \[\Cal{Q}[d_1\alpha] \to \Cal{Q}^{\otimes 2}[\alpha] \quad \quad (\alpha\in P(n)_2).\] Further our cooperads will be coaugmented in the counit $\Cal{Q}[1]\to S$ admits a retract $\eta\colon S\to \Cal{Q}[1]$. 
+
+\begin{definition} We say that $\Cal{Q}$ is a \textit{cooperad} if there are well-defined cosimplicial objects in $\Spt^{\Sigma_n}$ \[ C(\Cal{Q})[n] = {\prod}_{\alpha\in P(n)_{\bullet}}\Cal{Q}^{\otimes \bullet} [\alpha]\]
+for all $n\geq 1$. Coface and codegeneracy maps are induced by the face and degeneracy maps from $P(n)_{\bullet}$ as follows. 
+
+Given $\alpha\in P(n)_{k}$, $d^i \colon C(\Cal{Q})^{\otimes k-1}[n]\to C(\Cal{Q})^{\otimes k}[n]$ and $s^j\colon C(\Cal{Q})^{\otimes k+1}[n]\to C(\Cal{Q})^{\otimes k}[n]$ are induced by \begin{align*} 
+    d^i &\colon \Cal{Q}^{\otimes k-1} [d_i \alpha] \to \Cal{Q}^{\otimes k} [\alpha] \quad (\text{comultiplication maps})
+    \\
+    s^j & \colon \Cal{Q}^{\otimes k+1} [s_j \alpha] \to \Cal{Q}^{\otimes k} [\alpha] \quad (\text{counit maps})
+    \end{align*}
+ 
+\end{definition}
+
+\begin{example}
+Recall that $\Cal{Q}^{\otimes 0}=I$ and that $I[\alpha]=S$ for $\alpha\in P(1)_k$ (for all $k\geq 0$). We write out the first few factors of $C(\Cal{Q})[n]$. First, if $n=1$, we have \begin{equation}
+    C(\Cal{Q})[1]\cong \left(\xymatrix{ 
+        I[1] \ar@<.5ex>[r] \ar@<-.5ex>[r] &
+        \Cal{Q}[1] \ar@<1ex>[r] \ar[r] \ar@<-1ex>[r] &
+        \Cal{Q}[1]\wedge \Cal{Q}[1] \; \cdots
+    }\right).
+\end{equation}
+
+The two maps $I[1]\to \Cal{Q}[1]$ are induced by the coaugmentation $\eta\colon S\to \Cal{Q}[1]$, and $d^i\colon \Cal{Q}[1]\to \Cal{Q}[1]\wedge \Cal{Q}[1]$ is given by \begin{align*}
+        d^0\colon& \Cal{Q}[1]  \cong S\wedge \Cal{Q}[1] \xrightarrow{\eta\wedge \id} \Cal{Q}[1]\wedge \Cal{Q}[1] \\
+        d^1\colon& \Cal{Q}[1] \xrightarrow{\delta} \Cal{Q}[1]\wedge \Cal{Q}[1]   \\
+        d^2\colon& \Cal{Q}[1]  \cong \Cal{Q}[1]\wedge S\xrightarrow{\id\wedge \eta} \Cal{Q}[1]\wedge \Cal{Q}[1]
+    \end{align*}
+    Here, $\delta$ is the comultiplication on $\Cal{Q}[1]$. More generally, if $n\geq 2$ then \begin{equation}
+        C(\Cal{Q})[n]\cong \left( \xymatrix{ 
+            I[n] \ar@<.5ex>[r] \ar@<-.5ex>[r] &
+            \Cal{Q}[n] \ar@<1ex>[r] \ar[r] \ar@<-1ex>[r] &
+            \prod_{\alpha\in P(n)_2^{\circ}}  \Cal{Q}[s]\wedge \Cal{Q}[t_1]\wedge\cdots\wedge \Cal{Q}[t_{s}] \; \cdots
+        }\right)
+    \end{equation}
+    where we write $(s,(t_1,\dots,t_s))=|\alpha|$. The maps $I[n]=\pt\to \Cal{Q}[n]$ are the initial maps; and $d^i\colon C(\Cal{Q})[n]^1\to C(\Cal{Q})[n]^2$ is induced by the following maps \begin{align*}
+        d^0 \colon & \Cal{Q}[n]\cong S\wedge \Cal{Q}[n] \xrightarrow{\eta\wedge \id} \Cal{Q}[1]\wedge \Cal{Q}[n] 
+        \\
+        d^1 \colon & \Cal{Q}[n] \xrightarrow{\delta} \prod_{\alpha\in P(n)^{\circ}_2} \Cal{Q}[s] \wedge \Cal{Q}[t_1]\wedge\cdots \wedge \Cal{Q}[t_s]  
+        \quad ((s,(t_1,\dots,t_s))=|\alpha|)
+        \\
+        d^2 \colon & \Cal{Q}[n]\cong \Cal{Q}[n] \wedge S^{\wedge n} \xrightarrow{\id\wedge \eta^{\wedge n}} \Cal{Q}[n] \wedge \Cal{Q}[1]^{\wedge n}
+    \end{align*}
+    and the trivial map $\Cal{Q}[n]\to \pt$ on all other factors. Again, $\delta$ contains the information of the various comultiplication maps on $\Cal{Q}$. 
+    
+    For any $n\geq 1$ the counit maps $s^j$ are induced by $\Cal{Q}[1]\to S$ and $\Cal{Q}[k]\to \pt$ ($k\geq 2$). 
+\end{example}
+
+
+
+
+\subsection{The commutative cooperad of spectra} \label{com-coop}
+The symmetric sequence $\uS$ introduced before admits a natural cooperad structure with comultiplication $\delta$ induced by the natural isomorphisms $S\to S\wedge S\wedge \cdots \wedge S$.
+
+In particular, since $\uS^{\otimes k}[\alpha]=S$ for any non-basepoint $\alpha\in P(n)_k$, it follows that 
+\[ C(\uS)[n]^k= {\prod}_{P(n)^{\circ}_{k}} S\]
+and the coface (resp. codegeneracy) maps are just induced by the face (resp. degeneracy) maps of $P(n)$. 
+
+\begin{proposition} \label{prop:model-equiv}
+    There is an equivalence $\partial_* \Id\simeq \Tot C(\uS)$.
+\end{proposition}
+
+\begin{proof}
+    Using the model from \eqref{D_n I}, this follows from the equivalences \begin{align*}
+        \partial_n \Id \simeq \Map \left(|P(n)_{\bullet}|, S\right) 
+        \simeq \Tot {\prod}_{P(n)_{\bullet}} \Map(S^0, S) 
+         \simeq \Tot C(\uS)[n]
+    \end{align*} 
+    for all $n\geq 1$.
+\end{proof}
+
+
+\section{Coalgebras over a cooperad}
+Let $\Cal{Q}$ be a cooperad. Informally, $\Cal{Q}$-coalgebra structure on a spectrum $Y$ consists of comultiplication maps \[ Y\to (\Cal{Q}[n] \wedge Y^{\wedge n} )_{\Sigma_n} \quad \quad (n\geq 1)\] which are required to further satisfy associativity, unitality and equivariance conditions. Note these comultiplications induce a map \[ Y\mapsto \Cal{Q}\ccirc (Y)= \prod_{n\geq 1}\left( \mathcal{Q}[n]\wedge Y^{\wedge n}\right)_{\Sigma_n}\] which we essentially require to be ``oplax comonoidal'' \cite{Day-St}, and that $\Cal{Q}$-coalgebras are the coalgebras for this comonoid. 
+
+\begin{definition}
+    Let $\Cal{Q}$ be a cooperad. A $\Cal{Q}$-coalgebra is a spectrum $Y$ that admits a well-defined cosimplicial object $C(Y)$ as follows. For $k\geq 0$, \[ C(Y)^k=\prod_{n\geq 1} \left( \prod_{\alpha \in P(n)_k} \Cal{Q}^{\otimes k}[\alpha] \wedge Y^{\wedge n}\right)_{\Sigma_n }.\]
+
+Coface maps are induced the face maps from $P(n)$ for each $n\geq 1$ along with the diagonal maps on $Y$ as follows. \begin{itemize}
+    \item $d^0\colon C(Y)^{k}\to C(Y)^{k+1}$ is induced by $Y^{\wedge k}_{\Sigma_k} \to \pt$ if the image of $d_0\colon P(n)_{k}\to P(n)_{k-1}$ is the basepoint, and induced by the identity on $Y^{\wedge k}_{\Sigma_k}$ otherwise. 
+    \item For $i=1,\dots,k$, $d^i$ is induced by $\Cal{Q}$-cooperad structure maps \[ \Cal{Q}^{\otimes k}[d_i\alpha]\to \Cal{Q}^{\otimes k+1}[\alpha]\] for $\alpha\in P(n)_{k+1}$.
+    \item $d^{k+1}$ is induced as follows. For $m\geq n$, if $\alpha\in P(m)_{k+1}$ has $(k+1)$-st partition given by $\{T_1,\dots,T_n\}$, then let $\alpha'\in P(n)_k$ be the result of quotienting the set $\{1,\dots,m\}$ by the relation $a\sim b$ if $a,b\in T_i$. Set $t_j=|T_j|$. $d^{k+1}$ is induced by the composites \begin{align*} \Cal{Q}^{\otimes k}[\alpha']\wedge Y^{\wedge n} 
+    &\to \Cal{Q}^{\otimes k}[\alpha']\wedge (\Cal{Q}[t_1]\wedge Y^{\wedge t_1}) \wedge \cdots \wedge (\Cal{Q}[t_n]\wedge Y^{\wedge t_n}) \\
+    & = \Cal{Q}^{\otimes k+1}[\alpha]\wedge Y^{\wedge m}\end{align*} for all $\alpha\in P(m)_{k+1}$ and $m\geq n$. 
+\end{itemize}
+Codegeracy maps are induced by $\Cal{Q}^{\otimes k+1}[s_j\alpha]\to \Cal{Q}^{\otimes k}[\alpha]$ for $\alpha\in P(n)_k$ as in $C(\Cal{Q})$.
+\end{definition}
+
+\begin{remark}
+    Note that $C(Y)$ is essentially the cobar resolution on $Y$ with respect to the comultiplication map $Y\to \Cal{Q}\ccirc (Y)$. In particular, there are isomorphisms \[C(Y)^k\cong \prod_{n\geq 1} \Cal{Q}^{\ccirc k}[n]\wedge_{\Sigma_n} Y^{\wedge n}= \Cal{Q}^{\ccirc k}\ccirc (Y) \quad \quad (k\geq 0)\]  
+\end{remark}
+\subsection{Derived primitives} 
+Let $Y$ be a $\Cal{Q}$-coalgebra. The \textit{primitives} of $Y$ is given by the (coreflexive) equalizer in $\Spt$ \begin{equation} \label{eq:primitives}
+    \bar{Y} = \lim \left( \xymatrix{ Y\ar@<.5ex>[r] \ar@<-.5ex>[r] & \prod_{n\geq 1} (\Cal{Q}[n]\wedge Y^{\wedge n})_{\Sigma_n}} \right). 
+\end{equation}
+
+The top map is induced by the coaugmented structure \[Y\cong S\wedge Y\xrightarrow{\eta\wedge \id} \Cal{Q}[1]\wedge Y\]
+and the bottom map is induced by the comultiplication maps $Y\to (\Cal{Q}[n]\wedge Y^{\wedge n})_{\Sigma_n}$ for $n\geq 1$. There is a common retract of both maps given by applying $\epsilon\wedge \id\colon \Cal{Q}[1]\wedge Y\to S\wedge Y\cong Y$ and $\Cal{Q}[n]\to \pt$ for $n\geq 2$. 
+
+This gives the precise analog of primitives of a coalgebra from commutative algebra, but fails to be homotopy invariant in general. The derived primitives as defined below gives the homotopy-theoretic analog to this construction, and arises as the dual notion of \textit{topological Quillen homology} ($\TQ$) for algebras over operads in spectra. 
+
+\begin{definition} \label{def:derived-prim} For $Y$ a $\Cal{Q}$-coalgebra we define the \textit{derived primitives} $\Prim Y$ to be the totalization $\Tot C(Y)$. 
+\end{definition}
+
+Note that $C(Y)|_{\Delta^{\leq 1}}$ is precisely the equalizer diagram defining $\bar{Y}$ from \eqref{eq:primitives}.
+
+\begin{example} \label{rem:SW-TQ}
+    Any $X\in \Top$ gives rise to an $\uS$-coalgebra $\Sp X$ whose comultiplication maps are induced by the diagonals on $X$. That is, \[\Sp X\to \Sp (X\wedge \cdots \wedge X)\cong \Sp X\wedge \cdots \wedge \Sp X\]
+
+    In particular, for any $Y\in \uS$-coalgebra, $Y^{\vee}=\Map(Y,S)$ is a commutative ring spectrum; i.e. algebra over the commutative operad $\mathsf{Com}$. There is further an equivalence  $\TQ(Y^{\vee})^{\vee}\simeq \Prim (Y)$ (see, e.g., \cite{BR}, \cite{Heuts-vn}) whenever $Y$ is a finite spectrum.
+    \end{example}

@@ -1,0 +1,80 @@
+\section{$n$-excisive approximations to certain functors on $\Alg{O}$} Let $\Cal{O},\Cal{O}'$ be reduced operads in spectra and $M$ a cofibrant $(\Cal{O}',\Cal{O})$-bimodule. The aim of this appendix is to prove that the $n$-th polynomial approximation the functor $X\mapsto F_{M}(X)=|\Barr(M, \Cal{O},X)|$ is of the form $F_{\tau_n M}$. This is done in two steps: first we show that functors of the form $F_{\tau_n M}$ are $n$-excisive, then we show that $F_{\tau_n M}$ and $F_M$ \textit{agree to order $n$}.
+
+Our first observation is that for $X\in \Alg{O}$ and $n\geq 2$ there is a homotopy fiber sequence of the following form (see \cite[2.11(b)]{KuhPer}) \begin{equation}
+\label{D_n-fib-seq} i_n \Cal{O} \circ_{\Cal{O}} (X)\to \tau_n \Cal{O} \circ_{\Cal{O}}(X) \to \tau_{n-1} \Cal{O} \circ_{\Cal{O}}(X)
+\end{equation}
+
+
+\begin{proposition} \label{prop:n-exc}
+Let $\Cal{R},\Cal{R}'$ be ring spectra and $M$ a cofibrant $(\Cal{R}',\Cal{R})$-bimodule. Then, for $n\geq 1$, the following functor from $\mathsf{Mod}_{\Cal{R}}\to\mathsf{Mod}_{\Cal{R}'}$ is $n$-excisive \[Y\mapsto M[n] \wedge_{\Sigma_n \wr \Cal{R}} Y^{\wedge n}.\]
+\end{proposition}
+
+\begin{proof}
+    Let $n\geq 1$. It suffices to show for $m>n$ that $\cro_{m} (Y\mapsto M \wedge_{\Sigma_n \wr R} Y^{\wedge n}) \simeq \pt$. Since the categories $\mathsf{Mod}_{\Cal{R}}, \mathsf{Mod}_{\Cal{R}'}$ are stable, cross-effects and co-cross-effects (see the proof of \ref{prop:tay-tow-FM}) agree. Thus, \begin{align*} 
+        \cro_{m} (Y \mapsto M \wedge_{\Sigma_n \wr \Cal{R}} Y^{\wedge n} ) 
+        & \simeq \cro^{m} ( Y \mapsto M \wedge_{\Sigma_n \wr \Cal{R}} Y^{\wedge n} ) \\
+        & \simeq M \wedge_{\Sigma_n \wr \Cal{R}} \cro^{m}( Y\mapsto Y^{\wedge n}) \simeq \pt
+        \end{align*}
+    since $\cro^{m}( Y\mapsto Y^{\wedge n})\simeq \cro_m (Y\mapsto Y^{\wedge n})\simeq \pt$. 
+\end{proof}
+
+\begin{corollary} \label{D_n-n-exc}
+    For $n\geq 1$, the functor $i_n M\circ_{\Cal{O}}(-)$ is $n$-excisive. 
+\end{corollary}
+
+\begin{proof}
+  
+Since $i_n M$ is concentrated at level $n$, the right $\Cal{O}$-action on $i_n M$ factors through $\tau_1\Cal{O}$, via the only nontrivial map \[ M[n] \wedge \Cal{O}[1] \wedge \cdots \wedge \Cal{O}[1]\to M[n].\] There are then equivalences \begin{equation} \label{D_n-F_M} 
+    i_n M \circ_{\Cal{O}} (X) \simeq i_n M\circ_{\tau_1\Cal{O}} (\tau_1\Cal{O}\circ_{\Cal{O}} (X))\simeq  M[n] \wedge_{\Sigma_n \wr \Cal{O}[1]} \TQ(X)^{\wedge n}.\end{equation}
+The claim then follows from Proposition \ref{prop:n-exc} and since $\TQ$ preserves strongly cocartesian cubes (because it is a left adjoint).
+\end{proof}
+
+\begin{proposition}
+    For $n\geq 1$, the functor $\tau_n M\circ_{\Cal{O}} (-)$ is $n$-excisive. 
+\end{proposition}
+
+\begin{proof}
+    We use induction on $n$. Note that $\tau_1M \circ_{\Cal{O}}(-)=i_1M\circ_{\Cal{O}}(-)$ is $1$-excisive from Corollary \ref{D_n-n-exc} and perhaps more simply by the observation that \[i_1M\circ_{\Cal{O}}(X)\simeq M[1] \wedge_{\Cal{O}[1]} \TQ(X).\]
+    
+    Let $n$ such that the claim holds for $n-1$ and recall the fiber sequence \[ i_n M \circ_{\Cal{O}} (-) \to \tau_n M \circ_{\Cal{O}}(-) \to \tau_{n-1} M \circ_{\Cal{O}} (-)\] from \eqref{D_n-fib-seq}. Let $\Cal{X}$ be a strongly cocartesian $(n+1)$-cube in $\Alg{O}$ and for a functor $F$ set \[ 
+        h_0 (F(\Cal{X})) = \holim_{\Cal{P}_0(n)} F(\Cal{X}).\] 
+    Note that there is a natural map $\chi_0\colon F(\Cal{X}(\emptyset))\to h_0 (F(\Cal{X}))$ which is an equivalence precisely when $F$ is $n$-excisive. Moreover, applying $h_0$ to \eqref{D_n-fib-seq} results in a homotopy fiber sequence \[h_0(i_n M \circ_{\Cal{O}} (\Cal{X})) \to h_0(\tau_n M \circ_{\Cal{O}}(\Cal{X})) \to h_0(\tau_{n-1} M \circ_{\Cal{O}} (\Cal{X})). \] 
+    
+    Let $\Cal{Y}$ be the following cube obtained by applying $\chi_0$ to \eqref{D_n-fib-seq}.
+    
+    \[ \xymatrix{
+        i_n M \circ_{\Cal{O}} (\Cal{X}(\emptyset)) \ar[rr] \ar[dr] \ar[dd]_-{\sim}
+        & &
+        {*} \ar[dr] \ar[dd]|!{[d]}\hole
+        &\\
+        &
+        \tau_n M\circ_{\Cal{O}} (\Cal{X}(\emptyset)) \ar[rr] \ar[dd]^<(.2){(*)}
+        &&
+        \tau_{n-1}M \circ_{\Cal{O}} (\Cal{X} (\emptyset)) \ar[dd]^-{\sim}
+        \\
+        h_0 (i_n M \circ_{\Cal{O}} (\Cal{X})) \ar[rr]|!{[r]}\hole \ar[dr]
+        & &
+        {*} \ar[dr] 
+        &\\
+        &
+        h_0 (\tau_n M\circ_{\Cal{O}} (\Cal{X})) \ar[rr] 
+        &&
+        h_0(\tau_{n-1} M\circ_{\Cal{O}} (\Cal{X})) 
+    }\]
+    We want to show that the arrow $(*)$ is an equivalence. Notice that homotopy limits in $\Alg{O'}$ are created in the underlying category of spectra, so it suffices to show $(*)$ is an equivalence of spectra. 
+    
+    Since the top and bottom faces of $\Cal{Y}$ are cartesian, the cube $\Cal{Y}$ itself is cartesian. Thus, since back-right face is cartesian, the front-left face is cartesian, and thus also cocartesian. So, since the back left arrow is an equivalence, $(*)$ must also be an equivalence. 
+\end{proof}
+
+\begin{proof} [Proof of Proposition \ref{prop:tay-tow-FM}(i)] Proposition \ref{prop:n-exc} shows that $F_{\tau_n M}$ is indeed $n$-excisive. It remains to show that $P_n(F_M)\simeq F_{\tau_n M}$. It will suffice to show that the natural comparison map \[\lambda_n \colon F_M \to F_{\tau_n M} \] induced by $M\to \tau_n M$ \textit{agrees to order $n$} in the language of \cite{Goo-Calc3} as this condition guarantees then that $P_n(\lambda_n)$ is a weak equivalence in (note the second equivalence holds as $F_{\tau_n M}$ is $n$-excisive) \[ P_n(F_M)\xrightarrow{P_n(\lambda_n)} P_n(F_{\tau_n M})\simeq F_{\tau_n M}.\]
+
+Specifically, we need to show that there is $c$ such that if $X\in \Alg{O}$ is $k$-connected, then $\lambda_n(X)$ is $((n+1)k-c)$-connected. 
+
+Let $r_n  M$ denote the fiber of $M \to \tau_n M$ so that \[ F_{r_n M} \to F_{M} \to F_{\tau_n M}\] is a homotopy fiber sequence of functors $\Alg{O}\to \Alg{O'}$. Note that \[r_n  M[k] =\begin{cases} M[k] & k>n \\ * & k\leq n  \end{cases}.\] It follows if $X$ is $k$-connected then \[F_{r_n M} (X)=|\Barr(r_n  M, \Cal{O}, X)|\]
+is constructed as a homotopy colimit of factors of the form \[ M[t]\wedge \Cal{O}[s_1]\wedge \cdots \wedge \Cal{O}[s_{\ell}]\wedge X^{\wedge s}\]
+where $s_i\geq 1$ and $s\geq t>n$. 
+
+From \cite{Har-Hess} we know that $X\wedge Y$ is $(k+\ell+1)$-connected if $X$ is $k$-connected and $Y$ is $\ell$-connected. So, if $M$ and $\Cal{O}$ are each levelwise $(-1)$-connected, this homotopy colimit consists of terms which are $sk\geq (n+1)k$ connected, and so $F_{r_n M}(X)$ is $(n+1)k$-connected. Thus, $\lambda_n$ agrees to order $n$ with $c=-1$ (in Goodwillie's terminology \cite{Goo-Calc3}, $\lambda_n$ satisfies $O_n(-1,0)$).
+\end{proof} 
+
+\begin{remark}In fact, the results of the above proposition hold whenever $M$ is bounded below (i.e., there is $k$ such that for all $n$, $\pi_* M[n]=\pi$ for $*<k$) via a careful investigation of the connectivity of the fiber of $F_M\to F_{\tau_n M}$.\end{remark}

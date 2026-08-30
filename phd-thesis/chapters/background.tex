@@ -1,0 +1,172 @@
+
+We work in the category algebras over a reduced operad in a closed, symmetric monoidal category of spectra $(\Spt, \wedge, S)$. For convenience we will use the category of $S$-modules as in Elmendorf-Kriz-Mandell-May \cite{EKMM} and refer to such objects as \textit{spectra}. The main technical benefit of working with $S$-modules is that all spectra will be fibrant (and thus $\Tot \Cal{X}$ of a levelwise fibrant diagram will already correctly model $\holim_{\Delta} \Cal{X}$), though we note that similar results should hold in the category of symmetric spectra by utilizing suitable fibrant replacement monads. 
+
+We observe that $\Spt$ is a cofibrantly generated, closed symmetric monoidal model category (see, e.g.,  \cite[Definition 1.12]{AC-1}) and write $\Map^{\Spt}(X,Y)$ for the internal mapping object of $\Spt$. When it is clear from context we write $\Map$ for $\Map^{\Spt}$. We let $\mathsf{Top}$ denote the category of compactly generated Hausdorff spaces. In \cite{EKMM}, it is shown that $\Spt$ admits a tensoring of $\Top$ which may be extended to $\mathsf{Top}$ by first adding a disjoint basepoint. In particular for $K\in \mathsf{Top}$, $X,Y\in \Spt$ there are natural isomorphisms \[\hom(K_+ \wedge X, Y)\cong \hom(X, \Map^{\Spt} (K_+, Y)).\]  Though we will not make explicit use of it, we define a simplicial tensoring of $\Spt$ via $K\wedge X:=|K|\wedge X$ for $K\in \mathsf{sSet}_*$ and $X\in \Spt$. %We write $S_c$ for a cofibrant replacement of the sphere spectrum in $S$-modules and define the suspension spectrum of $X\in \Top$ as $\Sp X:=S_c \wedge X$.
+
+
+%we use the symmetric spectra of \cite{HSS-SymSp} for our model of spectra though note that our results should not be model-dependent. By \textit{space} we mean a pointed simplicial set, the category of which we denote by $\Top$. We let $\CGH$ denote the category of compactly generated Hausdorff spaces and refer to $X\in \CGH$ as a \textit{topological space}. 
+
+%----------------------------------------------------------------------------------------------------------------------
+\section{Symmetric sequences}
+\label{sec:comp-prod-rmks} Let $(\mathsf{C}, \otimes, \mathbf{1})$ be a closed symmetric monoidal category and write $\Map^{\mathsf{C}}$ for the mapping object in $\mathsf{C}$. When $\mathsf{C}$ is clear from context we write $\Map$ for $\Map^{\mathsf{C}}$. We will require that $\mathsf{C}$ be cocomplete, and write $\ptC$ for the initial object of $\mathsf{C}$; particular categories of interest are $\Spt$ and $\Top$.
+%and note that closedness implies the existence of natural isomorphisms \[ \hom( X\otimes Y, Z)\cong \hom\left( X, \Map^{\mathsf{C}}(Y,Z)\right)\] for $X,Y,Z\in \mathsf{C}$. 
+
+Recall that a \textit{symmetric sequence} in $\mathsf{C}$ is a collection $X[n]\in\mathsf{C}$ for $n\geq 0$ such that $X[n]$ admits a (right) action by $\Sigma_n$. We let $\SymSeq_{\mathsf{C}}$ denote the category of symmetric sequences in $\mathsf{C}$ and action preserving morphisms. A symmetric sequence $X$ is \textit{reduced} if $X[0]=\ptC$ (some authors require in addition that $X[1]\cong \mathbf{1}$, however we omit this condition). When $\mathsf{C}$ is clear from context we will simply write $\SymSeq$.
+Note that $\SymSeq$ comes equipped with a monoidal product $\circ$, the \textit{composition product} (also called \textit{circle product}) defined as follows (see also \cite{Rezk-thesis} or \cite{Har-1}). 
+
+\subsection{The composition product of symmetric sequences} For $X,Y\in \SymSeq$ we define $X\circ Y$ at level $k$ by \begin{equation}
+    (X {\circ} Y)[k] = \coprod_{n\geq 0} X[n] \otimes_{\Sigma_n} Y^{\check{\otimes} n} [k].
+\end{equation}
+Here, $\check{\otimes}$ denotes the \textit{tensor} of the symmetric sequences (e.g., as in \cite{Har-1}). For $n,k\geq 0$, $Y^{\check{\otimes} n}[k]$ is computed as \[ \coprod_{\mathbf{k}\xrightarrow{\pi} \mathbf{n}} Y[\pi_1] {\otimes} \cdots {\otimes} Y[\pi_n] \cong \coprod_{k_1+\cdots+k_n=k} \Sigma_k \cdot_{\Sigma_{k_1} \times\cdots\times \Sigma_{k_n}} Y[k_1] {\otimes} \cdots {\otimes} Y[k_n] \]
+where $\pi$ runs over all surjections $\mathbf{k}=\{1,\dots,n\}\to \{1,\dots,n\}=\mathbf{n}$ and we set $\pi_i:=|\pi^{-1}(i)|$ for $i\in \mathbf{n}$. The composition product admits a unit $I$ given by $I[1]=\mathbf{1}$ and $I[k]=\ptC$ otherwise.
+
+For our purposes, we find it convenient to work with with a slightly modified version of the composition product for reduced symmetric sequences. Let $X,Y\in \SymSeq$ be reduced. Let $(k_1,\dots,k_n)$ denote a sequence of integers $k_1,\dots,k_n\geq 1$ (allowing for repetition of entries) and set $\mathsf{Sum}_n^k$ to be the collection of orbits $(k_1,\dots,k_n)_{\Sigma_n}$ such that $\sum_{i=1}^n k_i=k$. 
+
+\begin{definition}\label{def:H} Given $k_1,\dots,k_n\geq 1$ we define $H(k_1,\dots,k_n)$ as the collection of block permutation matrices $\Sigma_{k_1}\times \cdots \times \Sigma_{k_n}\leq \Sigma_k$, along with the $\Sigma_{p_i}$ permutations of those blocks such that $k_j=d_i$. 
+\end{definition}
+
+
+\begin{remark} 
+    We observe that orbits $(k_1,\dots,k_n)_{\Sigma_n}$ are in bijective correspondence to partitions $k=d_1p_1+\cdots+d_mp_m$ where $1\leq d_1<\cdots<d_m$ and $p_i\geq 1$. Given an orbit $(k_1,\dots,k_n)_{\Sigma_n}$ let $1\leq d_1\leq \cdots d_m$ be the distinct entries of multiplicity $p_i$. We note that there is an isomorphism (here, $\Sigma_m^{\wr n}$ denotes the \textit{wreath product} $\Sigma_m\wr \Sigma_n :=\Sigma_m^{\times n}\rtimes \Sigma_n$)
+    \[H(k_1,\dots,k_n)\cong \Sigma_{d_1}^{\wr p_1}\times\cdots \times \Sigma_{d_m}^{\wr p_m}.\] 
+    
+    Moreover $H(k_1,\dots,k_n)$ admits a natural $\Sigma_n$ action by permutation of elements $k_i$ and the induced map $H(k_1,\dots,k_n) \to H(k_{\sigma(1)},\dots, k_{\sigma(n)})$ is an isomorphism for all $\sigma\in \Sigma_n$.\end{remark} 
+    
+    Though we will not need this fact, we remark that $H(k_1,\dots,k_n)$ may be identified with the stabilizer of the $\Sigma_k$ action on partitions of $\{1,\dots,k\}$ into sets of size $k_1,\dots,k_n$ (see, e.g.,  \cite[\textsection 1.12]{Ching-chain-rule}).
+
+For $k\geq 0$ we set $\mathbf{\Sigma}[k]:=\coprod_{\sigma\in \Sigma_k} \mathbf{1}$.
+
+\begin{remark} The composition product $X\circ Y$ may be equivalently written as \begin{equation} \label{comp-prod-def-orb} 
+    (X{\circ} Y)[k]\cong \coprod_{n\geq 0} \coprod_{(k_1,\dots,k_n)_{\Sigma_n}\in \mathsf{Sum}_n^k} \mathbf{\Sigma}[k] \otimes_{H(k_1,\dots,k_n)} X[n] \otimes Y[k_1]\otimes \cdots \otimes Y[k_n].
+\end{equation}
+Here, the  action of $H(k_1,\dots,k_n)$ on $\mathbf{\Sigma}[k]$ is induced by that on $\Sigma_k$ and the action on $X[n]\otimes Y[k_1] \otimes \cdots \otimes Y[k_n]$ is given as follows (see also Ching \cite[1.13]{Ching-chain-rule})
+\begin{itemize}
+    \item $\Sigma_{p_1}\times \cdots \times \Sigma_{p_m}\leq \Sigma_n$ acts on $X[n]$ 
+    \item for $i=1,\dots,m$, $\Sigma_{d_i}^{\wr p_i}$ acts on the factors $Y[k_j]$ such that $k_j=d_i$ by
+    \subitem (i) permuting the $p_i$ factors $Y[d_i]$  
+    \subitem (ii) acting by corresponding $\Sigma_{d_i}$ factor on each $Y[d_i]$. 
+\end{itemize}
+\end{remark}
+
+We also make the following definition for the \textit{nonsymmetric composition product} $X\hat{\circ} Y$ (note that our definition differs from \cite{Har-2}) \begin{equation}
+\label{comp-prod-nonsym}
+    (X\hat{\circ} Y)[k] := \coprod_{n\geq 0} \coprod_{(k_1,\dots,k_n)_{\Sigma_n}\in \mathsf{Sum}_n^k} X[n]\otimes Y[k_1]\otimes \cdots \otimes Y[k_n].
+\end{equation}
+
+Note that $\hat{\circ}$ is not associative, our primary use for $\hat{\circ}$ will be as a bookkeeping tool for indexing the factors involved in expanding iterates of $\circ$ from the left (as in Section \ref{sec:N-lev}).
+
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Operads as monads}
+An \textit{operad} in $\mathsf{C}$ is a  symmetric sequence $\Cal{O}$ which is a monoid with respect to $\circ$, i.e., there are maps $\Cal{O}\circ \Cal{O}\to \Cal{O}$ and $I\to \Cal{O}$ which satisfy additional associativity and unitality relations (see, e.g.,  Rezk \cite{Rezk-thesis}). An operad is \textit{reduced} if $\Cal{O}[0]=\pt$. We will only consider reduced operads in this document, and interpret \textit{operad} to mean reduced operad unless otherwise specified. 
+
+Any symmetric sequence $M$ gives rise to a functor $M\circ (-)$ on $\mathsf{C}$ given as follows (note $X^{\otimes 0}=\mathbf{1}$) \[ X\mapsto M\circ (X) = \bigvee_{n\geq 0} M[n] \otimes_{\Sigma_n} X^{\otimes n}. \] If $\Cal{O}$ is an operad, then the associated functor $\Cal{O}\circ(-)$ is a monad on $\mathsf{C}$ which we will frequently conflate with the operad $\Cal{O}$. We let $\mathsf{Alg}_{\Cal{O}}^{\mathsf{C}}$ denote the category of algebras for the monad associated to an operad $\Cal{O}$ in $\mathsf{C}$. 
+
+When $\mathsf{C}=\Spt$ and $\Cal{O}$ is an operad of spectra, then $\Alg{O}=\mathsf{Alg}_{\Cal{O}}^{\Spt}$ is a pointed simplicial model category (see, e.g.,  \cite[\textsection 7]{Ching-Harper-Koszul}) when endowed with projective model structure from $\Spt$. For a further overview of notation and terminology we refer the reader to \cite[\textsection 3]{Har-1} or \cite[\textsection 2]{Rezk-thesis}. 
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Assumptions on $\Cal{O}$} \label{cofibrancy} 
+From now on in this document we assume that $\Cal{O}$ is a reduced operad in $\Spt$ which obeys some mild cofibrancy conditions that are satisfied if, e.g.,  $\Cal{O}$ arises via the suspension spectra of a cofibrant operad in spaces. In particular, we require that the underlying symmetric sequence of  $\Cal{O}[n]$ be $\Sigma$-cofibrant (see, e.g.,  \cite[\textsection 9]{AC-1}) and that the terms $\Cal{O}[n]$ be $(-1)$-connected for all $n \geq 1$. 
+
+
+%as in \cite[2.1]{Ching-Harper-Koszul}. In particular, we require that the unit map $I\to \Cal{O}$ consists of flat stable cofibrations $I[n]\to \Cal{O}[n]$ between flat stable cofibrant objects in $\Spt$  (see \cite[\textsection 7.7]{Har-Hess}) and that $\Cal{O}[n]$ is a cofibrant $(\Cal{O}[1],\Cal{O}[1]^{\wr n})$-bimodule (see Section \ref{rem:wreath-products} or, e.g.,  \cite{Law-1}) for all $n\geq 0$. In addition, we assume that the objects $\Cal{O}[n]$ are $(-1)$-connected. 
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Use of restricted totalization} \label{sec:Use-of-tot}
+We systematically interpret $\Tot$ of a cosimplicial diagram to mean restricted totalization (see also  \cite[\textsection 8]{Ching-Harper-Koszul}) \[\Tot:=\mathrm{Tot}^{\mathsf{res}}\cong\Map_{\Dres}^{\Spt} \left( \Delta^{\bullet}, -\right):=\left(\Map^{\Spt}(\Delta^{\bullet},-)\right)^{\Dres}.\] Here, $\bdel$ denote the usual simplicial category of finite totally-ordered sets $[n]:=\{0<1< \cdots<n\}$ and order preserving maps, $\Dres\subset \bdel$ is the subcategory obtained by omitting degeneracy maps, and $\Delta^{\bullet}$ denotes the usual cosimplicial space of topological $n$-simplices. For convenience, if  $C^{\bullet}$ is cosimplicial object, we will write $\Tot C^{\bullet}$ instead of the more technically correct $\Tot (C^{\bullet}|_{\Dres})$.
+
+Diagrams shaped on $\Dres$ are referred to as \textit{restricted} cosimplicial diagrams. Importantly the inclusion $\Dres \to \bdel$ is homotopy left cofinal\footnote{The main property we are interested in here is that such functors induce equivalences on homotopy limits.} and so if $C^{\bullet}$ is a cosimplicial diagram in $\Alg{O}$ which is levelwise fibrant (as opposed to the stronger condition of Reedy fibrancy), there are equivalences  \[ \holim_{\bdel} C^{\bullet}\simeq \holim_{\Dres} C^{\bullet}\simeq  \Tot C^{\bullet}.\]
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Truncations of $\Cal{O}$} \label{sec:trunc}
+For $n\geq 0$ we define $\tau_n\colon \SymSeq\to \SymSeq$ to be the \textit{$n$-th truncation functor} given at a symmetric sequence $M$ by \begin{equation*} 
+(\tau_n M)[k] = \begin{cases} M[k] & k\leq n \\ \pt & k > n\end{cases} \end{equation*}
+with natural transformations $\tau_n\to\tau_{n-1}$. We let $i_n$ be the fiber of $\tau_n\to \tau_{n-1}$, i.e., $i_n M [k] = \pt$ for $k\neq n$ and $i_n M[n]=M[n]$ in which case we say $i_nM$ is \textit{concentrated at level $n$}.
+
+For $M=\Cal{O}$ the truncations $\tau_n \Cal{O}$ assemble into a tower of $(\Cal{O},\Cal{O}$)-bimodules which receives a map from $\Cal{O}$ of the form \begin{equation} \label{eq:truncation-towerc} 
+\mathcal{O}\to \cdots \to \tau_3 \Cal{O} \to \tau_2 \Cal{O} \to \tau_1 \Cal{O}.
+\end{equation}
+The tower (\ref{eq:truncation-towerc}) is well studied and plays a central role in examining the homotopy completion of a structured ring spectrum as in \cite{Har-Hess}. Note as well that $\Cal{O}\to \tau_1\Cal{O}$ is a map of operads and there is a well-defined composite $\tau_1\Cal{O}\to\Cal{O}\to \tau_1\Cal{O}$ which factors the identity on $\tau_1\Cal{O}$.
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Change of operad adjunction} \label{change-of-Op} Associated to a map $f\colon \Cal{O}\to\Cal{O}'$ of operads there is a Quillen adjunction of the form (see, e.g.,  \cite{Rezk-thesis}) \begin{equation*} 
+    \xymatrix{
+    \Alg{O} \ar@<.75 ex>[r]^{f_*} &
+    \Alg{O'} \ar@<.75 ex>[l]^{f^*}
+    }
+\end{equation*}
+in which the left adjoint $f_*$ is given by the (reflective) coequalizer \[f_*(X):=\Cal{O'} \circ_{\Cal{O}} (X)=\colim \left(\xymatrix{ \Cal{O}'\circ\Cal{O}\circ(X)\ar@<.75ex>[r] \ar@<-.5ex>[r] & \Cal{O}'\circ (X) } \right)\] and the right adjoint $f^*$ is the forgetful functor along $f$. If $f$ is a levelwise equivalence then the above adjunction is a Quillen equivalence and furthermore the left derived functor $\mathsf{L}f_*$ may be calculated via a simplicial bar construction as follows (see, e.g.,  \cite{Har-1})  \begin{equation*}
+    \mathsf{L}f_*(X):= \Cal{O}' \circ^{\mathsf{h}}_{\Cal{O}}(X)\simeq |\Barr(\Cal{O}', \Cal{O}, X^c)|.
+\end{equation*}
+
+%----------------------------------------------------------------------------------------------------------------------
+\section{Stabilization of $\Cal{O}$-algebras}
+\label{sec:stab}In order to have a well-defined calculus of functors on $\Alg{O}$ it is necessary to understand the stabilization of the category of such algebras. Note that $\Alg{\Cal{O}}$ is tensored over simplicial sets (see, e.g.,  \cite[\textsection 7]{Ching-Harper-Koszul}) and thus one can define $\mathsf{Sp}(\Alg{O})$, the category of Bousfield-Friendlander spectra of $\Cal{O}$-algebras, which is Quillen equivalent to the category of left $\Cal{O}[1]$-modules, $\mathsf{Mod}_{\Cal{O}[1]}$ (see, e.g.,  \cite{Bast-Man} or \cite[\textsection 2]{Per-thesis}). 
+
+The stabilization map for $\Cal{O}$-algebras is thus equivalent to the left adjoint of (\ref{change-of-Op}) with respect to the map of operads $\Cal{O}\to \tau_1\Cal{O}$, i.e., \[\Sp_{\Alg{O}} X\simeq \tau_1\Cal{O} \circ_{\Cal{O}} (X)\] for $\Cal{O}$-algebras $X$. By analogy, $\U_{\Alg{O}}$ gives an $\Cal{O}[1]$-module trivial $\Cal{O}$-algebra structure above level $2$. Moreover, if $\Cal{O}[1]\cong S$, then the stabilization of $\Alg{O}$ is equivalent to the underlying category $\Spt$. 
+
+As in \cite{Ching-Harper-Koszul}, we replace $\tau_1\Cal{O}$ by a ``fattened-up'' operad $J$ to produce an iterable model for $\TQ$-homology with the right homotopy type. That is, let $J$ be any factorization \[\Cal{O}\xrightarrow{\; h\;} J \xrightarrow{\; g \;} \tau_1 \Cal{O}\] in the category of operads, where $h$ is a cofibration and $g$ a weak equivalence. There are then change of operads adjunctions \begin{equation} \label{stab-of-O-alg}
+    \xymatrix{
+    \Alg{O} \ar@<.75 ex>[r]^{Q} &
+    \mathsf{Alg}_{J} \ar@<.5 ex>[l]^{U} \ar@<.75ex>[r]^{g_*} &
+    \mathsf{Alg}_{\tau_1\Cal{O}} \ar@<.5ex>[l]^{g^*}
+    }  \cong \mathsf{Mod}_{\Cal{O}[1]}
+\end{equation}
+such that $(g_*,g^*)$ is a Quillen equivalence and, notably, $U$ preserves cofibrant objects (see \cite[5.49]{Har-Hess}). We refer to the pair $(Q,U)$ as the stabilization adjunction for $\Cal{O}$-algebras and use $\mathsf{Alg}_J$ as our model for the stabilization of $\Alg{O}$.
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{$\TQ$-homology}
+The total left derived functor $\mathsf{L}Q(X)=:\TQ(X)$ is called the \textit{$\TQ$-homology spectrum} of $X$ and the composite $\mathsf{R}U(\mathsf{L}Q(X))$ is the \textit{$\TQ$-homology $\Cal{O}$-algebra} of $X$. We note that the $\TQ$-homology spectrum of $X$ may be calculated in the underlying category $\Spt$ as \begin{equation*}
+    \mathsf{L}Q(X)\simeq |\Barr(J,\Cal{O}, X^c)|\simeq |\Barr(\tau_1\Cal{O}, \Cal{O}, X^c)|.
+\end{equation*}
+For simplicity, we will assume the $\Cal{O}$-algebras we work with are cofibrant by first replacing $X$ by $X^c$, where $(-)^c$ denotes a functorial cofibrant replacement in $\Alg{O}$.
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{The Bousfield-Kan resolution with respect to $\TQ$} \label{sec:TQ-completion}
+Associated to the stabilization adjunction for $\Cal{O}$-algebras $(Q,U)$ there is a comonad $\mathsf{K}:=QU$ on $\mathsf{Alg}_J$. Given $Y$ a $\mathsf{K}$-coalgebra, we let $C(Y)$ denote the cosimplicial object $\Cobar(U, \mathsf{K}, Y)$.  
+
+For $X\in \Alg{O}$, let $X\to C(X):= C(QX)$ be the coaugmented cosimplicial object given below \begin{align}
+\label{TQ-res-1}
+    X \to &\left( \xymatrix{
+    UQ(X) \ar@<.5 ex>[r] \ar@<-.5ex>[r] &
+    (UQ)^2 (X) \ar@<1 ex>[r] \ar[r] \ar@<-1 ex>[r] &
+    (UQ)^3(X) \cdots
+    }\right)\\
+    \cong &\left(\xymatrix{ J\circ_{\Cal{O}}(X) \ar@<.5 ex>[r] \ar@<-.5ex>[r] &
+    J\circ_{\Cal{O}}J\circ_{\Cal{O}}(X) \ar@<1 ex>[r] \ar[r] \ar@<-1 ex>[r] &
+    J\circ_{\Cal{O}}J\circ_{\Cal{O}}J\circ_{\Cal{O}}(X) \cdots }\right) \nonumber
+\end{align} 
+Coface maps $d^i$ in (\ref{TQ-res-1}) are induced by inserting $\Cal{O}\to J$ at the $i$-th position, i.e., \[  J \circ_{\Cal{O}} \cdots \circ_{\Cal{O}} J \cong J \circ_{\Cal{O}} \cdots \circ_{\Cal{O}} \Cal{O} \circ_{\Cal{O}} \cdots \circ_{\Cal{O}} J \to J \circ_{\Cal{O}} \cdots \circ_{\Cal{O}} J \circ_{\Cal{O}} \cdots \circ_{\Cal{O}} J\] and codegeneracy maps $s^j$ are induced by $J\circ_{\Cal{O}} J\to J\circ_J J\cong J$ at the $j$-th position. 
+
+\begin{remark} \label{TQ-completion} The totalization of the diagram (\ref{TQ-res-1}) above is called the $\TQ$-completion of an $\Cal{O}$-algebra $X$, defined by \[X_{\TQ}^{\wedge}:=\Tot C(X) \simeq \holim_{\Delta} C(X).\]
+It is known that $X\simeq X_{\TQ}^{\wedge}$ for any $0$-connected $\Cal{O}$-algebra $X$ (see, e.g., \cite{Ching-Harper-BM}).
+\end{remark}  
+
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Cubical diagrams} \label{sec:cubical-diags}
+Let $\Cal{P}(n)$ denote the poset of subsets of the set $\{1,\dots,n\}$. A functor $\Cal{Z}\colon \Cal{P}(n)\to \mathsf{C}$ is called an \textit{$n$-cube in $\mathsf{C}$} or also an \textit{$n$-cubical diagram}. We use the following notation $\Cal{P}_0(n):=\Cal{P}(n)\setminus \{\emptyset\}$ and $ \Cal{P}_1(n):=\Cal{P}(n)\setminus \{\{1,\dots,n\}\}$ and refer to diagrams shaped on either $\Cal{P}_0(n)$ or $\Cal{P}_1(n)$ as \textit{punctured $n$-cubes}. The \textit{total homotopy fiber} of an $n$-cube $\Cal{Z}$, denoted $\tohofib \Cal{Z}$, is defined to be the homotopy fiber of the natural comparison map $\chi_0\colon \Cal{Z}(\emptyset)\to \holim_{\Cal{P}_0(n)} \Cal{Z}$. If the comparison $\chi_0$ is a weak equivalence (resp. $k$-connected) we say that $\Cal{Z}$ is \textit{homotopy cartesian} (resp. $k$-cartesian). 
+
+Dually, the \textit{total homotopy cofiber} of $\Cal{Z}$ is the homotopy cofiber of the comparison map $\chi_1\colon\hocolim_{\Cal{P}_1(n)} \Cal{Z} \to \Cal{Z}(1,\dots,n)$ which we denote by $\tohocofib \Cal{Z}$. If $\chi_1$ is a weak equivalence (resp. $k$-connected) we say that $\Cal{Z}$ is \textit{homotopy cocartesian} (resp. $k$-cocartesian). We note that the total homotopy fiber (resp. cofiber) of a cube may be calculated by iterated homotopy fibers (resp. cofibers), see e.g.,  \cite[3.2]{BJM-cross}.
+
+\begin{example}[Coface $n$-cube]
+    Let $\Cal{Z}^{-1}\xrightarrow{d^0} \Cal{Z}^{\bullet}$ be a coaugmented cosimplicial object. There are associated coface $n$-cubes $\Cal{Z}_n$ whose subfaces encode the relation on coface maps (see, e.g.,  Ching-Harper \cite[\textsection 2.3]{Ching-Harper-Koszul}). We demonstrate $\Cal{Z}_2$ and $\Cal{Z}_3$ below \[ \xymatrix{ \Cal{Z}^{-1} \ar@{.>}[rr]^-{d^0} \ar@{.>}[dd]^-{d^0} && \Cal{Z}^0 \ar[dd]^-{d^0} \\ && \\ \Cal{Z}^0 \ar[rr]^-{d^1} && \Cal{Z}^1 }\hspace{1.5cm}
+     \xymatrix{ 
+     \Cal{Z}^{-1} \ar@{.>}[rr]^-{d^0} \ar@{.>}[dd]^-{d^0} \ar@{.>}[dr]^-{d^0} & & \Cal{Z}^0\ar[dr]^-{d^0} \ar[dd]|\hole^<(.7){d^0} && \\
+     & \Cal{Z}^0\ar[rr]^<(.2){d^1} \ar[dd]_<(.2){d^1} && \Cal{Z}^1 \ar[dd]^-{d^1} \\
+     \Cal{Z}^0 \ar[rr]|\hole^<(.7){d^1} \ar[dr]^-{d^0} && \Cal{Z}^1 \ar[dr]^-{d^0} & \\
+     & \Cal{Z}^1 \ar[rr]^-{d^2} && \Cal{Z}^2 }\]
+\end{example}
+
+%----------------------------------------------------------------------------------------------------------------------
+\subsection{Higher stabilization for $\Cal{O}$-algebras}
+\label{delta-leq-k}
+For $k\geq 0$, let $\bdel^{\leq k}$ denote the full subcategory of $\bdel$ comprised of sets $[\ell]\in \bdel$ for $\ell\leq k$ (note $\bdel^{\leq -1}=\emptyset$). There are inclusions of categories \[\emptyset=\bdel^{\leq -1} \to \bdel^{\leq 0} \to \bdel^{\leq 1} \to \dots \to \bdel^{\leq k}\to \cdots \to \bdel\] and moreover $\holim_{\bdel} Y$ may be computed as limit of the tower $\{\holim_{\bdel^{\leq k}} Y\}$ (see, e.g.,  \cite[\textsection 8.11]{Ching-Harper-Koszul} for a detailed write-up). There is a natural homotopy left cofinal inclusion  $\Cal{P}_0(n)\to \bdel^{\leq n-1}$ which, in particular, allows us to model the comparison $X\to \holim_{\bdel^{\leq n-1}} C(X)$ via the map $\chi_0$ (see Section \ref{sec:cubical-diags}) for the coface $n$-cube associated to $X\to C(X)$. 
+
+By careful examination of the connectivities of these maps, Blomquist is able to obtain the following strong convergence estimates as a corollary to \cite[7.1]{Blom} (see also Dundas \cite{Dundas-1} and Dundas-Goodwillie-McCarthy \cite{DGM}).
+
+\begin{proposition}
+\label{higher-stabilization}
+    Let $\Cal{O}$ be an operad in $\Spt$ whose entries are $(-1)$-connected, $X \in \Alg{O}$ $k$-connected, and $C(X)$ as in (\ref{TQ-completion}). Then, for any $n\geq 0$ the induced map $X\to \holim_{\bdel^{\leq n-1}}C(X)$ is $(k+1)(n+1)$-connected.
+\end{proposition}
+
+These estimates show, in particular, if $X$ is $0$-connected then $X\xrightarrow{\sim} X_{\TQ}^{\wedge}$ (see also Ching-Harper \cite{Ching-Harper-BM}). 
