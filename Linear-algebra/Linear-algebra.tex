@@ -107,7 +107,7 @@
 \begin{document}
 
 \title{ \textbf{Linear Algebra \\ Course notes and exercises}}
-\author{\small Prepared by: Duncan Clark, PhD}
+\author{\small Prepared by: Duncan Clark}
 \date{\small 
 %Spring semester 24--25 AY \\ 
 \textit{Last updated}: \today}
@@ -187,7 +187,7 @@ It's useful to have a geometric understanding of what's happening when we solve 
 		\item A linear equation in three variables defines a plane in 3D space
 	\end{itemize}
 \end{fact}
-This is true more generally as well: \textit{A linear equation in $n$ variables defines an $(n-1)$-dimensional ``flat region"\footnote{Often (somewhat uncreatively) called a \textit{hyperplane}} of $n$-dimensional space}. This obviously becomes harder to visualize, but the intuition from 2- and 3-dimensional space is often enough to get the picture. A solution to a system of linear equations is then a point $s$ which simultaneously lies on all lines/planes/hyperplanes (etc.) of a given system of equations. 
+This is true more generally as well: \textit{A linear equation in $n$ variables, not all of whose coefficients are zero, defines an $(n-1)$-dimensional ``flat region"\footnote{Often (somewhat uncreatively) called a \textit{hyperplane}} of $n$-dimensional space}. This obviously becomes harder to visualize, but the intuition from 2- and 3-dimensional space is often enough to get the picture. A solution to a system of linear equations is then a point $s$ which simultaneously lies on all lines/planes/hyperplanes (etc.) of a given system of equations. 
 
 \begin{remark}As we'll see soon, \textit{linear} systems of equations have solutions sets which are highly structured. This is certainly not the case for \textit{non-linear} systems of equations (which are in general significantly harder to solve). The upshot is that within the field of linear algebra we are able to \textit{completely} describe the solution sets of linear systems, it just takes a bit of work. \end{remark}
 
@@ -270,7 +270,7 @@ a_{2,1} & a_{2,2} & \cdots & a_{2,n} & b_2\\
 \vdots & \vdots & & \vdots & \vdots \\
 a_{m,1} & a_{m,2} &\cdots & a_{m,n} & b_m
 \end{amatrix}\end{equation}
-If you see this notation, you can mentally ``ignore" the vertical bar, this is just an $(m+1)\times n$ matrix after all. 
+If you see this notation, you can mentally ``ignore" the vertical bar, this is just an $m\times (n+1)$ matrix after all. 
 \end{remark}
 
 
@@ -290,7 +290,7 @@ Such algebraic manipulations are called  \textbf{elementary row operations}\foot
 \begin{defn}[Elementary row operations] Given a matrix $A$, any of the following manipulations is called an \textbf{elementary row operation} (to $A$). 
 
 \begin{itemize}
-	\item Add a row to another row
+	\item Add a (scalar) multiple of one row to another row
 	\item Swap the positions of any two rows
 	\item Multiply the entries of a row by a given (nonzero) constant
 \end{itemize}
@@ -444,7 +444,7 @@ Similarly, the $\textbf{span}$ of vectors $\vec{x}_1, \vec{x}_2, \cdots, \vec{x}
 	On the other hand $\vec{y}_1$ and $\vec{y}_2$ are \textit{parallel} (i.e., one is a scalar multiple of the other). So, there is no ``second direction" to walk relative to $\vec{y}_1$. The set $\Span{\vec{y}_1, \vec{y}_2}$ is then a \textit{line} in $\mathbf{R}^3$. Note that the main distinguishing feature of these two spans is their dimension: one is 2D (a plane), the other is 1D (a line), despite both being the span of two vectors.  
 \end{example}
 
-We'll soon learn more structure that the span of vectors has. For now, let's call a collection of vectors  $\vec{x}_1, \vec{x}_2, \cdots , \vec{x}_k$ of $\mathbf{R}^n$ a \textbf{spanning set} (of $\mathbf{R}^n$) if $\Span{ \vec{x}_1, \vec{x}_2, \cdots , \vec{x}_n}=\mathbf{R}^n$. That is, any vector in $\mathbf{R}^n$ belongs to the span of the given vectors. 
+We'll soon learn more structure that the span of vectors has. For now, let's call a collection of vectors  $\vec{x}_1, \vec{x}_2, \cdots , \vec{x}_k$ of $\mathbf{R}^n$ a \textbf{spanning set} (of $\mathbf{R}^n$) if $\Span{ \vec{x}_1, \vec{x}_2, \cdots , \vec{x}_k}=\mathbf{R}^n$. That is, any vector in $\mathbf{R}^n$ belongs to the span of the given vectors. 
 
 \begin{remark}[Useful notation]
 	Some useful notation that we will begin to make frequent use of is to write $x\in X$ to mean that ``$x$ is a thing from the set $X$". For instance, the statement $\vec{x}\in\mathbf{R}^n$ is the same as saying $\vec{x}$ is a vector in $\mathbf{R}^n$. 
@@ -456,7 +456,7 @@ We'll soon learn more structure that the span of vectors has. For now, let's cal
 If $A=\{a_{i,j}\}$ is an $m\times n$ matrix, and $\vec{x}$ is a vector in $\mathbf{R}^n$ (given by components $x_i$ for $1\leq i \leq n$), then the matrix $A$ ``acts on" $\vec{x}$ to create a new vector $\vec{Ax}$\footnote{In fact, these type of operations are \textit{linear transformations} that we'll be working with throughout this term, but more on that soon}. The output vector $\vec{Ax}$ is defined as the following \begin{equation} \vec{Ax}= x_1 \begin{pmatrix} a_{1,1} \\ a_{2,1} \\ \vdots \\ a_{m, 1} \end{pmatrix} + x_2 \begin{pmatrix} a_{1,2} \\ a_{2,2} \\ \vdots \\ a_{m,2} \end{pmatrix} + \cdots + x_n \begin{pmatrix} a_{1,n} \\ a_{2,n} \\ \vdots \\ a_{m,n} \end{pmatrix} \end{equation}
 This may look complicated but, really this is just matrix multiplication as we'll see later on. Writing the output vector $\vec{Ax}$ in this way tells us a little bit about what's happening though: the output is a linear combination of the \textit{column} vectors from the matrix $A$, with weightings given by the components of the vector $\vec{x}$. 
 
-It can be useful to have some notation here, given $j$ with $1\leq j \leq n$ let's write let's write $\vec{a}_j$ for the (column) vector \[ \vec{a}_j=\begin{pmatrix} a_{1,j} \\ a_{2,j} \\ \vdots \\ a_{m, j} \end{pmatrix}\] We can describe the matrix $A$ by specifying that it has column vectors consisting of the vectors $\mathbf{a}_j$ as follows: \begin{equation} \label{A-as-cols} A= \begin{pmatrix} \vec{a}_1 & \vec{a}_2 & \cdots & \vec{a}_m\end{pmatrix} \end{equation}
+It can be useful to have some notation here, given $j$ with $1\leq j \leq n$ let's write $\vec{a}_j$ for the (column) vector \[ \vec{a}_j=\begin{pmatrix} a_{1,j} \\ a_{2,j} \\ \vdots \\ a_{m, j} \end{pmatrix}\] We can describe the matrix $A$ by specifying that it has column vectors consisting of the vectors $\vec{a}_j$ as follows: \begin{equation} \label{A-as-cols} A= \begin{pmatrix} \vec{a}_1 & \vec{a}_2 & \cdots & \vec{a}_n\end{pmatrix} \end{equation}
 (Note that \eqref{A-as-cols} is still an $m\times n$ matrix, not a row vector.) It then follows that $\vec{Ax}$ is given by \[ \vec{Ax}=x_1 \vec{a}_1+x_2 \vec{a}_2 +\cdots +x_n\vec{a}_n=\sum_{i=1}^n x_i\vec{a}_i\]
 
 Why bother with matrices and vectors? One reason is that the algebra of working with such matrices and vectors is what underlies linear systems as discussed previously. We're building our way up to working with matrices as our basic objects, the following relation is what allows us to do this. 
@@ -615,7 +615,7 @@ The relation between linear independence and matrices comes from the following t
 \end{thm}
 
 \begin{proof}
-Suppose that $\vec{a}_1,\cdots,\vec{a}_n$ are linearly independent and write $A=\begin{pmatrix} \vec{a}_1 & \cdots & \vec{a}_n\end{pmatrix}$. Let $x\in \mathbf{R}^n$ be a vector such that $Ax=\vec{0}$. Expanding the left hand side of this equation, we then have \[x_1\vec{a}_1 + \cdots v_n \vec{a}_n =\vec{0}\] which is only possible if $x_1=\cdots=x_n=0$. Therefore, $x=\vec{0}$. 
+Suppose that $\vec{a}_1,\cdots,\vec{a}_n$ are linearly independent and write $A=\begin{pmatrix} \vec{a}_1 & \cdots & \vec{a}_n\end{pmatrix}$. Let $x\in \mathbf{R}^n$ be a vector such that $Ax=\vec{0}$. Expanding the left hand side of this equation, we then have \[x_1\vec{a}_1 + \cdots + x_n \vec{a}_n =\vec{0}\] which is only possible if $x_1=\cdots=x_n=0$. Therefore, $x=\vec{0}$. 
 
 The reverse argument works exactly the same way: if $A=\begin{pmatrix} \vec{a}_1 & \cdots & \vec{a}_n\end{pmatrix}$ such that $Ax=\vec{0}$ only has the trivial solution, then since any linear combination \[ c_1 \vec{a}_1 +\cdots+c_n\vec{a}_n=\vec{0}\] can be written as $Ac=\vec{0}$ for $c=\begin{pmatrix} c_1 \\ \vdots \\ c_n\end{pmatrix}$, the vectors $\vec{a}_1,\cdots,\vec{a}_n$ must be linearly independent. 
 \end{proof}
@@ -628,7 +628,7 @@ The reverse argument works exactly the same way: if $A=\begin{pmatrix} \vec{a}_1
 
 Linear independence is a necessary tool to understand the dimension of the span of a collection of vectors. Suppose we have a collection of vectors $v_1,v_2,\cdots, v_k$. If this is a linearly independent collection, this means that each vector is a ``genuinely new direction'' when compared to the span of the remaining vectors. Said differently, this means that $\Span{v_1,v_2,\cdots,v_k}$ is an $k$-dimensional ``space'' (inside whatever $\mathbf{R}^n$ the vectors are in). 
 
-Given a span of a collection of vectors, we say that span has \textbf{dimension $k$} if there are at most $k$ linearly independent vectors in the span. Spanning sets of $\mathbf{R}^n$ which consist of linearly independent vectors are called \textit{bases} as in the following definition:
+Given a span of a collection of vectors, we say that span has \textbf{dimension $k$} if the largest number of linearly independent vectors it contains is $k$. Spanning sets of $\mathbf{R}^n$ which consist of linearly independent vectors are called \textit{bases} as in the following definition:
 
 \begin{defn} \label{def-basis}
 	A collection $v_1,\cdots,v_k\in\mathbf{R}^n$ of vectors is said to be a \textbf{basis} for $\mathbf{R}^n$ if the following two conditions are satisfied
@@ -710,7 +710,7 @@ Note that these two properties mean that \textbf{all} linear transformations mus
 \end{remark}
 
 \begin{terminology}
-	Let $T\colon \mathbf{R}^n\to\mathbf{R}^m$ be a linear transformation. We say that $T$ is \textbf{one-to-one} (also called \textbf{injective}) if given vectors $x,y\in \mathbf{R}^m$ such that $T(x)=T(y)$ then $x=y$. Similarly, $T$ is \textbf{onto} (also called \textbf{surjective}) if given $b\in\mathbf{R}^m$ there is $x\in\mathbf{R}^n$ such that $T(x)=b$. If a linear transformation is both one-to-one and onto it's called an \textbf{isomorphism} (also, \textbf{bijection}). Some of these words may be new, but the terms \textit{one-to-one}, etc. should be familiar from previous classes (and also mean the same thing here). 
+	Let $T\colon \mathbf{R}^n\to\mathbf{R}^m$ be a linear transformation. We say that $T$ is \textbf{one-to-one} (also called \textbf{injective}) if given vectors $x,y\in \mathbf{R}^n$ such that $T(x)=T(y)$ then $x=y$. Similarly, $T$ is \textbf{onto} (also called \textbf{surjective}) if given $b\in\mathbf{R}^m$ there is $x\in\mathbf{R}^n$ such that $T(x)=b$. If a linear transformation is both one-to-one and onto it's called an \textbf{isomorphism} (also, \textbf{bijection}). Some of these words may be new, but the terms \textit{one-to-one}, etc. should be familiar from previous classes (and also mean the same thing here). 
 	
 	Let us define the \textbf{kernel} of a transformation $T$ to be the set of all inputs $x\in\mathbf{R}^n$ such that $T(x)=\vec{0}$. We also need a word for the possible ``stuff" to get out of $T$. We'll call the \textbf{image} of $T$ to be the collection of all outputs of $T$, i.e., $\{T(x) : x\in \mathbf{R}^n\}$. If a transformation $T$ is onto then the image and the range are the same. In general, however, the image is just a subset of the range.
 \end{terminology}
@@ -729,7 +729,7 @@ If $T$ is one-to-one, then since any linear transformation satisfies $T(\vec{0})
 	If a linear transformation $T\colon \mathbf{R}^n\to\mathbf{R}^m$ is both one-to-one and onto, then $n=m$. 
 \end{prop}
 \begin{proof}
-	This follows from Theorem \ref{thm-in-sur}. Suppose that $T$ is represented by an $m\times n$ matrix $A$. If the columns of $A$ span $\mathbf{R}^m$ then we must have $n\geq m$. If the columns of $A$ are linearly independent then we must have $m\leq n$. So, $m=n$.
+	This follows from Theorem \ref{thm-in-sur}. Suppose that $T$ is represented by an $m\times n$ matrix $A$. If the columns of $A$ span $\mathbf{R}^m$ then we must have $n\geq m$. If the columns of $A$ are linearly independent then we must have $n\leq m$. So, $m=n$.
 \end{proof}
 \subsection{Matrix representation of a linear transformation}
 Let $n\geq 1$ be given and for $i=1,\dots,n$ write $e_i$ for the vector \begin{equation} e_i=\begin{pmatrix} 0  \\ \vdots \\ 1 \quad (\text{$i$-th row}) \\ \vdots \\ 0 \end{pmatrix}\end{equation} i.e., $e_i$ is the vector made up of all $0$s except for a $1$ in row $i$. The collection of these vectors $\{e_1,\cdots,e_n\}$ is often called the \textbf{standard basis}\footnote{See definition \ref{def-basis}} of $\mathbf{R}^n$. It's straightforward but worthwhile to convince yourself that $\{e_1,\cdots,e_n\}$ is a spanning set of $\mathbf{R}^n$.
@@ -818,11 +818,11 @@ If matrices are representatives of linear transformations (which are just types 
 
 If $A=\{a_{i,j}\}$ and $B=\{b_{i,j}\}$ are $m\times n$ matrices and $c\in \mathbf{R}$ some scalar, then there are $m\times n$ matrices (i) $A+B$ defined by adding the entries of $A$ and $B$ component-wise, and (ii) $cA$ defined by scalar multiplication by $c$ on the entires of $A$. In formulas:  \begin{equation} A+B=\{a_{i,j}+b_{i,j}\} \qquad cA=\{ca_{i,j}\} \label{eq-add-mat} \end{equation}
 
-(Note: that this means $m\times n$ themselves are elements of the vector space $R^{mn}$). \textit{Multiplication} of matrices is defined in certain circumstances, as demonstrated in the next section.
+(Note: that this means $m\times n$ matrices are themselves elements of the vector space $\mathbf{R}^{mn}$). \textit{Multiplication} of matrices is defined in certain circumstances, as demonstrated in the next section.
 
 \subsection{Matrix multiplication}
 Suppose that $T\colon \mathbf{R}^n\to\mathbf{R}^m$ and $S\colon \mathbf{R}^m\to\mathbf{R}^k$ are linear transformations. There is then a linear transformation $S\circ T\colon \mathbf{R}^n\to \mathbf{R}^k$ defined by the composite \[ \begin{tikzcd} \mathbf{R}^n \arrow{r}{T} \arrow{rd}[swap]{S\circ T} & \mathbf{R}^m \arrow{d}{S} \\ & \mathbf{R}^k \end{tikzcd}\]
-That is, $(S\circ T)(x)=S(T(x))$. Let's just write $ST$ for the composite $S\circ T$. Suppose that $T$ and $S$ have standard representing matrices $A$ and $B$ respectively. Then \[ (ST)(x)=S(Ax)=B(Ax)\] (note that $Ax$ is a vector in $\mathbf{R}^m$) which suggests there should be an $n\times k$ matrix ``$BA$" such that $B(Ax)=(BA)x$. Indeed, this is the ``multiplication of matrices" as defined as follows:
+That is, $(S\circ T)(x)=S(T(x))$. Let's just write $ST$ for the composite $S\circ T$. Suppose that $T$ and $S$ have standard representing matrices $A$ and $B$ respectively. Then \[ (ST)(x)=S(Ax)=B(Ax)\] (note that $Ax$ is a vector in $\mathbf{R}^m$) which suggests there should be a $k\times n$ matrix ``$BA$" such that $B(Ax)=(BA)x$. Indeed, this is the ``multiplication of matrices" as defined as follows:
 
 \begin{defn}
 	If $A$ is an $m\times n$ matrix with columns $\vec{a}_i$ and $B$ and $k\times m$ matrix then there is an $k\times n$ matrix $BA$ defined as \begin{equation} BA=\begin{pmatrix} B\vec{a}_1 & B\vec{a}_2 & \cdots & B\vec{a}_n\end{pmatrix} \end{equation} 
@@ -838,7 +838,7 @@ This gives us an easy definition to write down, but it's not really how matrix m
 	\underbrace{\begin{pmatrix} & \cdots & a_{1,j} & \cdots & \\  & \cdots & a_{2,j} & \cdots & \\ & & \vdots & & \\  & \cdots  & a_{m,j} & \cdots & \end{pmatrix}}_A	
 	  \end{equation}
 	  
-	  	Or said even differently still $BA$ is given componentwise by the sum \begin{equation} (BA)_{i,j}=a_{1,j}b_{j,1}+a_{2,j}b_{j,2}+\cdots+a_{m,j}b_{j,m}\end{equation}
+	  	Or said even differently still $BA$ is given componentwise by the sum \begin{equation} (BA)_{i,j}=b_{i,1}a_{1,j}+b_{i,2}a_{2,j}+\cdots+b_{i,m}a_{m,j}=\sum_{\ell=1}^m b_{i,\ell}a_{\ell,j}\end{equation}
 		
 		\begin{remark}
 			it's worth convincing yourself that $BA$ is the matrix which represents the linear transformation $ST$, and that this definition of matrix multiplication is really nothing other than composition of functions. Note that in the same way that function composition is rarely \textbf{commutative} (i.e., $ST\neq TS$), the same then applies for matrices. 
@@ -856,7 +856,7 @@ This gives us an easy definition to write down, but it's not really how matrix m
 		\item $C(B+A)=CB+CA$
 		\item $(C+B)A=CA+BA$
 		\item $k(BA)=(kB)A=B(kA)$
-		\item $I_mA=AI_n$
+		\item $I_mA=A=AI_n$
 	\end{enumerate}
 	\end{thm}
 	\begin{terminology} The first law from Theorem \ref{thm-mat-alg} tells us that matrix multiplication is \textbf{associative}, i.e., that a three-fold product of matrices such as  $CBA$ is defined unambiguously. Properties b and c tell us that matrix multiplication is \textbf{distributive}. The last law tells us that the identity matrices (of appropriate size) are the \textbf{identities} of matrix multiplication. Note if $A$ is a \textbf{square matrix} (i.e., $n\times n$ for some $n$), this means that (positive integer) powers of $A$ can be defined as \begin{equation} A^k=\underbrace{AA\cdots A}_{\text{$k$ times}}\end{equation} where by convention we take $A^0=I_n$\footnote{In fancy words, the collection of $n\times n$ matrices is an \textit{Algebra} in the ``capital A"-algebra sense}. In general it is not the case that $AB=BA$ (even when both defined). If $A,B$ are square matrices such that $AB=BA$ then we say that $A$ and $B$ \textbf{commute}.
@@ -876,7 +876,7 @@ or in terms of coefficients $A^T_{i,j}=A_{j,i}$. If $x\in\mathbf{R}^n$ is a (col
 Transpose may seem silly at first, but it's useful in describing orthogonality conditions as we'll see soon enough. More vaguely, the transpose allows you to interchange the roles of ``rows'' and ``columns'' in most all of what we've learned so far. For now, we can think of it as an additional algebraic tool on the set of matrices. I leave it to you to convince yourself of the following properties.
 
 \begin{thm} \label{thm-transpose}
-Let $A,B$ be matrices such that the product $BA$ is defined. Then: \begin{enumerate}
+Let $A,B$ be matrices, of whatever sizes make each statement below meaningful (part b needs $A$ and $B$ to have the same size; part c needs the product $BA$ to be defined). Then: \begin{enumerate}
 	\item $(A^T)^T=A$
 	\item $(A+B)^T=A^T+B^T$
 	\item $(BA)^T=A^TB^T$
@@ -920,7 +920,7 @@ Let $A,B$ be matrices such that the product $BA$ is defined. Then: \begin{enumer
 	\item The \textit{complex conjugate} of $a+bi$ is the complex number $a-bi$. Show that $a-bi$ is encoded by the matrix \[ \begin{pmatrix} a & -b \\ b & a \end{pmatrix}^T\]
 	\end{enumerate}
 	
-	\item An $n\times n$ matrix is called \textit{nilpotent} if there is an integer $k\geq 0$ such that $A^k$ is the matrix of all $0$s. 
+	\item An $n\times n$ matrix $A$ is called \textit{nilpotent} if there is an integer $k\geq 1$ such that $A^k$ is the matrix of all $0$s. 
 	\begin{enumerate}
 		\item Show that $\begin{pmatrix} 0 & 1 \\ 0 & 0\end{pmatrix}$ and $\begin{pmatrix} 0 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 0\end{pmatrix}$ are nilpotent.
 		\item Is $A=\begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}$ nilpotent? What about $B=\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$? Explain why or why not
@@ -969,7 +969,7 @@ We will learn later a slightly easier to use technique for determining if a matr
 \begin{prop} \label{prop-compute-inv} Suppose that $A$ is an $n\times n$ matrix such that the $n\times 2n$ augmented matrix  \[ \begin{amatrix}{1} A & I \end{amatrix}\]
 is equivalent by row operations to an augmented matrix of the form \[\begin{amatrix}{1} I & B\end{amatrix}\] for some $n\times n$ matrix $B$. Then $B=A^{-1}$. 
 
-Moreover, if row operations applied to $\begin{amatrix}{1} A & I \end{amatrix}$ yield an inconsistent system, then $A$ is not invertible. 
+Moreover, if $A$ cannot be brought to the identity matrix $I$ by row operations, then $A$ is not invertible. 
 \end{prop}
 
 
@@ -1049,7 +1049,7 @@ You might scoff at a list of \textit{m} things which are all equivalent, but the
 
 \item *Recall that a complex number $a+bi$ is represented by the matrix $A=\begin{pmatrix} a & -b \\ b & a\end{pmatrix}$. 
 \begin{enumerate}
-	\item Show that $A$ is invertible if and only if $a\neq 0$ and $b\neq 0$. 
+	\item Show that $A$ is invertible if and only if $a$ and $b$ are not both $0$. 
 	\item Determine the inverse matrix of $A$
 	\item If $a,b$ are real number not both equal to $0$, determine a complex number $x+yi$ such that $(a+bi)(x+yi)=1$. 
 	
@@ -1059,7 +1059,7 @@ Congratulations, you've just described one of the three nontrivial division alge
 \item *Applying a row operation to a matrix $A$ is the same as multiplying $A$ by a certain invertible matrix. These are called \textbf{elementary matrices} and they generate the collection of invertible matrices. 
 
 \begin{enumerate} 
-	\item Let $E_{i,j}(k)$ be the sum of the identity matrix $I$ and the $n\times n$ matrix with nonzero entry $k$ in position $i,j$. Show that the matrix product $A'=E_{i,j}A$ is the result of applying ``add $k$ times row $j$ to row $i$'' in $A$.
+	\item Let $E_{i,j}(k)$ be the sum of the identity matrix $I$ and the $n\times n$ matrix with nonzero entry $k$ in position $i,j$. Show that the matrix product $A'=E_{i,j}(k)A$ is the result of applying ``add $k$ times row $j$ to row $i$'' in $A$.
 	\item For $k\neq 0$, let $R(i,k)$ be the $n\times n$ identity matrix, with the 1 in the $i$-th row replaced by $k$. Show that rescaling the $i$-th row of a matrix $A$ is the same as the matrix product $R(i,k)A$
 	\item Let $S(i,j)$ be the $n\times n$ identity matrix with rows $i$ and $j$ exchanged. Show that exchanging rows $i$ and $j$ in a matrix $A$ is the same as the matrix product $S(i,j)A$. 
 	\item Show that all of these matrices $E_{i,j}(k), R(i,k), S(i,j)$ are invertible. 
@@ -1079,7 +1079,7 @@ While Proposition \ref{prop-compute-inv} gives us a tool for computing the inver
 \subsection{Determinants of $2\times 2$ matrices}
 That thing is the \textbf{determinant}. It will take a bit of setting up to describe the determinant of an $n\times n$ matrix, but we've already come across it in an example so far: 
 
-Recall from Theorem \ref{thm-2x2-inv} that a $2\times 2$ matrix \[ A=\begin{pmatrix} a & b\\ c & d\end{pmatrix}\] is invertible if and only if $ad-bc=0$. We can view this a function, which we will call ``$\det$'' \begin{equation} 
+Recall from Theorem \ref{thm-2x2-inv} that a $2\times 2$ matrix \[ A=\begin{pmatrix} a & b\\ c & d\end{pmatrix}\] is invertible if and only if $ad-bc\neq0$. We can view this a function, which we will call ``$\det$'' \begin{equation} 
 	\det \colon \{ \text{$2\times 2$ matrices} \} \to \mathbf{R}
 \end{equation}
 given by \begin{equation} \label{det-2x2} \det\begin{pmatrix} a & b \\ c & d \end{pmatrix}=ad-bc\end{equation} such that $\det A \neq 0$ if and only if $A$ is invertible. Said differently, $\det A$ is a number which represents (among other things) the ``invertibility" of $A$. 
@@ -1108,7 +1108,7 @@ The \textit{sign} of $\det A$ is a bit mysterious, but what it does is tell us w
 &= a (ej-fi) - b(dj-fh)+c(di-eh) \nonumber \\
 &= aej -afi +bfh-bdj +cdi -ceh
 \end{align}
-This funny looking expression tells us the same information for this $3\times 3$ matrix as it does for a $2 \times 2$ matrix. More specifically, \eqref{eq-3x3-det} computes the signed volume of the  formed by the column vectors \[ u=\begin{pmatrix} a \\ d \\ h \end{pmatrix}, \;  v=\begin{pmatrix} b \\ e \\ i \end{pmatrix},\;  w=\begin{pmatrix} c \\ f \\ j \end{pmatrix}\] in $\mathbf{R}^3$. If this volume is not 0, then the vectors $u,v,w$ must be linearly independent, and therefore the matrix $A$ represents a one-to-one function. Moreover, three linearly independent vectors must span $\mathbf{R}^3$, therefore the transformation represented by $A$ is also onto, and so $A$ must be invertible. 
+This funny looking expression tells us the same information for this $3\times 3$ matrix as it does for a $2 \times 2$ matrix. More specifically, \eqref{eq-3x3-det} computes the signed volume of the parallelepiped formed by the column vectors \[ u=\begin{pmatrix} a \\ d \\ h \end{pmatrix}, \;  v=\begin{pmatrix} b \\ e \\ i \end{pmatrix},\;  w=\begin{pmatrix} c \\ f \\ j \end{pmatrix}\] in $\mathbf{R}^3$. If this volume is not 0, then the vectors $u,v,w$ must be linearly independent, and therefore the matrix $A$ represents a one-to-one function. Moreover, three linearly independent vectors must span $\mathbf{R}^3$, therefore the transformation represented by $A$ is also onto, and so $A$ must be invertible. 
 
 
 \begin{terminology}
@@ -1124,12 +1124,12 @@ There's a funny word lurking in the previous example--\textbf{parallelepiped}. T
 \end{terminology}
 
 \subsection{Determinants in general}
-Though there are some speedier algorithms for special cases, the most typical construction of the determinant of an $n\times n$ matrix is by an inductive process. That is to say, you can compute the determinant of an $n\times n$ in terms of determinants of its $(n-1)\times (n-1)$ submatrices, whose determinants are in turn computed by the determinants of their $(n-2)\times (n-2)$ matrices and so on\footnote{If you care about such things, the number of individual calculations needed to take the determinant is on the order of $n^3$ for an $n\times n$ matrix, the same as the number of calculations needed for row reduction to reduced echelon form.}. Eventually you get down to the $2\times 2$ submatrices, and just use equation \eqref{det-2x2}.
+Though there are some speedier algorithms for special cases, the most typical construction of the determinant of an $n\times n$ matrix is by an inductive process. That is to say, you can compute the determinant of an $n\times n$ in terms of determinants of its $(n-1)\times (n-1)$ submatrices, whose determinants are in turn computed by the determinants of their $(n-2)\times (n-2)$ matrices and so on\footnote{If you care about such things, the cofactor expansion described here is very expensive: it takes on the order of $n!$ individual calculations for an $n\times n$ matrix. Computing the determinant by \textit{row reduction} instead takes on the order of $n^3$ calculations, the same as reduction to reduced echelon form, and is what a computer will actually do.}. Eventually you get down to the $2\times 2$ submatrices, and just use equation \eqref{det-2x2}.
 
 Let's start with the following geometric \textit{definition} of the determinant. 
 
 \begin{defn}
-	Let $A$ be an $n\times n$ matrix and $a_1,\cdots, a_n$ be the column vectors of $A$. Then $\det A$ is the real number equal to the signed hypervolume of the parallelopiped formed by vectors $a_1,\cdots,a_n\in \mathbf{R}^n$.
+	Let $A$ be an $n\times n$ matrix and $a_1,\cdots, a_n$ be the column vectors of $A$. Then $\det A$ is the real number equal to the signed hypervolume of the parallelepiped formed by vectors $a_1,\cdots,a_n\in \mathbf{R}^n$.
 \end{defn}
 
 \begin{remark}$\det$ then defines a function \begin{equation} \det \colon \{ \text{$n\times n$ matrices}\} \to \mathbf{R}\end{equation}
@@ -1144,13 +1144,13 @@ Note that this definition doesn't necessarily give us the means to compute the d
 \subsection{Computing the determinant}
 The most common algorithm for computing the determinant of a matrix is called \textit{cofactor expansion}. We need some definitions: 
 
-\begin{defn}For an $n\times n$ matrix $A$, let $A_{i.j}$ denote the $(n-1)\times (n-1)$ matrix obtained from $A$ by deleting row $i$ and column $j$ from $A$. This matrix $A_{i,j}$ is called the \textbf{cofactor} to the entry $a_{i,j}$ in $A$.
+\begin{defn}For an $n\times n$ matrix $A$, let $M_{i,j}$ denote the $(n-1)\times (n-1)$ matrix obtained from $A$ by deleting row $i$ and column $j$ from $A$. This matrix $M_{i,j}$ is called the \textbf{minor} of the entry $a_{i,j}$ in $A$, and the number $(-1)^{i+j}\det M_{i,j}$ is called the \textbf{cofactor} of $a_{i,j}$. (We use the letter $M$ here rather than $A$ to avoid a clash with $A_{i,j}$, which already denotes the $i,j$ \textit{entry} of $A$.)
 \end{defn} 
 
 Let's let $S$ be the $n\times n$ ``matrix of signs" as follows
 \begin{equation} S=\begin{pmatrix} 
 + & - & + & - & \cdots & \\ 
-- & + & + & \ddots && \\
+- & + & - & \ddots && \\
 + & - & \ddots &&& \\
 - & \ddots &&&& \\
 \vdots &&&&\\
@@ -1158,7 +1158,7 @@ Let's let $S$ be the $n\times n$ ``matrix of signs" as follows
 \end{pmatrix}\end{equation}
 Note that the $i,j$ entry of $S$ is just $(-1)^{i+j}$. The \textbf{cofactor expansion} of $\det A$ along row\footnote{You can also calculate the determinant by cofactor expansion along a \textit{column} of $A$} $i$ is then the sum
 \begin{equation} \label{eqn-cof-i}
-	 \sum_{j=1}^n (-1)^{i+j} a_{i,j} \det A_{i,j} 
+	 \sum_{j=1}^n (-1)^{i+j} a_{i,j} \det M_{i,j} 
 \end{equation}
 
 \begin{thm}
@@ -1192,7 +1192,7 @@ A good thing to check is how elementary row operations interact with the determi
 \begin{enumerate}
 	\item If $B$ is obtained by multiplying a row of $A$ by $k$ then $\det B=k\det A$
 	\item If $B$ is obtained by adding a row to another row within $A$ then $\det B=\det A$
-	\item If $B$ is obtained by permuting $\ell$ rows of $A$ then $\det B=(-1)^{\ell}\det A$. 
+	\item If $B$ is obtained from $A$ by $\ell$ row \textit{interchanges} (i.e., $\ell$ successive swaps of two rows) then $\det B=(-1)^{\ell}\det A$. More generally, permuting the rows of $A$ by a permutation $\sigma$ multiplies the determinant by $\operatorname{sgn}(\sigma)$. 
 \end{enumerate}
 \end{prop}
 
@@ -1218,7 +1218,7 @@ A good thing to check is how elementary row operations interact with the determi
 0 & 0 & a_{3,3} & \cdots & * \\
 \vdots & \vdots  & \vdots & \ddots & \vdots \\
 0 & 0 & 0 & \cdots & a_{n,n} \end{pmatrix}\]
-where the diagonal entries $a_{i,i}\neq 0$, 0s below the main diagonal, and the entries marked $*$ are any real number. Show that the determinant of a triangular matrix is given by \[ \det A= a_{1,1} a_{2,2} \cdots a_{n,n}\]
+where there are 0s below the main diagonal and the entries marked $*$ are any real number. Show that the determinant of a triangular matrix is given by \[ \det A= a_{1,1} a_{2,2} \cdots a_{n,n}\]
 Are triangular matrices invertible? 
 
 \item Let $R_{\theta}=\begin{pmatrix} \cos \theta & -\sin\theta \\ \sin \theta & \cos \theta\end{pmatrix}$. Show that $\det R_{\theta}=1$. 
@@ -1227,7 +1227,7 @@ Are triangular matrices invertible?
 
 \item Show that $\det(A+B)\neq \det A+\det B$ by producing a pair of matrices for which the equation does not hold.
  
-\item A matrix $A$ is called \textbf{symmetric} if $A^TA=I$. Show that $\det A=\pm 1$ for any symmetric matrix $A$.
+\item A matrix $A$ is called \textbf{orthogonal} if $A^TA=I$. Show that $\det A=\pm 1$ for any orthogonal matrix $A$. (Careful: this is \textit{not} the same as $A$ being \textbf{symmetric}, which means $A^T=A$; a symmetric matrix can have any determinant at all.)
 
 \item Compute the determinants of the following $3\times 3$ matrices in terms of $k$
 \begin{enumerate}
@@ -1251,9 +1251,9 @@ Are triangular matrices invertible?
 
 Some terminology:  ``GL'' means \textit{general linear}, and ``SL'' means \textit{special linear}.
 
-\item *Recall the matrix representations of the elementary row operations from 
+\item *Recall the matrix representations of the elementary row operations from Exercise 9 of Section \ref{ap-inv-mat-thm}--- that is, the matrices $E_{i,j}(k)$, $R(i,k)$ and $S(i,j)$. 
 \begin{enumerate}
-	\item Show that $\det E_{i,j}=1, \det R(i,k)=k$ and $\det S(i,j)=(-1)^{i+j}$
+	\item Show that $\det E_{i,j}(k)=1$, $\det R(i,k)=k$ and $\det S(i,j)=-1$ (a single row interchange always contributes a factor of $-1$, regardless of which two rows are swapped)
 	\item Conclude that an elementary row operation applied to $A$ does not affect whether or not $A$ is invertible 
 	\item If the rows of $A$ are linearly independent then $\det(A)\neq 0$.
 	\end{enumerate}
@@ -1306,9 +1306,9 @@ We've used words like \textit{span} and \textit{spanning set} a lot so far. More
 \end{enumerate}
 \end{defn}
 
-Said differently, a subspace $V\subset X$ is just another vector space which lives naturally inside the bigger space $X$. Any span of vectors in $\mathbf{R}^n$ is a subspace of $\mathbf{R}^n$. Note as well that this means the zero vector $\vec{0}=0v$ must be contained in any subspace of $X$. Any vector space $X$ has the two $\{\vec{0}\}$ and the whole space $X$. We call $\{\vec{0}\}$ the \textbf{trivial} subspace. 
+Said differently, a subspace $V\subset X$ is just another vector space which lives naturally inside the bigger space $X$. Any span of vectors in $\mathbf{R}^n$ is a subspace of $\mathbf{R}^n$. Note as well that this means the zero vector $\vec{0}=0v$ must be contained in any subspace of $X$. Any vector space $X$ always has the two subspaces $\{\vec{0}\}$ and the whole space $X$. We call $\{\vec{0}\}$ the \textbf{trivial} subspace. 
 
-The main fact about subspaces is that they must always be given as the span of a (finite) collection of vectors. Given a subspace $V\subset\mathbf{R}^n$ we use the term \textit{basis} to refer to any linearly independent spanning set of $V$, as follows:
+The main fact about subspaces of $\mathbf{R}^n$ is that they must always be given as the span of a (finite) collection of vectors. (This can fail for subspaces of an infinite dimensional space such as $C(\mathbf{R})$.) Given a subspace $V\subset\mathbf{R}^n$ we use the term \textit{basis} to refer to any linearly independent spanning set of $V$, as follows:
 
 \begin{defn}Let $X$ be a vector space and  $V\subset X$ be a subspace of $X$. A collection of vectors $v_1,\cdots,v_k\in V$ is called a \textbf{basis} of $V$ if following two conditions are met
 \begin{enumerate}
@@ -1321,9 +1321,9 @@ Note that a subspace $V\subset X$ may have many bases, but they must all consist
 
 
 
-\subsection{Canonical subspaces of a marix/linear transformation}
+\subsection{Canonical subspaces of a matrix/linear transformation}
 
-Given a linear transformation $T\colon \mathbf{R}^n\to\mathbf{R}^m$ represented by $m\times n$ matrix $A$, there are many canonical subspace of the domain and range associated to $T$. 
+Given a linear transformation $T\colon \mathbf{R}^n\to\mathbf{R}^m$ represented by $m\times n$ matrix $A$, there are many canonical subspaces of the domain and range associated to $T$. 
 
 \begin{itemize}
 	\item The \textbf{nullspace} of $A$, written $\nul{A}$, is the set of vectors $x\in\mathbf{R}^n$ such that $Ax=\vec{0}$. This is the same as the \textbf{kernel} of $T$, i.e., the set $\ker T$ of vectors $x\in\mathbf{R}^n$ such that $T(x)=\vec{0}$.
@@ -1387,7 +1387,7 @@ Consider the subspace $V=\Span{ \begin{pmatrix} 1 \\ 2 \\ 0 \end{pmatrix}, \begi
 If $X,Y$ are vector spaces such that there is an isomorphism $T\colon X\to Y$ then $X$ and $Y$ are called \textbf{isomorphic}. In notation we write $X\cong Y$. 
 
 \begin{fact}
-If $V\subset \mathbf{R}^n$ is a subspace then $V\cong \mathbf{R}^k$ for some $k\in \{0,1,2,\cdots,n\}$\footnote{An even more general fact is that if $V$ is \textit{any} vector space then $V\cong \mathbf{R}^{\alpha}$ for some cardinal number $\alpha$. For instance if the vector space $C(\mathbf{R})$ of continuous functions is isomorphic to $\mathbf{R}^{\infty}$ where $\infty$ denotes the smallest infinite cardinal number (sometimes called ``countable infinity"). There's an (easy) proof of this using the most controversial axiom in all of mathematics---\textit{the axiom of choice}. While this result seems underwhelming it basically tells you that you are free to think of vector spaces as always coming equipped with a choice of basis, sometimes we need to change this basis, but existence of a basis can always be assumed}.
+If $V\subset \mathbf{R}^n$ is a subspace then $V\cong \mathbf{R}^k$ for some $k\in \{0,1,2,\cdots,n\}$\footnote{An even more general fact is that if $V$ is \textit{any} vector space then $V\cong \mathbf{R}^{\alpha}$ for some cardinal number $\alpha$. For instance the vector space $C(\mathbf{R})$ of continuous functions has a basis of cardinality $2^{\aleph_0}$, the cardinality of the continuum---already the family $\{e^{ax}\}_{a\in\mathbf{R}}$ is linearly independent. There's an (easy) proof of this using the most controversial axiom in all of mathematics---\textit{the axiom of choice}. While this result seems underwhelming it basically tells you that you are free to think of vector spaces as always coming equipped with a choice of basis, sometimes we need to change this basis, but existence of a basis can always be assumed}.
 \end{fact}
 
 \begin{remark}
@@ -1417,7 +1417,7 @@ If $V\subset \mathbf{R}^n$ is a subspace then $V\cong \mathbf{R}^k$ for some $k\
 	\item Determine if the following is a subspace of the given vector space
 	
 	\begin{enumerate}
-		\item The set of matrices $A\in M(m,n)$ such that $\det A=0$.
+		\item The set of matrices $A\in M(n,n)$ such that $\det A=0$.
 		\item The set of continuous functions $f\in C(\mathbf{R})$ such that $f(0)=0$.
 		\item The set of continuous functions $f\in C(\mathbf{R})$ such that $f(0)=1$
 		\item The set of continuous functions $f\in C(\mathbf{R})$ such that $\lim_{x\to \infty} f$ exists.
@@ -1438,7 +1438,7 @@ If $V\subset \mathbf{R}^n$ is a subspace then $V\cong \mathbf{R}^k$ for some $k\
 	\begin{enumerate}
 		\item Show that $\{u,v\}$ is a basis for $\mathbf{R}^2$. 
 		\item Let $B=\begin{pmatrix} u & v\end{pmatrix}$. Determine $B^{-1}$.
-		\item Let $T$ be the linear transformation given by $Te_1=\begin{pmatrix} 1 \\ 3\end{pmatrix}, Te_2=\begin{pmatrix} 0 \\ -3\end{pmatrix}$. Then the standard matrix representation of $T$ is given by $A=\begin{pmatrix} 1 & 0 \\ 3 & -3\end{pmatrix}$. The matrix $BAB^{-1}$ is called the \textit{conjugate} of $A$ by $B$, and represents the transformation $T$ with respect to the basis $\{u,v\}$. Use this to evaluate $T(3u+2v)$
+		\item Let $T$ be the linear transformation given by $Te_1=\begin{pmatrix} 1 \\ 3\end{pmatrix}, Te_2=\begin{pmatrix} 0 \\ -3\end{pmatrix}$. Then the standard matrix representation of $T$ is given by $A=\begin{pmatrix} 1 & 0 \\ 3 & -3\end{pmatrix}$. The matrix $B^{-1}AB$ represents the transformation $T$ with respect to the basis $\{u,v\}$ (see Fact \ref{fact-conj}). Use this to evaluate $T(3u+2v)$
 	\end{enumerate}
 
 	\item Give an example of a $4\times 3$ matrix $A$ with $\rank{A}=1$, or explain why no such matrix exists. 
@@ -1457,7 +1457,7 @@ If $V\subset \mathbf{R}^n$ is a subspace then $V\cong \mathbf{R}^k$ for some $k\
 		\item If $A$ is a $5\times 7$ matrix then $\nul{A}$ can have dimension $0$	
 		\item If $\{v_1,\cdots,v_n\}$ is a basis of $\mathbf{R}^n$ and $T\colon \mathbf{R}^n\to\mathbf{R}^n$ an invertible linear transformation then $\{Tv_1,\cdots,Tv_n\}$ is also a basis of $\mathbf{R}^n$. 
 		\item If $\{v_1,\cdots,v_n\}$ is a basis of $\mathbf{R}^n$ and $T\colon \mathbf{R}^n\to\mathbf{R}^m$ \textit{any} linear transformation then $\{Tv_1,\cdots,Tv_n\}$ is a basis of $\mathbf{R}^m$. 
-		\item *For $A$ an $m\times n$ matrix, $\dim(\row A)=\dim(\null A)$
+		\item *For $A$ an $m\times n$ matrix, $\dim(\row{A})=\dim(\nul{A})$
 	\end{enumerate}
 	
 	
@@ -1526,7 +1526,7 @@ It's appropriate to call $\chi$ the characteristic polynomial of the matrix $A$ 
 \end{fact}
 
 \begin{remark}
-	Note that $\det(A-\lambda I)$ is a polynomial in $\lambda$ of degree at most $n$. A fact you may recall from algebra is that any degree $n$ polynomial (with coefficients that are real numbers) has at most $n$ distinct roots\footnote{This is a corollary of the \href{https://en.wikipedia.org/wiki/Fundamental_theorem_of_algebra.}{Fundamental theorem of algebra}}. In particular, any such polynomial will factor as a product of (i) linear factors, or (ii) irreducible quadratic factors. That is to say, a linear transformation on $\mathbf{R}^n$ can have at most $n$ different eigenvalues. 
+	Note that $\det(A-\lambda I)$ is a polynomial in $\lambda$ of degree exactly $n$. A fact you may recall from algebra is that any degree $n$ polynomial (with coefficients that are real numbers) has at most $n$ distinct roots\footnote{This is a corollary of the \href{https://en.wikipedia.org/wiki/Fundamental_theorem_of_algebra.}{Fundamental theorem of algebra}}. In particular, any such polynomial will factor as a product of (i) linear factors, or (ii) irreducible quadratic factors. That is to say, a linear transformation on $\mathbf{R}^n$ can have at most $n$ different eigenvalues. 
 	
 	%It's useful the to understand how this fact about polynomials, when applied to the characteristic polynomial of a linear transformation, can give us information about the transformation itself.
 \end{remark}	
@@ -1581,7 +1581,7 @@ where $*$ denotes some arbitrary real number. Show that if $A$ is an upper trian
 	\item \label{rotation-matrices} Given an angle $\theta$, the following matrix $A$ represents the linear transformation which rotates the $xy$-plane by an angle of $\theta$ counterclockwise: \[A=\begin{pmatrix} \cos \theta & -\sin\theta \\ \sin\theta & \cos \theta \end{pmatrix}\] Show that if $\theta$ is not a multiple of $\pi$, then  $A$ has no (real) eigenvalues
 	\item \label{princ-axis} Show that any linear transformation of $\mathbf{R}^3$ has at least one (real) eigenvalue. (\textit{Hint: any real polynomial of degree $3$ must have a root, why is this?})
 	
-	\item Let $A=\begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}$. Show that $A$ has exactly one eigenvalue $\lambda=-1$. Describe the eigenspace of this eigenvalue. Can you describe the effect of this matrix on the space $\mathbf{R}^3$?
+	\item Let $A=\begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}$. Show that $A$ has exactly one real eigenvalue $\lambda=1$. Describe the eigenspace of this eigenvalue. Can you describe the effect of this matrix on the space $\mathbf{R}^3$?
 	\item Let $A$ be an $n\times n$ matrix and $P$ an invertible matrix. Show that $\lambda$ is an eigenvalue of $A$ if and only if $\lambda$ is an eigenvalue of $PAP^{-1}$.
 	
 	\item \label{ex-transpote} Let $A$ be a square matrix. Show that $A$ and $A^T$, the transpose of $A$, have the same set of eigenvalues. 
@@ -1595,7 +1595,7 @@ where $*$ denotes some arbitrary real number. Show that if $A$ is an upper trian
 		\item If $A$ is an $n \times n$ which is not invertible, then $0$ is an eigenvalue of $A$
 		\item Any invertible $2\times 2$ matrix has  two  linearly independent eigenvectors.
 		\item If $A$ is any matrix of the form \[A=\begin{pmatrix} a & x & y \\ 0 & b & 0 \\ z & 0 & c\end{pmatrix}\] for constants $a,b,c,x,y,z$, then $a,b$ and $c$ are all eigenvalues of $A$.
-		\item If $T$ is the linear transformation $\mathbf{R}^2\to\mathbf{R}^2$ given by reflection about the line $y=2x$ then $\begin{pmatrix} 1 \\ 2\end{pmatrix}$ is an eigenvalue of $T$.
+		\item If $T$ is the linear transformation $\mathbf{R}^2\to\mathbf{R}^2$ given by reflection about the line $y=2x$ then $\begin{pmatrix} 1 \\ 2\end{pmatrix}$ is an eigenvector of $T$.
 		\end{enumerate}
 		
 		\item *Let $D(\R)$ be the vector space of (infinitely differentiable) functions $f\colon \R \to \R$, and $T\colon D(\R)\to D(\R)$ the linear transformation given by $T(f)=f'$, the derivative of $f$. Show that any real number $k\in \R$ is an eigenvalue for $T$ and has corresponding eigenvector (sometimes called \textit{eigenfunction}) given by $e^{kx}$. 
@@ -1631,7 +1631,7 @@ Said differently, The transition between these coordinate systems $x_{\mathcal{B
 \end{tikzcd} 
 \end{equation}
 
-\begin{remark}Given bases $\mathcal{A}=\{a_1,\cdots,a_n\}$ and $\mathcal{B}=\{b_1,b\cdots,b_n\}$ the transition from a vector $x\in\mathbf{R}^n$ written in coordinates with respect to $\mathcal{A}$ (i.e., $x_{\mathcal{A}}$) to a vector written with respect to $\mathcal{B}$ (i.e., $x_{\mathcal{B}}$) is given by \begin{equation} \label{eq-change-basis} x_{\mathcal{B}}=P^{-1}Qx_{\mathcal{A}}\end{equation} where $Q$ is the transformation matrix $Q=\begin{pmatrix} a_1 & \cdots & a_n\end{pmatrix}$ and $P=\begin{pmatrix} b_1 & \cdots & b_n\end{pmatrix}$. Seen differently, the following give the transformations between $\R^n$ with respect to different bases. 
+\begin{remark}Given bases $\mathcal{A}=\{a_1,\cdots,a_n\}$ and $\mathcal{B}=\{b_1,\cdots,b_n\}$ the transition from a vector $x\in\mathbf{R}^n$ written in coordinates with respect to $\mathcal{A}$ (i.e., $x_{\mathcal{A}}$) to a vector written with respect to $\mathcal{B}$ (i.e., $x_{\mathcal{B}}$) is given by \begin{equation} \label{eq-change-basis} x_{\mathcal{B}}=P^{-1}Qx_{\mathcal{A}}\end{equation} where $Q$ is the transformation matrix $Q=\begin{pmatrix} a_1 & \cdots & a_n\end{pmatrix}$ and $P=\begin{pmatrix} b_1 & \cdots & b_n\end{pmatrix}$. Seen differently, the following give the transformations between $\R^n$ with respect to different bases. 
 \begin{equation}
  \begin{tikzcd} \R^n \arrow[bend left]{d}{Q} & \text{$\mathcal{A}$-basis} \\ 
  \R^n \arrow[bend left]{d}{P^{-1}} \arrow[bend left]{u}{Q^{-1}} & \text{Standard basis} \\  
@@ -1664,7 +1664,7 @@ Another corollary from Fact \ref{fact-conj} is the following.
 This is why it's important to specify the basis when referring to a matrix representation of $T$: different bases produce different matrices, but represent the same transformation.
 \subsection{Diagonalization}
 
-An $n\times n$ matrix is called a \textbf{diagonal matrix} if $a_{i,j}=$ for all $i\neq j$. Said differently, a \textbf{diagonal matrix} is one of the form 
+An $n\times n$ matrix is called a \textbf{diagonal matrix} if $a_{i,j}=0$ for all $i\neq j$. Said differently, a \textbf{diagonal matrix} is one of the form 
 \begin{equation}  A=\begin{pmatrix} a_{1,1} & 0 &  \cdots & 0 \\
 0 & a_{2,2} & \cdots & 0 \\
 \vdots &  \vdots & \ddots & \vdots \\
@@ -1695,15 +1695,15 @@ Recall that for an $n\times n$ matrix $A$, the \textit{characteristic polynomial
 This polynomial $\chi_A$ has degree $n$, and thus therefore has at most $n$ roots\footnote{For now we are only considering \textit{real} roots of $\chi_A$, but it could of course have complex roots. We'll discuss this later.} (i.e., values of $\lambda$ for which $\chi_A(\lambda)=0$). Suppose that $\lambda_0$ is a root of $\chi_A$, then $(\lambda-\lambda_0)$ must divide $\chi_A(\lambda)$. The \textbf{multiplicity} (also called \textit{algebraic multiplicity}) of $\lambda$ is the largest power $p$ such that \begin{equation} \chi_A(\lambda)=(\lambda-\lambda_0)^p q(\lambda)\end{equation} where $q(\lambda)$ is some other polynomial such that $q(\lambda_0)\neq 0$ (i.e., $\lambda_0$ is not a root of $q$).
 
 \begin{fact}[Some general facts about diagonalization and eigenvectors]
-Let $A$ be an $n\times n$ matrix and $\lambda_1,\cdots,\lambda_k$ be the unique eigenvectors of $A$. Then \begin{itemize}
+Let $A$ be an $n\times n$ matrix and $\lambda_1,\cdots,\lambda_k$ be the distinct eigenvalues of $A$. Then \begin{itemize}
 	\item For $i=1,\cdots, k$ let $E_{\lambda_i}$ denote the eigenspace for $\lambda_i$. Then $\dim(E_{\lambda_i})$\footnote{This is sometimes called the \textit{geometric multiplicity} of $\lambda_i$. This fact then says that algebraic multiplicity is always larger than (or equal to) geometric multiplicity} is less than or equal to the multiplicity of $\lambda_i$ (in the characteristic polynomials of $A$).
-	\item $A$ is diagonalizable if and only if \[ \sum_{i=1}^k \dim(E_{\lambda_i})=n\] The latter occur precisely when either (i) $k=n$ and all eigenvalues of $A$ are distinct, or (ii) the dimension of $E_{\lambda_i}$ equals the multiplicity of $\lambda_i$ for all $i$. 
+	\item $A$ is diagonalizable if and only if \[ \sum_{i=1}^k \dim(E_{\lambda_i})=n\] The latter occurs precisely when the characteristic polynomial $\chi_A$ factors completely into linear factors over $\mathbf{R}$ \textit{and} the dimension of $E_{\lambda_i}$ equals the multiplicity of $\lambda_i$ for every $i$. In particular this holds whenever $k=n$, i.e. when $A$ has $n$ distinct real eigenvalues. (Both conditions are needed: the matrix $\begin{pmatrix} 0 & 1 & 0\\ -1 & 0 & 0 \\ 0&0&1\end{pmatrix}$ has $\chi_A(\lambda)=(\lambda-1)(\lambda^2+1)$, so its only real eigenvalue $\lambda=1$ has geometric multiplicity equal to its algebraic multiplicity, yet the matrix is not diagonalizable over $\mathbf{R}$.) 
 %	\item If $A$ is diagonalizable and $\mathcal{B}_i$ is a basis for the eigenspace $E_{\lambda_i}$ for $i=1,\dots,k$, then $\mathcal{B}=\mathcal{B}_1 \cup \mathcal{B}_2 \cup \cdots \cup \mathcal{B}_k$ is a basis for $\mathbf{R}^n$
 \end{itemize}
 \end{fact}
 
 \begin{remark} 
-	If the geometric multiplicity of any eigenvalue is strictly less than its algebraic multiplicity, then $A$ is not strictly diagonalizable. It's not game over though, every matrix is what's called \textit{almost diagonalizable}: that is, every (square) matrix has a basis of \textit{generalized eigenvectors}, and is conjugate to an \textit{almost diagonal} matrix\footnote{That is, a diagonal matrix which may have an entry of 1 above any diagonal entry. This is related to the \href{https://en.wikipedia.org/wiki/Jordan_normal_form}{Jordan decomposition} of matrices. }. We may do more with this later. 
+	If the geometric multiplicity of any eigenvalue is strictly less than its algebraic multiplicity, then $A$ is not strictly diagonalizable. It's not game over though: working over $\mathbf{C}$, every (square) matrix has a basis of \textit{generalized eigenvectors}, and is conjugate to an \textit{almost diagonal} matrix\footnote{That is, a diagonal matrix which may have an entry of 1 above any diagonal entry. This is related to the \href{https://en.wikipedia.org/wiki/Jordan_normal_form}{Jordan decomposition} of matrices. }. We may do more with this later. 
 
 \end{remark}
 
@@ -1753,9 +1753,9 @@ Let $A$ be an $n\times n$ matrix and $\lambda_1,\cdots,\lambda_k$ be the unique 
 	
 	\item Recall that the \textit{trace}, $\tr A$, of a matrix $A$ is the sum of its diagonal entries. Show that if $A$ is a diagonalizable matrix and $A$ is conjugate to $B$ then $\tr{A}=\tr{B}$. (Harder: show that this is still true even if $A$ is not diagonalizable).
 	
-	\item Let $\mathbf{P}_3$ be the vector space of cubic polynomials and define $T\colon \mathbf{P}_3\to \mathbf{P}_3$ by \[ T(p)=p(0)-p(1)t-p(1)t^2+p(0)t^3\]  Determine $T(1+t+t^2+t^3)$ and $T(1+t^2)$. Are either of these inputs eigenvectors for $T$?
+	\item Let $\mathbf{P}_3$ be the vector space of polynomials of degree at most $3$ and define $T\colon \mathbf{P}_3\to \mathbf{P}_3$ by \[ T(p)=p(0)-p(1)t-p(1)t^2+p(0)t^3\]  Determine $T(1+t+t^2+t^3)$ and $T(1+t^2)$. Are either of these inputs eigenvectors for $T$?
 	
-	\item Let $\mathbf{P}_2$ be the vector space of quadratic polynomials and $T\colon \mathbf{P}_2\to\mathbf{P}_2$ given by \[ T(a+bt+ct^2)=3a+(5a-c)t+(3a-b+2c)t^2\]
+	\item Let $\mathbf{P}_2$ be the vector space of polynomials of degree at most $2$ and $T\colon \mathbf{P}_2\to\mathbf{P}_2$ given by \[ T(a+bt+ct^2)=3a+(5a-c)t+(3a-b+2c)t^2\]
 	Write a matrix which represents $T$ with respect to the basis $\mathcal{B}=\{1,t,t^2\}$ of $\mathbf{P}_2$. 
 	
 	\item \label{ex-diag} Let $A$ be a $2\times 2$ matrix such that $A=PDP^{-1}$ for $D$ and $P$ of the form: \[ D=\begin{pmatrix} \lambda & 0 \\ 0 & \mu \end{pmatrix}, \qquad P=\begin{pmatrix} u & v \end{pmatrix}\] (here, $\lambda,\mu\in\R$ and $u,v\in \R^2$ such that  $P$ is invertible). Show that $\lambda$ and $\mu$ are eigenvalues of $A$ with eigenvectors $u,v$ respectively. 
@@ -1783,17 +1783,17 @@ The word \textit{stochastic} is used in mathematics to refer a system which is p
 \begin{defn}A \textbf{stochastic matrix} is an $n\times n$ matrix $A$ such that each column\footnote{It's evidently more common in the literature of Markov chains to discuss how stochastic matrices act on \textit{row} vectors instead of \textit{column} vectors (as is typical in our course). That to say, if you look up the definition of stochastic matrices you may see that each \textit{row} is required to add to 1 without restriction on the columns. These two definitions are equivalent, it's just a matter of convention (and transposition). } of $A$ is a probability vector. 
 \end{defn}
 
-Think of a stochastic matrices are matrix of probabilities. That is, given an ``experiment" with $n$ states which operates in discrete time intervals. The entry $A_{i,j}$ is the probability of transitioning from state $i$ to state $j$ in one time period. 
+Think of a stochastic matrix as a matrix of probabilities. That is, suppose we are given an ``experiment" with $n$ states which operates in discrete time intervals. Because our matrices act on column vectors (so that $x_{k+1}=Ax_k$), the entry $A_{i,j}$ is the probability of transitioning \textit{from} state $j$ \textit{to} state $i$ in one time period. In other words, column $j$ records all the ways of leaving state $j$---which is exactly why its entries sum to $1$. 
 
 \begin{example} \label{ex-redbull}
 Each week, a student receives a dozen bottles of a beverage of their choosing: diet Red Bull, spring water, or lime seltzer. A student who choses diet Red Bull has a 30\% of choosing diet Red Bull the next week, a 50\% chance of switching to spring water, and a 20\% chance of switching to lime seltzer. Similarly, spring water drinkers are 15\% likely to switch to diet Red Bull, stick with spring water 60\% of the time, and have a 25\% chance of switching to the lime seltzer. Last, lime seltzer drinkers switch to diet Red Bull 10\% of the time, spring water 20\% of the time, and remain lime seltzer fans 70\% of the time. 
 
-This is modeled by the stochastic matrix \begin{equation} A=\begin{pmatrix} 0.3 &0.15  & 0.1 \\ 0.5 & 0.6 & 0.2 \\ 0.2 & 0.25 & 0.7\end{pmatrix}\end{equation} where the first, second, and third columns respectively are diet Red Bull, spring water, and lime selzter; and the entry in position $i,j$ is the probability of switching from beverage $i$ to beverage $j$.
+This is modeled by the stochastic matrix \begin{equation} A=\begin{pmatrix} 0.3 &0.15  & 0.1 \\ 0.5 & 0.6 & 0.2 \\ 0.2 & 0.25 & 0.7\end{pmatrix}\end{equation} where the first, second, and third columns respectively are diet Red Bull, spring water, and lime seltzer; and the entry in position $i,j$ is the probability of switching from beverage $j$ to beverage $i$. (So reading \textit{down} column 1 gives the three outcomes for a current Red Bull drinker: $0.3$, $0.5$, $0.2$.)
 \end{example}
 
 \begin{prop} \label{prop-pv} If $x$ is a probability vector and $A$ a stochastic matrix, then $Ax$ is a probability vector. \end{prop}
 \begin{proof}
-Let $x=\begin{pmatrix} x_1 \\ \vdots \\ x_n\end{pmatrix}$ be a probability vector and $A$ a stochastic matrix. Since the $i$-th coordinate of $Ax$ is given by $ \sum_{i=1}^n A_{i,j} x_j$, the sum of all coordinates of $Ax$ must be \[ \sum_{i=1}^n \sum_{j=1}^n A_{i,j}x_j = \sum_{j=1}^n \sum_{i=1}^n A_{i,j}x_j=\sum_{j=1}^nx_j \left( \sum_{i=1}^n A_{i,j}\right)=\sum_{j=1}^n x_j=1\] 
+Let $x=\begin{pmatrix} x_1 \\ \vdots \\ x_n\end{pmatrix}$ be a probability vector and $A$ a stochastic matrix. Since the $i$-th coordinate of $Ax$ is given by $ \sum_{j=1}^n A_{i,j} x_j$, the sum of all coordinates of $Ax$ must be \[ \sum_{i=1}^n \sum_{j=1}^n A_{i,j}x_j = \sum_{j=1}^n \sum_{i=1}^n A_{i,j}x_j=\sum_{j=1}^nx_j \left( \sum_{i=1}^n A_{i,j}\right)=\sum_{j=1}^n x_j=1\] 
 (note the first equation holds since the order of summation for a \textit{finite} sum does not change the result)\end{proof}
 
 Since the columns of a stochastic matrix are probability vectors the following corollary is immediate. 
@@ -1947,7 +1947,7 @@ Let $V$ be a vector space and $\ip{\,}{}$ an inner product on $V$. Then
 \begin{proof}
 Expand $|u-v|^2=\ip{u-v}{u-v}$: \[ \ip{u-v}{u-v}=\ip{u}{u}-\ip{u}{v}-\ip{v}{u}+\ip{-v}{-v}=|u|^2 -2\ip{u}{v}+|v|^2\]
 
-\textit{picture here}
+
 \end{proof}
 
 Using the above, we also find that $|u+v|^2=|u|^2+|v|^2+2\ip{u}{v}$. Therefore, vectors $u,v$ are orthogonal if and only if $|u+v|^2=|u|^2+|v|^2$ (this is essentially the Pythagorean theorem). 
@@ -1965,7 +1965,7 @@ Let $V$ be a vector space with inner product $\ip{\,}{}$, and suppose that $W\su
 
 
 \begin{prop}
-	Let $A$ be an $n\times n$ matrix. Then $(\row A)^{\perp}=\nul A$ and $(\col A)^{\perp}=\nul{A^{\perp}}$
+	Let $A$ be an $m\times n$ matrix. Then $(\row A)^{\perp}=\nul A$ and $(\col A)^{\perp}=\nul{A^{T}}$
 \end{prop}
 
 \begin{proof}
@@ -1982,7 +1982,7 @@ Let's say that a (finite) set of vectors $S=\{v_1,\cdots,v_k\}$ in $\R^n$ is cal
 	If $S=\{v_1,\cdots,v_k\}$ is an orthogonal set of nonzero vectors in $\R^n$ then $S$ is a linearly independent collection of vectors. 
 \end{prop}
 \begin{proof}
-	Suppose that we're given coefficients $c_i$ such that \[ \vec{0}=c_1v_1+c_2v_2+\cdots c_kv_k\] Take this equation and dot with vector $v_i$, this gives: \[ 0 =\vec{0}\cdot v_i = (c_1 v_1+\cdots +c_k v_k)\cdot v_k= c_i v_i\cdot v_i.\] Therefore, $c_i |v_i|^2=0$, and since $|v_i|\neq0$ this must mean that $c_i=0$. Since $i$ was arbitrary, this shows $c_i=0$ for all $i=1,\cdots,n$; that is that $S$ a linearly independent set of vectors.
+	Suppose that we're given coefficients $c_i$ such that \[ \vec{0}=c_1v_1+c_2v_2+\cdots c_kv_k\] Take this equation and dot with vector $v_i$, this gives: \[ 0 =\vec{0}\cdot v_i = (c_1 v_1+\cdots +c_k v_k)\cdot v_i= c_i v_i\cdot v_i.\] Therefore, $c_i |v_i|^2=0$, and since $|v_i|\neq0$ this must mean that $c_i=0$. Since $i$ was arbitrary, this shows $c_i=0$ for all $i=1,\cdots,k$; that is that $S$ a linearly independent set of vectors.
 \end{proof}
  
 \begin{terminology} An \textbf{orthogonal basis} of $\R^n$ is a basis $\mathcal{B}=\{ b_1,\cdots , b_n\}$ which is also an orthogonal set (note from Prop \ref{prop-orth-li} that any orthogonal set of $n$ vectors in $\R^n$ is an orthogonal basis). Furthermore, an orthogonal basis is called an \textbf{orthonormal basis} if each vector $b_i\in \mathcal{B}$ satisfies $|b_i|=1$ (i.e., if each basis vector is also a unit vector).
@@ -2002,7 +2002,7 @@ Said differently, it's very easy to find the coefficients of a vector written wi
 	An $n\times n$ matrix $A$ is called \textbf{orthogonal} if $A^TA=I$. 
 \end{defn}
 
-Note since $I^T=I$, this is the same as requiring that $AA^T=(A^TA)^T=I$. Geometrically, any rotation matrix is an orthogonal matrix, as are reflection matrices (infact, this describes all orthogonal matrices). One thing to note about orthogonal matrices is the following
+Note since $I^T=I$, this is the same as requiring that $AA^T=(A^TA)^T=I$. Geometrically, any rotation matrix is an orthogonal matrix, as are reflection matrices (in $\mathbf{R}^2$ these are in fact \textit{all} of the orthogonal matrices; in higher dimensions every orthogonal matrix is a \textit{product} of reflections, though not necessarily a single rotation or reflection---in $\mathbf{R}^3$, for instance, $-I$ is neither). One thing to note about orthogonal matrices is the following
 
 \begin{prop} An $n\times n$ matrix $A$ is orthogonal if and only if the columns of $A$ form an orthonormal basis of $\R^n$. 
 \end{prop}
@@ -2016,7 +2016,7 @@ Note since $I^T=I$, this is the same as requiring that $AA^T=(A^TA)^T=I$. Geomet
 	Therefore, $A^TA=I$ if and only if (i) for each $i=1,\cdots,n$, $v_i\cdot v_i=1$ (and so $|v_i|=1$), and (ii) for each $i\neq j$, $v_i\cdot v_j=0$. That is so say, $S=\{v_1,\cdots,v_n\}$ is an orthogonal set of unit vectors, which must span $\R^n$, and so is an orthonormal basis.   
 \end{proof}
 
-One important role of orthogonal matrices is that they represent \textit{isometries}\footnote{\textit{Iso}- meaning ``same'', and \textit{metry} coming from ``measure'': both come from Greek} of $\R^n$. That is to say, an orthogonal matrix always preserves lengths of vectors, and angles between vectors. Even differentlier, linear transformations represented by orthogonal matrices can only act on $\R^n$ by rotation and reflection. 
+One important role of orthogonal matrices is that they represent \textit{isometries}\footnote{\textit{Iso}- meaning ``same'', and \textit{metry} coming from ``measure'': both come from Greek} of $\R^n$. That is to say, an orthogonal matrix always preserves lengths of vectors, and angles between vectors. Even differentlier, linear transformations represented by orthogonal matrices act on $\R^n$ by compositions of rotations and reflections. 
 \subsection{Exercises}
 
 \begin{enumerate}[label=\arabic*.]
@@ -2046,7 +2046,7 @@ and for $x,y\in \R^3$ define an inner product by: $\ip{x}{y}_A= x^TAy$
 
 
 
-\item Find a third vector $w$ so that $\{u,v,w\}$ forms an orthonormal basis of $\R^3$ for \[u=\begin{pmatrix} -2/3 \\ 1/3\\2/3\end{pmatrix}, \qquad v=\m{ 1/3 \\ 2/3\\ 0}\]
+\item Find a third vector $w$ so that $\{u,v,w\}$ forms an orthonormal basis of $\R^3$ for \[u=\begin{pmatrix} -2/3 \\ 1/3\\2/3\end{pmatrix}, \qquad v=\m{ 2/3 \\ 2/3\\ 1/3}\]
 \item Let $V\subset \R^4$ be the subspace with basis $\begin{pmatrix} 1 \\ 3 \\ 0 \\ -2\end{pmatrix}, \begin{pmatrix} 4 \\ 3\\ 1 \\ 0\end{pmatrix}$. Determine a basis for $V^{\perp}$.
 
 \item Let $V$ be a subspace of $\R^n$. 
@@ -2126,7 +2126,7 @@ Let $V$ a subspace of $\R^n$, $\{v_1,\cdots,v_k\}$ an orthonormal basis of $V$, 
 \end{prop}
 
 \subsection{The Gram-Schmidt algorithm}
-The formulas above for projecting a vector onto a subspace all required that the subspace had an orthogonal or orthonormal basis. Since not as bases are orthogonal, it's useful to have a general approach algorithm for turning a basis into an orthogonal one. This is called the \textit{Gram-Schmidt} process.
+The formulas above for projecting a vector onto a subspace all required that the subspace had an orthogonal or orthonormal basis. Since not all bases are orthogonal, it's useful to have a general algorithm for turning a basis into an orthogonal one. This is called the \textit{Gram-Schmidt} process.
 
 \begin{thm}Let $V$ be a subspace of $\R^n$ and $\mathcal{B}=\{v_1,\cdots,v_k\}$ be \textit{any} basis for $V$. Then $\mathcal{B}$ can be made into an orthogonal basis $\{u_1,\cdots,u_k\}$ given as follows
 \begin{align}
@@ -2134,7 +2134,7 @@ The formulas above for projecting a vector onto a subspace all required that the
 	u_2 &= v_2- \dfrac{v_2\cdot u_1}{u_1\cdot u_1}u_1 \nonumber\\
 	u_3 &= v_3 -\dfrac{v_3\cdot u_1}{u_1\cdot u_1}u_1-\dfrac{v_3\cdot u_2}{u_2\cdot u_2}u_2 \nonumber \\
 	& \;\vdots \nonumber\\
-	u_k &= v_k -  \dfrac{v_k\cdot u_1}{u_1\cdot u_1}u_1 - \cdots - \dfrac{v_k\cdot u_k}{u_k\cdot u_k}u_k 
+	u_k &= v_k -  \dfrac{v_k\cdot u_1}{u_1\cdot u_1}u_1 - \cdots - \dfrac{v_k\cdot u_{k-1}}{u_{k-1}\cdot u_{k-1}}u_{k-1} 
 \end{align}
 \end{thm}
 
@@ -2144,7 +2144,7 @@ Note that this is the same as writing
 	u_2 &= v_2- \proj{u_1}{v_2} \nonumber\\
 	u_3 &= v_3 -\proj{u_1}{v_3}-\proj{u_2}{v_3} \nonumber \\
 	& \;\vdots \nonumber\\
-	u_k &= v_k - \proj{u_1}{v_k} - \cdots -\proj{u_{k-1}}{v_{k-1}}
+	u_k &= v_k - \proj{u_1}{v_k} - \cdots -\proj{u_{k-1}}{v_{k}}
 \end{align}
 or starting with $u_1=v_1$ and inductively defining $V_i=\Span{u_1,\cdots,u_i}$ and defining $u_{i+1}=v_{i+1}-\proj{V_i}{v_{i+1}}$
 
@@ -2154,7 +2154,7 @@ or starting with $u_1=v_1$ and inductively defining $V_i=\Span{u_1,\cdots,u_i}$ 
 \subsection{$QR$ factorization}
 
 A useful application of the Gram-Schmidt process is what's called the $QR$-factorization of a square matrix $A$. This matrix factorization underlies several algorithmic solutions to common problems in linear algebra, in particular, it can be used to compute the eigenvalues of $A$ (Example \ref{ex-QR}) and to solve Least squares problems (see Section \ref{sec-LS}).
-\begin{thm} \label{thm-QR}Let $A$ be an $m\times n$ matrix with linearly independent columns. Then $A$ can be written as \begin{equation} A=QR\end{equation} where $Q$ is an $m\times n$ matrix whose columns form an orthonormal basis for $\col{A}$ and $R$ is and $n\times n$ upper triangular matrix with positive entries along the diagonal.\end{thm}
+\begin{thm} \label{thm-QR}Let $A$ be an $m\times n$ matrix with linearly independent columns. Then $A$ can be written as \begin{equation} A=QR\end{equation} where $Q$ is an $m\times n$ matrix whose columns form an orthonormal basis for $\col{A}$ and $R$ is an $n\times n$ upper triangular matrix with positive entries along the diagonal.\end{thm}
 
 \begin{proof} This is constructive: let's let $A=\m{a_1 & a_2 & \cdots & a_n}$ be given as a matrix of column vectors, $a_i\in \R^m$. Applying the Gram-Schmidt to the collection $\{a_1,\cdots,a_n\}$ we produce an orthonormal basis $\{u_1,\cdots,u_n\}$ (note: the columns of $A$ were linearly independent so their span has dimension $n$) for $\col{A}$ such that 
 \begin{align}
@@ -2209,20 +2209,20 @@ Without loss of generality, it can be arranged so that $R$ has positive entries 
 
 \item Determine the $QR$ factorization of the following matrices:
 \begin{enumerate}
-	\item $A=\m{1 & 0 & \\ 1 & 1 & 0 \\ 1 & 1 & 1 \\ 1 & 1 & 1}$
+	\item $A=\m{1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \\ 1 & 1 & 1}$
 	\item $B=\m{5 & 9 \\ 1 & 7 \\ -3 & -5 \\ 1 & 5}$
 	\item $C=\m{-1 & 13 & 7 & -11 \\ 2 & 1 & -5 & 3\\ -6 & 3 & 13 & -3 \\ 16 & -16 & -2 & 5 \\ 2 & 1 & -5 & -7}$
 \end{enumerate}
 
 \item Use the method from Example \ref{ex-QR} to approximate the eigenvalues of the matrix
 \[ A=\begin{pmatrix} 1 & 5 & 3 & -2 \\ 7 & 2 & 4 & 3 \\ -8 & 3 & 1 & 9 \\ 10 & 9 & -5 & -2\end{pmatrix}\] 
-\item Let $A$ be an $m\times n$ matrix. Show that every $x\in R^n$ can be uniquely written as $x=p+u$ where $p\in \row{A}$ and $u\in \nul{A}$.
+\item Let $A$ be an $m\times n$ matrix. Show that every $x\in \R^n$ can be uniquely written as $x=p+u$ where $p\in \row{A}$ and $u\in \nul{A}$.
 
 \item \textit{True or false}. Determine if the following statements are true or false. Justify your answers.
 \begin{enumerate}
 	\item If $V\subset \R^n$ is a subspace and $x\in V$ then $\proj{V^{\perp}}{x}=\vec{0}$.
 	\item If $V\subset \R^n$ is a subspace and $x\in\R^n$ such that  $\proj{V^{\perp}}{x}=\vec{0}$ then $x\in V$
-	\item If $U$ is an $m\times n$ matrix with orthogonal columns then $UU^Tx=x$ for all $x\in \R^n$. 
+	\item If $U$ is an $m\times n$ matrix with orthogonal columns then $UU^Tx=x$ for all $x\in \R^m$. 
 	\item If $V\subset \R^n$ is a subspace, $\mathcal{B}_1$ is a basis of $V$ and $\mathcal{B}_2$ is a basis of $V^{\perp}$ then $\mathcal{B}=\mathcal{B}_1\cup \mathcal{B}_2$ is a basis of $\R^n$.
 
 \end{enumerate}
@@ -2275,7 +2275,7 @@ Let $A$ be an $m\times n$ matrix and $b\in \R^m$. Any vector $\bar{x}\in \R^n$ t
 \end{prop}
 
 \begin{proof}
-	With the right picture this should be geometrically clear: Given a vector $\bar{x}$ which satisfies $\eqref{eq-ls}$, $A\bar{x}$ is a vector in $\col{A}$ such that $b-A\bar{x}$ meets $\col{A}$ at a right angle. Then, by the Pythagorean theorem, this must be a point in $\col{A}$ which minimizes the distance to $b$ (see picture).
+	With the right picture this should be geometrically clear: Given a vector $\bar{x}$ which satisfies $\eqref{eq-ls}$, $A\bar{x}$ is a vector in $\col{A}$ such that $b-A\bar{x}$ meets $\col{A}$ at a right angle. Then, by the Pythagorean theorem, this must be a point in $\col{A}$ which minimizes the distance to $b$.
 \end{proof}
 
 The problem then becomes determining when the \eqref{eq-ls} can be solved, and how. There's a few ways to express this, but one observation is that if, for instance, $A^TA$ were an invertible matrix then \eqref{eq-ls} would result in $\bar{x}=(A^TA)^{-1}A^Tb$, which produces an explicit least-squares solution. A sufficient condition for this to occur is that the columns of $A$ be linearly independent. This is summarized in the following (I leave the proof to you).
@@ -2357,10 +2357,9 @@ First, some features of symmetric matrices.
 \begin{proof}
 	Let's start with a. Let $\lambda,\mu$ be distinct eigenvalues of $A$ with eigenvectors $x,y$ respectively. Then \begin{equation} \lambda x\cdot y= (\lambda x)^T y=(Ax)^Ty=x^TA^Ty=x^TAy=x^T(\mu y)=\mu x^Ty=\mu x\cdot y\end{equation} That is, $(\lambda- \mu)x\cdot y=0$. Since $\lambda$ and $\mu$ were assumed to be distinct, $\lambda-\mu\neq 0$ and so $x\cdot y=0$, which is to say that $x$ and $y$ are orthogonal. 
 
-	For b. suppose that $\lambda$ is such that $Ax=\lambda x$ for some nonzero $x$. Then \[ (Ax)\cdot (Ax)=(Ax)^TAx=x^T A^TAx=x^T A^T \lambda x=\lambda x^T Ax=\lambda^2 x^Tx=\lambda^2x\cdot x\]
-	Therefore, $\lambda^2=|Ax|^2/|x|^2$, which is to say that $\lambda^2$ is a positive (possibly $0$) real number. Thus $\lambda\in \R$.\end{proof}
+	For b. we have to allow for the possibility that $\lambda$ and its eigenvector are complex, so we use the \textit{conjugate} transpose: for a complex vector $x$ write $\bar{x}$ for its entrywise complex conjugate. Suppose $Ax=\lambda x$ for some nonzero (possibly complex) $x$. Then, using that $A$ is real and symmetric, \[ \bar{x}^TAx = \bar{x}^T(\lambda x)=\lambda\, \bar{x}^Tx \qquad \text{and} \qquad \bar{x}^TAx=(A\bar{x})^Tx=\overline{(Ax)}^Tx=\bar{\lambda}\,\bar{x}^Tx\] Since $\bar{x}^Tx=\sum_i |x_i|^2$ is a positive real number, we may cancel it to get $\lambda=\bar\lambda$, and therefore $\lambda\in \R$.\end{proof}
 
-In addition to the above, a symmetric matrix always has ``enough" eigenvectors in that if $A$ is an $n\times n$ symmetric matrix then there is a basis of $\R^n$ consisting of eigenvectors of $A$\footnote{This is a bit harder to show, but the idea is the following. If $A$ is symmetric and $\lambda$ an eigenvalue with eigenvector $v$, then $A$ restricts to a transformation on $\R^n \setminus\Span{v}$. Said differently, if $u$ is such that $u\cdot v=0$ then $Au\cdot v=0$ still since \[ (Au)\cdot v=u^TA^Tv=u^TAv=u^T\lambda v=\lambda u^T=\lambda u\cdot v=\] Thus, if you have an eigenvalue $\lambda$ of $A$ with algebraic multiplicity $m>1$, you can find vector $v_1 \in E_{\lambda}$, then $v_2\in E_{\lambda}\setminus \Span{v_1}, v_3\in E_{\lambda} \setminus \Span{v_1,v_2}$, etc. until you have a basis of eigenvectors $\{v_1,\cdots,v_m\}$ of $E_{\lambda}$.}. From the above, we know this basis can be arranged to be orthogonal (by, for instance, applying Gram-Schmit to each eigenspace). Therefore, if $A$ is an $n\times n$ symmetric matrix, then there is an \textit{orthonormal} basis of $\R^n$ consisting of eigenvectors for $A$ (we'll call this feature that is \textbf{orthogonally diagonalizable}). The following theorem summarizes the above and tells us that in fact \textit{only} symmetric matrices have this propoerty.
+In addition to the above, a symmetric matrix always has ``enough" eigenvectors in that if $A$ is an $n\times n$ symmetric matrix then there is a basis of $\R^n$ consisting of eigenvectors of $A$\footnote{This is a bit harder to show, but the idea is the following. If $A$ is symmetric and $\lambda$ an eigenvalue with eigenvector $v$, then $A$ restricts to a transformation on the orthogonal complement $\Span{v}^{\perp}$. Said differently, if $u$ is such that $u\cdot v=0$ then $Au\cdot v=0$ still since \[ (Au)\cdot v=u^TA^Tv=u^TAv=u^T\lambda v=\lambda u^Tv=\lambda\, u\cdot v=0.\] Thus, if you have an eigenvalue $\lambda$ of $A$ with algebraic multiplicity $m>1$, you can find a vector $v_1 \in E_{\lambda}$, then $v_2\in E_{\lambda}$ outside $\Span{v_1}$, then $v_3\in E_{\lambda}$ outside $\Span{v_1,v_2}$, etc. until you have a basis of eigenvectors $\{v_1,\cdots,v_m\}$ of $E_{\lambda}$.}. From the above, we know this basis can be arranged to be orthogonal (by, for instance, applying Gram-Schmidt to each eigenspace). Therefore, if $A$ is an $n\times n$ symmetric matrix, then there is an \textit{orthonormal} basis of $\R^n$ consisting of eigenvectors for $A$ (we'll call this feature being \textbf{orthogonally diagonalizable}). The following theorem summarizes the above and tells us that in fact \textit{only} symmetric matrices have this property.
 
 \begin{thm}[Spectral theorem for symmetric matrices] \label{thm-sym-matrix}
 	Let $A$ be an $n\times n$ symmetric matrix. Then $A$ has $n$ (real) eigenvalues (perhaps including repetitions) and  there is an orthonormal basis of $\R^n$ consisting of eigenvectors of $A$. Moreover, any $n\times n$ matrix which admits an orthonormal basis of $\R^n$ consisting of its eigenvectors must be symmetric.
@@ -2387,11 +2386,11 @@ That is to say that given any matrix $A$, even if $A$ is not square, the matrix 
 Note that for each $i=1,\cdots,n$ \begin{equation}
 	|Av_i|^2=(Av_i)^T(Av_i)=v_i^T(A^TAv_i)=v_i^T(\lambda_iv_i)=\lambda_i v_i^Tv_i=\lambda_i
 \end{equation}
-Therefore, each eigenvalue is positive, and without loss of generality we can arrange them as follows $\lambda_1 \geq \lambda_2\geq \cdots \geq \lambda_n\geq 0$. The \textit{singular values} of $A$ are defined as the square roots of these values as follows:
+Therefore, each eigenvalue is nonnegative, and without loss of generality we can arrange them as follows $\lambda_1 \geq \lambda_2\geq \cdots \geq \lambda_n\geq 0$. The \textit{singular values} of $A$ are defined as the square roots of these values as follows:
 
 \begin{defn} For an $m\times n$ matrix $A$ such that $A^TA$ has eigenvalues $\lambda_1\geq \lambda_2\geq\cdots\geq \lambda_n\geq0$, the \textbf{singular values} of a matrix $A$ are given by \begin{equation} \sigma_i=\sqrt{\lambda_i} \qquad  (i=1,\cdots,n)\end{equation}
 \end{defn}
-Note that if $\sigma=\sqrt{\lambda}$ is a singular value of $A$ then there is unit vector $v$ such that $|Av|^2=\lambda$ and so $|Av|=\sigma$. Such a vector $v$ behaves like a ``principle axis'' for the domain of $A$ as we'll see. First a proposition
+Note that if $\sigma=\sqrt{\lambda}$ is a singular value of $A$ then there is unit vector $v$ such that $|Av|^2=\lambda$ and so $|Av|=\sigma$. Such a vector $v$ behaves like a ``principal axis'' for the domain of $A$ as we'll see. First a proposition
 
 \begin{prop}\label{prop:symrank}
 	Let $A$ be an $m\times n$ matrix and $\{v_1,\cdots,v_n\}$ be an orthonormal basis of $\R^n$ of eigenvectors for $A^TA$ so that the corresponding eigenvalues satisfy $\lambda_1\geq \cdots \geq \lambda_n\geq 0$. Let $r=\rank{A}$. Then, $\sigma_1=\sqrt{\lambda_1},\cdots,\sigma_r=\sqrt{\lambda_r}$ are the only nonzero singular values of $A$ and $\{Av_1,\cdots,Av_r\}$ is an orthogonal basis for $\col{A}$.
@@ -2403,11 +2402,11 @@ The main idea is that for \textit{any} matrix $A$, the nonzero singular values o
 
 \begin{thm}[Singular value decomposition]Let $A$ be an $m\times n$ matrix with singular values $\sigma_1\geq \sigma_2\geq \cdots\sigma_n\geq 0$ and set $r$ be the integer such that $\sigma_{r+1}=\sigma_{r+2}=\cdots=\sigma_n=0$ (if all singular values are strictly positive then $r=n$). Let $D$ be the diagonal matrix of \textit{nonzero} singular values of $A$, \[D=\m{ \sigma_1 & & \\  & \ddots & \\ && \sigma_r}\] and define $\Sigma$ to be the $m\times n$ matrix $\Sigma= \m{ D & \mathbf{0} \\ \mathbf{0} & \mathbf{0}}$ (here $\mathbf{0}$ denotes the matrix of the appropriate size with all entries of $0$). Then there are orthogonal matrices $U$ ($m\times m$) and $V$ ($n\times n$) such that \begin{equation} A=U\Sigma V^T\label{eq-svd} \end{equation}
 \end{thm}
-\begin{remark}[Computing $U$ and $V$ from the singular value decomposition] The matrices from \eqref{eq-svd} are computed as follows: Set $V=\m{v_1, \cdots,v_n}$, where $v_1,\cdots,v_m$ is an orthonormal basis for $A^TA$ corresponding to the eigenvalues $\lambda_1\geq \cdots \geq \lambda_n\geq 0$ of $A^TA$. $U$ is found as follows. Suppose $A$ has rank $r$, then the first $r$ entries of $U$ are computed as \begin{equation} u_i=\dfrac{Av_i}{|Av_i|} \qquad 1\leq i\leq r\end{equation} If $r=m$ then we're done. Otherwise there is an $m-r$ dimensional subspace of $\R^m$ left over, pick \textit{any} orthonormal basis $u_{r+1},\cdots,u_m$ of this space and set $U=\m{ u_1 & \cdots & u_m}$.\end{remark}
+\begin{remark}[Computing $U$ and $V$ from the singular value decomposition] The matrices from \eqref{eq-svd} are computed as follows: Set $V=\m{v_1 & \cdots & v_n}$, where $v_1,\cdots,v_n$ is an orthonormal basis of $\R^n$ consisting of eigenvectors of $A^TA$ corresponding to the eigenvalues $\lambda_1\geq \cdots \geq \lambda_n\geq 0$ of $A^TA$. $U$ is found as follows. Suppose $A$ has rank $r$, then the first $r$ columns of $U$ are computed as \begin{equation} u_i=\dfrac{Av_i}{|Av_i|} \qquad 1\leq i\leq r\end{equation} If $r=m$ then we're done. Otherwise there is an $m-r$ dimensional subspace of $\R^m$ left over, pick \textit{any} orthonormal basis $u_{r+1},\cdots,u_m$ of this space and set $U=\m{ u_1 & \cdots & u_m}$.\end{remark}
 
 Note that since $V$ is orthogonal, $V^T=V^{-1}$, and so \eqref{eq-svd} should bear resemblance to the usual diagonalization of $A$ (i.e., $A=PDP^{-1}$) albeit with a different matrix on the left and right. 
 
-\begin{terminology} In the diagonalization case, the columns of $P$ are the eigenvectors of $A$: in this case we call columns of $U$ are called the \textbf{left singular vectors} of $A$ and the columns of $V$ are called the \textbf{right singular vectors}. The idea is that these vectors ``characterize" the transformation $A$ in the same way that eigenvectors do for a square matrix. 
+\begin{terminology} In the diagonalization case, the columns of $P$ are the eigenvectors of $A$: in this case the columns of $U$ are called the \textbf{left singular vectors} of $A$ and the columns of $V$ are called the \textbf{right singular vectors}. The idea is that these vectors ``characterize" the transformation $A$ in the same way that eigenvectors do for a square matrix. 
 \end{terminology}
 
 \begin{remark}
@@ -2443,15 +2442,15 @@ Right: the image $AS$ of the unit sphere under $A$. The two principle directions
 \label{fig:singval}
 \end{figure}
 
- Suppose $A$ is the $3\times 2$ matrix \[ A=\m{4 & 11 & 14 \\ 8 & 7 & -2}\] from our previous example. Then $A$ represents a linear transformation $\R^3\to\R^2$. Let $S$ be the unit sphere in $\R^3$ (i.e., $x^2+y^2+z^2=1$) and \[AS =\{Av : v\in S\}\] be the image of the unit sphere under $A$ (as a region in $\R^2$). In this case, $AS$ is an ellipse: the major and minor radii are $6\sqrt{10}$ and $3\sqrt{10}$ respectively (the singular values of $A$), and occur along the axes in $\R^2$ given by the corresponding left singular values of $A$, the columns of the matrix $U$. The right singular values of $A$ denote the axes in the domain which get sent to each of these axes in $\R^2$: the first two columns of $V$ go to the major and minor axes of $AS$, respectively, and the third column (corresponding to singular value $\sigma_3=0$) gets ``crushed'' (note that a linear transformation $\R^3\to\R^2$ cannot be injective). This is all summarized in Figure \ref{fig:singval}.
+ Suppose $A$ is the $2\times 3$ matrix \[ A=\m{4 & 11 & 14 \\ 8 & 7 & -2}\] from our previous example. Then $A$ represents a linear transformation $\R^3\to\R^2$. Let $S$ be the unit sphere in $\R^3$ (i.e., $x^2+y^2+z^2=1$) and \[AS =\{Av : v\in S\}\] be the image of the unit sphere under $A$ (as a region in $\R^2$). In this case, $AS$ is an ellipse: the major and minor radii are $6\sqrt{10}$ and $3\sqrt{10}$ respectively (the singular values of $A$), and occur along the axes in $\R^2$ given by the corresponding left singular vectors of $A$, the columns of the matrix $U$. The right singular vectors of $A$ denote the axes in the domain which get sent to each of these axes in $\R^2$: the first two columns of $V$ go to the major and minor axes of $AS$, respectively, and the third column (corresponding to singular value $\sigma_3=0$) gets ``crushed'' (note that a linear transformation $\R^3\to\R^2$ cannot be injective). This is all summarized in Figure \ref{fig:singval}.
 
 
 
 In general, when finding the singular value decomposition of an $m\times n$ matrix $A$ you determine: 
 \begin{itemize}
 	\item The image of the unit ``sphere'' $S$ in $\R^n$ under the matrix $A$. This will always be an ``ellipsoid'' $AS$ of dimension $k=\rank{A}$ living in $\R^m$
-	\item The principle axes of $AS$ along with the ``radii'' of the ellipse along these axes
-	\item The axes in $\R^n$ which get sent to each principle axis of $AS$, along with all axes which get crushed by the transformation $A$
+	\item The principal axes of $AS$ along with the ``radii'' of the ellipse along these axes
+	\item The axes in $\R^n$ which get sent to each principal axis of $AS$, along with all axes which get crushed by the transformation $A$
 \end{itemize}
 That's it. Since singular value decomposition can be applied to \textit{any} matrix $A$, this gives a canonical way to understand any given linear transformation. They takes spheres to ellipsoids, that's about it. See Appendix \ref{app-image} for an example of how singular value decomposition can be used in digital image processing. 
 
@@ -2500,10 +2499,10 @@ That's it. Since singular value decomposition can be applied to \textit{any} mat
 \item Let $\{e_1,\cdots,e_n\}$ be the standard basis of $\R^n$ and define $E_{i,j}=e_ie_j^T$. Show that $\{ E_{i,j} : 1\leq i\leq n, 1\leq j\leq n\}$ is a basis for the vector space of $n\times n$ matrices. 
 \item Let $A=\m{a_1 & \cdots & a_n}$ and $B=\m{b_1 & \cdots & b_n}$ be $n\times n$ matrices. Show that \begin{equation} AB^T=a_1b_1^T + \cdots + a_nb_n^T \end{equation}
 
-(\textit{Hint}: Write $A=\m{a_1 & 0 & \cdots & a_n}+\m{0 & a_2 & \cdots & 0}+\cdots+\m{0 & 0 & \cdots & a_n}$ and then show for $i=1,\cdots,n$ that \[ \m{0 & \cdots & 0 & a_i & 0 & \cdots & 0} B^T=a_ib_i^T\]
+(\textit{Hint}: Write $A=\m{a_1 & 0 & \cdots & 0}+\m{0 & a_2 & \cdots & 0}+\cdots+\m{0 & 0 & \cdots & a_n}$ and then show for $i=1,\cdots,n$ that \[ \m{0 & \cdots & 0 & a_i & 0 & \cdots & 0} B^T=a_ib_i^T\]
 
 
-\item Let $A$ be an $m\times n$ matrix with nonzero singular values $\sigma_1,\cdots,\sigma_r$ such that $A$ has singular value decomposition $A=U\Sigma V^T$ with $U=\m{u_1 & \cdots & u_m}, V=\m{v_1 & \cdots & v_n}$ the matrices of left- and right- singular values of $A$. Show that  
+\item Let $A$ be an $m\times n$ matrix with nonzero singular values $\sigma_1,\cdots,\sigma_r$ such that $A$ has singular value decomposition $A=U\Sigma V^T$ with $U=\m{u_1 & \cdots & u_m}, V=\m{v_1 & \cdots & v_n}$ the matrices of left- and right- singular vectors of $A$. Show that  
 	\[A=\sigma_1 u_1v_1^T+\cdots \sigma_r u_r v_r^T\]
 	as proposed in \eqref{eq-sing}.
 \end{enumerate}
@@ -2556,7 +2555,7 @@ Additional suggested exercises: \textit{Lay} sections 7.1, 7.4, 7.5
 \section{Inverses and the adjugate matrix}\label{ap-adjugate}
 
 \subsection{A general form of inverse matrices}
-Let $A$ be an $n\times n$ matrix and assume that $\det{A}\neq 0$. Then we know that $A$ has an inverse. Recall that $A_{i,j}$ denotes the $i,j$ cofactor matrix of $A$---this is an $(n-1)\times (n-1)$ submatrix of $A$. The \textbf{cofactor matrix} of $A$ is the matrix $C_A$ given by \begin{equation} (C_A)_{i,j}= (-1)^{i+j} \det(A_{i,j})\end{equation}
+Let $A$ be an $n\times n$ matrix and assume that $\det{A}\neq 0$. Then we know that $A$ has an inverse. Recall that $M_{i,j}$ denotes the $i,j$ minor of $A$---this is the $(n-1)\times (n-1)$ submatrix of $A$ obtained by deleting row $i$ and column $j$. The \textbf{cofactor matrix} of $A$ is the matrix $C_A$ given by \begin{equation} (C_A)_{i,j}= (-1)^{i+j} \det(M_{i,j})\end{equation}
 
 For instance, $A$ is the $3\times 3$ matrix $A=\begin{pmatrix} a & b & c \\ d & e & f \\ g & h & i\end{pmatrix}$ then 
 \[C_A=\begin{pmatrix} 
@@ -2566,7 +2565,7 @@ For instance, $A$ is the $3\times 3$ matrix $A=\begin{pmatrix} a & b & c \\ d & 
 	&&\\
 	\det \begin{pmatrix} b & c \\ e & f \end{pmatrix} & -\det \begin{pmatrix} a & c \\ d & f \end{pmatrix} & \det \begin{pmatrix} a & b \\ d & e \end{pmatrix}
 \end{pmatrix}\]
-\begin{defn}Given an $n\times n$ matrix $A$, the \textbf{adjugate} of $A$, written $\adj{A}$, is the transpose of the cofactor matrix of $A$. That is, $\adj{A}=C_A^T$, or, in components \begin{equation} \adj{A}_{i,j}=(-1)^{i+j} \det{A_{j,i}}\end{equation}
+\begin{defn}Given an $n\times n$ matrix $A$, the \textbf{adjugate} of $A$, written $\adj{A}$, is the transpose of the cofactor matrix of $A$. That is, $\adj{A}=C_A^T$, or, in components \begin{equation} \adj{A}_{i,j}=(-1)^{i+j} \det{M_{j,i}}\end{equation}
 \end{defn}
 \begin{example}For the $2\times 2$ matrix $A=\begin{pmatrix} a & b \\ c & d\end{pmatrix}$ the adjugate of $A$ is given by: \[ \adj{A}=\begin{pmatrix} d & -b \\ -c & a\end{pmatrix}\]
 You may recall that if $\det{A}\neq 0$, then $\dfrac{1}{ad-bc}\begin{pmatrix} d & -b \\ -c & a\end{pmatrix}$ gives a description of the inverse of $A$. This motivates the following theorem 
@@ -2580,7 +2579,7 @@ You may recall that if $\det{A}\neq 0$, then $\dfrac{1}{ad-bc}\begin{pmatrix} d 
 
 
 \begin{remark}
-	While Theorem \ref{thm-adjugate-inv} does give an explicit method for calculating the inverse of $A$, it's often more efficient still to use row reduction to solve for $A^{-1}$ (in general, the adjugate computation takes twice the number of computations as row reduction). For small matrices, you may find it's easier to use the adjugate to calculate the inverse, however\footnote{Admittedly, I could never remember what the adjugate was and made my way through undergrad and grad school only ever  using row operations}
+	While Theorem \ref{thm-adjugate-inv} does give an explicit method for calculating the inverse of $A$, it's often more efficient still to use row reduction to solve for $A^{-1}$ (in general, the adjugate computation takes vastly more arithmetic than row reduction, since it requires computing $n^2$ determinants of size $(n-1)\times(n-1)$). For small matrices, you may find it's easier to use the adjugate to calculate the inverse, however\footnote{Admittedly, I could never remember what the adjugate was and made my way through undergrad and grad school only ever  using row operations}
 \end{remark}
 
 
@@ -2606,7 +2605,7 @@ You may recall that if $\det{A}\neq 0$, then $\dfrac{1}{ad-bc}\begin{pmatrix} d 
 	
 	\includegraphics[width=75mm]{Images/leo50} \quad \includegraphics[width=75mm]{Images/leo20} 
 	
-	\caption{ Starting top left, moving clockwise: 3 singular values used, compression ratio 81.11; 10 singular values, compression ratio 32.44; 20 singular values, compression ratio 16.22; 50 singular values, compression ratio 6.49. Credit to \href{https://timbaumann.info/svd-image-compression-demo/}{Tim Baumann} for the tools to make these photos.}
+	\caption{ Starting top left, moving clockwise: 4 singular values used, compression ratio 81.11; 10 singular values, compression ratio 32.44; 20 singular values, compression ratio 16.22; 50 singular values, compression ratio 6.49. Credit to \href{https://timbaumann.info/svd-image-compression-demo/}{Tim Baumann} for the tools to make these photos.}
 	
 	\label{fig:leo}
 	\end{figure}

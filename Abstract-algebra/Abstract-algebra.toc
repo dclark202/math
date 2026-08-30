@@ -35,7 +35,7 @@
 \contentsline {subsection}{\numberline {5.4}Groups and a bunch of examples}{27}{subsection.5.4}%
 \contentsline {subsection}{\numberline {5.9}Homomorphisms}{29}{subsection.5.9}%
 \contentsline {subsection}{\numberline {5.12}Subgroups}{29}{subsection.5.12}%
-\contentsline {subsection}{\numberline {5.16}Direct sums}{30}{subsection.5.16}%
+\contentsline {subsection}{\numberline {5.16}Direct sums}{31}{subsection.5.16}%
 \contentsline {subsection}{\numberline {5.19}Exercises}{31}{subsection.5.19}%
 \contentsline {section}{\numberline {6}Finite groups}{34}{section.6}%
 \contentsline {subsection}{\numberline {6.2}Cyclic subgroups}{34}{subsection.6.2}%
@@ -44,31 +44,31 @@
 \contentsline {subsection}{\numberline {6.19}Dihedral groups}{38}{subsection.6.19}%
 \contentsline {subsection}{\numberline {6.23}Exercises}{39}{subsection.6.23}%
 \contentsline {section}{\numberline {7}Symmetric groups}{40}{section.7}%
-\contentsline {subsection}{\numberline {7.5}Cycle decomposition of permutations}{41}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.5}Cycle decomposition of permutations}{42}{subsection.7.5}%
 \contentsline {subsection}{\numberline {7.10}Conjugacy classes and cycle decomposition}{43}{subsection.7.10}%
 \contentsline {subsection}{\numberline {7.17}Sign of a permutation}{44}{subsection.7.17}%
-\contentsline {subsection}{\numberline {7.21}The alternating group}{45}{subsection.7.21}%
+\contentsline {subsection}{\numberline {7.21}The alternating group}{46}{subsection.7.21}%
 \contentsline {subsection}{\numberline {7.24}The alternating group in action}{46}{subsection.7.24}%
-\contentsline {subsection}{\numberline {7.28}Subgroups of $S_n$}{47}{subsection.7.28}%
+\contentsline {subsection}{\numberline {7.28}Subgroups of $S_n$}{48}{subsection.7.28}%
 \contentsline {subsection}{\numberline {7.30}Exercises}{48}{subsection.7.30}%
 \contentsline {section}{\numberline {8}Normal subgroups and group quotients}{49}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Cosets}{49}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.1}Cosets}{50}{subsection.8.1}%
 \contentsline {subsection}{\numberline {8.5}Normal subgroups}{50}{subsection.8.5}%
 \contentsline {subsection}{\numberline {8.9}Quotient groups}{51}{subsection.8.9}%
 \contentsline {subsection}{\numberline {8.14}Kernel and image of a homomorphism}{52}{subsection.8.14}%
 \contentsline {subsection}{\numberline {8.18}The isomorphism theorems}{53}{subsection.8.18}%
 \contentsline {subsection}{\numberline {8.26}Identifying groups as direct products of subgroups}{55}{subsection.8.26}%
-\contentsline {subsection}{\numberline {8.28}Exercises}{55}{subsection.8.28}%
-\contentsline {section}{\numberline {9}Group actions}{56}{section.9}%
+\contentsline {subsection}{\numberline {8.28}Exercises}{56}{subsection.8.28}%
+\contentsline {section}{\numberline {9}Group actions}{57}{section.9}%
 \contentsline {subsection}{\numberline {9.8}Orbits and fixed points}{58}{subsection.9.8}%
-\contentsline {subsection}{\numberline {9.14}Stabilizer subgroups}{59}{subsection.9.14}%
+\contentsline {subsection}{\numberline {9.14}Stabilizer subgroups}{60}{subsection.9.14}%
 \contentsline {subsection}{\numberline {9.18}Counting with group actions}{60}{subsection.9.18}%
-\contentsline {subsection}{\numberline {9.24}Exercises}{63}{subsection.9.24}%
-\contentsline {section}{\numberline {10}Matrix groups}{65}{section.10}%
+\contentsline {subsection}{\numberline {9.24}Exercises}{64}{subsection.9.24}%
+\contentsline {section}{\numberline {10}Matrix groups}{66}{section.10}%
 \contentsline {subsection}{\numberline {10.4}Orthogonal matrices}{66}{subsection.10.4}%
-\contentsline {subsection}{\numberline {10.11}Rotations of real space}{67}{subsection.10.11}%
-\contentsline {subsection}{\numberline {10.15}Exercises}{68}{subsection.10.15}%
-\contentsline {section}{\numberline {A}Mathematical induction}{71}{appendix.A}%
-\contentsline {subsection}{\numberline {A.2}Using induction}{71}{subsection.A.2}%
-\contentsline {subsection}{\numberline {A.3}Well-orderings}{72}{subsection.A.3}%
-\contentsline {subsection}{\numberline {A.6}Exercises}{72}{subsection.A.6}%
+\contentsline {subsection}{\numberline {10.11}Rotations of real space}{68}{subsection.10.11}%
+\contentsline {subsection}{\numberline {10.15}Exercises}{69}{subsection.10.15}%
+\contentsline {section}{\numberline {A}Mathematical induction}{72}{appendix.A}%
+\contentsline {subsection}{\numberline {A.2}Using induction}{72}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Well-orderings}{73}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.6}Exercises}{73}{subsection.A.6}%

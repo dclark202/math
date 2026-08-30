@@ -92,7 +92,7 @@
 
 \title{ \textbf{Abstract Algebra and Number Theory \\ Course notes and exercises
  }}
-\author{\small Duncan Clark, PhD}
+\author{\small Duncan Clark}
 \date{\small Last updated: \today}
 
 \setcounter{section}{-1}
@@ -176,7 +176,7 @@ Note when taking the product of a set $A$ with itself we usually write $A^2=A\ti
 
 \subsection{Functions} A \textbf{function} is a rule that assigns elements from one set to elements in another set. We write $f\colon A\to B$ to say that $f$ is a function from set $A$ to set $B$. $A$ is called the \textbf{domain}.  If $x\in A$ we write $f(x)$ for the image of $x$ under $f$ in $B$\footnote{Note: $f(x)$ is an element of the set $B$, $f$ is the function. If you want to talk about a function while mentioning a generic input, you can use the notation $f\colon x\mapsto f(x)$.}.
 
-The set $f(A)$ defined by \[f(A)=\{ f(x) : x\in A\} \subset B\] is called the \textbf{image} or \textbf{range} of $f$ (in $B$). Similarly, if $Y\subset B$ is a subset then $f^{-1}(Y)=\{a\in A: f(a)\in Y\}$ is called the \textbf{pre-image} of $f$ (in $A$).
+The set $f(A)$ defined by \[f(A)=\{ f(x) : x\in A\} \subset B\] is called the \textbf{image} or \textbf{range} of $f$ (in $B$). Similarly, if $Y\subset B$ is a subset then $f^{-1}(Y)=\{a\in A: f(a)\in Y\}$ is called the \textbf{pre-image} of $Y$ (in $A$).
 
 \begin{example} Note that in the world of set theory, everything has to be a set. That means functions are sets; that is,  a function $f\colon A\to B$ is just the collection \begin{equation} G_f= \{ (a,f(a)) : a\in A\} \subset A\times B\end{equation} The letter $G$ here is suggestive of graph, which is what this set is (given that we have ``pictures'' for $A$ and $B$). Conversely, any set $G\subset A\times B$ such that for each $a\in A$ there is a unique $b\in B$ ($b=f(a)$) with $(a,b)\in G$ is the graph of a function $f$. When is a function is indeed a function we say that it is \textbf{well-defined}.
 \end{example}
@@ -313,7 +313,7 @@ It's one thing to know \textit{if} an integer divides another, but it leaves the
 \begin{proof}
 	Let $n,m$ be given with $m>0$. What we need to do here is construct the numbers $q,r$ claimed to exist by this theorem. Let's define the set $S$ by \[ S= \{n-km : k\in \mathbf{Z} \text{ and } n-km\geq 0\}\] Think of $S$ as a collection of ``possible remainders'' for the division. Note right away that if $0\in{S}$ we're done, since then $r=0$ and $q$ is given by the $k$ such that $n-km=0$. Also, if $n=0$ this problem is solved trivially. 
 	
-	So let's suppose that $0\neq S$. The first claim is that $S\neq \emptyset$. If $n>0$ note $n-0\cdot m =n\in S$, if $n<0$ then since $m>0$, we must have $n-(2n)m=n(1-2m)\in S$. Either way $S\neq \emptyset$. 
+	So let's suppose that $0\notin S$. The first claim is that $S\neq \emptyset$. If $n>0$ note $n-0\cdot m =n\in S$, if $n<0$ then since $m>0$, we must have $n-(2n)m=n(1-2m)\in S$. Either way $S\neq \emptyset$. 
 	
 	Now $S\subset \mathbf{N}$ by construction, so from theorem \ref{well-ord} we know $S$ has a least element. Let's call it $r$. We then have $r=n-mq$ for some $q\in \mathbf{Z}$. We claim that these $r,q$ are the integers we want. Note that $r\geq 0$ by design. Let's show that $r<m$. Suppose otherwise, that is $r\geq m$. Set $r'=n-m(q+1)$. Note that \[ r'=n-mq-m=r-m\geq 0\] but also $r'<r$. This is a contradiction, since $r$ was assumed to be the smallest element of $S$. Therefore we have integers $q,r$ with $0\leq r<m$ such that  \[ n=mq+r\] as claimed.
 	
@@ -323,7 +323,7 @@ It's one thing to know \textit{if} an integer divides another, but it leaves the
 The term $q$ is called the \textbf{quotient} and $r$ the \textbf{remainder}. Note that $m \mid n$ if and only if the corresponding remainder $r=0$. 
 
 \subsection{Common divisors}
-Given integers $n,m$ we say that $d\in \mathbf{Z}$ is a \textbf{common divisor} of $n$ and $m$ if both $d\mid n$ and $d\mid m$. Note that the collection of common divisors of $n,m$ is a finite subset of $\mathbf{Z}$ so must have a largest element. 
+Given integers $n,m$ we say that $d\in \mathbf{Z}$ is a \textbf{common divisor} of $n$ and $m$ if both $d\mid n$ and $d\mid m$. Note that provided $n,m$ are not both zero, the collection of common divisors of $n,m$ is a finite subset of $\mathbf{Z}$ so must have a largest element. 
 
 We say that $d\in \mathbf{Z}$ is the \textbf{greatest common divisor} of $n$ and $m$ if the following are satisfied
 \begin{itemize}
@@ -352,7 +352,7 @@ As it turns out, computing the gcd of a pair of integers is an extremely useful 
 	
 	Note what has happened: we've reduced the ``size'' of the numbers appearing and have kept the came greatest common divisor. Here's where the algorithm comes in. Define $(q_i,r_i)_{i\geq 1}$ of pairs of integers as follows. For $i\geq 1$, use the division algorithm theorem \ref{div-alg} to define $q_i,r_i$ as follows: \begin{align}\label{gcd-exists-descent} 
 		n&=mq_1+r_1 \nonumber \\
-		m&=r_1 q_2+r_2 \nonumber \\®
+		m&=r_1 q_2+r_2 \nonumber \\
 		r_1&= r_2 q_3+r_3 \nonumber \\
 		r_2& = r_3q_4 + r_4  \\
 		&\vdots \nonumber
@@ -383,7 +383,7 @@ Of important use in number theory are the prime numbers. If you are familiar wit
 
 
 \begin{defn}
-	An positive integer $p\geq 2$ is \textbf{prime} if the only (positive) divisors of $p$ are $1$ and $p$. \end{defn}
+	A positive integer $p\geq 2$ is \textbf{prime} if the only (positive) divisors of $p$ are $1$ and $p$. \end{defn}
 It's somewhat of a moot point, but $1$ is not prime. You can think of an equivalent description of a prime number as one whose set of (positive) divisors has exactly two elements. 
 
 Let's define $\mathbf{P}$ to be the collection of all prime integers. Clearly $\mathbf{P}\subset \mathbf{N}$, and if we were to enumerate the prime numbers we'd have a list that begins \[ \mathbf{P}=\{ 2,3,5,7,11,13,17,19,23,29,31,37,\cdots \}. \]
@@ -407,12 +407,12 @@ We'll see later on that prime numbers play a very important role in the number o
 The next theorem tells us a precise manner in which the primes form a ``multiplicative basis'' for the integers.
 
 \begin{thm}[Unique decomposition into prime components] \label{fta}
-	For any $n\geq 2$, there is a unique list of prime numbers $p_1,p_2, \cdots, p_k\in \mathbf{P}$ together with exponents $m_1,m_2, \cdots,m_k\geq 1$ such that \[n=p_1^{m_1}p_2^{m_2}\cdots p_k^{m_k}\]
+	For any $n\geq 2$, there is a unique list of distinct prime numbers $p_1<p_2< \cdots< p_k$ in $\mathbf{P}$ together with exponents $m_1,m_2, \cdots,m_k\geq 1$ such that \[n=p_1^{m_1}p_2^{m_2}\cdots p_k^{m_k}\]
 \end{thm}
 
 \begin{proof} First let's show that such a decomposition into primes exists. Let $S\subset \mathbf{N}$ be the collection of integers ($\geq 2$) that don't have such a decomposition. If $S\neq \emptyset$, then $S$ has a smallest element, call it $n$. By assumption $n$ cannot be prime, so $n=ab$ for some integers $a,b>1$. But then both $a<n$ and $b<n$, so $a,b\notin S$. Therefore $a,b$ have decompositions into prime numbers, and so $n$ must as well. Thus $S=\emptyset$. 
 
-Now we show uniqueness. This is a good application of induction\footnote{Technically this uses what is often called \textit{complete induction} but the two are equivalent}. Clearly $2$ has a unique decomposition into prime numbers. So let's assume that we have an $n\in\mathbf{N}$ such that all integers $n'$ with $2\leq n'<n$ have unique decompositions into primes. Suppose that $n$ has two decompositions \[ n=p_1^{m_1}p_2^m{m_2}\cdots p_k^{m_k}=q_1^{r_1}q_2^{r_2}\cdots q_{\ell}^{r_{\ell}}\] into primes, and let's arrange them such that $p_1$ and $q_1$ are the smallest such prime factors appearing in the list. Note that if $k=\ell=1$ we're done, so there's really only something interesting going on here when these are at least $2$.  
+Now we show uniqueness. This is a good application of induction\footnote{Technically this uses what is often called \textit{complete induction} but the two are equivalent}. Clearly $2$ has a unique decomposition into prime numbers. So let's assume that we have an $n\in\mathbf{N}$ such that all integers $n'$ with $2\leq n'<n$ have unique decompositions into primes. Suppose that $n$ has two decompositions \[ n=p_1^{m_1}p_2^{m_2}\cdots p_k^{m_k}=q_1^{r_1}q_2^{r_2}\cdots q_{\ell}^{r_{\ell}}\] into primes, and let's arrange them such that $p_1$ and $q_1$ are the smallest such prime factors appearing in the list. Note that if $k=\ell=1$ we're done, so there's really only something interesting going on here when these are at least $2$.  
 
 By assumption both $p_1$ and $q_1$ divide $n$, so $p_1\mid q_i$ for some $i$, and $q_1\mid p_j$ for some $j$\footnote{Why is this? This requires what is sometimes called \textit{Euclid's lemma}, see Ex. \ref{Euclid-lemma} in section \ref{nt-ex}}. Thus $p_1=q_i$ and $q_1=p_j$. But also by assumption $p_1\leq p_j =q_1\leq q_i=p_1$, so $p_1=q_1$. So $n/p_1$ is also an integer, and $n'=n/p_1<n$, so $n'$ has a unique decomposition into primes. Thus $n$ does as well. 
 \end{proof}
@@ -431,13 +431,13 @@ In fitting with the fashionable trend of the mid 1800s of naming things the ``Fu
 	
 	Prove  that the following relation $\sim$ on $\mathbf{Z}$ is an equivalence relation \[n\sim n' \text{ if and only if } n=n'\Mod{m}\]
 	
-	\item Modify the proof of theorem \ref{lotta-primes} to show that there are infinitely many primes of the form $4k+1$ for some $k\in\mathbf{Z}$.
+	\item Modify the proof of theorem \ref{lotta-primes} to show that there are infinitely many primes of the form $4k+3$ for some $k\in\mathbf{Z}$.
 	
-	\item Prove corollary \ref{gcd-solutions}, then use it to describe all solutions $(x,y)$ with $x,y\in\mathbf{Z}$ such that $105x+121y=1$. 
+	\item Prove theorem \ref{gcd-solutions}, then use it to describe all solutions $(x,y)$ with $x,y\in\mathbf{Z}$ such that $105x+121y=1$. 
 	
 	\item Either by hand or via a program which you write, compute $\gcd(19789, 23548)$ and $\gcd(22241739, 19848039)$.
 	
-	\item Use theorem \ref{div-alg} to show that every perfect square (i.e., integer of the form $n^2$ for some $n\in\mathbf{N}$) is of the form $4k$ or $4k+1$ for some $k\in\mathbf{N}$
+	\item Use theorem \ref{div-alg} to show that every perfect square (i.e., integer of the form $n^2$ for some $n\in\mathbf{N}$) is of the form $4k$ or $4k+1$ for some $k\in\mathbf{Z}_{\geq 0}$
 	
 	\item Prove that if $p\in \mathbf{N}, p\geq 2$ such that $2^{p}-1$ is prime, then $p$ is prime. 
 	
@@ -448,21 +448,21 @@ In fitting with the fashionable trend of the mid 1800s of naming things the ``Fu
 	\item Let $u,v,w\in\mathbf{Z}$. Conjecture what must be true about $u,v,w$ for there to exist $x,y,z\in\mathbf{Z}$ such that $ux+vy+wz=1$. Can you prove your conjecture?
 	
 	\item \textit{Challenge}. Let $\mathbf{Z}[i]$ denote the set of \textit{Gaussian integers} \[ \mathbf{Z}[i]=\{ a+bi : i^2=-1 \text{ and } a,b\in \mathbf{Z}\} \]
-	$\mathbf{Z}[i]$ has a similar structure to $\mathbf{Z}$, in that Gaussian integers can be added, subtracted, and multiplied; and it's possible to talk about divisors: that is $a+bi \mid c+di$ if there is $u+vi\in\mathbf{Z}[i]$ such that $(a+bi)(u+vi)=c+di$. Given $a+bi\in\mathbf{Z}[i]$ define its \textbf{norm} by $|a+bi|=a^2+b^2$. We say a Gaussian integer $p+qi$ is \textbf{prime} if it has no divisors $a+bi$ with norm $a^2+b^2\neq 1, p^2+q^2$. 
+	$\mathbf{Z}[i]$ has a similar structure to $\mathbf{Z}$, in that Gaussian integers can be added, subtracted, and multiplied; and it's possible to talk about divisors: that is $a+bi \mid c+di$ if there is $u+vi\in\mathbf{Z}[i]$ such that $(a+bi)(u+vi)=c+di$. Given $a+bi\in\mathbf{Z}[i]$ define its \textbf{norm} by $|a+bi|=a^2+b^2$. We say a Gaussian integer $p+qi$ of norm $p^2+q^2>1$ is \textbf{prime} if it has no divisors $a+bi$ with norm $a^2+b^2\neq 1, p^2+q^2$. (The requirement that the norm exceed $1$ rules out the \textit{units} $\pm 1, \pm i$, which would otherwise be vacuously prime.) 
 	
 	 \begin{enumerate}
 	 	\item Enumerate the sets of Gaussian integers with norms equal to $1$, $3$, and $5$
 	 	\item Compute a list of all prime Gaussian integers $p+qi$ of norm $p^2+q^2 \leq 25$. 
-		\item Prove that if a Gaussian integer $p+0i$ is prime then $p=4k+3$ for some $k\in\mathbf{Z}$. 
+		\item Prove that if a Gaussian integer $p+0i$ with $p>0$ is prime then $p=4k+3$ for some $k\in\mathbf{Z}$. 
 	\end{enumerate}
 	
 	
-	\item \textit{Challenge}. Show that $\sqrt{2}$ is not a rational number by showing that there are no integers $n,m\in\mathbf{Z}$ such that $n^2=2m^2$. 
+	\item \textit{Challenge}. Show that $\sqrt{2}$ is not a rational number by showing that there are no \textit{nonzero} integers $n,m\in\mathbf{Z}$ such that $n^2=2m^2$. 
 	
 	\item \textit{Challenge}. This problem is a nice alternative proof of theorem \ref{lotta-primes} originally attributed to Euler. Some notation: given a sequence $(a_i)_{i\geq 1}$ of real numbers, let's write \[ \prod_{i=1}^n a_i = a_1\cdot a_2 \cdots a_n, \; (n\geq 1) \qquad \text{ and } \qquad \prod_{i=1}^{\infty} a_i = \lim_{n\to \infty} \prod_{i=1}^n a_i \]
 	\begin{enumerate}
-		\item Enumerate $\mathbf{P}=\{p_1,p_2,p_3,\cdots\}$ such that $p_1\leq p_2\leq p_3 \leq \cdots $. Use the Geometric sum formula $\sum_{k=0}^{\infty} a^k = 1/(1-a)$ for $|a|<1$ and theorem \ref{fta} to show that \[ \prod_{i=1}^{\infty} \dfrac{1}{1-(1/p_i)} =\sum_{n=1}^{\infty} \dfrac{1}{n} \]
-		\item Use that $\sum_{n=1}^{\infty} 1/n=\infty$ to argue why part a. tells us that the set $\mathbf{P}$ must be infinite.	
+		\item Enumerate $\mathbf{P}=\{p_1,p_2,p_3,\cdots\}$ such that $p_1< p_2< p_3 < \cdots $. Use the Geometric sum formula $\sum_{k=0}^{\infty} a^k = 1/(1-a)$ for $|a|<1$ and theorem \ref{fta} to show that for every $k\geq 1$ \[ \prod_{i=1}^{k} \dfrac{1}{1-(1/p_i)} =\sum_{n\in S_k} \dfrac{1}{n} \] where $S_k\subset\mathbf{N}$ is the set of positive integers all of whose prime factors lie among $p_1,\dots,p_k$.
+		\item Use that $\sum_{n=1}^{\infty} 1/n=\infty$ to argue why part a. tells us that the set $\mathbf{P}$ must be infinite. (\textit{Hint: if $\mathbf{P}$ were the finite list $p_1,\dots,p_k$, what would the set $S_k$ be?})	
 	\end{enumerate}
 	
 \end{enumerate}
@@ -540,7 +540,7 @@ Some terminology first: any equation $ax=c\Mod{n}$ is a \textbf{linear equation}
 \begin{corollary}
 	With the setup of theorem \ref{lin-cong} above, if $\gcd(a,n)=1$ then there is a unique solution in $\mathbf{Z}_n$ to $ax=c\Mod{n}$ for any $c\in \mathbf{Z}_n$ obtained as $cx_0\Mod{n}$ where $x_0$ is any solution to $ax+ny=1$. 
 \end{corollary}
-It's one thing to know that a solution \textit{should} exist, but we'd like to actually produce such a solution in an efficient manner. Rather than give a formal prove of the above, we'll provide the following ``proof by example" for each of the the cases one might find themselves in when needing to apply theorem \ref{lin-cong}.
+It's one thing to know that a solution \textit{should} exist, but we'd like to actually produce such a solution in an efficient manner. Rather than give a formal proof of the above, we'll provide the following ``proof by example" for each of the the cases one might find themselves in when needing to apply theorem \ref{lin-cong}.
 
 \begin{example}[``Proof by example" -- solving congruences modulo $n$]
 Suppose we have the equation \begin{equation} \label{cong-ex1} 3x=7\Mod{11}\end{equation} and want to solve for $x$. Appealing to theorem \ref{lin-cong} we have $\gcd(3,11)=1$, so we expect a unique solution to \eqref{cong-ex1} in $\mathbf{Z}_{11}$\footnote{Actually, $\mathbf{Z}_{11}$ (or more generally $\mathbf{Z}_p$ for $p$ some prime) is a \textit{field}, so there are always multiplicative inverses to any nonzero element}.  Note that a solution to \eqref{cong-ex1} comes from finding a solution $3x=7+11k$ for some $k\in\mathbf{Z}$. Written differently, $3x+11(-k)=7$. Note that we can always find a solution $(x_0,y_0)$to the equation $3x+11y=1$ (since $\gcd(3,11)=1$) using theorem \ref{gcd-exists} or the Euclidean algorithm. At that point, since $1\mid 7$, we can multiply this by $7$ to get: \[ 3(7x_0)+11(7y_0)=7.\] All that we need then is to take the remainder modulo 11 of $7x_0$ to get the desired solution. In this case it's $x=6$, since $3\cdot 6=18=7+11=7\Mod{11}$.
@@ -596,9 +596,9 @@ A main difference we'll see is that inverses are more difficult to discuss when 
 	Let $n\geq 1$, define $\varphi(n)$ to be the number of integers $m$ with $1\leq m\leq n$ such that $m$ is coprime to $n$. 
 \end{defn}
 
-The function $\varphi\colon \mathbf{N}\to\mathbf{N}$ given by definition \ref{totient} is called \textit{Euler's totient\footnote{As far as I can tell, there is no non-circular definition of the word ``totient'' as anything other than the number of primes less than a given number} function} (also \textit{Euler's phi function}). It counts the number of elements $a\in \mathbf{Z}_n$ that have solutions to $ax=1\Mod{n}$, and as well see, fits nicely into discussing the multiplicative structure of $\mathbf{Z}_n$ as a group. 
+The function $\varphi\colon \mathbf{N}\to\mathbf{N}$ given by definition \ref{totient} is called \textit{Euler's totient\footnote{As far as I can tell, there is no non-circular definition of the word ``totient'' as anything other than the number of positive integers up to $n$ which are coprime to $n$} function} (also \textit{Euler's phi function}). It counts the number of elements $a\in \mathbf{Z}_n$ that have solutions to $ax=1\Mod{n}$, and as well see, fits nicely into discussing the multiplicative structure of $\mathbf{Z}_n$ as a group. 
 
-It's not hard to check that if $p$ is a prime, then $\varphi(p)=p-1$. In fact, $\varphi$ has a lot of additional structure. We'll show one such fact about $\varphi$ in proposition \ref{mult-varphi}, but will first need the following lemma.
+It's not hard to check that if $p$ is a prime, then $\varphi(p)=p-1$. In fact, $\varphi$ has a lot of additional structure. We'll show one such fact about $\varphi$ in proposition \ref{mult-varphi}, but will first need the following theorem.
 
 
 \begin{thm}[Chinese remainder theorem] \label{crt}
@@ -612,7 +612,7 @@ Theorem \ref{crt} takes its takes it name from a problem posed in the book \text
 A more general statement of the Chinese remainder theorem is left as an exercise (see ex. \ref{gcrt} in Section \ref{mod-ex}).
 
 \begin{prop} \label{mult-varphi}
-	Let $m,n>0$ be given such that $\gcd(m,n)=1$. Then $\varphi(mn)=\varphi(m)\varphi(n)$.
+	Let $m,n>1$ be given such that $\gcd(m,n)=1$. Then $\varphi(mn)=\varphi(m)\varphi(n)$.
 \end{prop} 
 
 
@@ -662,7 +662,7 @@ A more general statement of the Chinese remainder theorem is left as an exercise
 	
 	\item Use Fermat's little theorem  to prove that $x^2=-1\Mod{p}$ has no solutions when $p$ is a prime of the form $p=4k+3$ (see also ex. \ref{quad-res} in this section). Conversely prove that $x^2=-1\Mod{p}$ always has a solution when $p$ is of the form $4k+1$ for some $k\in\mathbf{Z}$.
 	
-	\item Prove that $(p-1)!=(p-1)(p-2)\cdots2\cdot =-1 \Mod{p}$ for $p$ a prime. Use this to show that if $p=4k+1$, then $((p-1)/2)!$ is a solution to $x^2=-1\Mod{p}$. Why does this argument not work for $p$ of the form $4k+3$?
+	\item Prove that $(p-1)!=(p-1)(p-2)\cdots2\cdot 1 =-1 \Mod{p}$ for $p$ a prime. Use this to show that if $p=4k+1$, then $((p-1)/2)!$ is a solution to $x^2=-1\Mod{p}$. Why does this argument not work for $p$ of the form $4k+3$?
 	
 	
 	
@@ -674,7 +674,7 @@ A more general statement of the Chinese remainder theorem is left as an exercise
 	
 	\item Let $n>1$ be given. Prove that the total number of elements $a\in \mathbf{Z}_n$ such that there is a solution to $ax=1\Mod{n}$ is equal to $\varphi(n)$\footnote{The subset $U_n\subset \mathbf{Z}_n$ of such elements is called the \textit{group of units} mod $n$. We'll see this again later.}.
 	\item Let $n\geq 1$, and write $D(n)$ for the set of integers $d>0$ such that $d\mid n$. Prove that \[ \sum_{d\in D(n)} \varphi(d)=n\]
-	\item \label{quad-res} Let $p$ be a prime and set $R_p\subset\mathbf{Z}_p$ to be the set \[R_p=\{n^2 : n\in\mathbf{Z}_p, n\neq 0\}\] Calculate $R_p$ for primes $p\leq 20$, then make a conjecture about the cardinality (number of elements) of $R_p$. Can you prove this conjecture?\footnote{The set $R_p$ is called the set of \textit{quadratic residues} mod $p$. If we have time we'll take more about these, including discussing Legendre symbols and \href{https://en.wikipedia.org/wiki/Quadratic_reciprocity}{quadratic reciprocity}.}
+	\item \label{quad-res} Let $p$ be a prime and set $R_p\subset\mathbf{Z}_p$ to be the set \[R_p=\{n^2 : n\in\mathbf{Z}_p, n\neq 0\}\] Calculate $R_p$ for odd primes $p\leq 20$, then make a conjecture about the cardinality (number of elements) of $R_p$. Can you prove this conjecture?\footnote{The set $R_p$ is called the set of \textit{quadratic residues} mod $p$. If we have time we'll take more about these, including discussing Legendre symbols and \href{https://en.wikipedia.org/wiki/Quadratic_reciprocity}{quadratic reciprocity}.}
 	
 	{\color{violet} 
 	Hint/proof: As done in class: $|R_p|=(p-1)/2$ for $p$ an odd prime. This follows from two claims: (i) For $x=1,2,\dots,(p-1)/2$, $x^2=(p-x)^2$, and (ii) the set $S=\{1,2,\dots,(p-1)/2\}$ ``creates'' all quadratic residues, in that $R_p=\{x^2 : x\in S\}$.
@@ -699,12 +699,12 @@ A more general statement of the Chinese remainder theorem is left as an exercise
 Cryptography is a fairly modern branch of mathematics that really has blossomed since the advent of modern computers. Historically, the first example of a cyptosystem is usually the \href{https://en.wikipedia.org/wiki/Caesar_cipher}{Caesar cipher}, attributed to Roman emperor Julius Caesar. Evidently, the idea was to encode messages of military important by shifting the letters down the alphabet as follows:
 \begin{itemize}
 	\item Enumerate the alphabet (we'll use the modern English alphabet) \texttt{A}=0, \texttt{B}=1, \texttt{C}=2, $\cdots$, \texttt{Z}=25
-	\item Write your message as a string of elements from $\mathbf{Z}_{26}$, \[ \texttt{ILIKECATS}=8 \, 11\, 8 \,14\, 4\,2\, 0\, 19\, 18\]
+	\item Write your message as a string of elements from $\mathbf{Z}_{26}$, \[ \texttt{ILIKECATS}=8 \, 11\, 8 \,10\, 4\,2\, 0\, 19\, 18\]
 	\item Apply the cipher: i.e., take the string of elements in $\mathbf{Z}_{26}$ and apply the encryption function $E_n$ described below to each element of the string (note this is just ``shift by $n\Mod{26}$'')\[E_n(x)=x+n\Mod{26}\]
-	\item For instance, our message above, encoded with a shift of $6$ would look like \[ 14 \,17\, 14\, 16\, 10\, 8\, 5\, 25\, 24=\texttt{OROQKIFZY}\]
+	\item For instance, our message above, encoded with a shift of $6$ would look like \[ 14 \,17\, 14\, 16\, 10\, 8\, 6\, 25\, 24=\texttt{OROQKIGZY}\]
 	\item This encoded message is what you share. You can decode by applying the following to each entry from the string \[ D_6(x)=x-6\Mod{26}\] 
 	\end{itemize}
-As far as encryption algorithms go this one is \textit{pretty bad}. The problem being that letters in the English alphabet are not evenly distributed in their frequency of appearance in words, so it's often quite simply to break these codes by brute force\footnote{I believe newspapers used to include a code-breaking game of this type as part of the weekly games such as Crosswords, Sudoko, etc.}. More superficial issues include that the ``space'' character has not been encoded, so longer phrases could be hard to parse (this is easily fixed and not a problem with the particular encryption method, however). 
+As far as encryption algorithms go this one is \textit{pretty bad}. The problem being that letters in the English alphabet are not evenly distributed in their frequency of appearance in words, so it's often quite simple to break these codes by brute force\footnote{I believe newspapers used to include a code-breaking game of this type as part of the weekly games such as Crosswords, Sudoko, etc.}. More superficial issues include that the ``space'' character has not been encoded, so longer phrases could be hard to parse (this is easily fixed and not a problem with the particular encryption method, however). 
 	
 
 	
@@ -741,14 +741,14 @@ The idea behind RSA is then to use a modulus $n$ which is the product of two ``l
 \begin{algm}[RSA encryption] To encode or decode a message via RSA encryption \label{RSA-algm}
 \begin{itemize}
 	\item Pick $n=pq$ for (large) primes $p,q$ (from theorem \ref{mult-varphi}, we know $\varphi(n)=(p-1)(q-1)$)
-	\item Pick a number $e$ with $\gcd(e,\varphi(n))$. 
+	\item Pick a number $e$ with $\gcd(e,\varphi(n))=1$. 
 	\item Compute the inverse to $e\Mod{\varphi(n)}$; i.e. find a solution $d$ to $ed=1\Mod{\varphi(n)}$ (this can be done using the Euclidean algorithm).
 	\item Your \textbf{public key} is the pair $(n,e)$. A message can be encoded by the encryption function \begin{equation} E(x)=x^e\Mod{n}\end{equation}
 	\item Your \textbf{private key} is the pair $(n,d)$. An encoded message is decoded by \begin{equation}D(x)=x^{d}\Mod{n}\end{equation}
 \end{itemize}
 \end{algm}
 
-Theorem \ref{k-th-root} then tells us that $D(E(x))=x$, since \[D(E(x))=(x^e)^d=x^{ed}=x^{1+\ell \varphi(n)}=x\Mod{n}\] (The number $\ell$ here is some number expressing that $km=1\Mod{\varphi(n)}$. 
+Theorem \ref{k-th-root} then tells us that $D(E(x))=x$, since \[D(E(x))=(x^e)^d=x^{ed}=x^{1+\ell \varphi(n)}=x\Mod{n}\] (The number $\ell$ here is some number expressing that $ed=1\Mod{\varphi(n)}$.) 
 
 \begin{remark}Note that if you start with the primes $p,q$ each step from algorithm \ref{RSA-algm} is computable using algorithms we've learned; in particular finding $d$ is doable since \[\varphi(n)=\varphi(pq)=\varphi(p)\varphi(q)=(p-1)(q-1)\] Once you've created the public and private keys, it's then possible to discard the original primes $p,q$ keeping only the number $n$. Another observation is that using RSA does require encoded your message as a \textit{number} first of all, but this is fairly routine from a modern-computer standpoint, using \href{https://www.cs.drexel.edu/~popyack/Courses/CSP/Fa17/notes/10.1_Cryptography/ASCII.html}{ASCII} or some other agreed upon standard. 
 
@@ -761,7 +761,7 @@ So if, say, you wanted to express to me that you also like cats, this is what yo
 \end{example}
 
 \subsection{Additional thoughts on RSA}
-There is a slight problem with applying algorithm \ref{RSA-algm} in general. Suppose $n=pq$ is given along with integers $e,d$ as needed for RSA, and let $M$ be the message we wish to send. To send $M$ via RSA we need to encode $M$ first as a number in $\mathbf{Z}_{n}$. There is a slight problem in applying theorem \ref{k-th-root} to \textit{any} message $M$ since we need to ensure that $M$ is coprime to $n$. In practice this is usually not so much of an issue; for instance if $p,q$ are at least $129$ and we encode our message one ASCII character at a time (which is a number in $\mathbf{Z}_{128}$, then we'll never run into this problem (\textit{why is this?}). When actually applying RSA, typically the primes are \textit{huge} (100+ digits), in which case the probability of picking a non-invertible element of $\mathbf{Z}_{pq}$ is fairly small (see Exercise \ref{prob-RSA} in section \ref{RSA-ex}).
+There is a slight problem with applying algorithm \ref{RSA-algm} in general. Suppose $n=pq$ is given along with integers $e,d$ as needed for RSA, and let $M$ be the message we wish to send. To send $M$ via RSA we need to encode $M$ first as a number in $\mathbf{Z}_{n}$. There is a slight problem in applying theorem \ref{k-th-root} to \textit{any} message $M$ since we need to ensure that $M$ is coprime to $n$. In practice this is usually not so much of an issue; for instance if $p,q$ are at least $129$ and we encode our message one ASCII character at a time (which is a nonzero number in $\mathbf{Z}_{128}$), then we'll never run into this problem (\textit{why is this?}). When actually applying RSA, typically the primes are \textit{huge} (100+ digits), in which case the probability of picking a non-invertible element of $\mathbf{Z}_{pq}$ is fairly small (see Exercise \ref{prob-RSA} in section \ref{RSA-ex}).
 
 Moreover, like any cryptosystem, RSA is susceptible to attacks on its integrity. There is currently a somewhat pressing desire to move away from RSA given that quantum computers are likely to essentially trivialize the exact type of factorization problem it relies on for security\footnote{The mathematics of this are beyond the scope of our course, but there's some good \href{https://youtu.be/-UrdExQW0cs?si=QaniK-f26fjQKmVA}{YouTube videos} that partially explain the ideas}. Regardless, it's a good real-world use for our introduction to modular arithmetic, and many more powerful encryption algorithms still rely on some of the basic ideas from RSA. 
 
@@ -833,14 +833,14 @@ A group $(G,\cdot)$ is called \textbf{abelian}\footnote{Named after the 19th cen
 \item \label{star-Zn} If $p$ is prime, then the set $\mathbf{Z}_p^*$ defined by \[ \mathbf{Z}_p^*=\{ a\in\mathbf{Z}_p : a\neq 0\}\] is a group with respect to multiplication (this follows from lemma \ref{flt-lem}). In general, even if $n$ is not a prime, we set \begin{equation} \mathbf{Z}_n^*=\{ a\in\mathbf{Z}_n : \gcd(a,n)=1\}\end{equation} and call $\mathbf{Z}_n^*$ the \textbf{group of units} modulo $n$. 
 \item Let $V=\{e,a,b,ab\}$ where $a^2=b^2=(ab)^2=e$. Then $V$ is a group, often the \href{https://en.wikipedia.org/wiki/Klein_four-group}{\textbf{Klein four group}} (or \textit{Klein Vierergruppe}) -- see also example \ref{klein-four-group}.
 \item Let $\mathbf{R}^*=\mathbf{R}\setminus \{0\}$. Then $\mathbf{R}^*$ is a group with respect to multiplication. Same goes for $\mathbf{C}^*=\mathbf{C}\setminus \{0\}$. Both $\mathbf{R}$ and $\mathbf{C}$ are groups with respect to addition.
-\item Recall the notation $\GL_n(\mathbf{R})$ for the set of invertible $n\times n$ matrixes of real numbers. Then $(\GL_n(\mathbf{R}),+)$ where $+$ denotes matrix addition. Similarly, let $\circ$ denote matrix composition, $(\GL_n(\mathbf{R}),\circ)$ is also a group. The latter is typically called the \textbf{general linear group}\footnote{``GL" means \textbf{g}eneral \textbf{l}inear. These letters are almost always capitalized, if you see them in lower-case or a funny looking Gothic font like $\mathfrak{gl}_n(\mathbf{R})$ this is almost certainly referring to something more complicated (like a \href{https://en.wikipedia.org/wiki/Lie_algebra}{Lie algebra}).} and is a good example of a group for which in general $A\circ B\neq B\circ A$.
+\item Recall the notation $\GL_n(\mathbf{R})$ for the set of invertible $n\times n$ matrices of real numbers. Writing $M_n(\mathbf{R})$ for the set of \textit{all} $n\times n$ real matrices, $(M_n(\mathbf{R}),+)$ is a group, where $+$ denotes matrix addition. (Note that $(\GL_n(\mathbf{R}),+)$ is \textit{not} a group: it does not contain the zero matrix, and is not closed under addition since e.g. $I+(-I)=0$.) Similarly, let $\circ$ denote matrix multiplication, $(\GL_n(\mathbf{R}),\circ)$ is also a group. The latter is typically called the \textbf{general linear group}\footnote{``GL" means \textbf{g}eneral \textbf{l}inear. These letters are almost always capitalized, if you see them in lower-case or a funny looking Gothic font like $\mathfrak{gl}_n(\mathbf{R})$ this is almost certainly referring to something more complicated (like a \href{https://en.wikipedia.org/wiki/Lie_algebra}{Lie algebra}).} and is a good example of a group for which in general $A\circ B\neq B\circ A$.
 \item Similar to the previous example, let $n>1$ and write $\SL_n (\mathbf{R})$ for the set \begin{equation} \SL_n(\mathbf{R})=\{ A\in\GL_n(\mathbf{R}) : \det A=1\}\end{equation} Then $\SL_n(\mathbf{R})$ is a group with respect to matrix multiplication. $\SL_n(\mathbf{R})$ is called the \textbf{special linear group}.
 
-\item Let $X_n$ be a regular $n$-gon\footnote{That is, a polygon with $n$ sides all of the same length, whose inner angles are all congruent} in the $xy$-plane and let $D_n$ denote the set of symmetries of this $n$-gon. $D_n$ is called the \textbf{dihedral group} of order $n$. 
+\item Let $X_n$ be a regular $n$-gon\footnote{That is, a polygon with $n$ sides all of the same length, whose inner angles are all congruent} in the $xy$-plane and let $D_n$ denote the set of symmetries of this $n$-gon. $D_n$ is called the \textbf{dihedral group} of degree $n$ (it has order $2n$). 
 
 \item Let $X$ be a set and write $\mathcal{F}(X)$ for the set of bijections $f\colon X\to X$. Then $(\mathcal{F}(X),\circ)$ is a group, where $\circ$ denotes function composition. Such a group is called a \textbf{permutation} or \textbf{symmetric} group. We'll see more of these later.
-\item \label{quats} Let $C_4$ and $Q_8$ denote the following sets of matrices ($i$ here denotes the complex unit $i^2=-1$) \begin{equation} C_4=\left\{ \pm \, \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \pm \begin{pmatrix} 0 & -1 \\ 1 & 0\end{pmatrix}\right\} \end{equation} and \begin{equation} \label{q-8} Q_8=\left\{ \pm \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \; \pm \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \; \pm \begin{pmatrix} 0 & i \\ i & 0\end{pmatrix},\; \pm \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix}\right\}\end{equation}
-Both $C_4$ and $Q_8$ are groups with respect to matrix multiplication. $Q_8$ is called the \href{https://en.wikipedia.org/wiki/Quaternion_group}{\textbf{quaternion group}} (whether or not you know this by name, we've all worked with this group before---it captures the symmetry of rotating objects in 3D-space).
+\item \label{quats} Let $C_4$ and $Q_8$ denote the following sets of matrices ($i$ here denotes the complex unit $i^2=-1$) \begin{equation} C_4=\left\{ \pm \, \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \pm \begin{pmatrix} 0 & -1 \\ 1 & 0\end{pmatrix}\right\} \end{equation} and \begin{equation} \label{q-8} Q_8=\left\{ \pm \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \; \pm \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}, \; \pm \begin{pmatrix} 0 & i \\ i & 0\end{pmatrix},\; \pm \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix}\right\}\end{equation}
+Both $C_4$ and $Q_8$ are groups with respect to matrix multiplication. $Q_8$ is called the \href{https://en.wikipedia.org/wiki/Quaternion_group}{\textbf{quaternion group}} (whether or not you know this by name, you've likely worked with this group before---it sits inside the group of \textit{unit quaternions}, which double covers the group of rotations of 3D-space).
 \item The \href{https://en.wikipedia.org/wiki/Rubik's_Cube}{\textit{Rubik's cube}} is a well-known 3D-puzzle game popularized in the US in the 1980s. The Rubik's cube is a good example of (an action of) a group; basic group elements consist of rotations of any of the six faces by an angle of $\pi/2$ (we can call these $F,B,U,D,L,R$ for front, back, up, down, left, and right assuming some fixed perspective of the group). There are relations to applying different rotations of faces, for instance applying any of the rotations $F,B,U,D,L,R$ four times results in the identity $e$--the permutation of the blocks on the cube which ``does nothing''.
 \end{enumerate}
 \end{example}
@@ -875,10 +875,10 @@ A subgroup is a group which naturally lives inside of another group. As it turns
 Notation-wise we write \begin{equation} H\leq G \end{equation} (yes this is the less than or equal to sign\footnote{And you can interpret ``is (isomorphic to) a subgroup of'' as being a partial ordering on a collection of groups}) to denote that $H$ is a subgroup of $G$. Informally, to be a subgroup of $G$, $H$ needs to consist of a collection of elements of $G$ that themselves form a ``closed system'' with respect to the group operations from $G$. A somewhat easier to check characterization of $H$ being a subgroup of $G$ is the following:
 
 \begin{prop}
-	Let $G$ be a group. A set nonempty subset $H\subset G$ is a subgroup of $G$ if for any $g,h\in H$, $gh^{-1}\in H$.
+	Let $G$ be a group. A nonempty subset $H\subset G$ is a subgroup of $G$ if and only if for any $g,h\in H$, $gh^{-1}\in H$.
 \end{prop}
 \begin{proof}
-	This characterization of subgroups has a nice short proof. We must show that the conditions from definition \ref{subgroup} are met. Suppose that $H$ is a nonempty subset of $G$ such that for any $g,h\in H$, $gh^{-1}\in H$. Note that then the group identity $e=gg^{-1}\in H$. Then, if $h\in H$, we must have $h^{-1}=eh^{-1}\in H$. So, if $g,h\in H$ then $gh=g(h^{-1})^{-1}\in H$.    
+	This characterization of subgroups has a nice short proof. The forward direction is immediate from definition \ref{subgroup}, so we show the converse: that the conditions from definition \ref{subgroup} are met. Suppose that $H$ is a nonempty subset of $G$ such that for any $g,h\in H$, $gh^{-1}\in H$. Note that then the group identity $e=gg^{-1}\in H$. Then, if $h\in H$, we must have $h^{-1}=eh^{-1}\in H$. So, if $g,h\in H$ then $gh=g(h^{-1})^{-1}\in H$.    
 \end{proof}
 
 We'll discuss the subgroup structure of groups much more in depth later, but here is a nice short proposition to start off with
@@ -887,7 +887,7 @@ We'll discuss the subgroup structure of groups much more in depth later, but her
 \end{prop}
 
 \begin{proof}
-	Let $n,m>1$ and suppose $m\mid n$, write $n=km$ for some integer $k$ and let \[H=\{0,k,2k,3k,\cdots,(m-1)k\}.\] The claim is that $H\leq G$. The group structure on $H$ is defined by $ak+bk= ck$ where $c=a+b\Mod{m}$. To show that this defines a subgroup of $G$, first note that $0\in H$. Second, let $ak,bk\in H$ and write $c=a+b\Mod{m}$, then $ck\in H$. Last, if $ak\in H$ then $(m-a)k=-(ak)$ in $H$. 
+	Let $n,m>1$ and suppose $m\mid n$, write $n=km$ for some integer $k$ and let \[H=\{0,k,2k,3k,\cdots,(m-1)k\}.\] The claim is that $H\leq \mathbf{Z}_n$. The group structure on $H$ is inherited from $\mathbf{Z}_n$: $ak+bk= ck$ where $c=a+b\Mod{m}$. To show that this is a subgroup of $\mathbf{Z}_n$, first note that $0\in H$. Second, let $ak,bk\in H$ and write $c=a+b\Mod{m}$, then $ck\in H$. Last, if $ak\in H$ then $(m-a)k=-(ak)$ in $H$. 
 	
 	There is then an isomorphism $\mathbf{Z}_m\cong H$ given by $\varphi(a)=ak$ for $a\in \mathbf{Z}_m$.
 \end{proof}
@@ -914,7 +914,7 @@ There is also a more general condition to check when a group is naturally isomor
 		\item $(\mathbf{Z}, \odot)$ where for $a,b\in \mathbf{Z}$, $a\odot b=a^2-b^2$
 		\item $(\mathbf{R}, \odot)$ where $a\odot b=a+b-1$
 		\item $(\mathbf{R}^3\setminus \{0\}, \times)$, consisting of nonzero vectors $v\in \mathbf{R}^3$ where $\times$ denotes the cross product of vectors
-		\item $( S^1, \cdot)$ where $S^1=\{ z\in\mathbf{C} : |z|=1\}$ is the set of complex numbers of norm\footnote{Recall the \textit{norm} of a complex number $a+bi$ is $|a+bi|=a^2+b^2$} 1 and $\cdot$ denotes complex multiplication.
+		\item $( S^1, \cdot)$ where $S^1=\{ z\in\mathbf{C} : |z|=1\}$ is the set of complex numbers of norm\footnote{Recall the \textit{norm} of a complex number $a+bi$ is $|a+bi|=\sqrt{a^2+b^2}$} 1 and $\cdot$ denotes complex multiplication.
 		\item $(\GL_n(\mathbf{R}), [\, , \,])$ where for $A,B\in \GL_n(\mathbf{R})$, $[A,B]=AB-BA$
 		\item \textit{Challenge}. $(\pi(X), \circ)$ where for some (open) region $X\subset \mathbf{R}^2$, $\pi(X)$ consists of all paths in $X$ (note: a path is represented by a continuous function $f\colon [a,b]\to X$ for some interval $[a,b]\subset \mathbf{R}$), and $\circ$ denotes concatenation of paths
 	\end{enumerate}
@@ -1002,7 +1002,7 @@ A finite group is just a group $G$ whose underlying set consists of finitely man
 \begin{proof}
 	Let $G$ and $H\leq G$ be given. We'll define an equivalence relation $\sim$ on $G$ as follows: $g\sim h$ if and only if $gh^{-1}\in H$. Let's show this is an equivalence relation: That $g\sim g$ is trivial. Suppose that $g,h$ given with $g\sim h$. Then $gh^{-1}\in H$ and so $(gh^{-1})^{-1}=hg^{-1}\in H$, which is to say $h\sim g$. Last suppose that $g\sim h$ and $h\sim k$. Then $gk^{-1}=gh^{-1}hk^{-1}=(gh^{-1})(hk^{-1})\in H$ since $H$ is a subgroup (i.e., closed under the operation from $G$). So, $\sim$ is an equivalence relation. 
 	
-	For $g\in G$ let's write $gH=\{gh : h\in H\}$. This is called a (left) coset of $H$ in $G$, we'll do more with this later. The claim to focus on now is the following: for $g\in G$, the sets $H$ and $gH$ have the same number of elements. This follows from the claim that the function $f_g\colon H \to gH$ given by $f_g(h)=gh$ is a bijection. Clearly $f$ is a surjection, note that $f$ is an injection as well as if $gh=gh'$ for $h,h'\in H$, then $h=g^{-1}gh=g^{-1}gh'=h'$. Thus the equivalence classes formed by $\sim$ are a partition of $G$. Suppose that $k=|H|$ and $m$ is the number of equivalence classes formed by $\sim$. Then $|G|=km$ and so $|H|=k$ divides the order of $G$. \end{proof}
+	For $g\in G$ let's write $Hg=\{hg : h\in H\}$. This is called a (right) coset of $H$ in $G$, we'll do more with this later. Note that the equivalence class of $g$ under $\sim$ is precisely $Hg$, since $gh^{-1}\in H$ if and only if $hg^{-1}\in H$. The claim to focus on now is the following: for $g\in G$, the sets $H$ and $Hg$ have the same number of elements. This follows from the claim that the function $f_g\colon H \to Hg$ given by $f_g(h)=hg$ is a bijection. Clearly $f_g$ is a surjection, note that $f_g$ is an injection as well as if $hg=h'g$ for $h,h'\in H$, then $h=hgg^{-1}=h'gg^{-1}=h'$. Thus the equivalence classes formed by $\sim$ are a partition of $G$. Suppose that $k=|H|$ and $m$ is the number of equivalence classes formed by $\sim$. Then $|G|=km$ and so $|H|=k$ divides the order of $G$. \end{proof}
 
 
 \subsection{Cyclic subgroups}
@@ -1054,11 +1054,11 @@ In other words, a group $G$ is cyclic if $G$ either (i) $G$ is isomorphic to $\l
 \end{prop}
 
 \begin{proof}
-	Suppose that $G$ is a cyclic group and write $G=\langle g\rangle$. Let $n$ be the order of $g$ so that $g^n=e$. Let $H\leq G$ be a subgroup. The claim is that $H=\langle h\rangle$ for some $h\in H$. If $H$ is the trivial group this is uninteresting. Note that since $H\subset G$, any $h\in H$ is of the form $h=g^k$ for some $k$. Let $K$ be the set $\{ k\in\mathbf{N} : h=g^k, h\in H\}$ and let $k_0$ be the smallest element of $K$, and $h_0=g^{k_0}$. Set $\ell=|\langle h_0\rangle|$. Then $\ell \mid n$ from Lagrange's theorem. But that is to say $n=k_0\ell$. So $H$ must be given by the set $\{e, h_0, h_0^2,\cdots,h_0^{\ell}\}$; i.e. $H$ is generated by $h_0$ and so is cyclic. 
+	Suppose that $G$ is a cyclic group and write $G=\langle g\rangle$. Let $n$ be the order of $g$ so that $g^n=e$. Let $H\leq G$ be a subgroup. The claim is that $H=\langle h\rangle$ for some $h\in H$. If $H$ is the trivial group this is uninteresting. Note that since $H\subset G$, any $h\in H$ is of the form $h=g^k$ for some $k$. Let $K$ be the set $\{ k\in\mathbf{N} : h=g^k, h\in H\}$ and let $k_0$ be the smallest element of $K$, and $h_0=g^{k_0}$. The claim is that $H=\langle h_0\rangle$. Indeed, let $h=g^k$ be any element of $H$ and use theorem \ref{div-alg} to write $k=k_0q+r$ with $0\leq r<k_0$. Then \[ g^{r}=g^{k-k_0q}=g^k\left(g^{k_0}\right)^{-q}=h\,h_0^{-q}\in H\] so if $r\neq 0$ then $r\in K$, contradicting that $k_0$ is the smallest element of $K$. Therefore $r=0$ and $h=h_0^{q}$. Setting $\ell=|\langle h_0\rangle|$, we then have $H=\{e, h_0, h_0^2,\cdots,h_0^{\ell-1}\}$; i.e. $H$ is generated by $h_0$ and so is cyclic. 
 \end{proof}
 
 \begin{remark} 
-In fact, in the above proof $H=\langle h\rangle$ for any $h\in H$, $h\neq e$. 
+In fact, the above proof shows a little more: $H$ is generated by $g^{k_0}$, where $k_0$ is the \textit{smallest} positive integer with $g^{k_0}\in H$. (Be careful: it is \textit{not} true that $H=\langle h\rangle$ for an arbitrary $h\in H$ with $h\neq e$---for instance $\langle 2\rangle=\{0,2,4\}$ is a proper subgroup of $\mathbf{Z}_6$.) 
 
 \end{remark}
 
@@ -1100,11 +1100,11 @@ Cyclic groups are a good starting point as they have a single generator. However
 Looking at $V$ again, we can think of it as the collection of all ``words'' in the alphabet $a,b$ together with the relations that $a^2=b^2=(ab)^2=e$. For instance, in $V$ the word $abbabbaa$ reduces to the identity via \[abbabbaa=a(e)a(e)(e)=aa=e\] The relations $a^2=e$ and $b^2=e$ furthermore tell us that $a^{-1}=a$ and $b^{-1}=b$ (since $aa=e$ and $bb=e$ and inverses are unique). The following might look complicated, but we'll investigate it much further.
 
 \begin{defn}[Free group]
-	Let $X$ be a set. The \textbf{Free group} on the set $X$, denoted $F(X)$,  is the collection of words \begin{equation} F(X)=\{ x_1^{k_1}x_2^{k_2}x_3^{k_3}\cdots x_n^{k_n} : n\geq 0, x_i\in X, k_i\in\mathbf{Z} \text{ for } i=1,2,\dots, n\} \end{equation}The group operation on $F(X)$ is \textbf{concatenation} of words
+	Let $X$ be a set. The \textbf{Free group} on the set $X$, denoted $F(X)$,  is the collection of words \begin{equation} F(X)=\{ x_1^{k_1}x_2^{k_2}x_3^{k_3}\cdots x_n^{k_n} : n\geq 0,\ x_i\in X,\ x_i\neq x_{i+1},\ k_i\in\mathbf{Z}\setminus\{0\} \text{ for } i=1,2,\dots, n\} \end{equation}The group operation on $F(X)$ is \textbf{concatenation} of words
 \end{defn}
 Here, concatenation of the words means for instance that elements $xy$ and $yz$ concatenate to $xy\cdot yz=xy^2z$. This operation is not abelian.
 
-We call any element $x\in X$ a \textbf{generator} for the free group $F(X)$. Note that $F(X)$ is always (countably) infinite. Moreover, if $X=\{x\}$ then there is an isomorphism $f\colon \mathbf{Z}\to F(X)$ given by $f(n)=x^n$ (with the convention that $x^0=e$). 
+We call any element $x\in X$ a \textbf{generator} for the free group $F(X)$. Note that if $X$ is nonempty and finite (or countably infinite) then $F(X)$ is countably infinite. Moreover, if $X=\{x\}$ then there is an isomorphism $f\colon \mathbf{Z}\to F(X)$ given by $f(n)=x^n$ (with the convention that $x^0=e$). 
 
 \begin{example}For instance, say $X=\{x,y,z\}$ then $F(X)$ is the collection of ``words'' in the alphabet $x,y,z$ and their inverses. For instance, \[ x, xy^{-1}, xzxzyx, x^2y^4z^{-11}, \cdots\] are all elements of $F(X)$.  The identity in $F(X)$ is the ``empty word" (which we can denote as $e$). In notation we write \[ F(X)=\langle x,y,z \rangle\] to denote that $x,y,z$ are the generators of $F(X)$. The group operation is concatenation of words, for instance, suppose we have $xy$ and $yz$ in $F(X)$, then $xy\cdot yz=xyyz=xy^2z$. This operation is nonabelian as say $yz\cdot xy=yzxy\neq xy^2z=xy\cdot yz$. It's perhaps not immediately clear that $F(X)$ has inverses, but it does: you simple the read the word backwards replacing all powers by their negatives: i.e., \[ (xy^{-1}z^2y^3)^{-1}=y^{-3}z^{-2}yx^{-1}\]
 
@@ -1123,11 +1123,11 @@ Difficult to parse? Perhaps, but hopefully it starts to come together in the nex
 	\item \textbf{Klein four group}. $V$ has the presentation \begin{equation} V=\langle a,b \mid a^2=b^2=(ab)^2=e\rangle \end{equation}
 	Note that it's not immediately clear that $V$ has only four elements. First note that $a^2=b^2=e$ so that $a^{-1}=a, b^{-1}=b$. Then, since $e=(ab)^2$, we then have \[ab=aeb=a(ab)^2b=aababb=ebae=ba\] so that $ab=ba$. Further any word with more than one consecutive $a$ or $b$ can be reduced via $a^2=b^2=e$. So the only possible words are $e,a,b$ and $ab$. 
 	
-	\item \textbf{Permutation group of three elements}. Let $X=\{x,y,z\}$ and set $S_3$ to be the set of bijections of $X$ with the group operation of function composition. Then $X$ has generators $\alpha\colon X\to X$ and $\beta \colon X\to X$, permutations given by \[ \alpha(x)=y,\; \alpha(y)=y,\;\alpha(z)=z \qquad \beta(x)=x,\; \beta(y)=z,\; \beta(z)=y\] The composition $\alpha \beta$ (her this is read as $\beta$ first and then $\alpha$, as with function composition) is then defined by \[\alpha\beta(x)=y,\; \alpha\beta(y)=z,\; \alpha\beta(z)=x\] and is identified withe cyclic permutation $x\to y\to z\to x$ which has order 3. The permutation $x\to z\to x$ which fixes $y$ is the composite $\alpha\beta\alpha$.
+	\item \textbf{Permutation group of three elements}. Let $X=\{x,y,z\}$ and set $S_3$ to be the set of bijections of $X$ with the group operation of function composition. Then $S_3$ has generators $\alpha\colon X\to X$ and $\beta \colon X\to X$, permutations given by \[ \alpha(x)=y,\; \alpha(y)=x,\;\alpha(z)=z \qquad \beta(x)=x,\; \beta(y)=z,\; \beta(z)=y\] The composition $\alpha \beta$ (here this is read as $\beta$ first and then $\alpha$, as with function composition) is then defined by \[\alpha\beta(x)=y,\; \alpha\beta(y)=z,\; \alpha\beta(z)=x\] and is identified with the cyclic permutation $x\to y\to z\to x$ which has order 3. The permutation $x\to z\to x$ which fixes $y$ is the composite $\alpha\beta\alpha$.
 	A presentation of $S_3$ is then \begin{equation}S_3\cong \langle \alpha,\beta \mid \alpha^2=\beta^2=(\beta\alpha)^3=e\rangle\end{equation}
 	We'll deal more with permutations groups soon enough (including some more reasonable notation for understanding their structure).
 	\item \textbf{Quaternion group}. $Q_8$ the group with presentation \begin{equation} \label{Q_8} Q_8=\langle i,j,k \mid i^2=j^2=k^2=ijk, \;i^4=j^4=k^4=e\rangle\end{equation}
-	This might look complicated (and it is) but you've actually dealt this with group structure before: this Quaternion group axiomatizes rotations in $\mathbf{R}^3$. Each element $i,j,k$ is a quarter turn in one of the three coordinate planes. Moreover, this group structure underlies the \textit{cross product} of vectors in $\mathbf{R}^3$. In fact this is the same as the group $Q_8$ of $2\times 2$ matrices given in example \ref{groups-example} \ref{quats}; via the mapping \[i\mapsto \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \qquad j\mapsto \begin{pmatrix} 0 & i \\ i & 0\end{pmatrix}, \qquad k\mapsto \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix}\]
+	This might look complicated (and it is) but you've likely dealt with this group structure before: the unit quaternions double cover the rotations of $\mathbf{R}^3$, under which each of $i,j,k$ maps to a half turn about one of the three coordinate axes. Moreover, this group structure underlies the \textit{cross product} of vectors in $\mathbf{R}^3$. In fact this is the same as the group $Q_8$ of $2\times 2$ matrices given in example \ref{groups-example} \ref{quats}; via the mapping \[i\mapsto \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix}, \qquad j\mapsto \begin{pmatrix} 0 & 1 \\ -1 & 0\end{pmatrix}, \qquad k\mapsto \begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix}\]
 	%The subscript $8$ is suggestive, but is it really clear that $Q_8$ has $8$ elements to begin with? Not necessarily. Let's investigate. Writing $e$ for the identity, it's clear that $Q_8$ has at least the four distinct elements $e,i,j,k$ and one more which can be written as any of the equivalent expressions $i^2=j^2=k^2=ijk$. What's not clear at first is the order of any of these elements $i,j$ or $k$. First we can find that $i^2=ijk$ so that $i=jk$. Similarly, $k^2=ijk$ so $k=ij$. 
 	
 \end{itemize}
@@ -1146,7 +1146,7 @@ Dihedral groups arise as the groups of symmetry of regular $n$-gons. For instanc
 
 
 \begin{defn}
-	The \textbf{dihedral group} of order $n$ is the group $D_n$ given by the following presentation \begin{equation} 
+	The \textbf{dihedral group} of degree $n$ is the group $D_n$ given by the following presentation \begin{equation} 
 		D_n=\langle s, r \mid s^2=r^n=e, sr=r^{-1}s\rangle \end{equation}
 \end{defn}
 
@@ -1154,8 +1154,8 @@ In general, $D_n$ describes the symmetries of a regular $n$-gon (viewed as a sid
 
 \begin{example}[Examples of dihedral groups] For small $n$, we already know the dihedral groups of order $n$ (up to isomorphism, at least). For instance,
 \begin{itemize}
-	\item $D_1\cong \{e\}$ the trivial group
-	\item $D_2\cong \mathbf{Z}_2$
+	\item $D_1\cong \mathbf{Z}_2$
+	\item $D_2\cong \mathbf{Z}_2\oplus \mathbf{Z}_2$, the Klein four group
 	\item $D_3\cong S_3$, the permutation group on three symbols and the only nonabelian group of order $6$
 	\item To describe the groups $D_n$ for $n\geq 4$ requires semi-direct products, which we probably wont get to until later
 \end{itemize}
@@ -1180,7 +1180,7 @@ Let $n\geq 1$. The group $D_n$ has order $2n$, since any word can be rearranged 
 	
 	\[ \includegraphics[width=50mm]{Images/square-ex}\]
 
-	\item Let $n,m$ be numbers such that $\gcd(n,m)\neq 1$. Prove that $Z_m \oplus Z_n$ is not cyclic. 
+	\item Let $n,m$ be numbers such that $\gcd(n,m)\neq 1$. Prove that $\mathbf{Z}_m \oplus \mathbf{Z}_n$ is not cyclic. 
 	\item Let $n\geq 1$ and write $D_n$ for the $n$-th dihedral group. Show that $D_n\cong \langle s,r \mid r^n=s^2=(sr)^2=e\rangle$. 
 	
 	\textit{Challenge} Show that $D_n \cong \langle s,t\mid s^2=t^2=(st)^n=e\rangle$
@@ -1211,7 +1211,7 @@ It's trivial to show that if $X$ and $Y$ have the same number of elements, then 
 \end{prop}
 
 \begin{proof}
-	This is standard proof by induction. For $n=0,1$ this is trivial. Suppose $n$ given such that we know that $|S_{n-1}|=(n-1)!$. We want to show that $|S_n|=n!$. Let a bijection $\alpha\colon \underline{n}\to \underline{n}$ be given. Suppose that $\alpha(n)=k$. Then $\alpha$ is a bijection of the set $\{1,2,\cdots,n-1\}$ and $\underline{n}\setminus \{k\}$. There are $(n-1)!$ such bijections (by the inductive hypothesis), and $n$ such choices of $k$. So, the total number of bijections $\alpha=n(n-1)!=n!$.
+	This is standard proof by induction. For $n=0,1$ this is trivial. Suppose $n$ given such that we know that $|S_{n-1}|=(n-1)!$. We want to show that $|S_n|=n!$. Let a bijection $\alpha\colon \underline{n}\to \underline{n}$ be given. Suppose that $\alpha(n)=k$. Then $\alpha$ is a bijection of the set $\{1,2,\cdots,n-1\}$ and $\underline{n}\setminus \{k\}$. There are $(n-1)!$ such bijections (by the inductive hypothesis), and $n$ such choices of $k$. So, the total number of bijections $\alpha$ is $n(n-1)!=n!$.
 \end{proof}
 
 
@@ -1274,7 +1274,7 @@ If $G$ is a group and $g,h\in G$ we call the term $ghg^{-1}$ the conjugate of $h
 Any set of the associated partition $G/\sim$ is called a \textbf{conjugacy class} of $G$. If $h,h'\in G$ such that there is a $g\in G$ such that $ghg^{-1}=h'$ we say that $h$ and $h'$ are \textbf{conjugate} (by $g$). 
 
 \begin{example}
-	We've seen an example of this before\footnote{I believe I showed this in class way back in the first or second week}. In the group $\GL_2(\mathbf{R})$ (with matrix multiplication), matrices $A$ and $B$ are conjugate if and only if there is $P\in \GL_2(\mathbf{R})$ with $PAP^{-1}=B$. In this case, $A$ and $B$ must have the same eigenvalues. In fact, matrices $A,B\in \GL_2(\mathbf{R})$ are conjugate if and only if they have the same eigenvalues. 
+	We've seen an example of this before\footnote{I believe I showed this in class way back in the first or second week}. In the group $\GL_2(\mathbf{R})$ (with matrix multiplication), matrices $A$ and $B$ are conjugate if and only if there is $P\in \GL_2(\mathbf{R})$ with $PAP^{-1}=B$. In this case, $A$ and $B$ must have the same eigenvalues. In fact, if $A,B\in \GL_2(\mathbf{R})$ have the same \textit{distinct} eigenvalues then they must be conjugate. Be warned that this can fail when an eigenvalue is repeated: $\begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix}$ and the identity matrix have the same eigenvalues but are not conjugate (the identity is conjugate only to itself). 
 
 \end{example}
 
@@ -1286,10 +1286,10 @@ In particular, any conjugate of a cycle of length $k$ in $S_n$ is another cycle 
 
 
 \begin{defn}
-Let $n\geq 0$ and $\alpha\in S_n$. Let $k\geq 1$ and $n_1,n_2,\dots,n_k\geq 1$ such that $n_1+n_2+\cdots+n_k=n$. We say that $\alpha$ is a \textbf{cycle of type $(n_1,n_2,\cdots,n_k)$} if $\alpha$ has a decomposition into disjoint cycles $\alpha=\alpha_1\alpha_2\cdots\alpha_k$ such that $\alpha_i$ is a cycle of length $i$ for $i=1,2,\dots,k$. 
+Let $n\geq 0$ and $\alpha\in S_n$. Let $k\geq 1$ and $n_1,n_2,\dots,n_k\geq 1$ such that $n_1+n_2+\cdots+n_k=n$. We say that $\alpha$ is a \textbf{permutation of cycle type $(n_1,n_2,\cdots,n_k)$} if $\alpha$ has a decomposition into disjoint cycles $\alpha=\alpha_1\alpha_2\cdots\alpha_k$ such that $\alpha_i$ is a cycle of length $n_i$ for $i=1,2,\dots,k$. 
 \end{defn}
 
-Note by theorem \ref{disjoint-cycles} that any decomposition of a permutation $\alpha\in S_n$ into cycles must have the same cycle type. 
+Note by theorem \ref{disjoint-cycles} that any decomposition of a permutation $\alpha\in S_n$ into disjoint cycles must have the same cycle type. 
 
 
 \begin{thm}
@@ -1297,9 +1297,9 @@ Note by theorem \ref{disjoint-cycles} that any decomposition of a permutation $\
 \end{thm}
 
 \begin{example}
-	In $S_2$ there are two conjugacy classes: $\{\Id\}$ and $\{(12)\}$. These correspond to the two decompositions $2=2$ and $2=1+1$.
+	In $S_2$ there are two conjugacy classes: $\{\Id\}$ and $\{(12)\}$. These correspond to the two decompositions $2=1+1$ and $2=2$ respectively.
 	
-	In $S_3$ we have conjugacy classes corresponding to the decompositions of $3$ as $3=3, 3=2+1$ and $3=1+1+1$. These correspond to the conjugacy classes \[ \{ (123), (231) \}, \quad \{ (12), (23), (13)\}, \quad \{ \Id\}\]
+	In $S_3$ we have conjugacy classes corresponding to the decompositions of $3$ as $3=3, 3=2+1$ and $3=1+1+1$. These correspond to the conjugacy classes \[ \{ (123), (132) \}, \quad \{ (12), (23), (13)\}, \quad \{ \Id\}\]
 	
 \end{example}
 
@@ -1325,14 +1325,14 @@ From corollary \ref{trans-generate-Sn} we know that transpositions generate $S_n
 	
 	Now let's look at the product $\alpha_1\alpha_2\cdots\alpha_{k-2}$. If this is the identity then we're done, since by the inductive hypothesis we must have $k-2$ even, and therefore $k$ even as well. If not, then we can continue this game: replace $\alpha_{k-3}\alpha_{k-2}$ by a pair of equivalent transpositions with $a$ moved by $\alpha_{k-3}$ only, then $\alpha_{k-4}\alpha_{k-3}$, etc. The claim is that at some point, this pairwise exchange of transpositions must produce the same transposition next to itself. This then cancels out, leaving $\Id$ written as a product of $k-2$ transpositions, and the theorem follows. 
 	
-	Suppose that this never happens. Then we can exchange transpositions all the way back to $\alpha_1\alpha_2$ such that $\alpha_1$ moves $a$ and no $\alpha_k$ for $k\geq 2$ does. This is a problem, because by assumption we must still have $\Id=\alpha_1\alpha_2\cdots\alpha_k$; but if only $\alpha_1$ moves then $\Id(a)\neq a$ as would be required. This completes the proof.\end{proof} 
+	Suppose that this never happens. Then we can exchange transpositions all the way back to $\alpha_1\alpha_2$ such that $\alpha_1$ moves $a$ and no $\alpha_i$ for $i\geq 2$ does. This is a problem, because by assumption we must still have $\Id=\alpha_1\alpha_2\cdots\alpha_k$; but if only $\alpha_1$ moves $a$ then $\Id(a)\neq a$, contrary to what is required. This completes the proof.\end{proof} 
 
 \begin{corollary} \label{sign-is-well-def}
 	Let $n\geq 0$ and $\alpha\in S_n$ some permutation. If $\alpha$ is represented as an even number of transpositions, then any other representation of $\alpha$ by transpositions must also contain an even number of factors. Similarly, if $\alpha$ is represented as an odd number of transpositions, then any other representation of $\alpha$ by transpositions must contain an odd number of factors. 
 \end{corollary}
 
 \begin{proof}
-	 Suppose that we had two representations of $\alpha$ by transpositions, i.e., that\[\alpha=\tau_1\tau_2\tau_3\cdots\tau_n=\sigma_1\sigma_2\sigma_3\cdots\sigma_m\] where $\tau_i$ and $\sigma_j$ are transpositions for $i=1,\dots,n$ and $j=1,\dots,m$. The first claim is that \[ \alpha^{-1}=\tau_n \tau_{n-1}\cdots \tau_3\tau_2\tau_1\] Indeed, any transposition is its own inverse, so that \[\tau_1\tau_2\cdots\tau_{n-1}\tau_n\tau_n\tau_{n-1}\cdots\tau_2\tau_1=\tau_1\tau_2\cdots\tau_{n-1}\tau_{n-1}\cdots \tau_2\tau_1=\cdots=\tau_2\tau_1\tau_1\tau_2=\tau_1\tau_1=\Id.\] Then we cxan write \[ \Id=\alpha \alpha^{-1}=\sigma_1\sigma_2\sigma_3\cdots\sigma_m\tau_n \tau_{n-1}\cdots \tau_3\tau_2\tau_1\] But, by theorem \ref{id-is-even} we must have $n+m$ be an even number. This means that either $n$ and $m$ are both even or $n$ and $m$ are both odd. Thus the claim is proved. 
+	 Suppose that we had two representations of $\alpha$ by transpositions, i.e., that\[\alpha=\tau_1\tau_2\tau_3\cdots\tau_n=\sigma_1\sigma_2\sigma_3\cdots\sigma_m\] where $\tau_i$ and $\sigma_j$ are transpositions for $i=1,\dots,n$ and $j=1,\dots,m$. The first claim is that \[ \alpha^{-1}=\tau_n \tau_{n-1}\cdots \tau_3\tau_2\tau_1\] Indeed, any transposition is its own inverse, so that \[\tau_1\tau_2\cdots\tau_{n-1}\tau_n\tau_n\tau_{n-1}\cdots\tau_2\tau_1=\tau_1\tau_2\cdots\tau_{n-1}\tau_{n-1}\cdots \tau_2\tau_1=\cdots=\tau_2\tau_1\tau_1\tau_2=\tau_1\tau_1=\Id.\] Then we can write \[ \Id=\alpha \alpha^{-1}=\sigma_1\sigma_2\sigma_3\cdots\sigma_m\tau_n \tau_{n-1}\cdots \tau_3\tau_2\tau_1\] But, by theorem \ref{id-is-even} we must have $n+m$ be an even number. This means that either $n$ and $m$ are both even or $n$ and $m$ are both odd. Thus the claim is proved. 
 \end{proof}
 
 \begin{defn}[Sign of permutation]
@@ -1356,17 +1356,19 @@ The following proposition tells us that $A_n$ is indeed a subgroup of $S_n$. We 
 	Let $n\geq 2$, then $|A_n|=n!/2$.
 \end{prop}
 
+\begin{proof}
 Either a permutation is even or odd, so it's half the total permutations (that's a joke, but only sort of).  Let $A_n\subset S_n$ be the even permutations and $O_n\subset S_n$ be the odd permutations. Note that $A_n$ and $O_n$ are disjoint, so if we show that there is a bijection $A_n\to O_n$ we're done. Fix any transposition $\tau\in S_n$ and define $\varphi\colon A_n\to O_n$ by $\varphi(\alpha)=\tau\alpha$. Note that if $\alpha\in A_n$ then $\tau\alpha$ has one more transposition, so is odd, and therefore this function is well defined. 
 
-Let's show that $\varphi$ is a bijection. $\varphi$ is injective as, if $\tau\alpha=\tau\beta$ for some permutations $\alpha,\beta\in A_n$, then $\alpha=\tau\tau\alpha=\tau\tau\beta=\beta$. Similarly if $\beta\in O_n$ then $\tau\beta\in A_n$ and $\varphi(\tau\beta)=\tau\tau\beta=\beta$, so $\varphi$ is surjective as well. Thus $|A_n|=|O_n|$ and therefore since $|A_n|+|O_n|=|S_n|=n!$ we must have $|A_n|=n!/2$. 
+Let's show that $\varphi$ is a bijection. $\varphi$ is injective as, if $\tau\alpha=\tau\beta$ for some permutations $\alpha,\beta\in A_n$, then $\alpha=\tau\tau\alpha=\tau\tau\beta=\beta$. Similarly if $\beta\in O_n$ then $\tau\beta\in A_n$ and $\varphi(\tau\beta)=\tau\tau\beta=\beta$, so $\varphi$ is surjective as well. Thus $|A_n|=|O_n|$ and therefore since $|A_n|+|O_n|=|S_n|=n!$ we must have $|A_n|=n!/2$.
+\end{proof} 
 
 \subsection{The alternating group in action}
 
 \begin{example}
 	It's straightforward to check that $A_1=A_2=\{\Id\}$. A calculation reveals that $A_3=\{\Id, (123), (132)\}\cong \mathbf{Z}_3$. $A_3$ can be interpreted as the orientation-preserving symmetries of the regular $2$-simplex; that is, the subgroup $\langle r\rangle \leq D_3$. 
 	
-	For $n\geq 4$, $A_4$ is not abelian. It's possible to enumerate the elements of $A_4$: \[A_4=\{ \Id, (12)(34), (13)(24), (14)(23), (123), (132), (124), (142), (134), (143), (234), (243) \}\]
-	This is a non-abelian group corresponding to the orientation-preserving\footnote{That is, if you have an honest tetrahedron (a four-sided die, say) in the $3$d space in which we live, the symmetries of that tetrahedron. Some people/books/authority figures will say this $A_4$ is indeed the group of symmetries of the tetrahedron but this inconsistent with $D_3$ being the group of symmetries of the equilateral triangle. ``Symmetries'' in this context is not exactly clear enough: only those from the alternating group preserve the orientation of the space these shapes are immersed into.} symmetries of a regular tetrahedron. It's one of the five non-isomorphic groups of order $12$; we know three of the others: $\mathbf{Z}_{12}, \mathbf{Z}_6\oplus \mathbf{Z}_2$ and $D_6$. The last has the presentation $\langle a, b, c\mid a^3=b^2=c^2=abc=e\rangle$\footnote{Groupprops tells me this is called the \href{https://groupprops.subwiki.org/wiki/Dicyclic_group:Dic12}{\textit{Dicyclic group}}, so I suppose I must believe them}. It's not supposed to be obvious that these are all the groups of order 12.  \end{example}
+	For $n\geq 4$, $A_n$ is not abelian. It's possible to enumerate the elements of $A_4$: \[A_4=\{ \Id, (12)(34), (13)(24), (14)(23), (123), (132), (124), (142), (134), (143), (234), (243) \}\]
+	This is a non-abelian group corresponding to the orientation-preserving\footnote{That is, if you have an honest tetrahedron (a four-sided die, say) in the $3$d space in which we live, the symmetries of that tetrahedron. Some people/books/authority figures will say this $A_4$ is indeed the group of symmetries of the tetrahedron but this inconsistent with $D_3$ being the group of symmetries of the equilateral triangle. ``Symmetries'' in this context is not exactly clear enough: only those from the alternating group preserve the orientation of the space these shapes are immersed into.} symmetries of a regular tetrahedron. It's one of the five non-isomorphic groups of order $12$; we know three of the others: $\mathbf{Z}_{12}, \mathbf{Z}_6\oplus \mathbf{Z}_2$ and $D_6$. The fifth has the presentation $\langle a, b, c\mid a^3=b^2=c^2=abc\rangle$ (note that here the common value $abc$ is deliberately \textit{not} set equal to $e$---doing so would collapse the group down to $S_3$)\footnote{Groupprops tells me this is called the \href{https://groupprops.subwiki.org/wiki/Dicyclic_group:Dic12}{\textit{Dicyclic group}}, so I suppose I must believe them}. It's not supposed to be obvious that these are all the groups of order 12.  \end{example}
 
 	\begin{example}[$A_n$ and roots of polynomials] You may know of the following theorem: 
 	
@@ -1377,9 +1379,9 @@ Let's show that $\varphi$ is a bijection. $\varphi$ is injective as, if $\tau\al
 
 
 \begin{example}[Symmetry groups of the Platonic solids] \label{platonic-solids-ex}
-A neat application of symmetric and alternating groups comes from the groups of symmetries of the five \href{https://en.wikipedia.org/wiki/Platonic_solid}{Platonic solids}. Recall that a platonic solid is a polyhedron in $\mathbf{R}^3$ all of whose faces are the same. There are only five such polyhedra: The cube, the tetrahedron, the octahedron, the icosahedron, and the dodecahedron. 
+A neat application of symmetric and alternating groups comes from the groups of symmetries of the five \href{https://en.wikipedia.org/wiki/Platonic_solid}{Platonic solids}. Recall that a platonic solid is a polyhedron in $\mathbf{R}^3$ whose faces are congruent regular polygons, with the same number of faces meeting at every vertex. There are only five such polyhedra: The cube, the tetrahedron, the octahedron, the icosahedron, and the dodecahedron. 
 
-A \textbf{rotational symmetry} means \textit{orientation-preserving symmetry}\footnote{For instance, the reflection $s\in D_n$ are not rotational symmetries of the $n$-gon. Recall that a rotation of the plane is given by the matrix \[\begin{pmatrix} \cos(\theta) & - \sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{pmatrix}\] for some $\theta\in\mathbf{R}$. If we view the $n$-gon as living inside $\mathbf{R}^2$, no such rotation matrix will take the $n$-gon to its reflection (such a matrix would have to have a negative determinant). It's maybe a bit subtle to really define what a rotation is: one way is to say that a rotation in $\mathbf{R}^n$ is an element of the special orthogonal group $\operatorname{SO}(\mathbf{n})$ of orthogonal $n\times n$ matrices with determinant $1$. This a good example of what's called a Lie group, I'd like to talk about these more later in the term.}, which is again to say, some symmetry you could realize as an honest symmetry of the shape $X$ in $\mathbf{R}^3$. We have the following
+A \textbf{rotational symmetry} means \textit{orientation-preserving symmetry}\footnote{For instance, the reflection $s\in D_n$ are not rotational symmetries of the $n$-gon. Recall that a rotation of the plane is given by the matrix \[\begin{pmatrix} \cos(\theta) & - \sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{pmatrix}\] for some $\theta\in\mathbf{R}$. If we view the $n$-gon as living inside $\mathbf{R}^2$, no such rotation matrix will take the $n$-gon to its reflection (such a matrix would have to have a negative determinant). It's maybe a bit subtle to really define what a rotation is: one way is to say that a rotation in $\mathbf{R}^n$ is an element of the special orthogonal group $\operatorname{SO}(n)$ of orthogonal $n\times n$ matrices with determinant $1$. This a good example of what's called a Lie group, I'd like to talk about these more later in the term.}, which is again to say, some symmetry you could realize as an honest symmetry of the shape $X$ in $\mathbf{R}^3$. We have the following
 \[\begin{tabular}{l | l| l | c}
 Solid &  Shape of faces & Number of faces &Rotational symmetry group \\ \hline
 Tetrahedron & Triangle & 4 & $A_4$ \\
@@ -1398,7 +1400,7 @@ In general, any finite group can be embedded\footnote{This has a precise definit
 
 
 \begin{thm}[Cayley's theorem] 
-Let $n\geq 1$ and $G$ be any finite group of order $n$. Then $G\leq S_n$. 
+Let $n\geq 1$ and $G$ be any finite group of order $n$. Then $G$ is isomorphic to a subgroup of $S_n$. 
 \end{thm}
 
 \begin{proof}
@@ -1426,7 +1428,7 @@ Let $n\geq 1$ and $G$ be any finite group of order $n$. Then $G\leq S_n$.
 	\item Prove that $A_3$ is the group of orientation-preserving symmetries of a regular $3$-gon\footnote{You may know this shape by the name \textit{equilateral triangle} (but it will also be the regular 3-gon to me).} Harder: prove that $A_4$ is the group of orientation preserving symmetries of a regular tetrahedron. \
 	\item \label{permutation-ex} Let $n\geq 0$ and write $\alpha=(a_1\,a_2\,a_3\,\cdots,a_k)$ for some cycle in $S_n$. Prove that $\alpha$ can be decomposed into transpositions in the two following ways
 	\[ \alpha=(a_1\,a_k)(a_1 \, a_{k-1})\cdots (a_1\,a_3)(a_1\,a_2)=(a_1\,a_2)(a_2\,a_3)\cdots(a_{k-2}\,a_{k-1})(a_{k-1}\,a_k)\]
-	\item Let $D_n$ be the $n$-th dihedral group. Prove that $D_n\leq S_n$ for all $n\geq 1$. 
+	\item Let $D_n$ be the $n$-th dihedral group. Prove that $D_n$ is isomorphic to a subgroup of $S_n$ for all $n\geq 3$. (\textit{Why does this fail for $n=1,2$?}) 
 	\item \label{sgn-hom}Prove that $\operatorname{sgn}\colon S_n\to\mathbf{Z}_2$ is a homomorphism. 
 	\item Let $\alpha,\beta \in S_n$. Prove that their \textit{commutator} $\alpha\beta\alpha^{-1}\beta^{-1}$ is always an element of $A_n$.
 	\item True or False: For any $n\geq 3$, there is a presentation of $S_n$ with exactly two generators. 
@@ -1436,7 +1438,7 @@ Let $n\geq 1$ and $G$ be any finite group of order $n$. Then $G\leq S_n$.
 	
 	\textit{Challeng-ier}. Use the same type of duality argument to prove that the regular icosahedron and dodecahedron both have rotational symmetry group isomorphic to $A_5$.
 	\item \textit{Challenge}. Let $n\geq 1$. Describe the set $K_n$ of all integers $k$ for which $S_n$ has a subgroup of order $k$.
-	\item ($A_n$ is generated by $3$-cycles). Let $n\geq 3$. Prove that $(a\,b)(c\,d)=(a\,c\,b)(a\,c\,d)$ and $(a\,b)(a\,c)=(a\,c\,b)$ for any $a,b,c,d\in \underline{n}$. Use this to prove that the collection of cycles of length $3$ generate $A_n$. 
+	\item ($A_n$ is generated by $3$-cycles). Let $n\geq 3$. Prove that $(a\,b)(c\,d)=(a\,c\,b)(a\,c\,d)$ and $(a\,b)(a\,c)=(a\,c\,b)$ for any \textit{distinct} $a,b,c,d\in \underline{n}$. Use this to prove that the collection of cycles of length $3$ generate $A_n$. 
 \end{enumerate}
 
 \section{Normal subgroups and group quotients}
@@ -1497,7 +1499,7 @@ Given any subgroup $H\leq G$ we write $G/H$ for the set of (left) cosets of $H$ 
 
 
 \begin{proof}
-Let $gN,gH\in G/H$. The evident group operation is given by \[ (gN)(hN)=(gh)N\] Note that this is well-defined since $N$ is normal in $G$; i.e., $(gN)(hN)=g(Nh)N=g(hN)N=ghN$. Moreover, this product does not depend on choice of representative for each coset. Meaning, if $gN=g'N, hN=h'N$ then $g'=gn$ and $h'=hm$ for some elements $n,m\in N$. Then \[(g'N)(h'N)=(g'h')N=(gnhm)N=ghn'mN=ghN\] (note here that $nh=hn'$ for some $n'\in N$ since the right coset and left coset by $h$ agree.) The identity in $G/N$ is given by the subgroup $N=eN$. If $gN\in G/N$ then $(gN)^{-1}=g^{-1}N$. 
+Let $gN,hN\in G/N$. The evident group operation is given by \[ (gN)(hN)=(gh)N\] Note that this is well-defined since $N$ is normal in $G$; i.e., $(gN)(hN)=g(Nh)N=g(hN)N=ghN$. Moreover, this product does not depend on choice of representative for each coset. Meaning, if $gN=g'N, hN=h'N$ then $g'=gn$ and $h'=hm$ for some elements $n,m\in N$. Then \[(g'N)(h'N)=(g'h')N=(gnhm)N=ghn'mN=ghN\] (note here that $nh=hn'$ for some $n'\in N$ since the right coset and left coset by $h$ agree.) The identity in $G/N$ is given by the subgroup $N=eN$. If $gN\in G/N$ then $(gN)^{-1}=g^{-1}N$. 
 %	We must show that the binary operation \eqref{normal-operation} defines a group structure on $G/N$. First of all, this means showing that $[g][h]$ and $[gh]$ are actually the same coset of $N$. Let $g,h\in G$. Then \begin{equation} (gN)(hN)=g(Nh)N=ghNN=(gh)N\end{equation}. It is then straightforward to show that (i) if $e\in G$ is the identity, $[e]$ is the identity in $G/N$, (ii) for any $g\in G$, [g]^{-1}=[g^{-1}]
 \end{proof}
 
@@ -1505,12 +1507,12 @@ The resulting group $G/N$ is called the \textbf{quotient of $G$ by $N$}. Some ex
 
 \begin{example}[Quotients of cyclic groups]
 	 Let $n\geq1$, then $n\mathbf{Z}=\{nk:k\in \mathbf{Z}\}$ is a normal subgroup of $\mathbf{Z}$. The quotient $\mathbf{Z}/n\mathbf{Z}\cong \mathbf{Z}_n$.
-	As another example, let $n\geq 1$ and $k\mid n$. Then $\langle n/k\rangle\nrml \mathbf{Z}_n$. In particular, $\mathbf{Z}/\langle n/k\rangle \cong \mathbf{Z}_k$.
+	As another example, let $n\geq 1$ and $k\mid n$. Then $\langle k\rangle\nrml \mathbf{Z}_n$. In particular, $\mathbf{Z}_n/\langle k\rangle \cong \mathbf{Z}_k$.
 \end{example}
 
-\begin{example}[Normal subgroups of $D_n$] \label{ex-Dn-normal} Let $n\geq 1$. The dihedral group $D_n=\langle r, s \mid r^n=s^2=e, sr=r^{-1}s\rangle$ has the subgroup $N=\langle r\rangle \cong \mathbf{Z}_n$. The claim is that subgroup is normal in $G$. We'll show that $gNg^{-1}\subset N$ for all $g\in G$. It suffices to show this for the generators $s,r$ of $D_n$. That $rNr^{-1}\subset N$ is trivial. To show that $sNs^{-1}\subset N$ we observe that an element in $sNs^{-1}$ is one of the from $sr^ks$, which by the group relations can be rewritten $sr^ks=r^{-k}ss=r^{-k}\in N$. 
+\begin{example}[Normal subgroups of $D_n$] \label{ex-Dn-normal} Let $n\geq 1$. The dihedral group $D_n=\langle r, s \mid r^n=s^2=e, sr=r^{-1}s\rangle$ has the subgroup $N=\langle r\rangle \cong \mathbf{Z}_n$. The claim is that this subgroup is normal in $D_n$. We'll show that $gNg^{-1}\subset N$ for all $g\in D_n$. It suffices to show this for the generators $s,r$ of $D_n$. That $rNr^{-1}\subset N$ is trivial. To show that $sNs^{-1}\subset N$ we observe that an element in $sNs^{-1}$ is one of the form $sr^ks$, which by the group relations can be rewritten $sr^ks=r^{-k}ss=r^{-k}\in N$. 
 	
-	The associated quotient group $D_n/\langle r\rangle= \{eN, sN\}\cong \mathbf{Z}_2$. Note that this quotient group is ``crushes'' the rotational aspect of $D_n$, leaving only the reflections. In terms of the presentation, we're simply adding in an additional relations which say any $g\in N$ is equal to $e$. 
+	The associated quotient group $D_n/\langle r\rangle= \{eN, sN\}\cong \mathbf{Z}_2$. Note that this quotient group ``crushes'' the rotational aspect of $D_n$, recording only whether a symmetry is a rotation or a reflection. In terms of the presentation, we're simply adding in an additional relations which say any $g\in N$ is equal to $e$. 
 \end{example}
 
 
@@ -1568,7 +1570,7 @@ The following are some general statements about the structure of groups, mostly 
 
 	Second, we'll show that $f$ is actually a homomorphism. This follows from the observation that \[ f(gKhK)=f(ghK)=\varphi(gh)=\varphi(g)\varphi(h)=f(gK)f(hK).\]
 	
-	That $f$ is onto is essentially trivial. If $h\in I$ then $h=\varphi(g)$ for $g\in G$ so $f(gK)=h$. That $f$ is injective follows from the observation that if $f(gK)=f(hK)$ then $\varphi(g)=\varphi(h)$ so that $\varphi(g^{1}h)=e$ and therefore $g^{-1}h\in K$. But $g^{-1}h\in K$ if and only if $gK=hK$. This completes the proof. 
+	That $f$ is onto is essentially trivial. If $h\in I$ then $h=\varphi(g)$ for $g\in G$ so $f(gK)=h$. That $f$ is injective follows from the observation that if $f(gK)=f(hK)$ then $\varphi(g)=\varphi(h)$ so that $\varphi(g^{-1}h)=e$ and therefore $g^{-1}h\in K$. But $g^{-1}h\in K$ if and only if $gK=hK$. This completes the proof. 
 \end{proof}
 
 \begin{remark}
@@ -1584,7 +1586,7 @@ Moreover, (i) $q$ is a surjection, (ii) $f$ is an injection, (iii) $f$ is a bije
 
 
 \begin{example}[Order of $A_n$]
-	Let $n\geq 1$. Recall that $\operatorname{sgn}\colon S_n\to \mathbf{Z}_2$ is a homomorphism, and that by definition  $A_n=\ker\operatorname{sgn}$. Since $\operatorname{sgn}$ is a surjection we have $\mathbf{Z}_2\cong S_n/A_n$. Therefore, $A_n$ has index two in $S_n$. Which is to say that $|A_n|=n!/2$. (More generally, this tells us that any time you can quantify ``stuff'' as even or odd via a homomorphism to $\mathbf{Z}_2$, then the amount of even stuff has to be the same as the amount of odd stuff). 
+	Let $n\geq 2$. Recall that $\operatorname{sgn}\colon S_n\to \mathbf{Z}_2$ is a homomorphism, and that by definition  $A_n=\ker\operatorname{sgn}$. Since $\operatorname{sgn}$ is a surjection we have $\mathbf{Z}_2\cong S_n/A_n$. Therefore, $A_n$ has index two in $S_n$. Which is to say that $|A_n|=n!/2$. (More generally, this tells us that any time you can quantify ``stuff'' as even or odd via a homomorphism to $\mathbf{Z}_2$, then the amount of even stuff has to be the same as the amount of odd stuff). 
 \end{example}
 
 \begin{example} You may recall that famous \href{https://en.wikipedia.org/wiki/Rank\%E2\%80\%93nullity_theorem}{\textit{Rank-nullity theorem}}, which states that for a matrix $A$ its rank plus its nullity is equal to the number of columns of that matrix. If $A$ represents a linear transformation of vector spaces $T\colon V\to U$, the rank of the matrix is equal to the dimension of its image, the nullity is the dimension of its kernel, and the number of columns is the dimension of its domain. Thus, \[\dim V=\dim(\ker T)+\dim (\img T).\] One way to show this is using the first isomorphism theorem: $V/\ker T\cong \img T$ as vector spaces, and vector spaces are characterized (up to isomorphism) by their dimension. (Note $\dim (V/\ker T)=\dim V-\dim (\ker T)$)
@@ -1595,16 +1597,16 @@ Moreover, (i) $q$ is a surjection, (ii) $f$ is an injection, (iii) $f$ is a bije
 \end{remark}
 }
 \begin{thm}[Second isomorphism theorem]
-Let $G$ be a group, $N\nrml G$ and $H\leq G$. Then $HN=\{hn: h\in H, n\in H\}\leq G$, $N\cap H\nrml H$ and \begin{equation} H/(H\cap N)\cong (HN)/N\end{equation}
+Let $G$ be a group, $N\nrml G$ and $H\leq G$. Then $HN=\{hn: h\in H, n\in N\}\leq G$, $N\cap H\nrml H$ and \begin{equation} H/(H\cap N)\cong (HN)/N\end{equation}
 \end{thm}
 
 \begin{thm}[Third isomorphism theorem]
-Let $G$ be a group and $H,N$ normal subgroups of $G$ such that $N\nrml H$. Then $H/N \nrml G/N$ and \begin{equation} G/H \cong (G/N) / (H/N)\end{equation}
+Let $G$ be a group and $H,N$ normal subgroups of $G$ such that $N\subset H$. Then $H/N \nrml G/N$ and \begin{equation} G/H \cong (G/N) / (H/N)\end{equation}
+\end{thm}
 
-\begin{proof} 
+\begin{proof}
 	Let's define a function $\psi\colon G/N\to G/H$ by $\psi(gN)=gH$. Note that $\psi$ is well defined, since if $gN=hN$ then $g=hn$ for some $n\in N$, so that $\psi(gN)=hnH=hH=\psi(hN)$ (note that $n\in N\subset H$). We claim that $\psi$ is a homomorphism. Indeed, \[\psi(gN hN)=gHhH=ghHH=ghH\] since $H\nrml G$. The kernel of $\psi$ is given by $\ker\psi=\{gN : gH=H\}$ which is to say that $\ker\psi=H/N$ (and so $H/N\nrml G/N$). Last, $\psi$ is surjective since any coset $gH$ is obtained from $\psi$ by $\psi(gN)$. So, by the first isomorphism theorem \[ (G/N) / (H/N) \cong G/H\] as desired.
 \end{proof}
-\end{thm}
 
 
 
@@ -1632,7 +1634,7 @@ Let $G$ be a group and $H,N$ normal subgroups of $G$ such that $N\nrml H$. Then 
 	\item Determine if the following subgroups are normal. If so, describe the quotient group.
 		\begin{enumerate}
 			\item $\langle (13), (1234) \rangle \leq S_4$
-			\item $\{\pm e,  \pm i \} \leq Q_8$ \qquad (Recall $Q_8$ form \ref{groups-example} \ref{quats})
+			\item $\{\pm e,  \pm i \} \leq Q_8$ \qquad (Recall $Q_8$ from \ref{groups-example} \ref{quats})
 			\item The group of matrices of the form $\left \{ \begin{pmatrix} 1 & x \\ 0 & 1\end{pmatrix} : x\in \mathbf{R}\right\}$ as a subgroup of $\GL_2(\mathbf{R})$
 			\item The group of matrices of the form $\left \{ \begin{pmatrix} 1 & x \\ 0 & 1\end{pmatrix} : x\in \mathbf{R}\right\}$ as a subgroup of the group of upper triangular matrices $\left \{ \begin{pmatrix} a & b \\ 0 & d\end{pmatrix} : ad\neq 0\right\}$
 		\end{enumerate}
@@ -1655,7 +1657,7 @@ Let $G$ be a group and $H,N$ normal subgroups of $G$ such that $N\nrml H$. Then 
 	\item If $N,N'\nrml G$ such that $N\cap N'=\{e\}$ prove that $G$ is isomorphic to a subgroup of  $G/N \oplus G/N'$
 	\item Let $g\in G$. Prove that $\varphi_g\colon G\to G$ defined by $x\mapsto gxg^{-1}$ is a homomorphism. Describe the elements in $\ker\varphi_g$.
 	\item Let $G,H$ be abelian groups and define $\Hom(G,H)$ be the set of all homomorphisms $\varphi\colon G\to H$. For $\varphi, \psi\in \Hom(G,H)$ define $\varphi\cdot \psi$ by $(\varphi\cdot \psi)(g)=\varphi(g)\psi(g)$. Show that $(\varphi,\psi)\mapsto \varphi\cdot \psi$ defines a group structure on $\Hom(G,H)$. Then, prove that $\Hom(\mathbf{Z},\mathbf{Z})\cong \mathbf{Z}$
-	\item For $G$ a group define $\Aut(G)$ to be the subset of $\Hom(G,G)$ consisting of group isomorphisms (\textit{Note}: such a bijection $G\to G$ is called an \textbf{automorphism}). Prove the following: 
+	\item For $G$ a group define $\Aut(G)$ to be the set of group isomorphisms $G\to G$ (\textit{Note}: such a bijection $G\to G$ is called an \textbf{automorphism}). Note that $\Aut(G)$ is a group under \textit{composition} of functions---not under the pointwise operation of the previous exercise, which needs $G$ abelian. Prove the following: 
 	\begin{enumerate}
 		\item $\Aut(\mathbf{Z}_n)\cong\mathbf{Z}_n^*$
 	 	\item $\Aut(\mathbf{Z})\cong \mathbf{Z}_2$
@@ -1688,7 +1690,7 @@ A \textbf{right $G$-set} is defined in exactly the way you might expect: i.e., t
 \end{remark}
 
 \begin{example} \label{GL-action}
-	Let $n\geq 1$, then $\GL_n(\mathbf{R})$ acts on $\mathbf{R}^n$ by matrix multiplication. That is, an element $A\in \GL_n(\mathbf{R})$ is an $n\times n$ matrix, and a vector $v\in \mathbf{R}^n$ is a column vector ($1\times n$ matrix). So, we have a mapping \[ (A,v)\mapsto Av\] such that $Av$ is then another column vector (and therefore in $\mathbf{R}^n$. That this is a (left) group actions comes from the fact that matrix multiplication  is associative: i.e., for $A,B\in \GL_n(\mathbf{R})$, $A(Bv)=(AB)v$.
+	Let $n\geq 1$, then $\GL_n(\mathbf{R})$ acts on $\mathbf{R}^n$ by matrix multiplication. That is, an element $A\in \GL_n(\mathbf{R})$ is an $n\times n$ matrix, and a vector $v\in \mathbf{R}^n$ is a column vector ($n\times 1$ matrix). So, we have a mapping \[ (A,v)\mapsto Av\] such that $Av$ is then another column vector (and therefore in $\mathbf{R}^n$. That this is a (left) group actions comes from the fact that matrix multiplication  is associative: i.e., for $A,B\in \GL_n(\mathbf{R})$, $A(Bv)=(AB)v$.
 \end{example}
 
 \begin{example}
@@ -1723,7 +1725,7 @@ The corresponding set of equivalence classes $X/\sim_G$, or $X/G$, is called the
 	\mathcal{O}_x=\{y \in X : y=g.x \text{ for some $g\in G$}\} 
 	\end{equation}
 \end{defn}
-Note that $\mathcal{O}_x\subset X$. You can think of the orbit of some $x\in X$ as the collection of all objects in $X$ that ``obtainable'' by applying some operation from $G$. For instance with example \ref{GL-action}, given any vector $v\in \mathbf{R}^n$ the orbit $\mathcal{O}_v$ is all of $\mathbf{R}^n$. Reason being is that given any other vector $v'\in\mathbf{R}^n$ there is some matrix $A\in \GL_n(\mathbf{R})$ such that $Av=v'$. In general, if a group action has this property we call $G$ transitive, as below
+Note that $\mathcal{O}_x\subset X$. You can think of the orbit of some $x\in X$ as the collection of all objects in $X$ that ``obtainable'' by applying some operation from $G$. For instance with example \ref{GL-action}, given any \textit{nonzero} vector $v\in \mathbf{R}^n$ the orbit $\mathcal{O}_v$ is all of $\mathbf{R}^n\setminus\{\vec{0}\}$. Reason being is that given any other nonzero vector $v'\in\mathbf{R}^n$ there is some matrix $A\in \GL_n(\mathbf{R})$ such that $Av=v'$. Note that $\vec{0}$ must be treated separately: an invertible matrix always fixes $\vec 0$ and can never send a nonzero vector to $\vec 0$, so this action has exactly \textit{two} orbits, namely $\{\vec 0\}$ and $\mathbf{R}^n\setminus\{\vec 0\}$. In general, if a group action has only one orbit we call $G$ transitive, as below
 
 \begin{defn}[Transitive group action] \label{def-trans}
 	An action of $G$ on $X$ is called \textbf{transitive} if for any $x,y\in X$ there is $g\in G$ such that $g.x=y$. 
@@ -1761,7 +1763,7 @@ The word \textit{stabilizer} is meant to convey that group elements $g\in G$ whi
 \begin{proof} Let $x\in X$, and suppose that $g,h\in \Stab_G(x)$. Certainly $e\in \Stab_G(x)$ since $e.x=x$ is one the axioms of a group action. If $g,h\in \Stab_G(x)$ then $(gh).x=g.(h.x)=g.x=x$ so $gh\in \Stab_G(x)$. Similarly, $g.x=x$ implies that $x=g^{-1}.(gx)=g^{-1}.x$, so that $g^{-1}\in \Stab_G(x)$. 
 \end{proof}
 
-For instance, following our theme of unraveling the mysteries of example \ref{GL-action}, let's suppose there is $A\in \GL_n(\mathbf{R})$ and  vector $v\in \mathbf{R}^n$ such that $Av=v$. That is to say that $v$ is an eigenvector for $A$ with corresponding eigenvalue 1. $\Stab_{GL_n(\mathbf{R})}(v)$ is then the collection of all matrices with an eigenspace given by the linear span of $v$ with corresponding eigenvalue $1$. This is a subgroup of $\GL_n(\mathbf{R})$ (I leave it to you to prove why). 
+For instance, following our theme of unraveling the mysteries of example \ref{GL-action}, let's suppose there is $A\in \GL_n(\mathbf{R})$ and  vector $v\in \mathbf{R}^n$ such that $Av=v$. That is to say that $v$ is an eigenvector for $A$ with corresponding eigenvalue 1. $\Stab_{\GL_n(\mathbf{R})}(v)$ is then the collection of all matrices $A$ for which $v$ is an eigenvector with corresponding eigenvalue $1$ (equivalently, those whose $1$-eigenspace \textit{contains} $v$---it may well be larger, as for $A=I$). This is a subgroup of $\GL_n(\mathbf{R})$ (I leave it to you to prove why). 
 \begin{defn}[Free group action]
 	If $G$ acts on $X$ such that  the stabilizer subgroups $\Stab_G(x)\leq G$ are trivial for all $x\in X$, then we say that the action of $G$ on $X$ is \textbf{free}.
 \end{defn}
@@ -1777,7 +1779,7 @@ What's left is to incorporate two worlds of (i) orbits and fixed points (in $X$)
 \end{thm}
 
 \begin{proof}
-	Let $x\in X$ and set $H=\Stab_G(x)$. Recall that $[G:H]$ is the number of cosets of $H$ in $G$. We will define a map of sets $\mathcal{O}_x\to G/H$ and then prove that this map is a bijection. Note for any $y\in \mathcal{O}_x$ there must be $g=g\in G$ with $g.x=y$. Thus, there is a function $\varphi\colon \mathcal{O}_x\to G/H$ given by $\varphi(y)= gH$ where $g\in G$ is such that $g.x=y$.
+	Let $x\in X$ and set $H=\Stab_G(x)$. Recall that $[G:H]$ is the number of cosets of $H$ in $G$. We will define a map of sets $\mathcal{O}_x\to G/H$ and then prove that this map is a bijection. Note for any $y\in \mathcal{O}_x$ there must be $g\in G$ with $g.x=y$. Thus, there is a function $\varphi\colon \mathcal{O}_x\to G/H$ given by $\varphi(y)= gH$ where $g\in G$ is such that $g.x=y$.
 	
 	To show that $\varphi$ is injective suppose that $\varphi(y)=\varphi(y')$ for some $y,y'\in \mathcal{O}_x$. Therefore, there are group elements $g,g'$ with $gH=g'H$ and $g.x=y, g'.x=y'$. But if $gH=g'H$ then there is $h\in H$ with $g'=gh$. By assumption $h.x=x$ (since $h$ is in the stabilizer of $x$), so therefore \[y'=g'.x=(gh).x=g.(h.x)=g.x=y\] Similarly, given $gH\in G/H$ let $y=g.x\in \mathcal{O}_x$. Then $\varphi(y)=gH$, so that $\varphi$ is onto. Thus $\varphi$ is a bijection and the claim is proved.
 \end{proof}
@@ -1786,7 +1788,7 @@ What's left is to incorporate two worlds of (i) orbits and fixed points (in $X$)
 \begin{example}[Counting the symmetries of the cube]\label{sym-of-cube-ex}
 The orbit stabilizer theorem (theorem \ref{orb-stab}) can be used to enumerate the order of symmetry groups that are otherwise difficult to calculate. For instance, let's consider the symmetries (not necessarily orientation preserving) of the cube. First let's label the vertices of the cube as $X=\{1,2,3,4,5,6,7,8\}$ as in the following picture.
 \[ \includegraphics[width=50mm]{Images/cube-ex}\]
-Let $G$ be the group of (not necessarily orientation preserving) symmetries of the square. Then $G$ acts on $X$ by permutation of vertices. It's straightforward to see that this $G$ action is transitive, since, e.g. vertex $1$ can be sent to any of the 7 other vertices. Therefore, $|\mathcal{O}_1|=8$ and so $[G:\Stab_G(1)]=8$. That is to say \[|G|=8\cdot |\Stab_G(1)|\] The key is that now we can apply the orbit stabilizer theorem to the restricted $\Stab_G(1)$ action on $X$\footnote{See prop. \ref{restricted-action}}. Let's write $G_1=\Stab_G(1)$. So,  $[G_1 : \Stab_{G_1} (2)]=\mathcal{O}^{G_1}_2$ (we write $\mathcal{O}_1^{G_1}$ here to denote the orbit of $2$ under the action by $G_1$ rather than $G$). When $1$ is fixed, the element $2$ can only be sent to an adjacent vertex to 1. There are three such vertices $2,4$ and $5$, so $|\mathcal{O}_2^{G_1}|=3$. Therefore, \[ |G_1|=3\cdot |\Stab_{G_1}(2)|\] Continuing in this process, let's write $G_2$ for $\Stab_{G_1}(2)$, we can then look at the orbit $\mathcal{O}_3^{G_2}$ of vertex 3 under the action by $G_2$. Since $G_2$ fixes both vertices 1 and 2, 3 must be sent to either itself or 3, that is to say $|\mathcal{O}_3^{G_2}|=2$. Therefore, $[G_2 : \Stab_{G_2}(3)|=2$, and so \[|G_2|=2\cdot |\Stab_{G_2}(3)|\] At this point, if we let $G_3=\Stab_{G_2}(3)$ note that any stabilizers of the $G_3$ action are trivial as a rotation of the cube which fixes vertices $1,2$ and $3$ must be the identity. Therefore, \[ |G|=8\cdot|G_1|\cdot|G_2|=8\cdot 3\cdot 2=48\] 
+Let $G$ be the group of (not necessarily orientation preserving) symmetries of the cube. Then $G$ acts on $X$ by permutation of vertices. It's straightforward to see that this $G$ action is transitive, since, e.g. vertex $1$ can be sent to any of the 7 other vertices. Therefore, $|\mathcal{O}_1|=8$ and so $[G:\Stab_G(1)]=8$. That is to say \[|G|=8\cdot |\Stab_G(1)|\] The key is that now we can apply the orbit stabilizer theorem to the restricted $\Stab_G(1)$ action on $X$\footnote{See prop. \ref{restricted-action}}. Let's write $G_1=\Stab_G(1)$. So,  $[G_1 : \Stab_{G_1} (2)]=\mathcal{O}^{G_1}_2$ (we write $\mathcal{O}_1^{G_1}$ here to denote the orbit of $2$ under the action by $G_1$ rather than $G$). When $1$ is fixed, the element $2$ can only be sent to an adjacent vertex to 1. There are three such vertices $2,4$ and $5$, so $|\mathcal{O}_2^{G_1}|=3$. Therefore, \[ |G_1|=3\cdot |\Stab_{G_1}(2)|\] Continuing in this process, let's write $G_2$ for $\Stab_{G_1}(2)$, we can then look at the orbit $\mathcal{O}_3^{G_2}$ of vertex 3 under the action by $G_2$. Since $G_2$ fixes both vertices 1 and 2, 3 must be sent to either itself or 6, that is to say $|\mathcal{O}_3^{G_2}|=2$. Therefore, $[G_2 : \Stab_{G_2}(3)]=2$, and so \[|G_2|=2\cdot |\Stab_{G_2}(3)|\] At this point, if we let $G_3=\Stab_{G_2}(3)$ note that any stabilizers of the $G_3$ action are trivial, as a symmetry of the cube which fixes vertices $1,2$ and $3$ must be the identity. Therefore, \[ |G|=8\cdot|G_1|=8\cdot 3\cdot|G_2|=8\cdot 3\cdot 2=48\] 
 \end{example}
 
 \begin{remark}
@@ -1821,10 +1823,10 @@ In plain English, the term on the right is just the average number of fixed poin
 	
 	Note that the answer is not $2^4=16$, since for instance this number counts each of the labellings of ``all red'' and ``all green'' four times each. We can answer this question using theorem \ref{BS-lem}. Let's first put into language that group actions can handle. 
 	
-	Let $X=\{1,2,3,4\}$ be the vertices of a square (labeled cyclically). A \textit{coloring} of the square is just a function $c\colon X\to \{ \text{red}, \text{green}\}$. Let's let $C$ denote the set of all such colorings, i.e. \[ C=\left\{ f\colon X\to \{\text{red}, \text{green}\}\right\}\] Note that $D_4$ acts on $C$ as follows: first identify $D_4$ with subgroup\footnote{Here, $r=(1234), s=(12)(34)$} \[D_4'=\{\Id, (1234), (13)(24), (1432), (14)(23), (12)(34), (13), (24)\}\leq S_4\] Then, there is a group action $D_4'\times C\to C$ given by $(\alpha, f)\mapsto f\alpha$, that is, $D_4'$ acts on $C$ by \textit{precomposition} with a permutation \[ X\xrightarrow{\;\alpha\;} X\xrightarrow{\;f\;} \{ \text{red}, \text{green}\}\] Then, a coloring \textit{up to rotation and reflection} is just an \textit{orbit} of this action. Burnside's lemma allows us to calculate the number of orbits by calculating the number of fixed points for each $\alpha\in D_4'$. We have:
+	Let $X=\{1,2,3,4\}$ be the vertices of a square (labeled cyclically). A \textit{coloring} of the square is just a function $c\colon X\to \{ \text{red}, \text{green}\}$. Let's let $C$ denote the set of all such colorings, i.e. \[ C=\left\{ f\colon X\to \{\text{red}, \text{green}\}\right\}\] Note that $D_4$ acts on $C$ as follows: first identify $D_4$ with subgroup\footnote{Here, $r=(1234), s=(12)(34)$} \[D_4'=\{\Id, (1234), (13)(24), (1432), (14)(23), (12)(34), (13), (24)\}\leq S_4\] Then, there is a group action $D_4'\times C\to C$ given by $(\alpha, f)\mapsto f\alpha^{-1}$, that is, $D_4'$ acts on $C$ by \textit{precomposition} with the inverse of a permutation (the inverse is what makes this a \textit{left} action in the sense of definition \ref{group-action}; precomposing with $\alpha$ itself gives a right action. It makes no difference to the count below, since $\alpha$ and $\alpha^{-1}$ always have the same cycle type and hence the same fixed colorings) \[ X\xrightarrow{\;\alpha\;} X\xrightarrow{\;f\;} \{ \text{red}, \text{green}\}\] Then, a coloring \textit{up to rotation and reflection} is just an \textit{orbit} of this action. Burnside's lemma allows us to calculate the number of orbits by calculating the number of fixed points for each $\alpha\in D_4'$. We have:
 	\begin{itemize}
 		\item $|C^{\Id}|=16$ --- Any coloring of the square is fixed by the identity permutation.
-		\item $|C^{(1234)}|=|C^{(1432)}|=2$ --- Only the colorings of ``all red'' or ``all green'' are fixed by a rotation
+		\item $|C^{(1234)}|=|C^{(1432)}|=2$ --- Only the colorings of ``all red'' or ``all green'' are fixed by a quarter-turn rotation
 		\item $|C^{(12)(34)}|=|C^{(13)(24)}|=|C^{(14)(23)}|=4$ --- Put the vertices into groups of two and color each group the same, there are 4 total such colorings
 		\item $|C^{(13)}|=|C^{(24)}|=8$ --- Diagonally opposite vertices get the same color, the other two are colored independently.
 	\end{itemize}
@@ -1854,7 +1856,7 @@ In plain English, the term on the right is just the average number of fixed poin
 	
 	Suppose one or more hydrogen atoms is replaced with chlorine. How much different compounds can be made? What if three of the six $H$ atoms were replaced by a single $CH_3$.
 	
-	\item Suppose that $G$ acts on a set $X$. This action is called \textbf{faithful} if given $g\in G$ such that $g.x=g.y$ then $x=y$ (i.e., the functions $\varphi_g\colon X\to X$ are injective) Similarly the action is called \textbf{full} if given $y\in X$ there is $x\in X$ with $g.x=y$ (i.e., $\varphi_g$ are surjective). Determine if the following actions are faithful and/or full:
+	\item Suppose that $G$ acts on a set $X$. This action is called \textbf{faithful} if the only $g\in G$ with $g.x=x$ for \textit{every} $x\in X$ is $g=e$; equivalently, if the assignment $g\mapsto \varphi_g$ is injective, so that distinct group elements act differently on $X$. (Note that asking merely that each $\varphi_g\colon X\to X$ be injective says nothing at all: every $\varphi_g$ is automatically a bijection, with inverse $\varphi_{g^{-1}}$.) Recall also from definition \ref{def-trans} that the action is \textbf{transitive} if given $x,y\in X$ there is $g\in G$ with $g.x=y$. Determine if the following actions are faithful and/or transitive:
 	\begin{enumerate}
 		\item $S_3$ acting on $\{1,2,3\}$
 		\item $V=\{\Id, (13), (24), (13)(24)\}$ on $\{1,2,3,4\}$
@@ -1874,19 +1876,19 @@ Historically, all groups were subgroups of symmetric groups. A (slightly) more m
 Recall that definitions we've been working with so far \begin{equation} \GL_n(\mathbf{R}) = \{A : \text{$A$ is an $n\times n$ invertible matrix with real entires}\}\end{equation} and 
 \begin{equation} \SL_n(\mathbf{R}) = \{A\in \GL_n(\mathbf{R}) : \det A=1\}\end{equation}
 
-In words, we call these the \textbf{general linear} group and \textbf{special linear} group of $n\times n$ matrices (with real coefficients), respectively. We've already seen that $\SL_n (\mathbf{R})\nrml \GL_n(\mathbf{R})$, since $\SL_n(\mathbf{R})$ is the kernel of the determinant $\det \colon \GL_n (\mathbf{R})\to\SL_n(\mathbf{R})$. 
+In words, we call these the \textbf{general linear} group and \textbf{special linear} group of $n\times n$ matrices (with real coefficients), respectively. We've already seen that $\SL_n (\mathbf{R})\nrml \GL_n(\mathbf{R})$, since $\SL_n(\mathbf{R})$ is the kernel of the determinant $\det \colon \GL_n (\mathbf{R})\to\mathbf{R}^{*}$, where $\mathbf{R}^*$ denotes the nonzero real numbers under multiplication. 
 
 
 
 
 Let's denote by $I\in \GL_n(\mathbf{R})$ the identity matrix (i.e., $I$ has 1s along the diagonal and 0s everywhere else). Matrices can be given by double indexed sets, i.e., $A=\{a_{i,j}\}_{1\leq i,j\leq n}$ where the entries $a_{i,j}$ for $i=1,\dots n$ are the entries over the $j$-th column, and $a_{i,j}$ for $j=1,\dots,n$ are the entries from the $i$-th row of $A$
 
-\begin{defn}[Matrix transpose] Let $A=\{a_{i,j}\}\in \GL_n(\mathbf{R})$. Then the \textbf{transpose of $A$} is the matrix $A^T$ given by $A^T=\{a_{j,i}\}$
+\begin{defn}[Matrix transpose] Let $A=\{a_{i,j}\}$ be an $n\times n$ matrix. Then the \textbf{transpose of $A$} is the matrix $A^T$ given by $A^T=\{a_{j,i}\}$
 \end{defn}
 
 
 
-Visually, the transpose of a matrix is just the reflection of the entries of $A$ over the main diagonal. I leave you to check the following proposition. More generally, matrix transposition is an instance of $\mathbf{Z}_2$ acting on $\GL_2(\mathbf{R})$, which I also leave you to check. 
+Visually, the transpose of a matrix is just the reflection of the entries of $A$ over the main diagonal. I leave you to check the following proposition. More generally, matrix transposition is an instance of $\mathbf{Z}_2$ acting on $\GL_n(\mathbf{R})$, which I also leave you to check. 
 
 \begin{prop} \label{transposition-ex}
 	For matrices $A,B\in \GL_n(\mathbf{R})$, we have $(AB)^T=B^TA^T$ and $(A^{-1})^T=(A^T)^{-1}$.
@@ -1898,7 +1900,7 @@ Let $A$ be an $n\times n$ matrix. Then $A$ is \textbf{symmetric} if $A=A^T$.
 \end{defn}
 \subsection{Orthogonal matrices}
 
-\begin{defn}[Orthogonal matrix] An $n\times n$ matrix with real entries is called \textbf{orthogonal} if $A^TA=I$. 
+\begin{defn}[Orthogonal matrix] An $n\times n$ matrix $A$ with real entries is called \textbf{orthogonal} if $A^TA=I$. 
 \end{defn}
 
 \begin{example}\label{orthogonal}
@@ -1912,15 +1914,15 @@ Let's write out the product $A^TA$ (it's going to be long)
 a_{1,1}a_{1,2} + a_{2,1}a_{2,2} + a_{3,1}a_{3,2} &
  a_{1,1}a_{1,3}+a_{2,1}a_{2,3}+a_{3,1}a_{3,3} \\
  a_{1,2}a_{1,1} +a_{2,2}a_{2,1}+a_{3,2}a_{3,1}& 
-  (a_{1,2})^2+(a_{2,2})^2+(a_{2,3})^2 & 
-  a_{1,2}a_{2,3}+a_{2,2}a_{2,3}+a_{3,2}a_{3,3} \\ 
+  (a_{1,2})^2+(a_{2,2})^2+(a_{3,2})^2 & 
+  a_{1,2}a_{1,3}+a_{2,2}a_{2,3}+a_{3,2}a_{3,3} \\ 
   a_{1,3}a_{1,1}+a_{2,3}a_{2,1} + a_{3,3}a_{3,1} &
   a_{1,3}a_{1,2}+a_{2,3}a_{2,2}+a_{3,3}a_{3,2} & 
    (a_{1,3})^2+(a_{2,3})^2+(a_{3,3})^2\end{pmatrix}
 \end{equation*}
 
 This looks like a nightmare but something nice is happening. Let's suppose that $A$ is orthogonal. Recall then that this means that $A^TA$ from the equation above is then equal to the identity matrix \[I=\begin{pmatrix} 1 & 0 & 0\\ 0 & 1 & 0 \\ 0 & 0 & 1\end{pmatrix}\]
-Let's let $v_1=(a_{1,1}, a_{2,1}, a_{3,1})$, $v_2=(a_{2,1}, a_{2,2}, a_{2,3})$ and $v_3=(a_{1,3}, a_{2,3}, a_{3,3})$ be vectors in $\mathbf{R}^3$. And note that the dot products $v_i\cdot v_j$ are precisely the entries of $A^TA$: \[ A^TA=\begin{pmatrix} v_1\cdot v_1 & v_1\cdot v_2 & v_1\cdot v_3 \\ v_2\cdot v_1 & v_2\cdot v_2 & v_3 \cdot v_2 \\ v_3 \cdot v_1 & v_3\cdot v_2  & v_3\cdot v_3\end{pmatrix}\]  That is to say, if $A$ is orthogonal, then the column vectors (in this case $v_1,v_2,v_3$) from $A$ satisfy the following: \[ v_1\cdot v_1=1,\, v_2\cdot v_2=1, \,v_3\cdot v_3=1; \quad v_i\cdot v_j=0 \text{ (for $i\neq j$) }\]
+Let's let $v_1=(a_{1,1}, a_{2,1}, a_{3,1})$, $v_2=(a_{1,2}, a_{2,2}, a_{3,2})$ and $v_3=(a_{1,3}, a_{2,3}, a_{3,3})$ be the \textit{column} vectors of $A$, viewed in $\mathbf{R}^3$. And note that the dot products $v_i\cdot v_j$ are precisely the entries of $A^TA$: \[ A^TA=\begin{pmatrix} v_1\cdot v_1 & v_1\cdot v_2 & v_1\cdot v_3 \\ v_2\cdot v_1 & v_2\cdot v_2 & v_2 \cdot v_3 \\ v_3 \cdot v_1 & v_3\cdot v_2  & v_3\cdot v_3\end{pmatrix}\]  That is to say, if $A$ is orthogonal, then the column vectors (in this case $v_1,v_2,v_3$) from $A$ satisfy the following: \[ v_1\cdot v_1=1,\, v_2\cdot v_2=1, \,v_3\cdot v_3=1; \quad v_i\cdot v_j=0 \text{ (for $i\neq j$) }\]
 In other words still, the columns of $A$ form an \textbf{orthonormal basis}\footnote{i.e., a basis such that each basis element is of unit length and any two distinct elements of the basis are orthogonal} of $\mathbf{R}^3$.
 \end{example}
 
@@ -1928,14 +1930,14 @@ In other words still, the columns of $A$ form an \textbf{orthonormal basis}\foot
 Let $n\geq 1$. Define $\Or(n)$ to be the set of orthogonal matrices $A\in \GL_n(\mathbf{R})$. Similarly define $\SO(n)\subset \Or(n)$ to be the collection of orthogonal matrices $A$ such that $\det A=1$. 
 \end{defn}
 
-In words, $\Or(n)$ is called the \textbf{orthogonal group} (of order $n$) and $\SO(n)$ the \textbf{special orthogonal group} (also of order $n$). That these sets actually form subgroups of $\GL_n(\mathbf{R})$ follows from prop \ref{On-group}. From example \ref{orthogonal} we know that any matrix $A\in \Or(n)$ is represented by some orthonormal basis of $\mathbf{R}^n$. If furthermore $A\in \SO(n)$ then $A$ is \textit{orientation preserving}: that is, the standard orientation\footnote{For instance, in $\mathbf{R}^3$ this is the \textit{right-hand rule}} on the basis of coordinate axis in $\mathbf{R}^n$ is preserved under $A$.
+In words, $\Or(n)$ is called the \textbf{orthogonal group} (of degree $n$) and $\SO(n)$ the \textbf{special orthogonal group} (also of degree $n$). That these sets actually form subgroups of $\GL_n(\mathbf{R})$ follows from prop \ref{On-group}. From example \ref{orthogonal} we know that any matrix $A\in \Or(n)$ is represented by some orthonormal basis of $\mathbf{R}^n$. If furthermore $A\in \SO(n)$ then $A$ is \textit{orientation preserving}: that is, the standard orientation\footnote{For instance, in $\mathbf{R}^3$ this is the \textit{right-hand rule}} on the basis of coordinate axis in $\mathbf{R}^n$ is preserved under $A$.
 
 \begin{prop}\label{On-group}
 	Let $n\geq 1$ then $\Or(n)$ and $\SO(n)$ are groups. Moreover, \[\SO(n)\nrml O(n)\leq \GL_n(\mathbf{R})\]
 \end{prop}
 
 \begin{prop} $\Or(2)$ and $\SO(2)$ are given by the following:	\begin{itemize}
-	\item $\Or(2)=\left\{ \pm \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} : \theta \in \mathbf{R}\right\}$
+	\item $\Or(2)=\left\{ \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} : \theta \in \mathbf{R}\right\}\cup \left\{ \begin{pmatrix} \cos\theta & \sin\theta \\ \sin\theta & -\cos\theta \end{pmatrix} : \theta \in \mathbf{R}\right\}$ \quad (the first set is the rotations, of determinant $1$; the second the reflections, of determinant $-1$. Note that writing $\pm$ in front of a rotation matrix would \textit{not} produce the reflections, since $-R(\theta)=R(\theta+\pi)$ is again a rotation)
 	
 	\item $\SO(2)=\left\{ \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} : \theta \in \mathbf{R}\right\}$
 	\end{itemize}
@@ -1967,7 +1969,7 @@ In particular $H$ is generated by a matrix of the form \[ R=\begin{pmatrix} \cos
 
 In particular, these symmetries can be realized as group actions as follows: \begin{itemize}
 	\item $\mathbf{Z}_n$ acts on a (thickened) $n$-gon in $\mathbf{R}^3$ by rotation 
-	\item $D_n$ acts on a (thickened) $n$-gon in $\mathbf{R}^3$ by rotations and reflections
+	\item $D_n$ acts on a (thickened) $n$-gon in $\mathbf{R}^3$ by rotations of $\mathbf{R}^3$ (the ``reflections'' of the $n$-gon are realized here as $\pi$-rotations about axes lying in its plane)
 	\item $A_4$ acts on the tetrahedron as orientation preserving symmetries
 	\item $S_4$ acts on the cube and octahedron as orientation preserving symmetries
 	\item $A_5$ acts on the icosahedron and dodecahedron as orientation preserving symmetries
@@ -1992,7 +1994,7 @@ Another thing to point out is that these matrix groups are \textit{manifolds} (e
 	\item \label{rotations-R3} Let $\theta\in\mathbf{R}$. Prove that the following matrices are all elements of $\SO(3)$ \[ R_x(\theta)=\begin{pmatrix} 1 & 0 & 0 \\ 0 & \cos\theta & -\sin\theta \\ 0 & \sin\theta & \cos\theta \end{pmatrix} \quad 
 	R_y(\theta)=\begin{pmatrix} \cos\theta & 0 &  \sin\theta \\ 0 &1 & 0 \\-\sin\theta & 0 & \cos\theta \end{pmatrix} \quad 
 	R_z(\theta)=\begin{pmatrix}  \cos\theta & -\sin\theta& 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1\end{pmatrix}\]
-	and then prove that $R_x(\theta),R_y(\theta),R_z(\theta)$ denote (counterclockwise) rotations by $\theta$ of the $x$-, $y$- and $z$-axes in $\mathbf{R}^3$. 
+	and then prove that $R_x(\theta),R_y(\theta),R_z(\theta)$ denote (counterclockwise) rotations by $\theta$ about the $x$-, $y$- and $z$-axes in $\mathbf{R}^3$. 
 	
 	\item Let $\theta,\psi$ be real numbers. Prove that $\SO(4)$ contains the following matrix \[ R_{\theta,\psi} = \begin{pmatrix} \cos \theta & - \sin\theta & 0 & 0 \\
 \sin\theta & \cos\theta & 0 & 0 \\
@@ -2009,7 +2011,7 @@ Follow up: Does $\SO(4)$ contain the following matrix?  \[\widetilde{R_{\theta,\
 	
 	\item Let $\SO(3)$ act on $\mathbf{R}^3$ by $(A,x)\mapsto Ax$. Is this action transitive? Determine the set of orbits from this action. 
 
-	\item Let $A\in \GL_n(\mathbf{R})$ be a symmetric matrix. Prove that the eigenvalues of $A$ are always real numbers and that any two nonparallel eigenvectors of $A$ are perpendicular. 
+	\item Let $A\in \GL_n(\mathbf{R})$ be a symmetric matrix. Prove that the eigenvalues of $A$ are always real numbers and that any two eigenvectors of $A$ corresponding to \textit{distinct} eigenvalues are perpendicular. (\textit{Why is the distinctness needed? Consider $A=I$.}) 
 	
 	\item \label{bilinear-form}Let $A$ be a symmetric $n\times n$ matrix, i.e., a matrix such that $A^T=A$ and $x,y\in \mathbf{R}^n$ be column vectors. Let $\langle x,y\rangle_A$ be given by \[\langle x,y\rangle_A=x^T A y\]
 	Prove that the following hold: \begin{enumerate}
@@ -2019,7 +2021,7 @@ Follow up: Does $\SO(4)$ contain the following matrix?  \[\widetilde{R_{\theta,\
 		%\item $\langle x,x\rangle_A\geq 0$
 		%\item If $\langle x,y\rangle_A=0$ for all $y\in \mathbf{R}^n$ then $y=0$.
 	\end{enumerate}
-	Such an operation $(x,y)\mapsto \langle x,y\rangle_A$ is called an \textit{bilinear form}. Prove further that if $A=\Id$ then $\langle x,y\rangle_{\Id}=x\cdot y$ the \textit{dot product} of vectors $x,y$.
+	Such an operation $(x,y)\mapsto \langle x,y\rangle_A$ is called an \textit{bilinear form}. Prove further that if $A=I$ is the identity matrix then $\langle x,y\rangle_{I}=x\cdot y$, the \textit{dot product} of vectors $x,y$.
 
 	
 
@@ -2035,15 +2037,15 @@ Follow up: Does $\SO(4)$ contain the following matrix?  \[\widetilde{R_{\theta,\
 	\item Prove that \[ L_x= \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & 1 & 0\end{pmatrix} \quad L_y=\begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ -1 & 0 & 0 \end{pmatrix} \quad L_z=\begin{pmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}\]
 	\item Prove that $L_x L_y-L_yL_x=L_z$, $L_yL_z-L_zL_y=L_x$ and $L_zL_x-L_xL_z=L_y$
 	\item For a vector $v=(a,b,c)$, show that $L_v$ is given by  \[L_v=aL_x+bL_y+cL_z.\]
-	\item Prove that for vectors $u,v$, the cross product $u\times v$ satisfies \[ L_{u\times v}=L_uL_v-L_uL_v.\]
+	\item Prove that for vectors $u,v$, the cross product $u\times v$ satisfies \[ L_{u\times v}=L_uL_v-L_vL_u.\]
 	
 	The (real) vector space with basis $L_x,L_y,L_z$ is (an isomorphic form) of the associated \textit{Lie algebra} to the \textit{Lie group} $\SO(3)$. It's usually written $\mathfrak{so}(3)$. Though this may look intimidating (and it is), what you've just shown is that $\mathfrak{so}(3)$ is isomorphic (as algebras) to $\mathbf{R}^3$ equipped with the cross-product.
 	\end{enumerate}
 	
-	\item \textit{Challenge}. (Follow up to problem \ref{bilinear-form}). You may recall the \textit{second-derivative test}\footnote{That is, if $(a,b)$ is a point such that $\nabla f(a,b)=0$ then the Hessian determinant $D=f_{xx}f_{yy}-f_{xy}^2$ evaluated at $(a,b)$ can be used to determine if $(a,b)$ is a max/min or saddle point.} from multivariable calc. If $f\colon \mathbf{R}^3\to\mathbf{R}$ is a differentiable function of three variables, write $H$ for the Hessian matrix \[ H= \begin{pmatrix} f_{xx} & f_{xy} & f_{xz} \\ f_{yx} & f_{yy} & f_{yz} \\ f_{zx} & f_{zy} & f_{zz} \end{pmatrix}\]Here, $f_{xy}$ denotes the partial derivative $\partial^2 f/\partial x\partial y$, etc. Note $H$ is a function of the variables $x,y,z$.
+	\item \textit{Challenge}. (Follow up to problem \ref{bilinear-form}). You may recall the \textit{second-derivative test}\footnote{That is, if $(a,b)$ is a point such that $\nabla f(a,b)=0$ then the Hessian determinant $D=f_{xx}f_{yy}-f_{xy}^2$ evaluated at $(a,b)$ can be used to determine if $(a,b)$ is a max/min or saddle point.} from multivariable calc. If $f\colon \mathbf{R}^3\to\mathbf{R}$ is a function of three variables with continuous second-order partial derivatives, write $H$ for the Hessian matrix \[ H= \begin{pmatrix} f_{xx} & f_{xy} & f_{xz} \\ f_{yx} & f_{yy} & f_{yz} \\ f_{zx} & f_{zy} & f_{zz} \end{pmatrix}\]Here, $f_{xy}$ denotes the partial derivative $\partial^2 f/\partial x\partial y$, etc. Note $H$ is a function of the variables $x,y,z$.
 	\begin{enumerate}
 		\item Prove that $H$ is symmetric
-		\item Prove that for a column vector $v\in\mathbf{R}^3$, that $\langle v,v\rangle_H$ is equal to the concavity of $f$ in the direction $v$.
+		\item Prove that for a \textit{unit} column vector $v\in\mathbf{R}^3$, that $\langle v,v\rangle_H$ is equal to the concavity of $f$ in the direction $v$.
 		\item Prove that if (at a point $P\in\mathbf{R}^3$ such that $\nabla f(P)$ is the zero vector) that if all eigenvalues of $H$ are positive, then $P$ is a local minimum of $f$. 
 	\end{enumerate}	
 
@@ -2056,7 +2058,7 @@ Follow up: Does $\SO(4)$ contain the following matrix?  \[\widetilde{R_{\theta,\
 
 Induction, or \textbf{mathematical induction}, is a useful tool for proving (or in many cases ``confirming'') the existence of some pattern, usually dependent on the natural numbers. Rather than give a general description of what induction is, it's better to look at the following example and see how to use induction. 
 
-\begin{example} A classic example is proving the sum formula \begin{equation} 1+2+3+\cdot+n=\dfrac{n(n+1)}{2} \label{sum1} \end{equation} holds for all $n\geq 1$. It goes as follows: let's first show that the formula holds for $n=1$. Since \[ 1 = \dfrac{1(1+1)}{2}=\dfrac{2}{2}=1\] this is indeed true. Here's the trick: we show that \textit{if} the formula is true for some value of $n$, then it \textit{must} be true for $n+1$ as well. Let's see \begin{align*}
+\begin{example} A classic example is proving the sum formula \begin{equation} 1+2+3+\cdots+n=\dfrac{n(n+1)}{2} \label{sum1} \end{equation} holds for all $n\geq 1$. It goes as follows: let's first show that the formula holds for $n=1$. Since \[ 1 = \dfrac{1(1+1)}{2}=\dfrac{2}{2}=1\] this is indeed true. Here's the trick: we show that \textit{if} the formula is true for some value of $n$, then it \textit{must} be true for $n+1$ as well. Let's see \begin{align*}
 1+2+\cdots+n+(n+1) &= \dfrac{n(n+1)}{2}+n+1\\ &= \dfrac{ n(n+1)+2(n+1)}{2}\\&= \dfrac{(n+1)(n+2)}{2}\end{align*}
 So, by induction, \eqref{sum1} must hold for all $n$.
 \end{example}
@@ -2074,7 +2076,7 @@ Induction is typically used to prove statements like \eqref{sum1} which can be p
 A good proof by induction will then end by justifying why and how induction has been used, but the above steps are where the work goes in. 
 
 \subsection{Well-orderings}
-What induction relies on is that the set $\mathbf{N}$ is well-ordered\footnote{And in fact this is a sufficient condition \textit{do} induction, meaning you can ``do induction'' over any well-ordered set, even those with uncountably many elements, it's just harder to intuit what is happening}. A complete definition is given below for your entertainment, but we won't really need to go any deeper into well-orderings than understanding how to use theorem \ref{well-ord}. 
+What induction relies on is that the set $\mathbf{N}$ is well-ordered\footnote{And in fact this is a sufficient condition to \textit{do} induction, meaning you can ``do induction'' over any well-ordered set, even those with uncountably many elements, it's just harder to intuit what is happening}. A complete definition is given below for your entertainment, but we won't really need to go any deeper into well-orderings than understanding how to use theorem \ref{well-ord}. 
 
 \begin{defn}Let $X$ be a set. An \textbf{ordering} on $X$ is a relation $\leq$ on $X$ such that~\begin{itemize}
 \item For each pair of elements $x,y\in X$ either $x\leq y$ or $y\leq x$
@@ -2095,7 +2097,7 @@ For us, it's enough to use the following as a black-box statement (which is true
 
 \subsection{Exercises} 
 \begin{enumerate}[label=\arabic*.]
-	\item Use induction to prove for $n\geq 1$ that \[ 1^2+2^2+3^3+\cdots+n^2=\dfrac{n(n+1)(2n+1)}{6}\] 
+	\item Use induction to prove for $n\geq 1$ that \[ 1^2+2^2+3^2+\cdots+n^2=\dfrac{n(n+1)(2n+1)}{6}\] 
 	\item Use induction to prove that $n!>2^n$ for $n\geq 4$. 
 	\item Use induction to prove for $n\geq 2$ that \[ \dfrac{1}{1\cdot 2} + \dfrac{1}{2\cdot 3} + \dfrac{1}{3\cdot 4} +\cdots + \dfrac{1}{(n-1)n} = \dfrac{n-1}{n}\]
 	\item You may know about the Fibonacci numbers: $a_1=1, a_2=1$ and $a_{n}=a_{n-1}+a_{n-2}$ for $n\geq 3$. Prove for $n\geq 1$ that \[ a_n=\dfrac{1}{\sqrt{5}}  \left( \dfrac{1+\sqrt{5}}{2} \right)^n- \dfrac{1}{\sqrt{5}}\left(\dfrac{1-\sqrt{5}}{2}\right)^n\]  
@@ -2103,9 +2105,9 @@ For us, it's enough to use the following as a black-box statement (which is true
 	\textit{Challenge}. What is the limit $\lim_{n\to \infty} a_{n+1}/a_n$ of the ratio of successive Fibonacci numbers?
 	\item With respect to the usual ordering, are the sets $\mathbf{Q}$ or $\mathbf{R}$ well-ordered?
 	
-	\item Prove that for any $n\geq 1$ there is an integer $k$ such that \[ 10^{n+1}+10^{n}-1=3k\] 
+	\item Prove that for any $n\geq 1$ there is an integer $k$ such that \[ 10^{n+1}+10^{n}+1=3k\] 
 	
-	\item \textit{Challenge}. Let $n\geq 1$ and let $a_1,a_2,\cdots, a_n$ be real numbers. Prove that \[ \sqrt[n]{a_1a_2a_3\cdots a_n}\leq \dfrac{1}{n} \sum_{k=1}^n a_k\] This is known as the \href{https://en.wikipedia.org/wiki/AM\%E2\%80\%93GM_inequality}{AM-GM inequality}.
+	\item \textit{Challenge}. Let $n\geq 1$ and let $a_1,a_2,\cdots, a_n$ be \textit{nonnegative} real numbers. Prove that \[ \sqrt[n]{a_1a_2a_3\cdots a_n}\leq \dfrac{1}{n} \sum_{k=1}^n a_k\] This is known as the \href{https://en.wikipedia.org/wiki/AM\%E2\%80\%93GM_inequality}{AM-GM inequality}.
 	\item \textit{Challenge}. Let $S=\{0,1\}\times \mathbf{N}$ and give $S$ the order that $(a,b)\leq (c,d)$ if either (i)  $a=c, b\leq d$ or (ii)  $a<c$\footnote{This is sometimes called the \textit{lexicographic order}}. Show that $S$ is well-ordered. Show as well that there is no bijection $f\colon S\to \mathbf{N}$ that preserves this ordering $\leq$ (that is, such that if $a\leq b$ in $S$ then $f(a)\leq f(b)$ in $\mathbf{N}$).
 \end{enumerate}
 

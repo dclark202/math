@@ -35,37 +35,37 @@
 \contentsline {subsection}{\numberline {7.2}Level curves}{25}{subsection.7.2}%
 \contentsline {subsection}{\numberline {7.3}Level surfaces}{25}{subsection.7.3}%
 \contentsline {subsection}{\numberline {7.4}Limits and continuity}{26}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.10}Exercises}{28}{subsection.7.10}%
+\contentsline {subsection}{\numberline {7.10}Exercises}{27}{subsection.7.10}%
 \contentsline {section}{\numberline {8}Partial derivatives and the gradient}{29}{section.8}%
 \contentsline {subsection}{\numberline {8.3}Higher order derivatives}{30}{subsection.8.3}%
 \contentsline {subsection}{\numberline {8.5}The gradient}{30}{subsection.8.5}%
 \contentsline {subsection}{\numberline {8.9}The directional derivative}{31}{subsection.8.9}%
 \contentsline {subsection}{\numberline {8.12}Exercises}{32}{subsection.8.12}%
 \contentsline {section}{\numberline {9}Tangent planes and differentials}{34}{section.9}%
-\contentsline {subsection}{\numberline {9.2}Tangent plane}{34}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.2}Tangent plane}{35}{subsection.9.2}%
 \contentsline {subsection}{\numberline {9.6}Differentials}{35}{subsection.9.6}%
 \contentsline {subsection}{\numberline {9.9}Exercises}{36}{subsection.9.9}%
 \contentsline {section}{\numberline {10}The chain rule}{37}{section.10}%
 \contentsline {subsection}{\numberline {10.1}Multivariable chain rule, main formulation}{37}{subsection.10.1}%
 \contentsline {subsection}{\numberline {10.2}Change of variable chain rule}{37}{subsection.10.2}%
-\contentsline {subsection}{\numberline {10.3}Other chain rules}{37}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.3}Other chain rules}{38}{subsection.10.3}%
 \contentsline {subsection}{\numberline {10.4}The implicit function theorem}{38}{subsection.10.4}%
-\contentsline {subsection}{\numberline {10.7}Exercises}{38}{subsection.10.7}%
-\contentsline {section}{\numberline {11}Extrema of two variable functions}{39}{section.11}%
+\contentsline {subsection}{\numberline {10.7}Exercises}{39}{subsection.10.7}%
+\contentsline {section}{\numberline {11}Extrema of two variable functions}{40}{section.11}%
 \contentsline {subsection}{\numberline {11.1}Local extrema}{40}{subsection.11.1}%
 \contentsline {subsection}{\numberline {11.3}The Hessian matrix and second derivative test}{40}{subsection.11.3}%
 \contentsline {subsection}{\numberline {11.8}Steps for finding local extrema}{42}{subsection.11.8}%
 \contentsline {subsection}{\numberline {11.9}Global extrema}{42}{subsection.11.9}%
-\contentsline {subsection}{\numberline {11.12}Finding global extrema of a two-variable function}{43}{subsection.11.12}%
+\contentsline {subsection}{\numberline {11.12}Finding global extrema of a two-variable function}{42}{subsection.11.12}%
 \contentsline {subsection}{\numberline {11.13}Exercises}{43}{subsection.11.13}%
 \contentsline {section}{\numberline {12}Lagrange multipliers}{44}{section.12}%
 \contentsline {subsection}{\numberline {12.5}Exercises}{46}{subsection.12.5}%
 \contentsline {section}{\numberline {13}**Gradient descent}{46}{section.13}%
 \contentsline {subsection}{\numberline {13.1}Nonlinear systems of equations}{47}{subsection.13.1}%
-\contentsline {subsection}{\numberline {13.7}Using gradient descent on a nonlinear system}{48}{subsection.13.7}%
+\contentsline {subsection}{\numberline {13.7}Using gradient descent on a nonlinear system}{49}{subsection.13.7}%
 \contentsline {subsection}{\numberline {13.10}Exercises}{50}{subsection.13.10}%
 \contentsline {section}{\numberline {14}Double integrals}{51}{section.14}%
-\contentsline {subsection}{\numberline {14.3}Riemann sums}{51}{subsection.14.3}%
+\contentsline {subsection}{\numberline {14.3}Riemann sums}{52}{subsection.14.3}%
 \contentsline {subsection}{\numberline {14.4}Iterated integrals}{52}{subsection.14.4}%
 \contentsline {subsection}{\numberline {14.7}Exercises}{52}{subsection.14.7}%
 \contentsline {section}{\numberline {15}Polar coordinates}{54}{section.15}%
@@ -78,19 +78,19 @@
 \contentsline {section}{\numberline {17}Triple integrals}{59}{section.17}%
 \contentsline {subsection}{\numberline {17.1}Solid regions}{59}{subsection.17.1}%
 \contentsline {subsection}{\numberline {17.5}Iterated integrals}{60}{subsection.17.5}%
-\contentsline {subsection}{\numberline {17.7}Integrals with more variables}{60}{subsection.17.7}%
+\contentsline {subsection}{\numberline {17.7}Integrals with more variables}{61}{subsection.17.7}%
 \contentsline {subsection}{\numberline {17.8}Exercises}{61}{subsection.17.8}%
 \contentsline {section}{\numberline {18}Cylindrical and spherical coordinates}{62}{section.18}%
 \contentsline {subsection}{\numberline {18.1}Cylindrical coordinates}{62}{subsection.18.1}%
 \contentsline {subsection}{\numberline {18.2}Cylindrical coordinate substitution in triple integrals}{62}{subsection.18.2}%
-\contentsline {subsection}{\numberline {18.4}Spherical coordinates}{62}{subsection.18.4}%
-\contentsline {subsection}{\numberline {18.5}Spherical coordinate substitution in triple integrals}{63}{subsection.18.5}%
+\contentsline {subsection}{\numberline {18.4}Spherical coordinates}{63}{subsection.18.4}%
+\contentsline {subsection}{\numberline {18.5}Spherical coordinate substitution in triple integrals}{64}{subsection.18.5}%
 \contentsline {subsection}{\numberline {18.7}Exercises}{64}{subsection.18.7}%
 \contentsline {section}{\numberline {19}Centroids and centers of mass}{66}{section.19}%
 \contentsline {subsection}{\numberline {19.3}Center of mass}{66}{subsection.19.3}%
 \contentsline {subsection}{\numberline {19.6}Centroids and center of mass in $\mathbf {R}^3$}{67}{subsection.19.6}%
 \contentsline {subsection}{\numberline {19.7}Exercises}{67}{subsection.19.7}%
-\contentsline {section}{\numberline {20}Vector fields}{68}{section.20}%
+\contentsline {section}{\numberline {20}Vector fields}{69}{section.20}%
 \contentsline {subsection}{\numberline {20.4}The gradient vector field}{70}{subsection.20.4}%
 \contentsline {subsection}{\numberline {20.7}Exercises}{70}{subsection.20.7}%
 \contentsline {section}{\numberline {21}Line integrals}{71}{section.21}%

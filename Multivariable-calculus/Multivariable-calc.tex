@@ -88,7 +88,7 @@
 
 \title{ \textbf{Multivariable calculus \\ Course notes and exercises
 }}
-\author{\small Prepared by: Duncan Clark, PhD}
+\author{\small Prepared by: Duncan Clark}
 \date{\small% Spring semester 24--25 AY \\ 
 \textit{Last updated}: \today}
 \maketitle 
@@ -155,7 +155,7 @@ Let's start by getting some footing with notation.
 
 \begin{itemize}
 	\item $\mathbf{R}$ is the set of real numbers. This is the same as the open interval $(-\infty,\infty)$.
-	\item $\mathbf{R}^2$ is the (real) plane. A point in $\mathbf{R}^2$ is a pair of real numbers $(a,b$). This is also frequently called the $xy$-plane, which is typically viewed with $x$ as the horizontal component and $y$ as the vertical. However, these axes can take any name, we will also frequently view this as the $yz$-plane, $xz$-plane, $uv$-plane, etc.
+	\item $\mathbf{R}^2$ is the (real) plane. A point in $\mathbf{R}^2$ is a pair of real numbers $(a,b)$. This is also frequently called the $xy$-plane, which is typically viewed with $x$ as the horizontal component and $y$ as the vertical. However, these axes can take any name, we will also frequently view this as the $yz$-plane, $xz$-plane, $uv$-plane, etc.
 	\item $\mathbf{R}^3$ is the (real) space. This is the 3D space of consisting of triplets $(a,b,c)$ of real numbers. We will sometimes call this the $xyz$-space, viewing $x$, $y$, and $z$ as the three axes of the space. In most cases, the $xyz$-space will be oriented as following.
 	\begin{figure}[h!] \centering 
 	
@@ -196,7 +196,7 @@ Other words for {norm} include \textit{length} or \textit{magnitude}. If we view
 
 
 
-\subsection{The dot product} Vectors differ in scalar quantities in that there is typically not a well-defined ``product'' operation like the product of numbers. There are several ``product-like'' operations which we'll use however. Perhaps the most useful is the {dot product}. 
+\subsection{The dot product} Vectors differ from scalar quantities in that there is typically not a well-defined ``product'' operation like the product of numbers. There are several ``product-like'' operations which we'll use however. Perhaps the most useful is the {dot product}. 
 
 \begin{defn}[Dot product] Given vectors $u=(u_1 ,u_2, u_3)$ and $v=(v_1,v_2,v_3)$ the \textbf{dot product} $u\cdot v$ is defined by \begin{equation} u\cdot v=u_1 v_1+u_2 v_2+u_3 v_3.\end{equation}
 \end{defn}
@@ -304,7 +304,7 @@ Figure \ref{fig-cp} shows geometrically the cross product of $u$ and $v$. In par
 
 \item Find a unit vector that is orthogonal to both $u=(1,2,2)$ and $v=(4,4,-7)$
 
-\item Show that $\vec{i}\times \vec{j}=\vec{k}, \; \vec{j}\times \vec{k}=\vec{i}$ and $\vec{k}\times \vec{i}=\vec{j}$. Similarly, show that if $u,v$ are vectors in $\mathbf{R}^3$ that $u\times v=-v\times u$ and $v\times v=0$.
+\item Show that $\vec{i}\times \vec{j}=\vec{k}, \; \vec{j}\times \vec{k}=\vec{i}$ and $\vec{k}\times \vec{i}=\vec{j}$. Similarly, show that if $u,v$ are vectors in $\mathbf{R}^3$ that $u\times v=-v\times u$ and $v\times v=\vec{0}$.
 \end{enumerate}
 
 \section{Curves and surfaces} \label{sec-curves-surf}
@@ -315,7 +315,7 @@ Before we get into the calculus-based aspects of this course, we need some exper
 
 You may recall the following (for instance, from learning about implicit differentiation in calc. 1)
 \begin{fact} 
-Any equation in the variables $x$ and $y$ describes a curve $C$ in the $xy$-plane
+Any equation in the variables $x$ and $y$ describes a curve $C$ in the $xy$-plane (with the understanding that a few degenerate equations, such as $x^2+y^2=0$ or $0=0$, produce a single point or the whole plane rather than an honest curve)
 \end{fact}
 
 For example, the equation $x^2+y^2=1$ describes the unit circle in the $xy$-plane, with radius $1$ and center $(0,0)$. Similarly, $y=2x-1$ is a line with slope $2$ and $y$-intercept $-1$. 
@@ -374,15 +374,15 @@ You can think of this analogously to \textit{point-slope form} for lines in $\ma
 \begin{remark} Unraveled, all planes are given by \textit{linear} equations in the variables $x,y,z$: i.e., \begin{equation} \label{plane-eqn} u x+v y+w z=k \end{equation} for some constants $u,v,w,k$. In particular, if you are given the equation \eqref{plane-eqn} for some plane, then this plane has normal vector given by $\vec{n}=(u,v,w)$.\end{remark}
 
 \subsection{Quadric surfaces}
-In learning basic planar geometry, we know that lines are the simplest types of objects, followed by quadratic equations (i.e., parabolas or ellipses\footnote{If you know your conic sections, these are exactly the shapes that are described by quadratic equations: parabola, circle, ellipse, and hyperboloid}). Going up a dimension, the next simplest types of surfaces beyond planes should be those whose defining equation is a quadratic polynomial. These are called \textbf{Quadric surfaces} (you can also say \textit{quadratic surface}, but that's not quite right). 
+In learning basic planar geometry, we know that lines are the simplest types of objects, followed by quadratic equations (i.e., parabolas or ellipses\footnote{If you know your conic sections, these are exactly the shapes that are described by quadratic equations: parabola, circle, ellipse, and hyperbola}). Going up a dimension, the next simplest types of surfaces beyond planes should be those whose defining equation is a quadratic polynomial. These are called \textbf{Quadric surfaces} (you can also say \textit{quadratic surface}, but that's not quite right). 
 
 \begin{example}Some examples of quadric surfaces are given below (here $k$ is some constant)
 
 \begin{itemize}
 	\item $x^2+y^2+z^2=k^2$ is a \textbf{sphere} of radius $k>0$ centered at the origin.
 	\item $x^2/a^2+y^2/b^2+z^2/c^2=1$ for constants $a,b,c$ is an \textbf{ellipsoid}. The constants $a,b,c$ should all be positive, they represent the ``radius" of the ellipsoid in the $x$-, $y$-, and $z$-axes respectively.
-	\item $z=x^2+y^2$ is a \textbf{paraboloid} (also called \textbf{elliptic paraboloid} opening in the upward $z$-direction
-	\item $z=x^2-y^2$ is a \textbf{saddle point} (also called a \textbf{hyperbolic paraboloid}) this is the shape of a Pringle
+	\item $z=x^2+y^2$ is a \textbf{paraboloid} (also called an \textbf{elliptic paraboloid}) opening in the upward $z$-direction
+	\item $z=x^2-y^2$ is a \textbf{saddle surface} (also called a \textbf{hyperbolic paraboloid}); this is the shape of a Pringle
 	\item $z^2=x^2+y^2$ is a \textbf{cone} (opening along the $z$-axis)
 	\item $x^2+y^2=k^2$ (as an equation of the variables $x,y,z$) is a \textbf{cylinder} (with tube-y part going along the $z$-axis)
 	\item $y=ax^2+k$ ($a,k$ constants) is a \textbf{parabolic sheet} (also called a \textbf{parabolic cylinder}), i.e., the parabola $y=ax^2+k$ extended indefinitely in the $z$-direction
@@ -396,7 +396,7 @@ See below for some pictures
 \label{fig-quadrics}
 \end{figure}
 
-Your usual graph transformations can be applied to translate or stretch/shrink these basic shapes. For instance, $(x-4)^2+(y+1)+z^2=9$ is a sphere of radius $3$ centered at $(4,-1,0)$. With a little bit of effort (i.e., completing the square) you can take \textit{any} quadratic equation of the variables $x,y,z$ and translate it into one of the examples above.
+Your usual graph transformations can be applied to translate or stretch/shrink these basic shapes. For instance, $(x-4)^2+(y+1)^2+z^2=9$ is a sphere of radius $3$ centered at $(4,-1,0)$. With a little bit of effort (i.e., completing the square) you can take \textit{any} quadratic equation of the variables $x,y,z$ and translate it into one of the examples above.
 
 \end{example}
 
@@ -469,9 +469,9 @@ If you think of $r$ as parameterizing the motion of a particle in space, then $\
 \subsection{Smoothness} \label{sec-smooth}
 Since we have defined the tangent vector to a curve it's useful to talk about when this tangent vector does not have enough information to give either a well-defined speed or direction to the curve. These points are called cusps as defined below.
 
-\begin{defn}[Cusp] Given a parametric curve $\vec{r}(t)=(x(t),y(t),z(t))$, we say that $\vec{r}$ has a \textbf{cusp} at $t=t_0$ if either $\vec{r}\,'(t_0)=(0,0,0)$ or $\vec{r}\,'(t_0)$ does not exist. \end{defn}
+\begin{defn}[Singular point] Given a parametric curve $\vec{r}(t)=(x(t),y(t),z(t))$, we say that $\vec{r}$ has a \textbf{singular point} at $t=t_0$ if either $\vec{r}\,'(t_0)=(0,0,0)$ or $\vec{r}\,'(t_0)$ does not exist. (When the trajectory genuinely has a sharp corner there, we call it a \textbf{cusp}; but be aware that a vanishing derivative does not by itself produce a corner---for instance $\vec r(t)=(t^3,t^3,0)$ has $\vec r\,'(0)=\vec 0$ but traces out a perfectly straight line.) \end{defn}
 
-If a parametric curve has no cusps on its domain then it is called \textbf{smooth}. Note that equivalently a parametrization is smooth if the speed function $s$ is defined and satisfies $s(t)>0$ for all $t$ in the domain of $\vec{r}$. Smooth curves are the ones which make sense for us in terms of calculus.
+If a parametric curve has no singular points on its domain then it is called \textbf{smooth}. Note that equivalently a parametrization is smooth if the speed function $s$ is defined and satisfies $s(t)>0$ for all $t$ in the domain of $\vec{r}$. Smooth curves are the ones which make sense for us in terms of calculus.
 
 \begin{remark}
 This last section has been written for parametrized curves in $\mathbf{R}^3$, but there's absolutely nothing special about dimension 3 here. The terminology and expressions work just as well in any $\mathbf{R}^n$.
@@ -621,7 +621,7 @@ When studying the geometry of curves, it becomes useful to often just ask of the
 
 Note  since $r(t)$ is smooth that $|r'(t)|\neq 0$. Any vector function whose output is always a unit vector has the following property (see Exercise \ref{tan-to-derivative} in Section \ref{sec-param}). 
 \begin{fact} If $r$ is any parametrization such that $|r(t)|=1$ for all $t$, then $r(t)$ and $r'(t)$ are orthogonal\end{fact} 
-Applying this fact to the vector function $T(t)$ we get a well-defined perpendicular direction to $T$ (and thus also $r'$). This is called the \textbf{principle normal direction} of the curve. Since this direction depends on the time derivative of the tangent direction, the principle normal direction (if it exists) points in the direction in which the curve is bending. 
+Applying this fact to the vector function $T(t)$ we get a well-defined perpendicular direction to $T$ (and thus also $r'$). This is called the \textbf{principal normal direction} of the curve. Since this direction depends on the time derivative of the tangent direction, the principal normal direction (if it exists) points in the direction in which the curve is bending. 
 
 \begin{figure}[h!]
 \centering
@@ -629,7 +629,7 @@ Applying this fact to the vector function $T(t)$ we get a well-defined perpendic
  \caption{Unit tangent $T$ and unit normal $N$ vectors for a parametrized curve $C$} 
  \end{figure}
  
-\begin{defn}[Unit normal vector] Let $r(t)$ be a parametrization of a smooth curve and $T(t)$ its unit tangent vector. The \textbf{unit normal vector} $N(t)$ is the vector function \begin{equation} \label{unit-normal} N(t)=\dfrac{T'(t)}{|T'(t)|} \end{equation}
+\begin{defn}[Unit normal vector] Let $r(t)$ be a parametrization of a smooth curve and $T(t)$ its unit tangent vector. At any $t$ where $T'(t)\neq \vec 0$, the \textbf{unit normal vector} $N(t)$ is the vector function \begin{equation} \label{unit-normal-curve} N(t)=\dfrac{T'(t)}{|T'(t)|} \end{equation} (If $T'(t)=\vec 0$---as happens along a straight line---then $N(t)$ is not defined.)
 \end{defn}
 %Note that $N(t)$ and $T(t)$ are always perpendicular. It's often quite a pain to compute $N(t)$ but it does tell us useful information about which direction a curve is ``bending'', more on this to come. 
 
@@ -683,16 +683,16 @@ In the specific case that we have a curve that is the graph of a function $y=f(x
 	\kappa(x)=\dfrac{|f''(x)|}{\left(1+(f'(x))^2\right)^{3/2}} \end{equation} 
 Showing that these formulas are valid is tricky, but doable. We'll focus on using these defining equations to do some spiffy things. \end{remark}
 
-\subsection{Torsion} For planar curves, knowing the curvature of the curve is essentially enough information to reconstruct the whole curve (you need to know a starting point, and probably want the curvature to be \textit{signed}, but let's not worry about that). For curves which live in $\mathbf{R}^3$, this is no longer true: for instance, both circles and helixes have constant curvature but are by no means the ``same" curve. 
+\subsection{Torsion} For planar curves, knowing the curvature of the curve is essentially enough information to reconstruct the whole curve (you need to know a starting point, and probably want the curvature to be \textit{signed}, but let's not worry about that). For curves which live in $\mathbf{R}^3$, this is no longer true: for instance, both circles and helices have constant curvature but are by no means the ``same" curve. 
 
-What further distinguishes space curves, is \textit{torsion}. This is a number which signals the amount which $C$ ``lifts'' out of the plane spanned by the tangent and normal vectors (sometimes called the \textit{osculating plane} at a given point on the curve. 
-\begin{defn}[Torsion] Given a smooth smooth curve $C$ in $\mathbf{R}^3$ parametrized by $r(t)$, the \textbf{torsion} $\tau$ of $C$ as a function of $t$ is calculated by \begin{equation} \label{t1} 
+What further distinguishes space curves, is \textit{torsion}. This is a number which signals the amount which $C$ ``lifts'' out of the plane spanned by the tangent and normal vectors (sometimes called the \textit{osculating plane}) at a given point on the curve. 
+\begin{defn}[Torsion] Given a smooth curve $C$ in $\mathbf{R}^3$ parametrized by $r(t)$, the \textbf{torsion} $\tau$ of $C$ as a function of $t$ is calculated by \begin{equation} \label{t1} 
 	\tau(t)=- \dfrac{B'(t)\cdot N(t)}{|r'(t)|}\end{equation}
 \end{defn}
 It's not particularly clear that this formula should do what we described above, nor is the calculation of torsion necessarily an easy one. An equivalent definition is that \begin{equation} \tau(t)= \dfrac{ (r'(t) \times r''(t)) \cdot r'''(t)}{|r'(t)\times r''(t)|^2}\end{equation}
 but this still is not particularly easy to calculate except in some nice cases.
 
-A neat fact then is that a smooth space curve is uniquely determined by the following information: (i) A starting point, (ii) its curvature, (iii) its torsion (see also the  \href{https://en.wikipedia.org/wiki/Frenet\%E2\%80\%93Serret_formulas}{Fresnel-Serret formulas})
+A neat fact then is that a smooth space curve is uniquely determined by the following information: (i) A starting point, (ii) its curvature, (iii) its torsion (see also the  \href{https://en.wikipedia.org/wiki/Frenet\%E2\%80\%93Serret_formulas}{Frenet-Serret formulas})
 
 \subsection{Exercises}
 \begin{enumerate}[label=\arabic*.]
@@ -745,7 +745,7 @@ First note that
 While it may not look like much, this tells us that velocity always occurs in the direction of the unit tangent vector with magnitude $s(t)=|r'(t)|$, which just the speed of the parametrization. More interesting is what happens when you differentiate \eqref{vel} with respect to $t$. 
 \[a(t)=v'(t)=\left\lbrack s(t)T(t) \right\rbrack' = s'(t) T(t) + s(t) T'(t)  
 \]
-Now, using equations \eqref{unit-normal} and \eqref{c1} we get that $T'(t)=|T'(t)| N(t)$ and $|T'(t)|=\kappa(t) s(t)$ (recall: $\kappa$ is the curvature of the curve). This tells us the following: 
+Now, using equations \eqref{unit-normal-curve} and \eqref{c1} we get that $T'(t)=|T'(t)| N(t)$ and $|T'(t)|=\kappa(t) s(t)$ (recall: $\kappa$ is the curvature of the curve). This tells us the following: 
 \begin{equation} a(t) = s'(t) T(t) + s(t)^2 \kappa(t) N(t)\label{acc} \end{equation}
 \begin{defn} \label{acc-tan-normal}	Given a smooth parametrization $r(t)$ of a curve $C$, set $a_T$ and $a_N$ to be the following functions: \begin{equation} a_T(t)=s'(t) \qquad a_N(t)=s(t)^2 \kappa(t)\end{equation}
 \end{defn}
@@ -757,9 +757,9 @@ Now, using equations \eqref{unit-normal} and \eqref{c1} we get that $T'(t)=|T'(t
 \begin{remark}
 	We can further interpret these functions $a_T$ and $a_N$. Since $a_T(t)=s'(t)$, the \textit{tangential component} $a_T(t)T(t)$ of acceleration is just how much the object is speeding up or slowing down. This always happens in the direction that is tangent to the curve (think of a matchbox car on a fixed track, you can change the speed that the car goes, but not the track itself). 
 	
-	What is the \textit{normal component} then? We know that $N(t)$ is the principle normal direction to $C$, which tells us that $N(t)$ is the direction that the curve is ``bending". Therefore, $a_N(t)$ can be interpreted as the angular acceleration of the object, that is, the scalar quantity which tells us how quickly the direction of object is moving. 
+	What is the \textit{normal component} then? We know that $N(t)$ is the principle normal direction to $C$, which tells us that $N(t)$ is the direction that the curve is ``bending". Therefore, $a_N(t)=s(t)^2\kappa(t)$ is the \textit{centripetal} (or normal) component of acceleration: the part of the acceleration that goes into changing the object's \textit{direction} rather than its speed. It is what you feel pushing you sideways as a car rounds a bend---bigger for higher speed, and bigger for a tighter curve. 
 	
-	This is a more mathematically justified footing of the claim you may know from physics---that is, ``acceleration" happens when you either change speed \textit{or} change direction. What's remarkable here is that these are the only two components of acceleration, regardless of the dimension in which the motion is ocurring.\footnote{Since $T$ and $N$ are always perpendicular, they form a plane. This plane is sometimes called the \textbf{osculating} plane for the curve. Acceleration always occurs in this plane. }
+	This is a more mathematically justified footing of the claim you may know from physics---that is, ``acceleration" happens when you either change speed \textit{or} change direction. What's remarkable here is that these are the only two components of acceleration, regardless of the dimension in which the motion is occurring.\footnote{Since $T$ and $N$ are always perpendicular, they form a plane. This plane is sometimes called the \textbf{osculating} plane for the curve. Acceleration always occurs in this plane. }
 
 \end{remark}
 
@@ -784,11 +784,11 @@ Now, using equations \eqref{unit-normal} and \eqref{c1} we get that $T'(t)=|T'(t
 
 \item The graph of a function $y=f(x)$ can be parametrized by $r(t)=(t,f(t))$. Determine the tangential and normal components of acceleration for this parametrization (in terms of $f, f'$ and $f''$).
 
-\item A cannonball is shot from ground level with an angle of $36^{\circ}$ relative to the ground. What is the initial speed of the cannonball if its maximum height is 1600 ft? Use the $a=(0, -32)$. 
+\item A cannonball is shot from ground level with an angle of $36^{\circ}$ relative to the ground. What is the initial speed of the cannonball if its maximum height is 1600 ft? Use $a=(0, -32)$. 
 
-\item Kepler's laws describe motion of objects around a planet. The first law states that objects have elliptical orbits with the planet at a focus of this ellipse. The third states that the time $T$ for an object to make one full orbit is given by \[ T^2=\dfrac{4\pi^2}{GM}a^3\] where for the Earth $GM=3.99\cdot 10^{14}$ and $a$ is the major (longer) axis of the elliptical orbit. 
+\item Kepler's laws describe motion of objects around a planet. The first law states that objects have elliptical orbits with the planet at a focus of this ellipse. The third states that the time $T$ for an object to make one full orbit is given by \[ T^2=\dfrac{4\pi^2}{GM}a^3\] where for the Earth $GM=3.99\cdot 10^{14}$ and $a$ is the \textbf{semi-major} axis (half the longer axis) of the elliptical orbit. 
 
-A geosynchronous orbit occurs when $T=1$ year. Use that $T=365.25$ days (converted to seconds) and that the radius of the Earth is $6.37\cdot 10^{6}$ to find the altitude of the geosynchronous orbit of a satellite around Earth. 
+A geosynchronous orbit is one in which the satellite completes exactly one orbit per rotation of the Earth, i.e. $T=1$ \textit{day}. Use that $T=1$ day (converted to seconds) and that the radius of the Earth is $6.37\cdot 10^{6}$ metres to find the altitude of the geosynchronous orbit of a satellite around Earth. 
 
 \end{enumerate}
 Suggested additional exercises. \textit{Stewart} Section 13.4
@@ -799,7 +799,7 @@ Suggested additional exercises. \textit{Stewart} Section 13.4
 
 We began by understanding parametrized curves, which are functions with domain $\mathbf{R}$ but whose range lies in some $\mathbf{R}^n$ for $n\geq 2$. Now, we look at a different type of multivariable function; specifically, functions whose inputs come from some region of $\mathbf{R}^n$ for $n\geq 2$. 
 
-Notation-wise, recall that writing $f\colon D\to R$ means that $f$ is a function with domain $D$ and range $R$. In this notation a parametric curve is a function $r\colon \mathbf{R}\to \mathbf{R}^n$ ($n\geq 2$). \textbf{Multivariable\footnote{What's always been really strange to me is that \textit{multivariate} is an accepted synonym of \textit{multivariable}. The former seems to be more commonly used in Statistics. Use whichever word you like.} functions} are functions $f\colon \mathbf{R}^n \to \mathbf{R}$ ($n\geq 2$), i.e., functions that have several inputs but only a scalar output. Later on, we'll consider functions other types of functions with multiple inputs and vector outputs.
+Notation-wise, recall that writing $f\colon D\to R$ means that $f$ is a function with domain $D$ and range $R$. In this notation a parametric curve is a function $r\colon \mathbf{R}\to \mathbf{R}^n$ ($n\geq 2$). \textbf{Multivariable\footnote{What's always been really strange to me is that \textit{multivariate} is an accepted synonym of \textit{multivariable}. The former seems to be more commonly used in Statistics. Use whichever word you like.} functions} are functions $f\colon \mathbf{R}^n \to \mathbf{R}$ ($n\geq 2$), i.e., functions that have several inputs but only a scalar output. Later on, we'll consider other types of functions with multiple inputs and vector outputs.
 
 
 \subsection{Graphs of two variable functions}
@@ -838,7 +838,7 @@ Similar to the two variable case, given a three variable function $f=f(x,y,z)$ w
 \subsection{Limits and continuity} 
 Let's say we have a two variable function $f=f(x,y)$ and want to know whether $f$ is continuous at a point $P=(a,b)$ in its domain. What should this mean? Intuitively, this should mean that the surface given by the graph $z=f(x,y)$ has no ``rips" or "tears" in it---but how can we make this mathematical? What we need is the idea of a \textit{limit} of a two variable function. 
 
-Let $P=(a,b)$ be given. Let's say that $C$ is a \textbf{path to $P$} if $C$ is a smooth curve parametrized by $r(t)$ such that $r(0)=P$. We then have the following
+Let $P=(a,b)$ be given. Let's say that $C$ is a \textbf{path to $P$} if $C$ is a smooth curve parametrized by $r(t)$ such that $r(0)=P$ and $r(t)\neq P$ for all $t\neq 0$ near $0$. (This last condition matters: without it we could take the constant path $r(t)\equiv P$, whose limit is always $f(P)$, and then no function could ever fail to be continuous.) We then have the following
 
 \begin{defn}[Limit of a two variable function] \label{def-limit}
 	Let $f=f(x,y)$ be a two variable function and $P=(a,b)$ a point in its domain. We say that that the \textbf{limit of $f$ at $P$} equals a number $L$ if \begin{equation} \label{eq-limit-on-C} \lim_{t\to 0} f(r(t))=L\end{equation}for all parametrizations $r(t)$  of any path to $P$.
@@ -953,10 +953,10 @@ with the ``obvious'' modifications made for a function of three (or more) variab
 
 for these various notations. Note the order in which the ``take derivative" operation is applied. Actually, in most cases, this is not really something we need to be concerned with writing down precisely, due to the following theorem.
 
-\begin{thm}[Clairut's theorem]  \label{Clairut-thm} If $f=f(x,y)$ is a function such that all of the second order partial derivatives $f_{xx}, f_{yy}, f_{xy}$ and $f_{yx}$ exist and are continuous, then $f_{xy}=f_{yx}$.
+\begin{thm}[Clairaut's theorem]  \label{Clairut-thm} If $f=f(x,y)$ is a function such that all of the second order partial derivatives $f_{xx}, f_{yy}, f_{xy}$ and $f_{yx}$ exist and are continuous, then $f_{xy}=f_{yx}$.
 \end{thm}
 
-Clairut's theorem applies really to any mixed partials of a multivariable function, in essence telling us that the ``order of differentiation'' does not matter, just the total number of each partial derivative variable. Like most theorems, there are some conditions needed for this to apply, but almost any function we actually write down (in this class, at least) will meet the necessary conditions, so we will make frequent use of this theorem without necessarily checking the conditions.
+Clairaut's theorem applies really to any mixed partials of a multivariable function, in essence telling us that the ``order of differentiation'' does not matter, just the total number of each partial derivative variable. Like most theorems, there are some conditions needed for this to apply, but almost any function we actually write down (in this class, at least) will meet the necessary conditions, so we will make frequent use of this theorem without necessarily checking the conditions.
 
 
 \subsection{The gradient}
@@ -973,7 +973,7 @@ While the partial derivatives independently may not tell us the whole story abou
 
 What's remarkable about the gradient? The following theorem tells us its main properties. 
 
-\begin{thm}[Gradient points in direction of max increase] \label{gradient-properties} For a scalar function $f$ and point $P$ in the domain of $f$, the vector $\nabla f(P)$ has the following features:
+\begin{thm}[Gradient points in direction of max increase] \label{gradient-properties} Let $f$ be a differentiable scalar function and $P$ a point in the domain of $f$ at which $\nabla f(P)\neq \vec{0}$. Then the vector $\nabla f(P)$ has the following features:
 \begin{itemize}
 \item $\nabla f(P)$ points in the direction of greatest increase of the function $f$ (as a vector in the domain of $f$, originating at point $P$)
 \item $| \nabla f (P) |$ is the \textit{maximum rate of change} of $f$ at point $P$. 
@@ -986,7 +986,7 @@ Said differently, if you are on a mountain, the gradient is like a compass which
 
 Given a multivariable function $f$, the partial derivatives $f_x,f_y$, etc. tell us about the rate of change in the directions corresponding to the coordinate axes in the domain of $f$. But what about other directions? Say we have a unit\footnote{That $u$ be a unit vector here is important: there are a bunch of vectors that point in any given direction, the unit vector is the one which ``ignores the length".} vector $\vec{u}$ and a point $P$ in the domain of $f$. The \textbf{directional derivative} of $f$ at point $P$ in the $\vec{u}$ direction is given by \begin{equation} D_{\vec{u}} f(P)= \lim_{h\to 0^+} \dfrac{f(P+h \vec{u})-f(P)}{h} \end{equation} (That hat here on the $\vec{u}$ vector is mostly just to emphasize that it is a direction, we'll typically drop it). This limit is possible to calculate, but if this quantity is desired it's much easier to use the formula provided by the following theorem:
 
-\begin{thm} Let $f$ be a multivariable function such that $\nabla f$ is defined and $u$ be a unit vector (of the same number of components that $f$ has inputs). Then {directional derivative} of $f$ at a point $P$ in the direction of $u$ is given by \begin{equation} \label{dirder} 
+\begin{thm} Let $f$ be a multivariable function which is \textit{differentiable} at $P$, and $u$ be a unit vector (of the same number of components that $f$ has inputs). Then the {directional derivative} of $f$ at the point $P$ in the direction of $u$ is given by \begin{equation} \label{dirder} 
 	D_u f(P)=\nabla f (P) \cdot u
 \end{equation}
 \end{thm}
@@ -999,18 +999,18 @@ This is actually fairly straightforward to show. Let $f=f(x,y)$ be given, $u=(u_
 &=\lim_{h\to 0^+} \left( \dfrac{ f(a+u_1 h, b+u_2 h)- f(a, b+u_2 h)}{u_1 h}\right) u_1 +  \left( \dfrac{ f(a, b+u_2 h)- f(a, b)}{u_2 h}\right) u_2 \\
 &=f_x(a,b) u_1+f_y(a,b) u_2 \\
 &= \nabla f (a,b) \cdot u\end{align*} 
-The same idea can be modified for functions of three or more variables\footnote{There is a very slight problem here if one of the components of $u$ happens to be zero, but I leave it to you to figure out how to avoid this}.
+The same idea can be modified for functions of three or more variables\footnote{There is a very slight problem here if one of the components of $u$ happens to be zero, but I leave it to you to figure out how to avoid this. Note also that this calculation quietly uses that $f$ is \textit{differentiable} at $(a,b)$: mere existence of the partial derivatives is not enough. For example $f(x,y)=x^3/(x^2+y^2)$ (with $f(0,0)=0$) has $\nabla f(0,0)=(1,0)$, but in the direction $u=(1/\sqrt2,1/\sqrt2)$ the actual directional derivative is $\sqrt2/4$, not $\nabla f(0,0)\cdot u=1/\sqrt{2}$}.
 \end{proof}
 
 
 %It's possible (but a bit tedious) to show where formula \eqref{dirder} comes from by the limit definition of the derivative. An alternate explanation will be given as an exercise using the multivariable chain rule in section \ref{ch-rule-ex}.
 
 \begin{remark}
-	It's worth pointing out that the main properties of the gradient from theorem \ref{gradient-properties} are entirely derived from equation \eqref{dirder}. Recall that the dot product tells us about the angle between vectors. Let a multivariable function $f$ and unit vector $u$ be given, and let $\theta$ be the angle between $u$ and $\nabla f$. Then \begin{equation} |D_u f| = |\nabla f| |u| \cos \theta=|\nabla f | \cos \theta\end{equation}
+	It's worth pointing out that the main properties of the gradient from theorem \ref{gradient-properties} are entirely derived from equation \eqref{dirder}. Recall that the dot product tells us about the angle between vectors. Let a multivariable function $f$ and unit vector $u$ be given, and let $\theta$ be the angle between $u$ and $\nabla f$. Then \begin{equation} D_u f = |\nabla f| |u| \cos \theta=|\nabla f | \cos \theta\end{equation}
 	This tells us a few things: \begin{itemize}
 		\item $D_u f$ is greatest when the angle between $u$ and $\nabla f$ is $0$---that is, $u$ and $\nabla f$ point in the same direction and $D_u f=|\nabla f|$
 		\item $D_u f$ is the \textit{most negative} when $\theta=\pi$, which is to say that $u$ and $\nabla f$ point in the opposite direction and $D_uf=-|\nabla f|$
-		\item $D_u f=0$ whenever $u$ and $\nabla f$ are perpendicular. Note that $D_u f=0$ means that the direction $u$ must be tangent to the level set (i.e., level curve, level surface, etc.) of the function $f$. In other words, $\nabla f$ is perpendicular to any level set of $f$. 
+		\item $D_u f=0$ whenever $u$ and $\nabla f$ are perpendicular. Note that (provided $\nabla f\neq \vec 0$) $D_u f=0$ means that the direction $u$ must be tangent to the level set (i.e., level curve, level surface, etc.) of the function $f$. In other words, $\nabla f$ is perpendicular to any level set of $f$. 
 	\end{itemize}
 
 \end{remark}
@@ -1098,7 +1098,7 @@ To motivate the upcoming construction of the tangent plane, let's consider the f
 \caption{Tangent line to an implicit curve $F(x,y)=0$ at point $P$}
 \label{fig-tan-line}
 \end{figure}
-In the case that $C$ is described by the \textit{explicit} function $y=f(x)$, we can write $F(x,y)=y-f(x)$. Then $\nabla F=(-f',1)$ and so the above equation becomes \[ (-f'(a),1)\cdot(x-a,y-b)=0\] This may look somewhat strange, but actually this is just point-slope form: rearranging, expanding the dot product we get $-f(a)(x-a)+y-b=0$. Since $b=f(a)$, we therefore have \[y=f(a)+f'(a)(x-a).\]
+In the case that $C$ is described by the \textit{explicit} function $y=f(x)$, we can write $F(x,y)=y-f(x)$. Then $\nabla F=(-f',1)$ and so the above equation becomes \[ (-f'(a),1)\cdot(x-a,y-b)=0\] This may look somewhat strange, but actually this is just point-slope form: rearranging, expanding the dot product we get $-f'(a)(x-a)+y-b=0$. Since $b=f(a)$, we therefore have \[y=f(a)+f'(a)(x-a).\]
 
 \end{example}
 
@@ -1226,7 +1226,7 @@ That is to say, the slope of the tangent line to the curve can be computed by th
 \item Later in this course (see section \ref{spherical-coord}) we'll learn about \textit{spherical coordinates}. Use the following functions \[x=\rho \sin \varphi \cos \theta, \quad y=\rho \sin \varphi \sin \theta, \quad z=\rho \cos \varphi\] to find $\partial w/\partial \varphi$ and $\partial w/\partial \theta$ for $w=4x^2-y^2+z^4-2$.
 
 
-\item An equation of the form $f(x,y)=0$ describes some of curve in the $xy$-plane. Use implicit differentiation to derive the \textit{implicit function theorem} from \eqref{ift}.
+\item An equation of the form $f(x,y)=0$ describes some curve in the $xy$-plane. Use implicit differentiation to derive equation \eqref{ift} of the \textit{implicit function theorem}.
 
 \begin{enumerate}
 \item Use the implicit function theorem to compute $dy/dx$ for the curve given by $x^2y-ye^{x}+y=0$. 
@@ -1249,7 +1249,7 @@ That is to say, the slope of the tangent line to the curve can be computed by th
 
 \item Let $z=z(x,y)$, $x=x(t)$ and $y=y(t)$. Determine a formula for $\partial^2 z/\partial t^2$ in terms of the derivatives of $x$ and $y$ and the partial derivatives of $z$. 
 
-\item Like in problem 4, a curve is defined implicitly by $f(x,y)=0$. Show the following: \begin{equation} \dfrac{d^2y}{dx^2}=\dfrac{ f_{xx} f_y^2-2f_{xy}f_xf_y+f_{yy}f_{x}^2}{f_y^3}\end{equation}
+\item Like in problem 4, a curve is defined implicitly by $f(x,y)=0$. Show the following: \begin{equation} \dfrac{d^2y}{dx^2}=-\dfrac{ f_{xx} f_y^2-2f_{xy}f_xf_y+f_{yy}f_{x}^2}{f_y^3}\end{equation}
 
 \end{enumerate}
 
@@ -1292,7 +1292,7 @@ This is called the \textbf{Hessian matrix} of $f$, it consists of all possible s
 \begin{defn}[Hessian determinant] Let $f=f(x,y)$ be a (twice differentiable) function of two variables. The \textit{Hessian determinant}, $D$, of $f$ is defined as the determinant of the matrix $H$ from \eqref{Hessian}. That is, \[ D=\det \begin{pmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{pmatrix} = f_{xx}f_{yy}-f_{xy}f_{yx}.\]
 \end{defn}
 
-Note that since $f_{xy}=f_{yx}$ (Clairut's theorem) that $D$ can be written \begin{equation} \label{Hess-det} D=f_{xx}f_{yy}-(f_{xy})^2\end{equation} 
+Note that since $f_{xy}=f_{yx}$ (Clairaut's theorem) that $D$ can be written \begin{equation} \label{Hess-det} D=f_{xx}f_{yy}-(f_{xy})^2\end{equation} 
 
 \begin{remark}You can think of $D$ as a ``shape parameter"\footnote{When evaluated at a critical point this term $D$ is exactly the \textit{Gaussian curvature} of the surface given by $z=f(x,y)$. Positive curvature means your surface looks ``paraboloid like" or ``sphere like", while negative curvature means your surface looks like a saddle point.}  (see also Figure \ref{fig-2nd-der-test}) for a surface at a critical point, via the following: 
 \begin{itemize} 
@@ -1312,7 +1312,7 @@ Also, it's worth mentioning that $D$ is still a two-variable function of $x$ and
 
 
 
-\begin{thm}[Second derivative test] Suppose we have a function $f=f(x,y)$ and a critical point $(a,b)$ for $f$. Let $D$ be the Hessian determinant of $f$ as above. Then the following holds:
+\begin{thm}[Second derivative test] Suppose we have a function $f=f(x,y)$ with continuous second-order partial derivatives, and a critical point $(a,b)$ for $f$. Let $D$ be the Hessian determinant of $f$ as above. Then the following holds:
 \begin{itemize} 
 	\item If $D(a,b)>0$ then $f$ has a maximum or a minimum depending on the following:
 		\begin{itemize}
@@ -1341,10 +1341,10 @@ For a function $f=f(x)$ the process goes as follows: Suppose $f$ is a function d
 
 To find it, you simply plug these values into the function and ask which is the largest/smallest. To find global extrema for a function of two variables we rely on the following observation:
 
-\begin{thm}[Condition for existence of global extrema for functions of two variables)]Suppose that $f=f(x,y)$ is a (continuous) function of two variables defined on some domain $D$ in the $xy$-plane. If $D$ is \textit{closed} then $f$ must attain a global maximum and minimum on its domain
+\begin{thm}[Condition for existence of global extrema for functions of two variables]Suppose that $f=f(x,y)$ is a (continuous) function of two variables defined on some domain $D$ in the $xy$-plane. If $D$ is both \textit{closed} and \textit{bounded} then $f$ must attain a global maximum and minimum on its domain
 \end{thm}
 
-\begin{remark} The precise definition of what makes a region closed is not entirely necessary: it's sufficient for us to know that $D$ contains all curves that make up its boundary. For instance the box $-1\leq x\leq 1, -1\leq y\leq 1$ is closed as it contains the boundary line segments, while the open box $-1<x<1, -1<y<1$ does not and is therefore not closed (see Figure \ref{fig-squares}).
+\begin{remark} The precise definition of what makes a region closed is not entirely necessary: it's sufficient for us to know that $D$ contains all curves that make up its boundary. For instance the box $-1\leq x\leq 1, -1\leq y\leq 1$ is closed as it contains the boundary line segments, while the open box $-1<x<1, -1<y<1$ does not and is therefore not closed (see Figure \ref{fig-squares}). \textit{Bounded} means that $D$ does not run off to infinity in any direction---it is sufficient that $D$ sit inside some disc $x^2+y^2\leq r^2$. Both conditions are needed: the closed half-plane $y\geq 0$ is closed but unbounded, and the continuous function $f(x,y)=x$ attains neither a maximum nor a minimum on it.
 \begin{figure}[h]
 \centering
 \includegraphics[width=50mm]{Images/closed} \qquad \qquad \qquad \includegraphics[width=50mm]{Images/open}
@@ -1365,7 +1365,7 @@ The first is simple enough, find critical points as you would for local extrema 
 
 For the second, we must \textit{parametrize} any component of the boundary, plug that parametrization into the function $f$, and treat it as a one-variable function. If $D$ is the box region above, and $f(x,y)=x^2y$, this would amount to parameterizing each of the four line segments that make up the boundary of the square and plugging each into $f$. For instance, one such component is $r(t)=(t,1)$ for $-1\leq t\leq 1$. So $f(r(t))=t^2\cdot 1=t^2$, and then you find critical points for this function on the domain $[-1,1]$. 
 
-Lastly, any ``corner point'' where two different parametrization is automatically a point where a max/min could occur. For the square then the four corners $(\pm 1, \pm 1)$ all must be checked for global extrema. 
+Lastly, any ``corner point'' where two different boundary parametrizations meet is automatically a point where a max/min could occur. For the square then the four corners $(\pm 1, \pm 1)$ all must be checked for global extrema. 
 
 
 This is a long process, and gets longer as the number of variables of the function goes up. In section \ref{LM}, we'll learn about Lagrange multipliers---a technique that can save us some effort here by using the gradient in a clever way.
@@ -1397,7 +1397,7 @@ This is a long process, and gets longer as the number of variables of the functi
 	\item Using the points from parts a. and b., solve for any global extrema of $f$ on $R$
 \end{enumerate}
 
-\item Find the points on the surface $x^2-yz=5$ closest to the origin. \textit{Hint: The distance from $(x,y,z)$ to the origin can be computed as $d(x,y,z)=x^2+y^2+z^2$. Use that if $(x,y,z)$ is on the surface then $x^2=5+yz$, to make a substitution into $d(x,y,z)$ and minimize the resulting function of two variables.}
+\item Find the points on the surface $x^2-yz=5$ closest to the origin. \textit{Hint: The \textit{squared} distance from $(x,y,z)$ to the origin is $d(x,y,z)=x^2+y^2+z^2$, and minimizing it is the same as minimizing the distance itself. Use that if $(x,y,z)$ is on the surface then $x^2=5+yz$, to make a substitution into $d(x,y,z)$ and minimize the resulting function of two variables.}
 
 \item \textit{True or False}. Determine if the following statements are true or false. Give a brief justification of your answer. Let $D$ be the Hessian determinant from \eqref{Hess-det}
 
@@ -1435,9 +1435,9 @@ where the first two come from setting $\nabla f=\lambda \nabla g$ (i.e., insisti
 
 
 
-\begin{thm}[Condition for extrema via Lagrange multipliers] Let $f$ and $g$ be functions of two variables and let $k$ be a constant such that the level curve $g(x,y)=k$ is contained within the domain of $f$. Then, any global extrema of $f$ along the level curve $g(x,y)=k$ must occur at a point $(a,b)$ such that
+\begin{thm}[Condition for extrema via Lagrange multipliers] Let $f$ and $g$ be differentiable functions of two variables and let $k$ be a constant such that the level curve $g(x,y)=k$ is contained within the domain of $f$. Then, any global extremum of $f$ along the level curve $g(x,y)=k$ occurring at a point $(a,b)$ where $\nabla g(a,b)\neq \vec{0}$ must satisfy
 \begin{equation} \label{LM-1} \nabla f(a,b)= \lambda \nabla g(a,b) \qquad \text{and} \qquad g(a,b)=k \end{equation}
-where $\lambda$ is a constant. Notably, \eqref{LM-1} gives a system of equations we can solve to try to find all global extrema of the given function. 
+where $\lambda$ is a constant. Notably, \eqref{LM-1} gives a system of equations we can solve to try to find all global extrema of the given function. (The condition $\nabla g(a,b)\neq \vec 0$ matters: at a point where $\nabla g$ vanishes no such $\lambda$ need exist, so such points must be checked separately.) 
 \end{thm}
 \begin{figure}[h!]
 \centering
@@ -1468,7 +1468,7 @@ Typically these systems can be quite tricky to solve, but it's always possible t
 
 \item Show that $f(x,y)=x^2+y^2$ has no maximum value along the level curve $xy=1$. Then use Lagrange multipliers to find its minimum value.
 
-\item Use Lagrange multipliers to show that the largest rectangle with a given perimeter is a square. Can the same idea be used to show that the same to show that the largest rectangular prism with a given surface area is a cube?
+\item Use Lagrange multipliers to show that the largest rectangle with a given perimeter is a square. Can the same idea be used to show that the largest rectangular prism with a given surface area is a cube?
 
 \item Use Lagrange multipliers to find the maximum value of $f(\alpha, \beta,\gamma)=\cos \alpha \cos\beta \cos\gamma$ given that $\alpha, \beta$ and $\gamma$ are the three inner angles of a triangle. (\textit{Hint: the inner angles of a triangle always add to $\pi$.})
 
@@ -1507,7 +1507,7 @@ Note that this error function can just as well be defined for a system of $n$ eq
 Taking gradients, we find \[ \nabla E(x,y) = \left( -4 + 5 x - y, -1 - x + 2 y\right)\]
 Let's interpret this gradient. Suppose we have an initial guess solution $(x_0,y_0)=(0,0)$ to this system of equation. It's not right, as $E(0,0)=5/2$, but  since $-\nabla E$ always points in the direction of \textit{greatest decrease} of $E$ we can improve this guess by taking a small step in the $-\nabla E(0,0)$ direction. Let $\epsilon$ be a small number (we'll decide a good value for it later) and set \[ (x_1,y_1)=(x_0,y_0) - \epsilon \nabla E(x_0, y_0)\]  The hope would be that by taking a small enough step in this direction, we simply go toward a minimum of $E$. Let's set $\epsilon=0.1$ for now. Since $\nabla E(0,0)=(-4,-1)$ 
 \[ (x_1,y_1)=(0,0)- 0.1 (-4,-1)=(0.4, 0.1)\]
-Let's check what happened to the error: we now have \[E(x_1,y_1)=E(0.4, 0.1)=7/6<5/2=E(x_0,y_0).\] So, this improved guess is \textit{closer} to being a solution than our first guess of $(0,0)$, but still not quite there. The key here is that we can iterate this computation, keeping $\epsilon=0.1$ we have \begin{align*} (x_2,y_2) &= (0.4,0.1) - 0.1 (-2.1, 1.2)=(.61,.22) \\ 
+Let's check what happened to the error: we now have \[E(x_1,y_1)=E(0.4, 0.1)=1.17<2.5=E(x_0,y_0).\] So, this improved guess is \textit{closer} to being a solution than our first guess of $(0,0)$, but still not quite there. The key here is that we can iterate this computation, keeping $\epsilon=0.1$ we have \begin{align*} (x_2,y_2) &= (0.4,0.1) - 0.1 (-2.1, -1.2)=(.61,.22) \\ 
 (x_3,y_3) &= (.61,.22) -0.1 (-1.17, -1.17) = (0.727, 0.337)\end{align*}
 with errors $E(x_2,y_2)= 0.68445$ and $E(x_3,y_3)=0.444892$, so our approximations continue to become closer to a solution to the given system. Repeating this process a few more times, we expect to converge to the known solution of $(1,1)$---or at least become \textit{close enough} to it---where close enough can be quantified in terms of the error function (\href{https://msoe.box.com/s/lkjin287s0ahd7dnecyb7t3pefqzrf0d}{here} is my Excel spreadsheet with these calculations, with these initial values after 20 iterates we have an error less than 0.001---this could be improved with a more informed choice of step size). 
 \end{example}
@@ -1523,19 +1523,19 @@ Noteworthy is that we did all of the above algebraically (meaning, without havin
 \subsection{Using gradient descent on a nonlinear system} Let's go back to our nonlinear system \eqref{sys-2} from before. This has $f(x,y)=2\cos(y-1)+2x-1$ and $g(x,y)=y-\cos(x)-3$. Computing, we get \begin{align*} E_x(x,y)&= -2 + 4 x + 4 \cos(1 - y) + (-3 + y - \cos(x)) \sin(x) 
  \\ E_y(x,y)&= -3 + y - \cos(x) + 2 (-1 + 2 x + 2 \cos(1 - y)) \sin(1 - y) \end{align*}
 
-A potential nightmare to work with, but let's give it a shot (now is a great time to use a calculator/computational software). Without thinking too hard, an initial guess could be $(x,y)=(1,2)$, in which case $E(1,1)\approx 3.351
+A potential nightmare to work with, but let's give it a shot (now is a great time to use a calculator/computational software). Without thinking too hard, an initial guess could be $(x,y)=(1,2)$, in which case $E(1,2)\approx 3.351
 $. Not great, but we can improve it. With a step size of $\epsilon =0.25$ we can calculate \begin{align*} 
 (x_1,y_1)&=( 0.283,	3.260) && E= 1.6983 \\
 (x_2,y_2)&= (1.185,	2.777) && E=0.6395 \\
 (x_3,y_3)&=(0.843,	3.396) && E= 0.3420 \\ 
- (x_4,y_3)&=(1.285,	3.198) && E= 0.0817\\
+ (x_4,y_4)&=(1.285,	3.198) && E= 0.0817\\
 (x_5,y_5)&=(1.107,	3.379) && E=0.0292\\
 (x_6,y_6)&=(1.238,	3.316) &&E= 0.0073
 \end{align*}
 (These are truncated values: Again, I did this in Excel, you can use my spreadsheet \href{https://msoe.box.com/s/lkjin287s0ahd7dnecyb7t3pefqzrf0d}{here} if you want, or make a better version. If you use my version, you can play around with different values of $\epsilon$ (epsilon) and the starting $x$ and $y$ coordinates). Note how $E$ decreases with each iteration. If we desired to get within an error of $0.01$ then by the sixth iterate we're there. 
 
 
-Since the functions we're working with here are only in two variables, we can still get some visual info about what is happening. \href{https://www.math3d.org/4J9C11cPD}{Here} is a Math3D plot of the error for function $E$ of the given two variable system. We can see visually we're converging to the global min where $E(x,y)=0$ in the first quadrant, which if we let our approximation machine run long enough would begin $(1.207...,3.356...)$. Furthermore, we can actually determine this is the \textit{only} solution by appreciating the graphs of the two functions  in Figure \ref{fig-grad-curves} and noting that this could be the only possible crossing of the two sinusoids.
+Since the functions we're working with here are only in two variables, we can still get some visual info about what is happening. \href{https://www.math3d.org/4J9C11cPD}{Here} is a Math3D plot of the error for function $E$ of the given two variable system. We can see visually we're converging to the global min where $E(x,y)=0$ in the first quadrant, which if we let our approximation machine run long enough would approach $(1.207...,3.356...)$. Furthermore, we can actually determine this is the \textit{only} solution by appreciating the graphs of the two functions  in Figure \ref{fig-grad-curves} and noting that this could be the only possible crossing of the two sinusoids.
 
 \begin{figure}[h!]
 \centering 
@@ -1691,7 +1691,7 @@ The Jacobian determinant gives the appropriate ``scaling factor'' for dealing wi
 \end{thm}
 
 \begin{remark}
-	From \eqref{polar-sub} we get the equation of differentials (compare with \eqref{differentials-1}) \begin{equation} dA=r \,dr\,d\theta\end{equation} What this factor $r$ is doing is keeping track of how area has been distorted within this substitution. For instance, the ``polar rectangle'' $1\leq r\leq 2, 0\leq \theta\leq \pi/2$ has less area (viewed in the $xy$-plane) as the rectangle $3\leq r\leq 4, 0\leq \theta\leq \pi/2$ despite both of them having the same ``area'' in terms of $r,\theta$ coordinates (see Figure \ref{fig-polar-Jacob}). 
+	From \eqref{polar-sub} we get the equation of differentials (compare with \eqref{differentials-1}) \begin{equation} dA=r \,dr\,d\theta\end{equation} What this factor $r$ is doing is keeping track of how area has been distorted within this substitution. For instance, the ``polar rectangle'' $1\leq r\leq 2, 0\leq \theta\leq \pi/2$ has less area (viewed in the $xy$-plane) than the rectangle $3\leq r\leq 4, 0\leq \theta\leq \pi/2$ despite both of them having the same ``area'' in terms of $r,\theta$ coordinates (see Figure \ref{fig-polar-Jacob}). 
 	
 	\begin{figure}[h!]
 	\centering
@@ -1791,7 +1791,7 @@ With $x,y$ coordinates this is fairly tedious, as you'll need at least three sep
 
 The integral $\iint_R f(x,y)\,dA$ can then  be evaluated
 
-\[ \iint_R f(x,y)\,dA = \int_0^1 \int_0^3 \dfrac{v}{u} \dfrac{1}{2} \,dv\,du= \cdots = \dfrac{\ln 3}{4}.\] 
+\[ \iint_R f(x,y)\,dA = \int_1^3 \int_0^1 \dfrac{v}{u} \dfrac{1}{2} \,dv\,du= \cdots = \dfrac{\ln 3}{4}.\] 
 \end{example}
 
 Cool. Of course this also works with three variables, where the matrix $J$ is replaced with the appropriate $3\times 3$ matrix of partials, and similarly for functions with more variables still. 
@@ -1823,7 +1823,7 @@ Suggested additional exercises: \textit{Stewart} section 15.9
 A \textit{triple integral} is the evident analog of a double integral; the region of integration $R$ must be a solid region in $\mathbf{R}^3$ and the function $f$ to be integrated must be a three-variable function which has domain containing $R$. 
 
 \subsection{Solid regions}
-It's actually somewhat beyond the language of this class to give a definition of what a \textit{solid region}. but we can get close enough with the following: 
+It's actually somewhat beyond the language of this class to give a precise definition of what a \textit{solid region} is, but we can get close enough with the following: 
 
 \begin{defn} \label{def-solid-region} A \textbf{solid region} in $\mathbf{R}^3$ is a 3 dimensional subset of $\mathbf{R}^3$ whose \textit{boundary} is a (finite) collection of surfaces.\end{defn}
 
@@ -1841,7 +1841,7 @@ The differential $dV$ is the \textbf{volume differential} or \textbf{volume elem
 \subsection{Iterated integrals}
 The first step here is to pick an order of integration; in $\mathbf{R}^3$ there are \textit{six}\footnote{$6=3!$, the number of ways to rearrange the three elements $dx$, $dy$ and $dz$. In $\mathbf{R}^n$ you have $n!$ different ways to set up an $n$-fold integral.} choices of orders of integration, meaning $dV$ is equal to any of the following: \[ dV=dx\,dy\,dz, \quad dy\,dx\,dz, \quad dx\,dz\,dy, \quad dz\,dx\,dy, \quad dy\,dz\,dx, \quad dz\,dy\,dx\]
 
-Say we've decided that $dx\,dy\,dz$ is the order of integration we're going to use for a particular problem. Setting up a \textit{triple integral} amounts to finding the bounding functions for $R$  (you may need to split into several iterated integrals) so that \begin{equation} \iiint_R f\,dV = \int_a^b \int_{f(z)}^{g(z)}\int_{\alpha(y,z)}^{\beta(y,z)} f(x,y,z)\,dx\,dy\,dz\end{equation} Note how the bounds of the inner integrals only depends on variables from the outer integrals. 
+Say we've decided that $dx\,dy\,dz$ is the order of integration we're going to use for a particular problem. Setting up a \textit{triple integral} amounts to finding the bounding functions for $R$  (you may need to split into several iterated integrals) so that \begin{equation} \iiint_R f\,dV = \int_a^b \int_{\gamma(z)}^{\delta(z)}\int_{\alpha(y,z)}^{\beta(y,z)} f(x,y,z)\,dx\,dy\,dz\end{equation} Note how the bounds of the inner integrals only depends on variables from the outer integrals. 
 
 \begin{remark} Most of the work here will be in finding these bounding functions for the region $R$, and a useful way to get started is to think of a triple integral as ``$2+1$''. That is, say you've decided that the inner variable of integration should be $z$, then the triple integral is set up as \[ \iiint_R f\,dV=\iint_{\text{projection of $R$ onto $xy$-plane}} \int_{\text{lower surface}}^{\text{upper surface}} f\,dz\,dA\] \end{remark}
 
@@ -1849,7 +1849,7 @@ Say we've decided that $dx\,dy\,dz$ is the order of integration we're going to u
 Actually evaluating triple integrals is really just evaluating three integral (remember: iterated integrals always are evaluated inside to out). It's no secret getting a numerical answer can often be somewhat tedious. 
 	
 \subsection{Integrals with more variables} 
-	 Similarly, there's nothing from stopping you from integrating functions of more variables. If $f=f(x_1,\dots,x_n)$ is a function of $n$ variables and $R$ is some ($(n+1)$-dimensional) region in $\mathbf{R}^n$, you can just as well define \begin{equation} \int \cdots \int_R f\,d\mathcal{V}\end{equation} where $d\mathcal{V}$ is the ``$n$-dimensional hypervolume element'', i.e.,  just means some order of the elements $dx_1, \dots dx_n$. It's up to you to determine how this will be useful. 
+	 Similarly, there's nothing from stopping you from integrating functions of more variables. If $f=f(x_1,\dots,x_n)$ is a function of $n$ variables and $R$ is some ($n$-dimensional) region in $\mathbf{R}^n$, you can just as well define \begin{equation} \int \cdots \int_R f\,d\mathcal{V}\end{equation} where $d\mathcal{V}$ is the ``$n$-dimensional hypervolume element'', i.e.,  just means some order of the elements $dx_1, \dots dx_n$. It's up to you to determine how this will be useful. 
 
 
 \subsection{Exercises}
@@ -1927,7 +1927,7 @@ It's a nice exercise to convince yourself that the domain of $0\leq \theta\leq 2
 \begin{equation} 
 	x=\rho \cos \theta \sin \varphi, \qquad y=\rho \sin \theta \sin \varphi, \qquad z=\rho \cos \varphi \label{spherical-coord}
 \end{equation}
-It's another nice exercise to check that $x^2+y^2+z^2=\rho^2$ (\textit{can you find equations for $\theta$ and $\varphi$ in terms of $x,y,z$? it's possible but not exactly easy}) Lastly, we need to compute the differential $dV$ in terms of spherical coordinates. The same \textbf{Jacobian determinant} (see \ref{jacobian-def}) shows up here, which I leave for you to check: \[ \det \begin{pmatrix} x_{\rho} & x_{\theta} & x_{\varphi} \\ y_{\rho} & y_{\theta} & y_{\varphi} \\ z_{\rho} & z_{\theta} & z_{\varphi} \end{pmatrix} =\rho^2\sin\varphi\] 
+It's another nice exercise to check that $x^2+y^2+z^2=\rho^2$ (\textit{can you find equations for $\theta$ and $\varphi$ in terms of $x,y,z$? it's possible but not exactly easy}) Lastly, we need to compute the differential $dV$ in terms of spherical coordinates. The same \textbf{Jacobian determinant} (see \ref{jacobian-def}) shows up here, which I leave for you to check: \[ \det \begin{pmatrix} x_{\rho} & x_{\varphi} & x_{\theta} \\ y_{\rho} & y_{\varphi} & y_{\theta} \\ z_{\rho} & z_{\varphi} & z_{\theta} \end{pmatrix} =\rho^2\sin\varphi\] (the order of the columns matters up to sign: interchanging two of them flips the sign of the determinant. It is the \textit{absolute value} that we want, and that is what appears below.) 
 
 
 Since the term $\rho^2\sin\varphi$ is always $\geq 0$ for $\varphi$ in the interval $[0,\pi]$, we get that \begin{equation} dV= \rho^2 \sin\varphi \, d\rho \,d\varphi\, d\theta \label{dV-spherical} \end{equation}
@@ -1947,7 +1947,7 @@ While this may seem like a lot of information, the goal here is to use these sub
 
 \begin{enumerate}
 	\item $\displaystyle \int_0^{\pi} \int_0^{\cos \theta} \int_0^{r^2} r\sin \theta \,dz  \,dr\, d\theta$
-	\item $\displaystyle \int_0^{2\pi} \int_{0}^{\pi/4} \int_0^{\sec \theta}  \rho^3 \sin \varphi \,d \rho\,d\varphi\,d\theta$
+	\item $\displaystyle \int_0^{2\pi} \int_{0}^{\pi/4} \int_0^{\sec \varphi}  \rho^3 \sin \varphi \,d \rho\,d\varphi\,d\theta$
 \end{enumerate}
 
 \item Use spherical coordinates to find the following volumes
@@ -1967,7 +1967,7 @@ While this may seem like a lot of information, the goal here is to use these sub
 	\item $\displaystyle \int_{0}^{2} \int_0^{\sqrt{4-x^2}} \int_{\sqrt{x^2+y^2}}^{\sqrt{8-x^2-y^2}} z^2 \,dz \,dy \, dx$
 \end{enumerate}
 
-\item Describe the given by the following equations of spherical coordinates
+\item Describe the surfaces given by the following equations in spherical coordinates
 
 \begin{enumerate}
 	\item $\varphi=\frac{\pi}{3}$
@@ -2046,14 +2046,14 @@ with the appropriate change for the center of mass formulas as well.
 	\item $R$ the unit square in the first quadrant
 	\item $R$ the region bound by $y=1/x, y=-1/x$ and the lines $y=\pm 2, x=\pm 2$
 \end{enumerate}
-\item  Find the center of mass for the unit square in the first quadrant of the $xy$-plane with density function $\delta(x,y)=xy$. Do the same for the unit circle in the $xy$-plane with $\delta(x,y)=x^2+y^3$
+\item  Find the center of mass for the unit square in the first quadrant of the $xy$-plane with density function $\delta(x,y)=xy$. Do the same for the unit disc in the $xy$-plane with $\delta(x,y)=x^2+y^2$
 
-\item  Show that the integrals which compute the center of mass $(\bar{x},\bar{y})$ of a region $R$ in polar coordinates are
+\item  Show that the integrals which compute the centroid $(\bar{x},\bar{y})$ of a region $R$ in polar coordinates are
  \[ \bar{x}=\dfrac{1}{\text{area of $R$}} \iint_R r^2 \cos(\theta) \,d{r}\,d\theta \qquad \bar{y}=\dfrac{1}{\text{area of $R$}} \iint_R r^2 \sin(\theta) \,d{r}\,d\theta\]
  
  \item  Show that if $R$ is a triangle with vertices $(a_1,b_1), (a_2,b_2), (a_3,b_3)$, then the centroid of $R$ is given by \begin{equation} \bar{x} =\dfrac{a_1+a_2+a_3}{3}\qquad \qquad \bar{y} = \dfrac{b_1+b_2+b_3}{3}\end{equation}
 
-Show as well that the centroid of a triangle is equal to its \textbf{barycenter}\footnote{If you may have ``forgotten'', the barycenter of a triangle is the intersection the three lines connecting the midpoint of a leg to the opposite vertex of the triangle (see Figure \ref{fig-barycenter})}
+Show as well that the centroid of a triangle is equal to its \textbf{barycenter}\footnote{If you may have ``forgotten'', the barycenter of a triangle is the intersection of the three lines connecting the midpoint of a side to the opposite vertex of the triangle (see Figure \ref{fig-barycenter})}
 
 \begin{figure}[h!] \centering
 \includegraphics[width=70mm]{Images/barycenter}
@@ -2065,7 +2065,7 @@ Show as well that the centroid of a triangle is equal to its \textbf{barycenter}
 
 Find the moment of inertia $I_z$ for $R$ the solid cylinder $x^2+y^2\leq 1$ with $0\leq z\leq 2$. Then, compute $I_x$ for $R$ the solid sphere $x^2+y^2+z^2\leq 4$ in the first octant, and argue why $I_x=I_y=I_z$ for this second region. 
 
-\item  Let $\delta$ be given by \[\delta(x,y)=\dfrac{1}{2\pi} e^{-(x^2+y^2)/2}\] This function has $\iint_{\mathbf{R}^2} \delta\,dA=1$\footnote{One way to show this is by polar substitution: \[ \iint_{\mathbf{R}^2} \dfrac{1}{2\pi} e^{-(x^2+y^2)/2}\,dA=\int_{0}^{2\pi} \int_0^{\infty} \dfrac{r}{2\pi} e^{-r^2/2}\,dr\,d\theta= \left.2\pi \cdot \dfrac{1}{2\pi}e^{-u} \right\vert_{0}^{\infty}=1\] (Yes you ``should" use limits to evaluate the improper integral.)}, so we can interpret the center of mass $(m_x,m_y)$ as the expected value (i.e., average) of a probability distribution (This $\delta$ is just the two variable \href{https://en.wikipedia.org/wiki/Normal_distribution}{standard normal distribution}). Show that the expected value is $(0,0)$.
+\item  Let $\delta$ be given by \[\delta(x,y)=\dfrac{1}{2\pi} e^{-(x^2+y^2)/2}\] This function has $\iint_{\mathbf{R}^2} \delta\,dA=1$\footnote{One way to show this is by polar substitution: \[ \iint_{\mathbf{R}^2} \dfrac{1}{2\pi} e^{-(x^2+y^2)/2}\,dA=\int_{0}^{2\pi} \int_0^{\infty} \dfrac{r}{2\pi} e^{-r^2/2}\,dr\,d\theta= \left.-2\pi \cdot \dfrac{1}{2\pi}e^{-u} \right\vert_{0}^{\infty}=1\] (Yes you ``should" use limits to evaluate the improper integral.)}, so we can interpret the center of mass $(m_x,m_y)$ as the expected value (i.e., average) of a probability distribution (This $\delta$ is just the two variable \href{https://en.wikipedia.org/wiki/Normal_distribution}{standard normal distribution}). Show that the expected value is $(0,0)$.
 
 \item  \textit{True or False}. Determine if the following statements are true or false. Give a brief justification of your answer
 
@@ -2087,13 +2087,13 @@ With the basics of multivariable differential and integral calculus under our be
 \begin{itemize}
 	\item Parametrized curves: functions $r\colon \mathbf{R}\to \mathbf{R}^n$, $n\geq 2$
 	\item Multivariable functions: functions $f\colon \mathbf{R}^n\to \mathbf{R}$, $n\geq 2$
-\end{itemize} and and worked with how to understand graphically what they represent. Now we move to a new type of function of multiple variables, called \textit{vector fields}. Vector fields have many uses throughout math, science and engineering; perhaps the most immediately useful is that vector field are \textit{the things} which carry forces in physics\footnote{In the classical (i.e., non-quantum) sense at least. There are also \textit{Quantum field theories} but this is a much more advanced topic.} (for instance, gravitational fields, electromagnetic fields, etc.).
+\end{itemize} and worked with how to understand graphically what they represent. Now we move to a new type of function of multiple variables, called \textit{vector fields}. Vector fields have many uses throughout math, science and engineering; perhaps the most immediately useful is that vector field are \textit{the things} which carry forces in physics\footnote{In the classical (i.e., non-quantum) sense at least. There are also \textit{Quantum field theories} but this is a much more advanced topic.} (for instance, gravitational fields, electromagnetic fields, etc.).
 
-\begin{defn}[Vector field]Let $n\geq 2$. A \textbf{vector field} $F$ on $\mathbf{R}^n$ is given by a function \[F\colon \mathbf{R}^n\to\mathbf{R}^n.\] In words, we say that ``$F$ is a vector field on $\R^n$" to mean that $F$ is a function $\R^n\to\R^n$.
+\begin{defn}[Vector field]Let $n\geq 2$. A \textbf{vector field} $F$ on a region $D\subset \mathbf{R}^n$ is given by a function \[F\colon D\to\mathbf{R}^n.\] In words, we say that ``$F$ is a vector field on $D$" to mean that $F$ is a function $D\to\R^n$. Often $D$ is all of $\R^n$, but it is important to allow smaller domains: the inverse square field, for instance, is undefined at the origin.
 \end{defn}
 
 
-Graphically, a vector field $F$ is collection of vectors\footnote{Consider it like a field of wheat blowing in the wind; each stalk is the vector at that point.} one for each point in  $\mathbf{R}^n$. Vector fields are \textit{continuous} or \textit{differentiable} if this choice of vector depends \textit{continuously} or \textit{differentiably} on the points in $\mathbf{R}^n$ that produce them: this is a routine calculation to verify, but often no visually obvious. One of our goals is to determine ``visual cues'' for differentiability of vector fields. 
+Graphically, a vector field $F$ is collection of vectors\footnote{Consider it like a field of wheat blowing in the wind; each stalk is the vector at that point.} one for each point in  $\mathbf{R}^n$. Vector fields are \textit{continuous} or \textit{differentiable} if this choice of vector depends \textit{continuously} or \textit{differentiably} on the points in $\mathbf{R}^n$ that produce them: this is a routine calculation to verify, but often not visually obvious. One of our goals is to determine ``visual cues'' for differentiability of vector fields. 
 
 \begin{example} If $F$ is a vector field on $\mathbf{R}^2$. Then, $F$ is made up of \textit{component functions} $f,g$ (both functions of two variables) such that \begin{equation}F(x,y)=(f(x,y),g(x,y)).\end{equation} Then, given a point $(x,y)$ we think of the output $F(x,y)$ as the vector $(f(x,y),g(x,y))$ plotted in $\mathbf{R}^2$ with its tail at $(x,y)$\footnote{Recall that though ``all vectors start at the origin" it is often useful to blatantly ignore this advice, this is one of those times.}.
 
@@ -2294,7 +2294,7 @@ There's one more statement to add to this list but it's specific to $\mathbf{R}^
 
 \subsection{Test for conservativeness of a vector field on $\mathbf{R}^2$} Knowing whether a given vector field is conservative or not is fairly useful, as it then tells us meaningful things about line integrals of that vector field. How then to determine if a vector field is actually conservative? Solving for a potential function is certainly one way, but can rely on solving difficult integrals to produce a function explicitly.
 
-Suppose that a vector field $F=(f,g)$ is given. If $F=\nabla \varphi$ then we would need to have $f=\varphi_x$ and $g=\varphi_y$ as in . In particular then, by Clairut's theorem (theorem \ref{Clairut-thm}), the component functions $f$ and $g$ need to satisfy \begin{equation} \label{curl-free} f_y=g_x \qquad \qquad\end{equation} since both are equal to $\varphi_{yx}=\varphi_{xy}$. 
+Suppose that a vector field $F=(f,g)$ is given. If $F=\nabla \varphi$ then we would need to have $f=\varphi_x$ and $g=\varphi_y$. In particular then, by Clairaut's theorem (theorem \ref{Clairut-thm}), the component functions $f$ and $g$ need to satisfy \begin{equation} \label{curl-free} f_y=g_x \qquad \qquad\end{equation} since both are equal to $\varphi_{yx}=\varphi_{xy}$. 
 This brings us to the next definition.
 
 \begin{defn}[2D curl]Let $F=(f,g)$ be a vector field on $\mathbf{R}^2$ such that $f,g$ are differentiable functions. Define the \textbf{2D-curl} of $F$ by \begin{equation} \curl_{2D} F=g_x-f_y\end{equation}\end{defn}
@@ -2398,7 +2398,7 @@ Green's\footnote{It's worth reading up on \href{https://en.wikipedia.org/wiki/Ge
 
 
 
-There's a lot of adjectives here describing the curve $C$, which are defined below. Let's call a curve which meets al of these conditions ``good''.
+There's a lot of adjectives here describing the curve $C$, which are defined below. Let's call a curve which meets all of these conditions ``good''.
 \begin{itemize}
 
 	\item \textbf{piecewise smooth} means $C$ has a parametrization which is smooth except at perhaps finitely many points (think of these like places where a piecewise function changes definition). Unless otherwise mentioned, we always assume our curves are piecewise smooth. 
@@ -2421,8 +2421,8 @@ Another, equivalent, way of writing Green's theorem is that \[ \int_{\partial R}
 \begin{example}[Relation to curl-free vector fields]Green's theorem also gives us another way of interpreting the relation between \textit{curl-free} (see def. \ref{def-curl-free}) vector fields and their line integrals over closed paths. Note that if $F=(f,g)$ is curl free (i.e., $f_y=g_x$), then the integrand $g_x-f_y$ for the double integral in \eqref{green} is just identically $0$ inside $R$. So, if $C$ is a closed path bounding $R$ then, \begin{equation} \int_C F\cdot d\vec{r}=\int_C f\,dx+g\,dy=\iint_R (g_x-f_y)\,dA=\iint_R 0 \,dA=0\end{equation}
 \end{example}
 
-\subsection{Relation to the Fundamental theorem of calculus}One thing to note is that for an interval $[a,b]$ we have \[\partial [b,a]=\{ b^+, a^-\}\] where $b^+$ means the point $b$ signed \textit{positively} and $a^-$ means $a$ signed \textit{negatively}. In particular, the expression $(g_x-f_y)\, dA$ behaves somewhat like the ``derivative'' of the vector field $f\,dx+g\,dy$, so \eqref{green} can be interpreted as an expression of the form \[ \int_{\partial D} \text{stuff} = \iint_D \text{derivative of stuff}.\] 
-In particular, this should reminiscent of the Fundamental theorem of calculus (from Calc 1) (and also the Fundamental theorem of line integrals, theorem \ref{ftc-line-int}). Since integrals are, at their core, just (continuous) sums, we have the following heuristic understanding of FTC in this context:
+\subsection{Relation to the Fundamental theorem of calculus}One thing to note is that for an interval $[a,b]$ we have \[\partial [a,b]=\{ b^+, a^-\}\] where $b^+$ means the point $b$ signed \textit{positively} and $a^-$ means $a$ signed \textit{negatively}. In particular, the expression $(g_x-f_y)\, dA$ behaves somewhat like the ``derivative'' of the vector field $f\,dx+g\,dy$, so \eqref{green} can be interpreted as an expression of the form \[ \int_{\partial D} \text{stuff} = \iint_D \text{derivative of stuff}.\] 
+In particular, this should be reminiscent of the Fundamental theorem of calculus (from Calc 1) (and also the Fundamental theorem of line integrals, theorem \ref{ftc-line-int}). Since integrals are, at their core, just (continuous) sums, we have the following heuristic understanding of FTC in this context:
 \[ \int_{\partial [a,b]} g\,dx =g(b)-g(a)=\int_a^b g'(x)\,dx= \int_{[a,b]}g'\,dx \]
 (\textit{can you make the correlation also with the fundamental theorem of line integrals we saw in the last section?}) This is the general theme we'll see with the remaining theorems in this term. In particular, later we'll see that Green's theorem \eqref{green} is really just a special case of a more general theorem (Stokes' theorem\footnote{Which is also a specific case of something else called Stokes' theorem.}).
 
@@ -2430,7 +2430,7 @@ In particular, this should reminiscent of the Fundamental theorem of calculus (f
 \subsection{Flux form of Green's theorem} \label{flux-form-greens}
 Let $F$ be a vector field and $C$ a closed curve in $\mathbf{R}^2$. We know that $ \int_C F \cdot d\vec{r}$ represents the total circulation of $F$ on $C$, i.e., how much $F$ \textit{rotates} over the region. A complementary piece of information we can measure is the \textbf{flux} (i.e., flow) of this vector field \textit{through} the curve $C$. 
 
-Given a closed simple curve $C$, let's let $\vec{n}$ be the \textit{outward} normal vector\footnote{Note this is different from the \textit{principal normal vector} $N$ we saw with \eqref{unit-normal}. You can relate the two, but it doesn't really matter for what we're trying to accomplish.}. That is, $\vec{n}$ points away from the region which $C$ bounds. 
+Given a closed simple curve $C$, let's let $\vec{n}$ be the \textit{outward} normal vector\footnote{Note this is different from the \textit{principal normal vector} $N$ we saw with \eqref{unit-normal-curve}. You can relate the two, but it doesn't really matter for what we're trying to accomplish.}. That is, $\vec{n}$ points away from the region which $C$ bounds. 
 \begin{defn}[Flux of a vector field over a curve in $\mathbf{R}^2$]
 	Let $F$ be a vector field and $C$ a closed simple curve in $\mathbf{R}^2$. Let $\vec{n}$ be the outward normal vector for $C$. The (outward) \textbf{flux} of $F$ over $C$ is the expression \begin{equation} \int_C F\cdot d\vec{n} \end{equation}
 \end{defn}
@@ -2444,7 +2444,7 @@ Outward flux represents the amount which $F$ ``flows" out of the region bound by
 \end{figure}
 
 
-How to calculate? Here's a neat observation: If $\vec{r}(t)=(x(t),y(t))$ is a parametrization of $C$ in the positive orientation, then $\vec{n}$ is given by\footnote{If you know a bit about rotation matrices this is not so hard to show. Here, $\vec{n}$ is the result of applying the transformation \[T=\begin{pmatrix} 0 & 1 \\ -1 & 0\end{pmatrix}\] to $\vec{r}$. Here, $T$ is just the ``rotate by angle $\pi/2$ clockwise" transformation for vectors in $\mathbf{R}^2$. This is exactly the rotation needed to turn $\vec{r}\,'$ into $\vec{n}$.} (see Figure \ref{fig-n-from-r}) \begin{equation} \vec{n}(t)=(y'(t),-x'(t))\end{equation}
+How to calculate? Here's a neat observation: If $\vec{r}(t)=(x(t),y(t))$ is a parametrization of $C$ in the positive orientation, then $\vec{n}$ is given by\footnote{If you know a bit about rotation matrices this is not so hard to show. Here, $\vec{n}$ is the result of applying the transformation \[T=\begin{pmatrix} 0 & 1 \\ -1 & 0\end{pmatrix}\] to the tangent vector $\vec{r}\,'$. Here, $T$ is just the ``rotate by angle $\pi/2$ clockwise" transformation for vectors in $\mathbf{R}^2$. This is exactly the rotation needed to turn $\vec{r}\,'$ into $\vec{n}$.} (see Figure \ref{fig-n-from-r}) \begin{equation} \vec{n}(t)=(y'(t),-x'(t))\end{equation}
 
 
 So, given a (positively oriented) parametrization $r(t)$ of $C$ with domain $[a,b]$, the (outward) flux of $F$ over $C$ is calculated by \begin{equation} \int_C F\cdot d\vec{n} = \int_a^b F(r(t))\cdot (y'(t),-x'(t))\,dt\end{equation}
@@ -2454,7 +2454,7 @@ That is to say, the outward flux is just a line integral over $C$. Which means, 
 	\int_C F\cdot d\vec{n} & = \int_C F(r(t))\cdot (y'(t),-x'(t))\,dt \\
 	& = \int_C \left( f(r(t)) y'(t) - g(r(t))x'(t) \right) \,dt\\
 	& =\int_C  -g\,dx+f\,dy \\
-	& = \iint_R (f_x-(-g_y))\,dA 
+	& = \iint_R \left(f_x-(-g)_y\right)\,dA=\iint_R (f_x+g_y)\,dA 
 \end{align*}
 where the last step comes from Green's theorem \eqref{green}. We can summarize this with the \textit{flux form} of Green's theorem
 
@@ -2496,7 +2496,7 @@ Use Green's theorem to evaluate $\displaystyle \int_C y^2\,dx + 3xy\,dy$. (\text
 (\textit{here $\bar{x}$ and $\bar{y}$ denote the coordinates of the \textit{centroid} of $D$}.)
 \item If $C$ is the line segment between points $(a,b)$ and $(c,d)$ in $\mathbf{R}^2$ then \[ \int_C x\,dy - y\,dx= ad-bc=\det\begin{pmatrix} a & b \\ c & d\end{pmatrix}\]
 \end{enumerate}
-\item Use 3b. to show that the area of the ellipse $\dfrac{x^2}{a^2}+\dfrac{y^2}{a^2}=1$ is $\pi ab$. 
+\item Use 3b. to show that the area of the ellipse $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ is $\pi ab$. 
 
 \item \textit{True or false}. If $C$ is a ``good'' curve enclosing a region $D$, then $D$ must be simply connected. 
 \end{enumerate}
@@ -2528,16 +2528,16 @@ That is to say, the component functions of the parametrization must satisfy the 
 
 When useful to distinguish it as a vector, we can decorate the parametrization with the vector-hat, $\vec{r}$, though this is not entirely necessary. The key is that the notation should be \textit{useful} to you, but not overly burdensome to write.
 
-\begin{example}[Parametrization of a sphere] Consider the surface $S$ that is the unit sphere $x^2+y^2+z^2=1$ in $\mathbf{R}^3$. A parametrization of $S$ comes from our spherical coordinate substitution with $\rho=1$. That is, \begin{equation} \vec{r}(u,v)=(\sin u\cos v, \sin u\sin v, \cos u) \qquad 0\leq u\leq 2\pi, 0 \leq v \leq \pi\end{equation}
-It's worth checking for yourself that for this parametrization that  \[(x(u,v))^2+(y(u,v))^2+(z(u,v))^2=1\] for all points $u,v$ and that the (outward) normal vector $\vec{n}$ (see \eqref{unit-normal}) is given by \begin{equation} \vec{n}(u,v)=(\sin^2 u\cos v, \sin^2 u\sin v, \sin u\cos u).\end{equation} What's more is that you can easily modify this to be a parametrization of any sphere: the sphere of radius $k$ with center at point $(a,b,c)$ is parametrized by \begin{equation} r(u,v)=(a+k\sin u \cos v, b+k\sin u \sin v, c+k\cos v)\end{equation} and has (outward) normal vector given by \begin{equation} r_u\times r_v= (k^2\sin^2 u\cos v, k^2\sin^2 u\sin v, k^2\sin u\cos u)
+\begin{example}[Parametrization of a sphere] Consider the surface $S$ that is the unit sphere $x^2+y^2+z^2=1$ in $\mathbf{R}^3$. A parametrization of $S$ comes from our spherical coordinate substitution with $\rho=1$. That is, \begin{equation} \vec{r}(u,v)=(\sin u\cos v, \sin u\sin v, \cos u) \qquad 0\leq u\leq \pi, \; 0 \leq v \leq 2\pi\end{equation} (here $u$ is the angle down from the positive $z$-axis and $v$ the angle around from the positive $x$-axis, exactly as with $\varphi$ and $\theta$ in spherical coordinates)
+It's worth checking for yourself that for this parametrization that  \[(x(u,v))^2+(y(u,v))^2+(z(u,v))^2=1\] for all points $u,v$ and that the (outward) normal vector $\vec{n}$ (see \eqref{unit-normal}) is given by \begin{equation} \vec{n}(u,v)=(\sin^2 u\cos v, \sin^2 u\sin v, \sin u\cos u).\end{equation} What's more is that you can easily modify this to be a parametrization of any sphere: the sphere of radius $k$ with center at point $(a,b,c)$ is parametrized by \begin{equation} r(u,v)=(a+k\sin u \cos v, b+k\sin u \sin v, c+k\cos u)\end{equation} and has (outward) normal vector given by \begin{equation} r_u\times r_v= (k^2\sin^2 u\cos v, k^2\sin^2 u\sin v, k^2\sin u\cos u)
 \end{equation}
 \end{example}
 
 \subsection{Non-degenerate surfaces} In the same way that we can only integrate over a smooth curve, we must have a similar condition for surfaces. This is called a \textbf{non-degenerate surface} (also called a \textbf{smooth} surface).  
 
-\begin{defn}[Non-degenerate surface] Let $r(u,v)$ be a parametrization of a surface $S$. A parametrization $r=r(u,v)$ of a surface $S$ is called \textbf{non-degenerate} if these tangent vectors are not parallel, or equivalently if $r_u \times r_v$ is not the zero vector. 
+\begin{defn}[Non-degenerate surface] A parametrization $r=r(u,v)$ of a surface $S$ is called \textbf{non-degenerate} if the tangent vectors $r_u$ and $r_v$ (defined just below) are never parallel, or equivalently if $r_u \times r_v$ is never the zero vector. 
 \end{defn}
-The idea is that, when evaluated at a point, the partial derivatives $r_u$ and $r_v$ produce two vectors which are both tangent to the surface $S$. If these vectors happen to be parallel there is a ``dimension collapse" or redundancy in the parametrization, making the surface $S$ not really 2-dimensional. Since $r_u,r_v$ are necessarily vectors in $\mathbf{R}^3$ we can use that vectors are parallel and only if their cross-product is not the zero vector to phrase non-degeneracy as $|r_u \times r_v|\neq 0$. Unless stated otherwise, we'll only be considering non-degenerate parametrizations. 
+The idea is that, when evaluated at a point, the partial derivatives $r_u$ and $r_v$ produce two vectors which are both tangent to the surface $S$. If these vectors happen to be parallel there is a ``dimension collapse" or redundancy in the parametrization, making the surface $S$ not really 2-dimensional. Since $r_u,r_v$ are necessarily vectors in $\mathbf{R}^3$ we can use that two vectors are parallel if and only if their cross product \textit{is} the zero vector, and so phrase non-degeneracy as $|r_u \times r_v|\neq 0$. Unless stated otherwise, we'll only be considering non-degenerate parametrizations. 
 
 \begin{figure}[h!]
 \centering
@@ -2606,7 +2606,7 @@ For this to be well-defined, the surface $S$ needs to be \textbf{oriented}\footn
 
 \begin{enumerate}
 	\item The plane through the origin containing the vectors $(1,1,0)$ and $(-1,0,1)$
-	\item The part of $4x^2-y-z^2=4$ with with $x\geq 0$
+	\item The part of $4x^2-y-z^2=4$ with $x\geq 0$
 	\item The ellipsoid $x^2+2y^2+3z^2=1$
 	\item The part of the cylinder $x^2+z^2=4$ between planes $y=0$ and $y=-4$
 	\item The part of the plane $z=x+3$ which lies outside the cylinder $x^2+y^2=1$
@@ -2640,7 +2640,7 @@ For this to be well-defined, the surface $S$ needs to be \textbf{oriented}\footn
 
 \item Let $k$ be a constant and $F$ be the \textit{inverse square field} \[ F(x,y,z)=\left( \dfrac{kx}{(x^2+y^2+z^2)^{3/2}}, \,\dfrac{ky}{(x^2+y^2+z^2)^{3/2}} , \,\dfrac{kz}{(x^2+y^2+z^2)^{3/2}} \right) \] (for instance, gravitational or electromagnetic field.) Show that the flux through a sphere centered at the origin $x^2+y^2+z^2=\rho^2$ does not depend on the radius $\rho$\footnote{One interpretation of this theorem is through Electrostatics: Gauss' law relates the total (net) enclosed charge by a closed surface to the flux through that surface produced by the enclosed charge. Since electric fields generally have the form of $F$ from this problem, this statement is just that it doesn't matter what \textit{size} of sphere is used to enclose that charge. In fact, it doesn't even matter if the surface is a sphere---it just needs to be a blob-y region deformable to a sphere.}. 
 
-\item Someone provides you a mysterious parametrization: \[ r(\theta, \varphi)=\left( (3+2\cos\theta)\cos \varphi, (3+2\cos\theta) \sin \varphi, 3\sin \theta\right)\] What surface does this parametrize? 
+\item Someone provides you a mysterious parametrization: \[ r(\theta, \varphi)=\left( (3+2\cos\theta)\cos \varphi, (3+2\cos\theta) \sin \varphi, 2\sin \theta\right)\] What surface does this parametrize? 
 
 \item \label{ex-this} A classic example of a non-oriented surface is the \href{https://en.wikipedia.org/wiki/M\%C3\%B6bius_strip}{M\"obius strip}\footnote{ \textit{Neat fact}: the M\"obius strip can be parametrized by the following:
 \[ M(r,\theta)= \left( 2\cos \theta+r \cos(\theta/2), 2\sin\theta+r \cos(\theta/2), r\sin(\theta/2) \right) \] Since the M\"obius strip is non-orientable, there must be some problem to defining a continuous normal vector function $\vec{n}(r,\theta)$. Can you tell what it is?}
@@ -2703,7 +2703,7 @@ To reemphasize, $\curl F$ is a \textit{vector}, so it has a direction and magnit
 Note that the $z$-component of $\curl F$ is the same quantity from Green's theorem and for testing conservativeness of a vector field $F=(f,g)$ (this is not a coincidence, we'll see why later). What $\curl$ computes for us is the ``instantaneous circulation'' of a given vector field about a point in $\mathbf{R}^3$--for instance, if a vector field ``rotates'' within some plane, the curl will point in a direction perpendicular to that plane (with direction given by the right hand rule).
 \end{remark}
 
-\begin{thm}[Conservative vector fields are curl-free] If $F$ is a vector field defined on $\mathbf{R}^3$ with $\curl F=0$ then $F$ is conservative (i.e., $F=\nabla \varphi$) for some scalar function $\varphi$. 
+\begin{thm}[Curl-free vector fields on $\mathbf{R}^3$ are conservative] If $F$ is a vector field defined on all of $\mathbf{R}^3$ with $\curl F=0$ then $F$ is conservative (i.e., $F=\nabla \varphi$) for some scalar function $\varphi$. 
 \end{thm}
 That $F$ be defined on $\mathbf{R}^3$ is sufficient, but overkill for this theorem. Recall we had a similar theorem for vector fields in $\mathbf{R}^2$, wherein the requirement was that the domain of $F$ be \textit{simply connected}. That's still the case, but it's often not so ``obvious'' to tell when a region in $\mathbf{R}^3$ is simply connected\footnote{For instance, the domain $\mathbf{R}^3$ with a point removed \textit{is} simply connected, but $\mathbf{R}^3$ with an (infinite) \textit{line} removed is not---can you tell why?}.
 
@@ -2792,7 +2792,7 @@ In this last section, we'll learn the appropriate 3D analogs to these two statem
 One of the complexities of $\mathbf{R}^3$ vs $\mathbf{R}^2$ is that the appropriate analogs of these two statements apply to different types of regions. The correct generalization of the classic form of Green's theorem (the circulation form \ref{thm-green}) is Stokes' theorem (theorem \ref{thm-stokes}); for the flux form of Green's theorem, the correct generalization is the Divergence theorem (theorem \ref{thm-divergence}). 
 
 \subsection{Stokes' theorem}
-Let $C$ be a closed, simple, oriented curve in $\mathbf{R}^3$ and $S$ some surface whose boundary is $C$. Then, for $F$ a vector field in $\mathbf{R}^3$, the \textit{circulation} of $F$ over the curve $C$ is equal to the curl of $F$ integrated over $S$. There's a subtlety here in that $\curl F$ is a vector field, so it's really the \textit{flux} of this vector field $\curl F$ through that is being calculated. 
+Let $C$ be a closed, simple, oriented curve in $\mathbf{R}^3$ and $S$ some surface whose boundary is $C$. Then, for $F$ a vector field in $\mathbf{R}^3$, the \textit{circulation} of $F$ over the curve $C$ is equal to the curl of $F$ integrated over $S$. There's a subtlety here in that $\curl F$ is a vector field, so it's really the \textit{flux} of this vector field $\curl F$ through $S$ that is being calculated. 
 
 \begin{figure}[h!]
 \centering
@@ -2868,9 +2868,9 @@ The \textit{Divergence theorem}\footnote{Sometimes also called \textit{Gauss' th
 \item Use Stokes' theorem to evaluate $\displaystyle \oint_C F\cdot d\vec{r}$ for the following:
 
 \begin{enumerate}
-	\item $F=(x+y^2, y+z^2, z+x^2)$, $C$ the triangle with vertices $(0,0,1), (0,1,0)$ and $(1,0,0)$ oriented counterclockwise in the $xy$-plane. 
+	\item $F=(x+y^2, y+z^2, z+x^2)$, $C$ the triangle with vertices $(0,0,1), (0,1,0)$ and $(1,0,0)$, oriented counterclockwise as viewed from above (i.e., from the positive $z$-axis looking down). 
 	\item $F=(ze^x, z-y^2, x-z^3)$, $C$ the circle given by $y^2+z^2=4$ and $x=3$ oriented counterclockwise when viewed from the origin. 
-	\item $F=(x^3-z, xy, y+z^2)$,  $C$ the intersection of $z=x^2+y^2$ and $z=x$ oriented clockwise when projected into the $yz$-plane. 
+	\item $F=(x^3-z, xy, y+z^2)$,  $C$ the intersection of $z=x^2+y^2$ and $z=x$ oriented clockwise when projected into the $xy$-plane. 
 
 \end{enumerate}
 
@@ -2962,7 +2962,7 @@ Suggested additional exercises: \textit{Stewart} sections 16.8, 16.9
 			\item[] $x=R\cos \theta$
 			\item[] $y=R\sin \theta$
 			\item[] $R^2=x^2+y^2$
-			\item[] $dA=R d\vec{r}\,d\theta$\\
+			\item[] $dA=R \,dR\,d\theta$\\
 		\end{itemize}
 
 
