@@ -1,0 +1,397 @@
+\documentclass[11pt]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amssymb,amsmath}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage[colorlinks,allcolors=blue]{hyperref}
+\setlength{\parskip}{.4\baselineskip}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{1.5em}
+\raggedbottom
+
+\newtheorem{theorem}[subsection]{Theorem}
+\newtheorem{lemma}[subsection]{Lemma}
+\newtheorem{proposition}[subsection]{Proposition}
+\newtheorem{corollary}[subsection]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[subsection]{Definition}
+\newtheorem{construction}[subsection]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[subsection]{Remark}
+\newtheorem{example}[subsection]{Example}
+
+% macros (the conventions of [Cl2])
+\newcommand{\Top}{\mathsf{Top}_*}
+\newcommand{\Spt}{\mathsf{Spt}}
+\newcommand{\Sp}{\mathsf{Sp}}
+\newcommand{\Tot}{\operatorname{\mathsf{Tot}}}
+\newcommand{\Map}{\operatorname{Map}}
+\newcommand{\SymSeq}{\mathsf{SymSeq}}
+\newcommand{\SSeq}{\mathsf{SSeq}}
+\newcommand{\Oper}{\mathsf{Oper}}
+\newcommand{\Op}{\mathsf{Op}}
+\newcommand{\coOp}{\mathsf{coOp}}
+\newcommand{\Alg}{\mathsf{Alg}}
+\newcommand{\coAlg}{\mathsf{coAlg}}
+\newcommand{\BMod}{\mathsf{BMod}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Id}{\mathbb{I}}
+\newcommand{\pt}{*}
+\newcommand{\Nl}{\mathbf{N}_{\mathsf{lev}}}
+\newcommand{\uS}{\underline{S}}
+\newcommand{\uSz}{\underline{S}^{0}}
+\newcommand{\Par}{\mathsf{Par}}
+\newcommand{\BC}{\mathsf{B}}
+\newcommand{\Omw}{\Omega^{\mathsf{w}}}
+\newcommand{\Kop}{\mathcal{K}}
+\newcommand{\Lop}{\mathcal{L}}
+\newcommand{\Aop}{\mathcal{A}}
+\newcommand{\Lie}{\mathbb{L}}
+\newcommand{\Com}{\mathbf{Com}}
+\newcommand{\Comv}{\mathbf{Com}^{\vee}}
+\newcommand{\dual}{\mathbb{D}}
+\newcommand{\unit}{\mathbf{1}}
+\newcommand{\BarC}{\operatorname{Bar}}
+\newcommand{\Cobar}{\operatorname{Cobar}}
+\newcommand{\TwArr}{\operatorname{TwArr}}
+\newcommand{\Fin}{\mathbb{F}}
+\newcommand{\TT}{\mathbf{T}}
+\newcommand{\DFF}{\mathbf{\Delta}_{\Fin}}
+\newcommand{\Lev}{\mathrm{lev}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\holim}{\operatorname{holim}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\Hred}{\widetilde{H}}
+\newcommand{\Fpt}{\mathfrak{D}}
+\newcommand{\Fptpt}{\mathfrak{D}^{\mathrm{pt}}}
+\newcommand{\Nfun}{\mathrm{N}}
+\newcommand{\Th}{\Theta}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Part}{\operatorname{Part}}
+
+\title[Derivatives of the identity and the spectral Lie operad]{The derivatives of the identity and the spectral Lie operad:\\ a reduction of the $\infty$-categorical comparison, and a homology-level check}
+\author{Duncan A. Clark}
+\email{daclark311@gmail.com}
+\date{\today}
+
+\begin{document}
+
+\begin{abstract}
+Let $\partial_*\Id$ be the Goodwillie derivatives of the identity on based spaces. Two point-set operad structures on $\partial_*\Id$ are known to agree: Ching's strict operad $\nu^{\tr}$ and the highly homotopy coherent structure $\lambda^{\Lev}$ of \cite{Cl2}, by \cite[Theorem 1.3]{Cl2}. Blans and Heuts define the spectral Lie operad $\Lie$ as the $\infty$-categorical cobar construction on the cocommutative cooperad and prove that it is the operad structure on $\partial_*\Id$ obtained from the Blans--Blom chain rule. This memo does two things. First, it reduces the statement that both point-set structures present $\Lie$ to a single lemma (Lemma \ref{lem:F5}): that Ching's strict cobar construction of a strict, levelwise finite cooperad presents Lurie's cobar construction. Everything else is either proved here or is a citation, and the lemma itself is reduced, through the bar side and bimodules, to one point-set verification (Lemma \ref{lem:mate}) that is checked on generators but not yet written out in general. The $\infty$-categorical part is therefore a reduction with an explicit ledger, not a complete proof. Second, it records an unconditional computation: for arities $\leq 6$ the two point-set structures induce the same operad on the homology of the partition complexes, that operad satisfies the operad axioms on the nose, and it is the operadic suspension of the Lie operad. This verifies \cite[Theorem 1.3]{Cl2} on homology by a method independent of the cut-system machinery of its proof.
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+\subsection{The two point-set structures and the $\infty$-categorical operad}
+Throughout, $\Spt$ is the category of EKMM $S$-modules and $\SymSeq$ the category of reduced symmetric sequences in $\Spt$ with the composition product $\circ$, as in \cite[\S 3.1]{Cl2}. Write $P(n)$ for the pointed simplicial set of chains of partitions of $\{1,\dots,n\}$ \cite[Definition 2.4]{Cl2} and $\uS$ for the commutative cooperad of spectra, $\uS[n]=S$ \cite[\S 3.3]{Cl2}. The derivatives of the identity are modelled by the totalization of the cosimplicial cobar complex,
+\[ \partial_n\Id \simeq \Map(|P(n)|, S) \cong \Tot C(\uS)[n], \qquad C(\uS)^p = \uS^{\circ p}, \]
+\cite[Propositions A.35, A.37]{Cl2}, and also by Ching's tree model $\Omw(\uS)[n]=\Map(\BC(n),S)$, the two being identified by the levelling homeomorphism $\Theta\colon |P(n)|\cong \BC(n)$ \cite[Theorem A.24]{Cl2}. The two structures are:
+\begin{itemize}[leftmargin=2em]
+\item[(Ch)] Ching's strict operad $\nu^{\tr}$ on $\Omw(\uS)=\dual\BC(\uSz)$ \cite{Ch05}, \cite[Theorem A.34]{Cl2}. In the language of \cite{Ch12} this is the point-set cobar construction $C(\uS)$ of the strict cooperad $\uS$ (\cite[Definition 2.4, Example 5.1]{Ch12}, \cite[Proposition 6.4]{Ch05}).
+\item[(box)] The $\Aop$-algebra $\lambda^{\Lev}$ on $\Tot C(\uS)$ of \cite[Theorem 1.1]{Cl2}, where $\Aop=\mathrm{coEnd}(\Sigma\cdot\Delta_+)$ is the fattened $\Nl$-operad of \cite[Definition 7.7]{Cl1}; it is the point-set McClure--Smith structure induced by the $\mathring\square$-monoid structure of the cobar complex \cite[Proposition 4.6]{Cl2}.
+\end{itemize}
+By \cite[Theorem 1.3 $=$ Theorem A.73]{Cl2} the two agree through a cut refinement: there are $\Nl$-operads and levelwise weak equivalences $\Aop\xleftarrow{\;j\;}\Lop\xrightarrow{\;\sigma\;}\Kop\xleftarrow{\;o\;}\Oper$ and a $\Kop$-algebra $\tau$ on $\Omw(\uS)$ with $o^*\tau=\nu^{\tr}$ and $\sigma^*\tau$ intertwined with $j^*\lambda^{\Lev}$ by the bridge $\beta$.
+
+On the $\infty$-categorical side, following \cite{BH} and \cite{HeKD}, an operad in $\Sp$ is an $\mathbb{E}_1$-algebra in the monoidal $\infty$-category $\SSeq^{\mathrm{nu}}(\Sp)$ of reduced symmetric sequences with the composition product, and a cooperad is an $\mathbb{E}_1$-coalgebra \cite[Definition 2.2]{BH}, \cite[Definition 3.2]{HeKD}. Bar and cobar constructions are the totalizations and realizations of the usual (co)simplicial objects \cite[Definition 2.13]{BH}, with their $\mathbb{E}_1$-structures from Lurie's twisted-arrow pairing \cite[Theorem 5.2.2.17]{HA}; they form an adjoint equivalence between reduced operads and reduced cooperads \cite[Proposition 2.14]{BH}, \cite[Theorem 3.4]{HeKD}, ``originally due to Ching \cite{Ch12}''. The cocommutative cooperad $\Comv$ is the unique cooperad whose comodules are the nonunital cocommutative coalgebras in symmetric sequences for Day convolution \cite[Proposition 2.11, Definition 2.12]{BH}, and
+\[ \Lie := C(\unit,\Comv,\unit) \qquad\text{\cite[Definition 2.15]{BH}} \]
+is the spectral Lie operad. Blans--Heuts prove that the operad structure on $\partial_*\id_{\mathsf{S}_*}$ given by the lax monoidal derivatives functor of Blans--Blom \cite[Theorem 3.3.2]{BB} is $\Lie$ \cite[Example 3.3, Corollary 5.9]{BH}. Ching's Day-convolution $\infty$-operad \cite{Ch21} is a different model; Blans--Blom write that comparing it with theirs ``seems like a difficult task'' \cite[\S 1.3]{BB}, and it is not treated here.
+
+\subsection{Statements}
+Let $\Th\colon \mathsf{Operad}\to\Op(\Sp)$ be the functor from strict reduced operads of spectra to $\infty$-operads induced by the monoidal localization of Proposition \ref{prop:N}, and let $\Nfun_{\Aop}$ be the functor from $\Aop$-algebras to $\Op(\Sp)$ of Proposition \ref{prop:F4S}.
+
+\begin{theorem}[Ching's operad is the spectral Lie operad]\label{thm:A}
+$\Th(\Omw(\uS),\nu^{\tr})\simeq\Lie$ in $\Op(\Sp)$.
+\end{theorem}
+
+\begin{theorem}[The box-product operad is the spectral Lie operad]\label{thm:B}
+$\Nfun_{\Aop}(\Tot C(\uS),\lambda^{\Lev})\simeq\Th(\Omw(\uS),\nu^{\tr})\simeq\Lie$ in $\Op(\Sp)$. In particular both agree with the Blans--Blom operad structure on $\partial_*\id_{\mathsf{S}_*}$.
+\end{theorem}
+
+\begin{theorem}[Homology-level check of {\cite[Theorem 1.3]{Cl2}}]\label{thm:C}
+Let $L(k)=\Hred_{k-1}(|P(k)|;\Z)$. For $k\leq 6$:
+\begin{enumerate}[label=(\roman*)]
+\item $\Hred_i(|P(k)|;\Z)=0$ for $i\neq k-1$, $L(k)\cong\Z^{(k-1)!}$, and the $\Sigma_k$-character of $L(k)\otimes\Q$ is that of $\mathrm{Lie}(k)\otimes\sgn_k$.
+\item For every composition profile $(n;k_1,\dots,k_n)$ with $\sum k_i=k$, the cocomposition maps of the two structures, $c^{\Lev}_\alpha$ (the half-cut cell of \cite[Construction A.67]{Cl2}, acting through the decomposition $\Psi$ of \cite[Lemma 4.4]{Cl2}) and $c^{\tr}_\alpha$ (Ching's cut, \cite[Definition A.31]{Cl2}, transported through $\Theta$), induce the same map $L(k)\to L(n)\otimes\bigotimes_i L(k_i)$.
+\item The maps of (ii) make $L(\ast)^{\vee}=\Hred^{\ast-1}(|P(\ast)|;\Z)$ a graded operad, generated by a $\Sigma_2$-invariant class in arity $2$ subject to the Jacobi relation of the operadic suspension of $\mathrm{Lie}$; the $(k-1)!$ left-normed brackets are $\Z$-bases. Hence the operad induced on the homology of the derivatives by either structure is the operadic suspension of the Lie operad, $\mathrm{Lie}(k)\otimes\sgn_k$ in cohomological degree $k-1$.
+\end{enumerate}
+\end{theorem}
+
+\subsection{What is proved, and what is not}\label{sec:ledger}
+Theorem \ref{thm:C} is an unconditional computation; it is proved in \S\ref{sec:homology} by the scripts listed in \S\ref{sec:scripts}, which end with \texttt{ALL C10/C11/C12 CHECKS PASSED}. The scripts are evidence in the sense of \cite[Appendix C]{Cl2}: they evaluate the paper's formulas on every case in the stated range.
+
+Theorems \ref{thm:A} and \ref{thm:B} are reductions. The chain is:
+\begin{itemize}[leftmargin=2em]
+\item Theorem \ref{thm:B} $\Leftarrow$ Theorem \ref{thm:A} $+$ Proposition \ref{prop:F4S} (rectification of $\Nl$-algebras) $+$ \cite[Theorem 1.3]{Cl2}; Proposition \ref{prop:F4S} is proved here modulo two identifications of encodings that are cited to \cite{CH20}.
+\item Theorem \ref{thm:A} $\Leftarrow$ Lemma \ref{lem:F5} $+$ Proposition \ref{prop:Com} ($\Nfun(\uS)\simeq\Comv$), the latter proved here by a duality argument.
+\item Lemma \ref{lem:F5} $\Leftarrow$ Propositions \ref{prop:a}, \ref{prop:b}, \ref{prop:c} (all citations, to \cite{HA}, \cite{AC1}, \cite{PS18}, \cite{MG16}, \cite{HHLN}) $+$ Lemma \ref{lem:mate}, a point-set compatibility that is verified on $0$- and $1$-simplices below and whose general case is the iterated associativity of Arone--Ching's cutting maps; it is stated, not written out.
+\end{itemize}
+So the honest status is: Theorems \ref{thm:A} and \ref{thm:B} hold modulo Lemma \ref{lem:mate} and the standard localization facts listed in Proposition \ref{prop:N} and Remark \ref{rem:transport}. The residual work is delimited and is point-set in nature.
+
+\subsection{Disclosure}
+This memo was produced with substantial assistance from Anthropic's Claude Fable 5.1 (September 2026): the literature reading, the reduction, and the verification scripts. Every citation was checked against the cited text, and \S\ref{sec:ledger} states which steps are cited, proved, or left open. The memo accompanies \cite{Cl2} and uses its numbering for the appendix statements.
+
+\section{The objects, and what is already known}\label{sec:objects}
+
+\subsection{The composition product of reduced sequences is orbit-free}
+For reduced symmetric sequences $X,Y$ in $\Spt$,
+\[ (X\circ Y)(n)=\bigvee_{k\geq1} X(k)\wedge_{\Sigma_k} Y^{\check\wedge k}(n),\qquad Y^{\check\wedge k}(n)=\bigvee_{f\colon \mathbf n\twoheadrightarrow\mathbf k} Y(f^{-1}1)\wedge\cdots\wedge Y(f^{-1}k), \]
+with $\sigma\in\Sigma_k$ sending the summand indexed by $f$ to that indexed by $\sigma f$ \cite[(3.2)]{Cl2}, \cite[\S 2.2]{Cl1}.
+
+\begin{lemma}\label{lem:free}
+$\Sigma_k$ acts freely on the set of surjections $\mathbf n\twoheadrightarrow\mathbf k$. Consequently
+\[ (X\circ Y)(n)\;\cong\;\bigvee_{\pi\in\Part(n)} X(\pi)\wedge\bigwedge_{B\in\pi} Y(B), \]
+one summand per unordered partition $\pi$, with $X(\pi)$ the value of $X$ on the finite set of blocks; no coinvariants of a non-free action occur.
+\end{lemma}
+\begin{proof}
+If $\sigma f=f$ then $\sigma$ fixes the image of $f$, which is all of $\mathbf k$. For a free $\Sigma_k$-set $F$ indexing a wedge $\bigvee_{f\in F}Z_f$ of $\Sigma_k$-compatible objects, the untwisting isomorphism $\Sigma_{k+}\wedge Z_f\cong\bigvee_\sigma Z_{\sigma f}$ identifies each orbit of summands with an induced object, whose coinvariants are $Z_f$; the same untwisting on the $X(k)$ factor makes the identification independent of the representative. The orbit of $f$ is the partition $\{f^{-1}(i)\}$.
+\end{proof}
+The script \texttt{infty/checks\_freeness.py} enumerates the $52{,}609$ surjections with $n\leq7$ and confirms trivial stabilizers and the Stirling orbit counts. The $\infty$-categorical statement is \cite[Remark 4.3.3]{Hau} (attributed there to Heuts) and \cite[(1)]{BB}: the composition product of reduced sequences involves no homotopy orbits, so a cooperad in the sense of Ching \cite[Definition 1.8]{Ch12} (decomposition maps into smash products) and a coalgebra for $\circ$ \cite[Definition 2.2]{BH} are the same thing for reduced sequences.
+
+\begin{corollary}\label{cor:derived}
+If $X,Y$ are reduced and termwise cofibrant, $X\circ Y$ is a finite wedge of smash products of cofibrant $S$-modules, hence computes the derived composition product and is termwise cofibrant; $\circ$ preserves weak equivalences between termwise-cofibrant reduced sequences in each variable.
+\end{corollary}
+This is why \cite{Ch12} needs only termwise-cofibrant (never $\Sigma$-cofibrant) operads and cooperads.
+
+\begin{proposition}\label{prop:N}
+Let $\Nfun\colon\SymSeq^{\mathrm{tc}}\to\SSeq^{\mathrm{nu}}(\Sp)$ be the localization of termwise-cofibrant reduced sequences at weak equivalences. Then $\Nfun$ is strong monoidal for the composition products. In particular it sends strict reduced operads to $\mathbb{E}_1$-algebras (this defines $\Th$) and strict reduced cooperads to $\mathbb{E}_1$-coalgebras, and inverts weak equivalences.
+\end{proposition}
+\begin{proof}[Proof, in outline]
+For $A\in\SymSeq$ the functor $F_A=(-)\circ A$ is cocontinuous and strong symmetric monoidal for the Day convolution $\check\wedge$, with $F_A(\unit)=A$ and $F_{A\circ B}=F_B F_A$; since $(\SymSeq,\check\wedge)$ is the free symmetric monoidal cocomplete category on one object (Kelly), $A\mapsto F_A$ identifies $(\SymSeq,\circ)$ with cocontinuous strong monoidal endofunctors under reversed composition. By Corollary \ref{cor:derived}, $F_A$ is homotopical on $\SymSeq^{\mathrm{tc}}$ for termwise-cofibrant $A$, so it descends to a colimit-preserving strong symmetric monoidal endofunctor $\Nfun(F_A)$ of $\SSeq^{\mathrm{nu}}(\Sp)$ with value $\Nfun(A)$ at $\unit$ (the localization is symmetric monoidal for Day convolution, \cite[4.1.7.4, 2.2.6]{HA}). By \cite[Remark 2.7]{BH} the composition product on $\SSeq^{\mathrm{nu}}(\Sp)$ is transported from composition of such endofunctors, so $\Nfun(F_A)\simeq F_{\Nfun A}$ and $\Nfun(A\circ B)\simeq\Nfun(A)\circ\Nfun(B)$, coherently in $A,B$. Two standard points are used without proof: the EKMM unit is not cofibrant (handled by $S_c\to S$, \cite[VII.4]{EKMM}, or by Remark \ref{rem:transport}), and localization of homotopical functors is compatible with composition.
+\end{proof}
+
+\begin{remark}[Moving the objects to symmetric spectra]\label{rem:transport}
+Every point-set object in the comparison is a cotensor $\Map(K,S)$ of the sphere with a finite pointed space, and every structure map is induced by a continuous map of such spaces: $\Omw(\uS)(n)=\Map(\BC(n),S)$, $\Tot C(\uS)(n)=\Map(\|P(n)\|,S)$, and the actions $\nu^{\tr},\lambda^{\Lev},\tau,\zeta$ come from the cut maps of \cite[Definition A.31, Constructions A.67--A.69, Theorem A.60]{Cl2}. The proof of \cite[Theorem 1.3]{Cl2} uses of the spectrum $S$ only the cotensor adjunctions of \cite[\S A.3]{Cl2} and the fact that restricted $\Tot$ of a levelwise fibrant cosimplicial object is a homotopy limit. Hence the same constructions with a fibrant model of the sphere in symmetric spectra produce the same structures there, and the rectification results quoted below (stated for symmetric spectra with the positive stable model structure) apply directly.
+\end{remark}
+
+\begin{remark}[Strict coalgebras are the wrong point-set objects]\label{rem:PS}
+By P\'eroux--Shipley \cite{PeSh}, every coalgebra over the sphere in symmetric spectra, orthogonal spectra or EKMM $S$-modules is cocommutative, and strict coalgebras do not model $\infty$-coalgebras. So no argument below rectifies strict cooperads in general. The strict cooperad $\uS$ is used only as an object; the comparison of coalgebra structures is done on the bar side (\S\ref{sec:F5}), where the relevant structure is that of an operad-side left adjoint.
+\end{remark}
+
+\subsection{How the $\infty$-categorical cobar structure is defined}\label{sec:cobar-def}
+For a monoidal $\infty$-category $\mathcal C$, \cite[Theorem 5.2.2.17]{HA} states that the map $\Alg(\TwArr(\mathcal C))\to\Alg(\mathcal C)\times\Alg(\mathcal C^{\mathrm{op}})$ is a pairing of $\infty$-categories; when the unit is final and $\mathcal C$ has geometric realizations it is left representable, with duality functor $A\mapsto\BarC(A)$, and when the unit is initial and $\mathcal C$ has totalizations it is right representable, with duality functor $C\mapsto\Cobar(C)$. Thus maps of $\mathbb{E}_1$-algebras $O\to\Cobar(Q)$ are classified by algebra objects of $\TwArr(\SSeq)$ lying over $(O,Q)$ \cite[p.~27]{HeAnn}, \cite[Theorem E]{BB}: an arrow $f\colon O\to Q$ together with the algebra structure of $O$, the coalgebra structure of $Q$ and a coherent identification $f\otimes f\simeq\delta\circ f\circ\mu$. Lurie explains in \cite[Warning 5.2.2.16]{HA} that the bar and cobar constructions are not analysed through relative tensor products in general, because $\otimes$ rarely preserves both geometric realizations and totalizations; for $\circ$ on $\SSeq^{\mathrm{nu}}(\Sp)$ the left variable preserves all colimits and the right variable preserves sifted colimits, so $\circ$ preserves geometric realizations in each variable but not totalizations. This asymmetry dictates the route of \S\ref{sec:F5}.
+
+\begin{remark}[Strict twisting data carry no information]\label{rem:S6}
+An algebra object of the $1$-category $\TwArr(\SymSeq)$ over $(P,Q)$ is an arrow $f\colon P\to Q$ with $\delta\circ f\circ\mu=f\circ f$ on the nose. For $P=C(\uS)$ and $f=\varepsilon$ the evaluation at corollas, $\mu(g,h)(\tau_I)$ is the basepoint for every nontrivial partition (a corolla is not a grafting), so $\delta\varepsilon\mu=\pt\neq\varepsilon\circ\varepsilon$. Lurie's universal object over $A$ has underlying arrow $A\to\unit\to\BarC(A)$ \cite[Example 5.2.2.35, Corollary 5.2.2.41]{HA}; its content lies entirely in the higher structure. The natural strict map out of Ching's cobar construction is the \emph{desuspension} $C(Q)\to\Omega Q$ \cite[Definition 2.18]{Ch12}, matching $\Cobar(Q)\supseteq\Omega\bar Q$. No strict twisting datum can therefore produce the comparison; this is why \S\ref{sec:F5} works with adjunctions rather than with twisting data.
+\end{remark}
+
+\section{Structural lemmas}\label{sec:lemmas}
+
+\subsection{The commutative cooperad}
+\begin{proposition}\label{prop:Com}
+$\Nfun(\uS)\simeq\Comv$ in $\coOp(\Sp)$.
+\end{proposition}
+The statement is not an inspection: $\Comv$ is defined by a universal property, and the cooperad structure on the constant sequence is not determined by its underlying object.
+
+\begin{remark}[$\pi_0$-level structures on the constant sequence]
+A cooperad structure on $\uS$ has in arity $n$ a comultiplication $S\to\bigoplus_{\pi\in\Part(n)}S$, i.e.\ an integer $a(\pi)$ per partition, $\Sigma_n$-invariant, with $a(\text{one block})=a(\text{discrete})=1$ (counit) and $a(\pi)\prod_{B\in\pi}a(\rho|_B)=a(\rho)\,a(\pi/\rho)$ for every chain $\rho\leq\pi$ (coassociativity). The script \texttt{infty/checks\_F2\_pi0.py} solves these equations in log-space over $\Q$: through arity $6$ the solution space has dimension $1,2,3,4$ and coincides with the space of ``coboundaries'' $a(\pi)=h(k)\prod_B h(|B|)/h(n)$, $h(1)=1$. So all unit-coefficient $\pi_0$-structures are equivalent to the standard one, but non-unit $h$ give non-isomorphic integral data, and none of this sees the higher coherences. A consistency check: the coefficients of $\Comv=\mathrm{cofree}(\unit)$ are all $1$, since $\unit^{\otimes n}=\Sigma_{n+}\wedge S$ is free and the comultiplication of the cofree coalgebra is the sum of transfers $(\unit^{\otimes n})_{h\Sigma_n}\to(\unit^{\otimes n})_{h(\Sigma_p\times\Sigma_q)}$, which for a free $\Sigma_n$-spectrum is the diagonal $S\to\bigoplus_{\text{cosets}}S$.
+\end{remark}
+
+\begin{proof}[Proof of Proposition \ref{prop:Com}]
+Write $\SSeq^{\mathrm{fin}}$ for reduced sequences with finite terms and $\dual=\Map(-,S)$ levelwise.
+\begin{enumerate}[label=(D\arabic*),leftmargin=2.6em]
+\item $\dual$ is a symmetric monoidal equivalence $(\SSeq^{\mathrm{fin}},\otimes^{\mathrm{Day}})^{\mathrm{op}}\simeq(\SSeq^{\mathrm{fin}},\otimes^{\mathrm{Day}})$: Spanier--Whitehead duality is symmetric monoidal on finite spectra \cite[4.6.1]{HA} and Day convolution is functorial in symmetric monoidal functors preserving the finite sums in its formula \cite[2.2.6]{HA}.
+\item $\dual$ is a monoidal equivalence $(\SSeq^{\mathrm{fin}},\circ)^{\mathrm{op}}\simeq(\SSeq^{\mathrm{fin}},\circ)$. Levelwise this is Lemma \ref{lem:free}. Coherently: for finite $A$ let $G=\dual F_A\dual$ on finite sequences and extend it to $\SSeq^{\mathrm{nu}}(\Sp)=\Ind(\SSeq^{\mathrm{fin}})$ by $\Ind$; the extension is colimit preserving and strong symmetric monoidal for Day convolution (D1), with value $\dual A$ at $\unit$, hence equals $F_{\dual A}$ by \cite[Remark 2.7]{BH}; restricting to finite objects gives $\dual(X\circ A)\simeq\dual X\circ\dual A$ coherently in $A$. The point-set version is \cite[Proposition 6.4]{Ch05}, \cite[Remark 1.9]{Ch12}.
+\item $\Comv\simeq\dual(\Com)$, where $\Com$ is the nonunital commutative operad (the operad whose monad is the free nonunital commutative algebra $\mathrm{Sym}$). By \cite[Propositions 2.10, 2.11]{BH} the comonad $\Comv\circ(-)$ on $\SSeq^{\mathrm{nu}}(\Sp)$ is the cofree cocommutative coalgebra comonad $\mathrm{Sym}$, and $\Comv$ is characterized by this. Both $\Comv\circ(-)$ and $\dual(\Com)\circ(-)$ preserve filtered colimits, so it suffices to compare them as comonads on finite objects. There, (D1) carries $\coAlg^{\mathrm{nu}}(\SSeq^{\mathrm{fin}})$ to $\Alg^{\mathrm{nu}}(\SSeq^{\mathrm{fin}})^{\mathrm{op}}$ over $\dual$ and carries the adjunction (forget, cofree)---which preserves finiteness, as $\mathrm{Sym}(M)$ is levelwise finite for finite reduced $M$---to (free, forget); so the cofree comonad on finite objects is $\dual\circ(\Com\circ-)\circ\dual$, which by (D2) is $\dual(\Com)\circ(-)$ as a comonad. Uniqueness in \cite[Proposition 2.11]{BH} (a comonad is determined by its $\infty$-category of coalgebras over the base) gives $\dual(\Com)\simeq\Comv$.
+\item $\Nfun(\uS)\simeq\dual\,\Nfun(\uS_{\mathrm{op}})$ and $\Nfun(\uS_{\mathrm{op}})\simeq\Com$, where $\uS_{\mathrm{op}}$ is the strict commutative operad (fold maps). The first: $\uS$ is the levelwise dual of $\uS_{\mathrm{op}}$ with dual structure maps (the comultiplication $S\to\prod_\pi S$ is dual to the fold $\bigvee_\pi S\to S$), and $\Nfun$ commutes with Spanier--Whitehead duality of finite $S$-modules (\cite[III.7]{EKMM}, \cite[4.6.1]{HA}); combine with Proposition \ref{prop:N} and (D2). The second: $\uS_{\mathrm{op}}=\Sigma^\infty_+(\underline{\pt})$ is the image of the terminal strict topological operad under $\Sigma^\infty_+$, which is strong monoidal for $\circ$ at the point-set level (it preserves the formula of Lemma \ref{lem:free}) and presents the functor $\Op(\mathsf S)\to\Op(\Sp)$ induced by $\Sigma^\infty_+$ through the last sentence of \cite[Corollary 4.2.9]{Hau} (``if $\phi\colon\mathcal V\to\mathcal W$ is a symmetric monoidal functor that preserves colimits indexed by $\infty$-groupoids, then composition with $\phi$ gives a monoidal functor $\mathrm{Fun}(\Fin^\simeq_X\times X,\mathcal V)\to\mathrm{Fun}(\Fin^\simeq_X\times X,\mathcal W)$''); $\underline\pt$ presents the terminal $\infty$-operad, whose image is $\Com$ by definition.
+\end{enumerate}
+Now $\Nfun(\uS)\simeq\dual\Nfun(\uS_{\mathrm{op}})\simeq\dual\Com\simeq\Comv$.
+\end{proof}
+
+\subsection{Rectification of strict operads}
+\begin{theorem}[{\cite{CH20}, \cite{PS18}}]\label{thm:F3}
+Strict reduced operads in symmetric spectra, localized at the termwise weak equivalences, present the full subcategory of $\Op(\Sp)=\Alg_{\mathbb{E}_1}(\SSeq^{\mathrm{nu}}(\Sp))$ on reduced operads; the comparison functor is $\Th$.
+\end{theorem}
+\begin{proof}
+Chu--Haugseng \cite[Proposition 5.2.2]{CH20} (``a special case of \cite[Theorem 7.10]{PS18}'', as the operad $\mathbf{Op}_S$ governing $S$-coloured operads is $\Sigma$-free) gives $\Alg_{\mathbf{Op}_S}(\mathbf V)[W_S^{-1}]\simeq\Alg_{\mathbf{Op}_S}(\mathbf V[W^{-1}])$ for $\mathbf V$ with $\mathbf{Op}_S$ admissible, and \cite[Examples 5.2.3(iv)]{CH20} lists ``the category $\mathrm{Sp}^\Sigma$ of symmetric spectra, equipped with the positive stable model structure''. \cite[Theorem 5.2.10, Remark 5.2.11]{CH20}: ``The homotopy theory of spectral operads, or more precisely operads enriched in symmetric spectra, is equivalent to that of spectral $\infty$-operads, i.e.\ $\infty$-operads enriched in the $\infty$-category of spectra.'' One-object $\Sp$-enriched $\infty$-operads are $\mathbb{E}_1$-algebras in symmetric sequences by \cite[Corollary 4.2.9(iii)]{Hau} and \cite[\S 2.4]{CH20}; reduced ones form full subcategories on both sides. The comparison functor of \cite[Proposition 5.2.2]{CH20} is the monoidal localization of Proposition \ref{prop:N}.
+\end{proof}
+
+\subsection{Rectification of $\Nl$-algebras}\label{sec:F4S}
+Haugseng describes one-object $\infty$-operads as Segal presheaves on the category $\DFF$ of levelled trees (sequences of finite sets $a_0\to\cdots\to a_\ell$ with $a_0$ the leaves and $a_\ell$ the root; \cite[\S 4.1--4.2]{Hau}); collapsing levels is the cartesian functoriality of $\DFF\to\mathbf\Delta$ over active maps, and sub-forest restrictions are the operadic inert morphisms; the Segal condition is that inert morphisms go to cocartesian morphisms of $\Sp^\otimes$ \cite[Notation 4.2.7]{Hau}, \cite[Definition 2.4.3]{CH20}. Clark's profiles $\underline p\in\mathbf N^{\hat\circ\ell}[t]$ with their orbit conventions \cite[Definition 6.5]{Cl1} are the isomorphism classes of objects of $(\DFF)_{[\ell]}$ with all maps surjective; an element of $\Oper_\ell(\underline p;t)=\Sigma^{\circ\ell}[\underline p]$ \cite[Definition 7.1]{Cl1} is such an object with labelled leaves; level composition \cite[Definitions 6.14--6.15]{Cl1} is composition along active maps of $\mathbf\Delta$; and \cite[Proposition 7.12]{Cl1} ($\Oper$-algebras are operads) is the statement that a strict operad is a strict Segal presheaf on levelled trees.
+
+\begin{construction}
+For a reduced symmetric $\Nl$-operad $\mathcal P$ in $\mathsf{Top}$, let $\TT_{\mathcal P}$ be the $\mathsf{Top}$-enriched category over $\DFF$ with the same objects, whose morphism space over a morphism $f\colon A\to B$ of $\DFF$ lying over $\phi\colon[k]\to[\ell]$ is $\prod_{w}\mathcal P_{\ell_w}(\underline p_w;n_w)$, the product over the nodes $w$ of $\phi^*B$ of the cells of $\mathcal P$ whose profile is the labelled levelled subtree of $B$ over $w$ ($\ell_w$ its number of levels), with composition given by $\xi$ and the $\mathcal I^\Sigma$-actions, and with inert morphisms strict. For $\mathcal P=\Oper$ every such product is a point and $\TT_{\Oper}=\DFF$. For a $\mathcal P$-algebra $W$ in $\SymSeq$, let $G_W\colon\TT_{\mathcal P}^{\mathrm{op}}\to\Spt$ send $B$ to $\bigwedge_{v\in\mathrm{nodes}(B)}W[n_v]$ and a morphism to the smash of the action maps $\mu_{\ell_w}(c_w;-)$ followed by the inert projection.
+\end{construction}
+
+\begin{proposition}\label{prop:F4S}
+Let $\mathcal P\in\{\Aop,\Lop,\Kop,\Oper\}$. Then $\TT_{\mathcal P}\to\DFF$ is a Dwyer--Kan equivalence over $\mathbf\Delta$, and for a $\mathcal P$-algebra $W$ with termwise-cofibrant underlying sequence, $\Nfun\circ G_W$ (via the homotopy coherent nerve) transported along $N(\TT_{\mathcal P})\simeq N(\DFF)$ is an operadic $\DFF^{\mathrm{op}}$-algebra in $\Sp$, hence by \cite[Corollary 4.2.9(iii)]{Hau} an object $\Nfun_{\mathcal P}(W)\in\Op(\Sp)$. This is natural in maps of $\Nl$-operads and of algebras; $\Nfun_{\mathcal P}(g^*W)\simeq\Nfun_{\mathcal Q}(W)$ for every levelwise equivalence $g\colon\mathcal P\to\mathcal Q$ between such operads; and $\Nfun_{\Oper}=\Th$.
+\end{proposition}
+\begin{proof}[Proof, in outline]
+The mapping spaces of $\TT_{\mathcal P}$ are finite products of components of cell spaces, and each cell space is a disjoint union of contractible components indexed by the labelled levelled trees: for $\Aop$ this is \cite[Proposition 7.16]{Cl1} (``$\Map_{\Delta^{\mathrm{res}}}(\Sigma\cdot\Delta_+,(\Sigma\cdot\Delta_+)^{\mathring\square k})^\Sigma\to\Sigma^{\circ k}[\underline p]$ is a weak equivalence'', with discrete target), for $\Lop$ and $\Kop$ it is the contractibility of the uniform-cut cells and of the spaces $WS(\gamma)$ \cite[Definition A.56, Theorem A.60, \S A.61]{Cl2}. Hence the DK-equivalence. $G_W$ is a functor by the associativity and unitality of $\mu$ \cite[Definition 6.25]{Cl1}, continuous in the cells, sends inerts to projections and satisfies the Segal condition on the nose; the $\Sp^\otimes$-encoding of \cite[Definition 2.4.3]{CH20} is the unstraightening of these data, and $\Nfun$ preserves the smash products of termwise-cofibrant sequences (Corollary \ref{cor:derived}). Naturality: $G_{g^*W}=G_W\circ(\TT_{\mathcal P}\to\TT_{\mathcal Q})$ by definition of restriction. For $\Oper$, $G_W$ is the strict Segal presheaf of the strict operad $W$, which \cite[Corollary 4.2.9(iii)]{Hau} sends to $W\in\Alg_{\mathbb{E}_1}(\SSeq)$, the same object as $\Th(W)$ (both are the image of the strict monoid under the monoidal localization, the equivalence of \cite[Corollary 4.2.9]{Hau} being compatible with the formula of its Remark 4.1.18). The two encoding identifications (the unstraightening, and the last compatibility) are the steps cited rather than proved.
+\end{proof}
+
+\begin{remark}[The forgetful functor $\mathbb U$ of \cite{Cl1}]
+\cite[\S 6.7]{Cl1} asserts that $\mathbb U\mathcal P$, with $\mathbb U\mathcal Q(c_1,\dots,c_k;t)=\coprod_{s(\underline p)=(c_i)}\mathcal Q_\ell(\underline p;t)$, is an $\mathbf N$-coloured operad with the same algebras, and \cite[Remark 7.13]{Cl1} that $\mathbb U\Oper\cong\mathcal M_{\mathsf{Op}}$. This cannot be right as written: level composition inserts cells of equal height into all nodes of a level, whereas a coloured operad must compose cells of arbitrary heights at arbitrary nodes, and padding by unary levels changes the multisource. Counting confirms it: no levelled profile with node multiset $\{2,2\}$ has weight $3$, so $\mathbb U\Oper(2,2;3)=\emptyset$, while $\mathcal M_{\mathsf{Op}}(2,2;3)$ has six elements. None of the theorems of \cite{Cl1} uses $\mathbb U$ (they use Proposition 7.12, proved directly). Proposition \ref{prop:F4S} is the replacement.
+\end{remark}
+
+\subsection{The reduction}
+\begin{lemma}[the residual lemma]\label{lem:F5}
+Let $Q$ be a reduced strict cooperad in $\Spt$ whose terms are finite and cofibrant. Then the strict operad $C(Q)=\Map_{T\in\mathsf{Tree}}(\bar w(T)^{\mathrm{rev}},Q(T))$ with its tree-cut composition \cite[Definition 2.4]{Ch12} satisfies $\Th(C(Q))\simeq\Cobar(\Nfun Q)$ in $\Op(\Sp)$, where $\Cobar(\Nfun Q)=\lim_{\mathbf\Delta}\Nfun(Q^{\circ\bullet})$ carries the $\mathbb{E}_1$-structure of \cite[Theorem 5.2.2.17(3)]{HA}.
+\end{lemma}
+
+\begin{theorem}\label{thm:reduction}
+Theorem \ref{thm:A} follows from Lemma \ref{lem:F5} for $Q=\uS$ and Proposition \ref{prop:Com}; Theorem \ref{thm:B} follows from Theorem \ref{thm:A}, Proposition \ref{prop:F4S} and \cite[Theorem 1.3]{Cl2}.
+\end{theorem}
+\begin{proof}
+$\Th(\Omw(\uS),\nu^{\tr})=\Th(C(\uS))\simeq\Cobar(\Nfun\uS)\simeq\Cobar(\Comv)=\Lie$. For Theorem \ref{thm:B}: with the notation of \S 1.1 and Proposition \ref{prop:F4S},
+\[ \Nfun_{\Aop}(\lambda^{\Lev})\simeq\Nfun_{\Lop}(j^*\lambda^{\Lev})\simeq\Nfun_{\Lop}(\zeta)=\Nfun_{\Lop}(\sigma^*\tau)\simeq\Nfun_{\Kop}(\tau)\simeq\Nfun_{\Oper}(o^*\tau)=\Th(\nu^{\tr}), \]
+the second equivalence being the levelwise equivalence $\beta$ of $\Lop$-algebras of \cite[Theorem A.73]{Cl2}. The unit caveat: $\uS$ has terms $S$, not cofibrant in EKMM; either replace $S$ by $S_c$ throughout (the constructions of \cite{Cl2} are cotensors, Remark \ref{rem:transport}) or work in symmetric spectra.
+\end{proof}
+
+\begin{remark}[Ching's double Koszul duality does not bypass the lemma]
+\cite[Theorem 4.11]{Ch12} gives, for a termwise-finite-cofibrant operad $P$, a zigzag of weak equivalences of strict operads $P\leftarrow WP\to CBP\to K\tilde K P$, and with $P$ a model of $\Com$, $KP=\dual BP\cong C\dual P$ is Ching's $\partial_*\Id$ \cite[Lemma 4.5]{Ch12}. One might hope to dualize and obtain $B(\partial_*\Id)\simeq\uS$ through strict cooperads. But the dual of an operad is only a pre-cooperad \cite[Definition 4.4]{Ch12}, and $Q\to\dual\tilde{\dual}Q$ is a weak equivalence of pre-cooperads \cite[Lemma 4.9]{Ch12}; so the dual zigzag leaves the strict cooperads, and by Remark \ref{rem:PS} pre-cooperads are not to be rectified naively. The lemma is not avoided this way.
+\end{remark}
+
+\section{The residual lemma: the bar side through bimodules}\label{sec:F5}
+By \cite[Theorem 3.4]{HeKD} the unit and counit of $\BarC\dashv\Cobar$ are equivalences on reduced operads and cooperads, so Lemma \ref{lem:F5} is equivalent, by uniqueness of adjoints, to its bar-side form:
+\begin{itemize}[leftmargin=2em]
+\item[(R2)] for a termwise-finite-cofibrant reduced strict operad $P$, the $\mathbb{E}_1$-coalgebra $\Nfun(B(P))$ of Ching's strict bar cooperad is $\BarC(\Th P)$.
+\end{itemize}
+(The equivalence: (R2) and \cite[Theorem 3.4]{HeKD} give $\Th(P)\simeq\Cobar\BarC\Th P\simeq\Cobar\Nfun B(P)$ for $P=C(Q)$, and $B(C(Q))\simeq Q$ by \cite[Lemmas 3.18, 3.20]{Ch12} through pre-cooperads---this direction is not used; conversely Lemma \ref{lem:F5} for $Q=B(P)$ and \cite[Theorem 2.15]{Ch12} give (R2).) Since $\circ$ preserves geometric realizations in each variable, the hypotheses of \cite[Example 5.2.2.3]{HA} hold and $\BarC(A)\simeq\unit\circ_A\unit=|\BarC_A(\unit,\unit)_\bullet|$ \cite[Remark 5.2.2.8]{HA}; the dual description of $\Cobar$ is unavailable. This is why the comparison is made on the bar side.
+
+\begin{proposition}[Lurie's bar coalgebra is the image of the unit bimodule]\label{prop:a}
+Let $\mathcal C$ be a monoidal $\infty$-category in which $\otimes$ preserves geometric realizations separately in each variable, and $A$ an augmented $\mathbb{E}_1$-algebra. Let $\rho\colon\mathcal C\to{}_A\BMod_A(\mathcal C)$ be the trivial-bimodule functor along the augmentation; it is lax monoidal for $\otimes_A$ (the lax structure $\rho X\otimes_A\rho Y\simeq X\otimes\BarC(A)\otimes Y\to X\otimes Y$ is the counit). Its left adjoint $\Fpt=\unit\otimes_A(-)\otimes_A\unit$ is oplax monoidal, with the mate structure, and the $\mathbb{E}_1$-coalgebra $\BarC(A)$ of \cite[Theorem 5.2.2.17(2)]{HA} is the image $\Fpt(A)$ of the unit algebra $A$ of $({}_A\BMod_A,\otimes_A)$.
+\end{proposition}
+\begin{proof}
+All statements are in \cite[\S 5.2.2]{HA}. $\mathrm{Mod}^{\mathrm{Assoc}}_A(\mathcal C)\simeq{}_A\BMod_A(\mathcal C)$, monoidal for $\otimes_A$ with unit $A$ \cite[4.4.1.28]{HA}. With $M=(A\to\unit)\in\Alg(\TwArr(\mathcal C))$ \cite[Example 5.2.2.35]{HA}, the module pairing $\lambda_M$ is a pairing of monoidal $\infty$-categories \cite[Lemma 5.2.2.29]{HA}, left representable with duality functor $\Fpt_{\lambda_M}\colon{}_A\BMod_A\to\mathcal C$ ``left adjoint to the forgetful functor $\mathcal C\to\mathrm{Mod}_A(\mathcal C)$ induced by the augmentation on $A$'' and $\Fpt_{\lambda_M}(A)\simeq\BarC(A)$ \cite[Corollary 5.2.2.41]{HA}; under \cite[Example 5.2.2.3]{HA} this left adjoint is $\unit\otimes_A(-)\otimes_A\unit$. The duality functor of a left dualizable pairing of $\mathbb{E}_k$-monoidal $\infty$-categories is lax $\mathbb{E}_k$-monoidal out of the opposite \cite[Remark 5.2.2.25]{HA}, i.e.\ $\Fpt$ is oplax. Finally, the proof of \cite[Theorem 5.2.2.17]{HA} (p.~839) obtains the universal algebra object over $A$ by lifting the unit $A$ of $\mathrm{Mod}^{\mathrm{Assoc}}_A(\mathcal C)$ to a left universal object of $\mathrm{Mod}^{\mathrm{Assoc}}_M(\TwArr(\mathcal C))$ \cite[Propositions 5.2.2.27, 5.2.2.28]{HA}, and identifies $\Fpt_{\Alg(\lambda)}(A)$ with $\Fpt_{\lambda_M}(A)$; so the coalgebra structure on $\BarC(A)$ is that of the image of the unit under the oplax $\Fpt_{\lambda_M}$. That this oplax structure is the mate of the lax structure of $\rho$ is the uniqueness of mates for lax--oplax adjunctions \cite{HHLN}.
+\end{proof}
+
+\begin{proposition}[The point-set duality functor and its cutting maps]\label{prop:b}
+Let $P$ be a reduced operad in $\Spt$. Arone--Ching define the simplicial two-sided bar construction $B_\bullet(R,P,L)=R\circ P^{\circ\bullet}\circ L$ with realization $B(R,P,L)$, ``our model for the derived composition product $R\circ_P L$'' \cite[Definition 7.14]{AC1}; natural associative maps $\phi_{R,L}\colon B(R,P,L)\to B(R,P,\unit)\,\hat\circ\,B(\unit,P,L)$ \cite[Proposition 7.15]{AC1}, proved in \cite[\S 7.3]{Ch05}; $B(P):=B(\unit,P,\unit)$ is a reduced cooperad and $B(R,P,\unit)$, $B(\unit,P,L)$ are comodules over it \cite[Corollary 7.16]{AC1}; the bimodule bar construction $B(R,P,M,P,L)$ \cite[Definition 7.17]{AC1}; $A\circ B(R,P,L)\cong B(A\circ R,P,L)$ and $B(R,P,L)\circ A\cong B(R,P,L\circ A)$ \cite[Proposition 7.19]{AC1}; module structures on $B(R,P,L)$ when $R$ or $L$ is a bimodule \cite[Definition 7.20]{AC1}; $B(R,P,M,P,L)\cong B(B(R,P,M),P,L)\cong B(R,P,B(M,P,L))$ \cite[Remark 7.21]{AC1}; $B(\unit,P,M,P,\unit)$ is a $B(P)$-bicomodule \cite[Corollary 7.22]{AC1}. (For reduced sequences $\hat\circ=\circ$ by Lemma \ref{lem:free}.) Define on $P$-bimodules
+\begin{gather*} \Fptpt(M):=B(\unit,P,M,P,\unit),\\ \Fptpt(B(M,P,N))=B(\unit,P,M,P,N,P,\unit)\xrightarrow{\;\phi_{R,L}\;}\Fptpt(M)\circ\Fptpt(N) \end{gather*}
+with $R=B(\unit,P,M)$, $L=B(N,P,\unit)$ (right and left $P$-modules by \cite[Definition 7.20]{AC1}), the source identified by \cite[Remark 7.21]{AC1}. Then $\Fptpt$ is oplax monoidal for the derived relative composition product, its value on the unit bimodule is $B(\unit,P,P,P,\unit)\simeq B(P)$, and the oplax map at the unit is $\phi_{\unit,\unit}$, the cooperad structure of \cite[Corollary 7.16]{AC1}.
+\end{proposition}
+\begin{proof}
+Associativity of the oplax structure is the associativity in \cite[Proposition 7.15]{AC1}; the identification $B(\unit,P,P,P,\unit)\simeq B(P)$ is by the extra degeneracies of the bar construction of a free bimodule.
+\end{proof}
+
+Ching's tree model of $B(P)$ with its ungrafting cooperad structure \cite[\S 4]{Ch05}, \cite[Definition 2.1]{Ch12} is identified with the simplicial model of \cite[Corollary 7.16]{AC1} by \cite[\S 7.3]{Ch05}; for $P$ the commutative operad in spaces this is also the content of \cite[Theorem A.24, Propositions A.35, A.37]{Cl2}, since $B_\bullet(\unit,\Com_{\mathsf{Set}},\unit)(n)$ is the simplicial set $P(n)$ of chains of partitions and $\Theta$ is the levelling homeomorphism.
+
+\begin{lemma}[The cutting maps are the mate of the trivial-bimodule lax structure]\label{lem:mate}
+With $\rho^{\mathrm{pt}}(X)=X$ (trivial actions), $\rho^{\mathrm{pt}}X\circ_P^{h}\rho^{\mathrm{pt}}Y=B(X,P,Y)\cong X\circ B(P)\circ Y$ \cite[Proposition 7.19]{AC1}, with lax structure $X\circ B(P)\circ Y\to X\circ Y$ induced by the augmentation $P\to\unit$ \cite[Definition 8.3]{AC1}. The unit $M\to\Fptpt(M)$ is the inclusion of $0$-simplices, $m\mapsto[m]$. Claim: the composite $M\circ_PN\to\rho\Fptpt M\circ_P\rho\Fptpt N\to\rho(\Fptpt M\circ\Fptpt N)$, $m\circ n\mapsto[m]\circ[n]$, is the restriction of $\phi_{B(\unit,P,M),B(N,P,\unit)}$ to the $0$-simplices, and $\phi$ is the extension of it compatible with the $P$-actions on bar words. Consequently, under the derived adjunction $\Fptpt\dashv\rho^{\mathrm{pt}}$, the oplax structure presented by $\phi$ is the mate of the lax structure of $\rho$.
+\end{lemma}
+\begin{proof}[Status]
+On $0$-simplices the claim holds by inspection, since $\phi$ cuts a bar word at the position separating the $R$-side from the $L$-side \cite[\S 7.3]{Ch05}. On $1$-simplices, the two cuts of $[m,p,n]$ (with $p$ on the $M$-side or on the $N$-side) are identified in the realization by the coend relations of $B(M,P,N)$ and are sent by $\phi$ to $[m\cdot p]\circ[n]$ and $[m]\circ[p\cdot n]$, which agree in $\Fptpt M\circ\Fptpt N$ by the bimodule bar relations; this is the naturality of $\phi$. The general case is the iterated associativity of $\phi$ and is not written out here. The last sentence is the uniqueness of mates \cite{HHLN} once Proposition \ref{prop:c} presents the adjunction.
+\end{proof}
+
+\begin{proposition}[Rectification]\label{prop:c}
+\begin{enumerate}[label=(\roman*),leftmargin=2em]
+\item $\mathsf{Mod}_{\mathrm{bi}}(P)$ carries a cofibrantly generated simplicial model structure with termwise weak equivalences and fibrations \cite[Theorem 9.8]{AC1}; bar constructions of termwise-cofibrant inputs are termwise cofibrant and homotopy invariant \cite[Proposition 8.5, Corollary 8.8]{AC1}.
+\item Bimodules over $P$ are algebras over a $\Sigma$-free coloured operad (leaf-labelled trees with one marked vertex), so \cite[Theorem 7.11]{PS18} in symmetric spectra identifies the localization of (i) with ${}_{\Th P}\BMod_{\Th P}(\SSeq(\Sp))$.
+\item The relative tensor product is the geometric realization of the two-sided bar construction \cite[Construction 4.4.2.7, Proposition 4.4.2.8]{HA}; by Corollary \ref{cor:derived} the strict $B(M,P,N)$ of termwise-cofibrant inputs computes it, so $\circ_P^{h}$ presents $\circ_{\Th P}$ and $\Fptpt$ presents $\Fpt=\unit\circ_{\Th P}(-)\circ_{\Th P}\unit$ as functors.
+\item The derived adjunction $\Fptpt\dashv\rho^{\mathrm{pt}}$ is an adjunction of $\infty$-categories \cite{MG16}; $\rho^{\mathrm{pt}}$ is strictly lax monoidal with homotopical structure maps, so it presents the lax monoidal $\rho$; by \cite{HHLN} the left adjoint carries the mate oplax structure, which by Lemma \ref{lem:mate} is the one presented by $\phi$.
+\end{enumerate}
+Consequently $\Nfun(B(P))=\Nfun(\Fptpt(P))\simeq\Fpt(\Th P)\simeq\BarC(\Th P)$ as $\mathbb{E}_1$-coalgebras, i.e.\ (R2) holds, and Lemma \ref{lem:F5} follows for $Q=B(P)$; for $Q=\uS$ take $P=C(\uS)$ (termwise finite cofibrant after replacement) and use \cite[Theorem 2.15]{Ch12}.
+\end{proposition}
+
+\begin{corollary}\label{cor:status}
+Modulo Lemma \ref{lem:mate} and the standard facts of Proposition \ref{prop:N} and Remark \ref{rem:transport}, Lemma \ref{lem:F5} holds, hence Theorems \ref{thm:A} and \ref{thm:B}.
+\end{corollary}
+
+\begin{remark}
+Two alternatives were considered and set aside: (1) $\Cobar(Q)$ as the endomorphism algebra of the trivial $Q$-comodule (via $\mathrm{prim}_Q$, \cite[Proposition 2.17]{BH}), which would compare with Ching's $C(Q)$ as a mapping object in pre-cooperads \cite[Proposition 3.12]{Ch12}; (2) rectifying Ching's pre-cooperads \cite[\S 3]{Ch12} through the dendroidal model of Chu--Haugseng \cite[\S 4, Theorem 4.4.3]{CH20} and adjoint uniqueness. Both need more than the route above. Ching's Day-convolution operad \cite{Ch21} is not addressed at all (\cite[Example 3.3]{Ch21}, \cite[\S 1.3]{BB}).
+\end{remark}
+
+\begin{remark}[The first paper]
+The same argument applies to \cite{Cl1}: its Theorem 1.1(b) exhibits a zigzag of $\Aop$-algebra equivalences between $\Tot C(\mathcal O)$ and $\mathcal O$ \cite[\S 8.2]{Cl1}, so by Proposition \ref{prop:F4S} $\Nfun_{\Aop}(\Tot C(\mathcal O),\lambda)\simeq\Th(\mathcal O)$; with \cite[Example 3.5]{BH} ($\partial_*\id_{\Alg_{\mathcal O}}\simeq\mathcal O$ in the lax-monoidal framework) this identifies the structure of \cite{Cl1} with the Blans--Blom one, needing no cobar rectification.
+\end{remark}
+
+\section{The homology computation}\label{sec:homology}
+
+\subsection{Set-up and conventions}
+$P(k)$ is the pointed simplicial set of \cite[Definition 2.4]{Cl2}; its nondegenerate $p$-simplices are the strict chains $\min<\lambda_1<\cdots<\lambda_{p-1}<\max$, and $|P(k)|\simeq\bigvee_{(k-1)!}S^{k-1}$. The reduced normalized chains, the integral homology and the $\Sigma_k$-action are computed in \texttt{chains.py} on top of the model \texttt{partitions.py} of \cite[Appendix C]{Cl2}. For a composition profile $\alpha=(n;k_1,\dots,k_n)$ the two cocomposition maps
+\[ c_\alpha\colon |P(k)|\longrightarrow |P(n)|\wedge|P(k_1)|\wedge\cdots\wedge|P(k_n)| \]
+are piecewise-smooth in the chain-and-height coordinates of \cite[\S\S A.9, A.21]{Cl2}: $c^{\Lev}_\alpha$ is the half-cut cell acting through the decomposition $\Psi$ of \cite[Lemma 4.4]{Cl2} with affine rescalings of heights (as already modelled in \texttt{checks\_transport.py}), and $c^{\tr}_\alpha$ is Ching's cut \cite[Definition A.31]{Cl2} transported through the levelling homeomorphism $\Theta$ (\texttt{trees.py}, \texttt{cuts.py}). Source and target have top dimension $k-1$. The induced map on top homology is computed by degree counting (\texttt{degree.py}): for random generic points in each top cell of the target, the preimages are found exactly by inverting the affine or rational pieces cell by cell (and re-verified by the forward map), the orientation signs are shuffle signs cross-checked against finite-difference Jacobians, and the images are expressed in the K\"unneth bases. The conventions, fixed before any comparison and recorded in the docstring of \texttt{degree.py}, are: (O1) a simplex is oriented by the order of its chain; (O2) smash products carry the product orientation, $n$-factor first, then the $k_i$-factors in block order, $|P(1)|=S^0$ contributing nothing; (O3) K\"unneth coordinates are read off at free product cells; (O4) $\Theta$ is a coordinate identification with no sign; (O5) relabellings have coefficient $+1$ and reorderings of factors contribute the Koszul sign $(-1)^{(k_i-1)(k_{i'}-1)}$.
+
+\subsection{Results}
+\begin{theorem}[$=$ Theorem \ref{thm:C}]\label{thm:C2}
+\leavevmode
+\begin{enumerate}[label=(\roman*),leftmargin=2em]
+\item (\texttt{checks\_homology\_C10.py}, $7.7$ s.) For $n\leq6$, $\Hred_i(|P(n)|;\Z)=0$ for $i\neq n-1$, $\Hred_{n-1}\cong\Z^{(n-1)!}$ with ranks $1,1,2,6,24,120$, no torsion in any degree (every echelon pivot is $\pm1$; the cycle bases have entries in $\{0,\pm1\}$). The $\Sigma_n$-character of $\Hred_{n-1}(|P(n)|;\Q)$ equals that of $\mathrm{Lie}(n)\otimes\sgn_n$ on every conjugacy class, $\mathrm{Lie}(n)$ being computed independently by Klyachko's formula $\mathrm{Lie}(n)=\Ind_{C_n}^{\Sigma_n}\omega$ \cite{Kly}. Table \ref{tab:char}. For $n=3,4,5$ the characters of $\mathrm{Lie}(n)$ and $\mathrm{Lie}(n)\otimes\sgn$ coincide; the sign twist is tested at $n=2$ and at $n=6$ on the classes $2^3$ and $6$, where $\mathrm{Lie}(6)$ has $-8$ and $+1$.
+\item (\texttt{checks\_homology\_C11.py}, $2$ s for $k\leq5$, $38$ s for $k\leq6$.) For every partition $\alpha$ of $\{1,\dots,k\}$, $k\leq6$ ($2+5+15+52+203$ partitions, $27{,}400$ target cells, $41{,}962$ affine pieces), $(c^{\Lev}_\alpha)_*=(c^{\tr}_\alpha)_*$ as integer matrices. Guards, all passed before the comparison: on the unit profiles $(1;k)$ and $(k;1,\dots,1)$ both maps are $+\id$; $\Sigma_k$-equivariance pointwise and on homology, with the Koszul sign (all of $\Sigma_4$ at $k=4$, generators and samples at $k=5,6$); arity $3$ reproduces \cite[Appendix B]{Cl2} exactly, $c^{\tr}(x,y)=(x,\tfrac{y-x}{1-x})$ on $x<y$ and $c^{\Lev}(x,y)=(2x,2y-1)$ on $x<\tfrac12<y$, basepoint elsewhere, the worked input $(\tfrac14,\tfrac34)\mapsto(\tfrac14,\tfrac23)$ resp.\ $(\tfrac12,\tfrac12)$, and $z\mapsto z[\nabla^2_i]$ on $\Hred_2(|P(3)|)$, at $273$ points in each of $3$ strata; degree sums are integers independent of the sample point and every image is certified a combination of product cycles; shuffle signs agree with finite-difference Jacobians on all $172$ pieces for $k\leq4$ and on samples beyond. Every generic target point has exactly one preimage under either map. Table \ref{tab:mat} lists the matrices for $k\leq4$.
+\item (\texttt{checks\_homology\_C12.py}, $0.9$ s for $k\leq5$, $16$ s for $k\leq6$.) With $O(k):=\Hred^{k-1}(|P(k)|;\Z)$ in the dual bases, right action $\varphi\cdot\sigma=A(\sigma)^T\varphi$, cohomological degree $k-1$, composition $\gamma_\alpha:=M_\alpha^T$ (both structures recomputed and re-asserted equal), and the Koszul sign $(-1)^{(p-1)(q-1)}$ for moving a factor of arity $p$ past one of arity $q$ as the only sign: units ($68$ identities; $308$ for $k\leq6$); $\Sigma_k$-equivariance for every partition and every $\sigma$ ($6634$ identities, of which the $936$ carrying a Koszul sign $-1$ each fail with sign $+1$, so the sign is forced); associativity as coassociativity along every chain $\alpha\leq\beta$ of partitions ($434$ chains, $223$ nontrivial, $51$ signed and forced; $2905$ chains for $k\leq6$). The generator $e\in O(2)$ is $\Sigma_2$-invariant; in $O(3)=\Z^2$, $[[x_1,x_2],x_3]=(1,0)$, $[[x_1,x_3],x_2]=(0,1)$, $[x_1,[x_2,x_3]]=(-1,-1)$, so the single relation is
+\[ [[x_1,x_2],x_3]+[[x_1,x_3],x_2]+[x_1,[x_2,x_3]]=0, \]
+which an independent model (the endomorphism operad of the shifted graded Lie algebra $\mathfrak{gl}(1|1)[1]$ with the graded-symmetric degree-one bracket, same Koszul conventions) identifies as the Jacobi relation of the operadic suspension of $\mathrm{Lie}$; the $(k-1)!$ left-normed brackets $[[\cdots[x_1,x_{s(2)}],\cdots],x_{s(k)}]$ are $\Z$-bases of $O(k)$ with determinants $+1,+1,-1,+1$ for $k=2,\dots,5$ and $+1$ for $k=6$.
+\end{enumerate}
+\end{theorem}
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+$n$ & classes & $\chi(\Hred_{n-1})=\chi(\mathrm{Lie}(n)\otimes\sgn)$\\
+\midrule
+2 & $e,\,(12)$ & $1,\,1$\\
+3 & $e,\,(23),\,(123)$ & $2,\,0,\,-1$\\
+4 & $1^4,\,2\cdot1^2,\,2^2,\,3\cdot1,\,4$ & $6,\,0,\,-2,\,0,\,0$\\
+5 & $1^5,\,2\cdot1^3,\,2^2\cdot1,\,3\cdot1^2,\,3\cdot2,\,4\cdot1,\,5$ & $24,\,0,\,0,\,0,\,0,\,0,\,-1$\\
+6 & $e;\ 2^3;\ 3^2;\ 6$; others & $120;\ +8;\ -3;\ -1$; $0$ \quad ($\mathrm{Lie}(6)$: $120,-8,-3,+1$)\\
+\bottomrule
+\end{tabular}
+\caption{Characters of the top homology of the partition complexes, $n\leq6$.}\label{tab:char}
+\end{table}
+
+\begin{table}[h]
+\centering\footnotesize
+\begin{tabular}{@{}ll@{}}
+\toprule
+profile (partition of $\{1..k\}$) & induced matrix, rows $=$ K\"unneth basis, columns $=$ cycle basis of \texttt{chains.py}\\
+\midrule
+$k=2$: $12$, $1|2$ & $[1]$, $[1]$\\
+$k=3$: $123$, $1|2|3$ & $I_2$\\
+\quad $1|23$;\ $12|3$;\ $13|2$ & $[-1\ {-1}]$;\ $[1\ 0]$;\ $[0\ 1]$\\
+$k=4$: $1234$, $1|2|3|4$ & $I_6$\\
+\quad $1|234$ & $\begin{bmatrix}1&0&-1&-1&0&1\\0&1&1&0&-1&-1\end{bmatrix}$\\
+\quad $12|34$;\ $13|24$;\ $14|23$ & $[1\ 1\ 0\ 0\ 0\ 0]$;\ $[0\ 0\ {-1}\ 0\ 0\ 0]$;\ $[0\ 0\ 0\ 0\ 0\ {-1}]$\\
+\quad $123|4$;\ $124|3$;\ $134|2$ & $\begin{bmatrix}1&0&0&0&0&0\\0&0&-1&-1&0&0\end{bmatrix}$;\ $\begin{bmatrix}0&1&0&0&0&0\\0&0&0&0&-1&-1\end{bmatrix}$;\ $\begin{bmatrix}0&0&0&1&0&0\\0&0&0&0&1&0\end{bmatrix}$\\
+\quad $1|2|34$;\ $1|23|4$;\ $1|24|3$ & $\begin{bmatrix}1&1&0&0&0&0\\0&0&0&-1&-1&0\end{bmatrix}$;\ $\begin{bmatrix}-1&0&1&1&0&0\\0&0&0&0&0&-1\end{bmatrix}$;\ $\begin{bmatrix}0&-1&0&0&1&1\\0&0&-1&0&0&0\end{bmatrix}$\\
+\quad $12|3|4$;\ $13|2|4$;\ $14|2|3$ & $\begin{bmatrix}1&0&0&0&0&0\\0&1&0&0&0&0\end{bmatrix}$;\ $\begin{bmatrix}0&0&-1&-1&0&0\\0&0&0&1&0&0\end{bmatrix}$;\ $\begin{bmatrix}0&0&0&0&-1&-1\\0&0&0&0&1&0\end{bmatrix}$\\
+\bottomrule
+\end{tabular}
+\caption{The induced maps on top homology for $k\leq4$; the same matrix for both structures in every case.}\label{tab:mat}
+\end{table}
+
+\subsection{What the computation does and does not show}
+It shows that the two structures of \cite[Theorem 1.3]{Cl2} induce one and the same operad on the homology of the derivatives, and that this operad is $\mathrm{Lie}(k)\otimes\sgn_k$ placed in homological degree $1-k$, whose algebras are graded Lie algebras with a bracket of degree $-1$, as the Whitehead product is; this is consistent with Ching's identification of $H_*(\partial_*\Id)$ \cite{Ch05}. The method never uses the cut-system operad $\Kop$, the levels operad $\Lop$ or the transport identities of \cite[\S\S A.46--A.71]{Cl2}, so it is an independent check of the \emph{conclusion} of Theorem 1.3 on homology, complementing the checks C1--C9 of \cite[Appendix C]{Cl2}, which verify identities inside its proof. It does not verify the higher coherences: agreement on homology is a consequence of, not equivalent to, the point-set theorem.
+
+\section{Scripts}\label{sec:scripts}
+All scripts are pure Python 3 (standard library, exact arithmetic with \texttt{fractions.Fraction} where possible) in \texttt{derivatives-id-spaces/audit-scripts/homology/}, importing the tracked models \texttt{partitions.py}, \texttt{trees.py}, \texttt{cuts.py} of \cite[Appendix C]{Cl2} from the parent directory.
+\begin{itemize}[leftmargin=2em]
+\item \texttt{chains.py}: reduced normalized chains of $P(n)$, integral homology by sparse column echelon form with a dense Smith-normal-form cross-check, $\Sigma_n$-action on top homology, Klyachko's induced character.
+\item \texttt{checks\_homology\_C10.py}: Theorem \ref{thm:C2}(i); ends \texttt{ALL C10 CHECKS PASSED}.
+\item \texttt{degree.py}: exact $\Theta$ and $\Theta^{-1}$, the two forward maps, per-cell inverses and shuffle signs, the induced matrices in K\"unneth coordinates, the equivariance data.
+\item \texttt{checks\_homology\_C11.py [kmax]}: Theorem \ref{thm:C2}(ii); default $k\leq5$; ends \texttt{ALL C11 CHECKS PASSED}.
+\item \texttt{checks\_homology\_C12.py [kmax]}: Theorem \ref{thm:C2}(iii); ends \texttt{ALL C12 CHECKS PASSED}.
+\end{itemize}
+Run each with \texttt{python <script>.py} from that directory. The one-line summaries above (\S\ref{sec:homology}) are the outputs of these runs on 2026-09-05/06.
+
+\begin{thebibliography}{HHLN}
+\bibitem[AC11]{AC1} G.~Arone and M.~Ching, \emph{Operads and chain rules for the calculus of functors}, Ast\'erisque 338 (2011).
+\bibitem[BB24]{BB} M.~Blans and T.~Blom, \emph{On the chain rule in Goodwillie calculus}, arXiv:2410.20504.
+\bibitem[BH26]{BH} M.~Blans and G.~Heuts, \emph{A characterization of the spectral Lie operad}, arXiv:2606.17313.
+\bibitem[Ch05]{Ch05} M.~Ching, \emph{Bar constructions for topological operads and the Goodwillie derivatives of the identity}, Geom. Topol. 9 (2005), 833--934.
+\bibitem[Ch12]{Ch12} M.~Ching, \emph{Bar-cobar duality for operads in stable homotopy theory}, J. Topol. 5 (2012), 39--80.
+\bibitem[Ch21]{Ch21} M.~Ching, \emph{Infinity-operads and Day convolution in Goodwillie calculus}, J. London Math. Soc. 104 (2021).
+\bibitem[CH20]{CH20} H.~Chu and R.~Haugseng, \emph{Enriched $\infty$-operads}, Adv. Math. 361 (2020); arXiv:1707.08049.
+\bibitem[Cl1]{Cl1} D.~A.~Clark, \emph{On the Goodwillie derivatives of the identity in structured ring spectra}, arXiv:2004.02812.
+\bibitem[Cl2]{Cl2} D.~A.~Clark, \emph{The partition poset complex and the Goodwillie derivatives of the identity in spaces}, preprint (2026); \url{https://github.com/dclark202/math/tree/main/derivatives-id-spaces}.
+\bibitem[EKMM]{EKMM} A.~D.~Elmendorf, I.~Kriz, M.~A.~Mandell and J.~P.~May, \emph{Rings, modules, and algebras in stable homotopy theory}, Math. Surveys Monogr. 47, AMS (1997).
+\bibitem[Hau22]{Hau} R.~Haugseng, \emph{$\infty$-operads via symmetric sequences}, Math. Z. 301 (2022); arXiv:1708.09632.
+\bibitem[HHLN]{HHLN} R.~Haugseng, F.~Hebestreit, S.~Linskens and J.~Nuiten, \emph{Lax monoidal adjunctions, two-variable fibrations and the calculus of mates}, Proc. London Math. Soc. (2023); arXiv:2011.08808.
+\bibitem[Heu21]{HeAnn} G.~Heuts, \emph{Lie algebras and $v_n$-periodic spaces}, Ann. of Math. 193 (2021), 223--301.
+\bibitem[Heu24]{HeKD} G.~Heuts, \emph{Koszul duality and a conjecture of Francis--Gaitsgory}, arXiv:2408.06173.
+\bibitem[Kly74]{Kly} A.~A.~Klyachko, \emph{Lie elements in the tensor algebra}, Sib. Math. J. 15 (1974), 914--920.
+\bibitem[Lur17]{HA} J.~Lurie, \emph{Higher algebra}, 2017, \url{https://www.math.ias.edu/~lurie/papers/HA.pdf}.
+\bibitem[MG16]{MG16} A.~Mazel-Gee, \emph{Quillen adjunctions induce adjunctions of quasicategories}, New York J. Math. 22 (2016), 57--93.
+\bibitem[PS18]{PS18} D.~Pavlov and J.~Scholbach, \emph{Admissibility and rectification of colored symmetric operads}, J. Topol. 11 (2018), 559--601.
+\bibitem[PS19]{PeSh} M.~P\'eroux and B.~Shipley, \emph{Coalgebras in symmetric monoidal categories of spectra}, Homology Homotopy Appl. 21 (2019), 1--18.
+\end{thebibliography}
+
+\end{document}
