@@ -55,6 +55,11 @@ Thumbs.db
 
 ## Working notes, not part of the published repo
 technical-review.md
+.ref/
+derivatives-id-spaces/AUDIT.md
+derivatives-id-spaces/INFTY-COMPARISON.md
+derivatives-id-spaces/REPAIR-NOTES.md
+derivatives-id-spaces/arxiv-preview.pdf
 
 ## Working leftovers, not part of any compiled document
 derivatives-id-algO/scrap.text

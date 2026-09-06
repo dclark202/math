@@ -23,16 +23,16 @@ Develops the same material at length: operads and their algebras, an overview of
 
 Three self-contained undergraduate texts, each with worked examples and exercises at a range of difficulty (challenge problems are marked with a `*`). Written to accompany a lecture course rather than replace one.
 
-**[Abstract Algebra and Number Theory](Abstract-algebra/Abstract-algebra.pdf)** · 74 pp.
+**[Abstract Algebra and Number Theory](course-notes/Abstract-algebra/Abstract-algebra.pdf)** · 74 pp.
 Divisibility and the Euclidean algorithm, modular arithmetic, RSA encryption, groups, symmetric and dihedral groups, normal subgroups and quotients, group actions and counting, matrix groups.
 
-**[Linear Algebra](Linear-algebra/Linear-algebra.pdf)** · 93 pp.
+**[Linear Algebra](course-notes/Linear-algebra/Linear-algebra.pdf)** · 93 pp.
 Linear systems and row reduction, vector spaces, determinants, eigenvalues and diagonalization, Markov chains, inner products and orthogonality, least squares, singular value decomposition.
 
-**[Multivariable Calculus](Multivariable-calculus/Multivariable-calc.pdf)** · 99 pp.
+**[Multivariable Calculus](course-notes/Multivariable-calculus/Multivariable-calc.pdf)** · 99 pp.
 Vectors, curves and surfaces, curvature and torsion, partial derivatives, optimization and Lagrange multipliers, multiple integrals in several coordinate systems, vector fields, and Green's, Stokes' and the divergence theorems.
 
-Alongside the algebra notes, [`Abstract-algebra/Python script/`](Abstract-algebra/Python%20script/) holds fourteen Jupyter notebooks implementing the algorithms as they come up: the Euclidean algorithm, the Chinese remainder theorem, Euler's totient, primitive roots, Cayley tables, and working RSA, ElGamal and Caesar ciphers.
+Alongside the algebra notes, [`course-notes/Abstract-algebra/Python script/`](course-notes/Abstract-algebra/Python%20script/) holds fourteen Jupyter notebooks implementing the algorithms as they come up: the Euclidean algorithm, the Chinese remainder theorem, Euler's totient, primitive roots, Cayley tables, and working RSA, ElGamal and Caesar ciphers.
 
 ## License
 
