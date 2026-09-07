@@ -1,0 +1,482 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+
+% top-level sections are unnumbered; the parts of the corrected framework, its statements and its displays
+% carry plain numbers (displays as (C1), (C2), ... to keep them apart from the displays of the paper)
+\renewcommand{\thesubsection}{Part~\arabic{subsection}}
+\renewcommand{\theequation}{C\arabic{equation}}
+
+% environments and macros for the corrected framework (correction.tex)
+\theoremstyle{plain}
+\newtheorem{ctheorem}{Theorem}
+\newtheorem{cproposition}[ctheorem]{Proposition}
+\newtheorem{clemma}[ctheorem]{Lemma}
+\newtheorem{ccorollary}[ctheorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{cdefinition}[ctheorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{cremark}[ctheorem]{Remark}
+
+\newcommand{\file}[1]{\texttt{#1}}
+\newcommand{\Cal}[1]{\mathcal{#1}}
+\newcommand{\Alg}[1]{\mathsf{Alg}_{\mathcal{#1}}}
+\newcommand{\Id}{\mathtt{Id}}
+\newcommand{\TQ}{\mathsf{TQ}}
+\newcommand{\Tot}{\operatorname{\mathsf{Tot}}}
+\newcommand{\holim}{\operatorname{holim}}
+\newcommand{\Nl}{\mathbf{N}_{\mathsf{lev}}}
+\newcommand{\Ncirc}[1]{\mathbf{N}^{\hat{\circ}#1}}
+\newcommand{\Oper}{\mathsf{Oper}}
+\newcommand{\coend}[1]{\mathsf{coEnd}(#1)}
+\newcommand{\SymSeq}{\mathsf{SymSeq}}
+\newcommand{\bdel}{\mathbf{\Delta}}
+\newcommand{\Dres}{\bdel^{\mathsf{res}}}
+\newcommand{\circhat}{\hat{\circ}}
+\newcommand{\circdot}{\odot}
+\newcommand{\tensorhat}{\hat{\otimes}}
+\newcommand{\tensordot}{\dot{\otimes}}
+\newcommand{\boxcirc}{\mathring{\square}}
+\newcommand{\Isym}{\Cal{I}^{\Sigma}}
+\newcommand{\SD}{\Sigma{\cdot}\Delta^{\bullet}}
+\newcommand{\pt}{*}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Spt}{\mathsf{Spt}}
+\newcommand{\Top}{\mathsf{Top}_*}
+\newcommand{\Map}{\operatorname{Map}}
+\newcommand{\ptC}{\boldsymbol{\phi}}
+\newcommand{\Tr}{\mathsf{T}}
+\newcommand{\wt}{w}
+\newcommand{\Dm}{\mathrm{D}}
+\newcommand{\Rr}{\mathrm{R}}
+\newcommand{\corr}[1]{\par\smallskip\noindent\textbf{#1.}\ }
+
+\title{Errata and corrections to \emph{On the Goodwillie derivatives of the identity in structured ring spectra}}
+\author{Duncan A. Clark\thanks{This document was prepared by Claude model Fabel 5.1 (Anthropic, Sept. 2026). The finite combinatorial claims involved in the corrections were checked by computer.}}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\noindent The numbering of statements and displays refers to the published version of the paper (it is the same in the arXiv posting). The corrections are listed by section of the paper; the last section, \emph{Corrected framework for Sections 6--8}, contains the corrected definitions and the resulting proofs of the main results, divided into Parts 1--8. Statements and displays of this note carry single numbers (Definition~4, display (C2)), those of the paper the numbers of the paper (Definition 6.4, display (30)).
+
+\section*{Summary}
+\label{sec:summary}
+
+The main results of the paper, Theorem 1.1(a) and (b), are correct, but their proofs as published are not, for the following reasons.
+\begin{enumerate}[leftmargin=2em,itemsep=2pt]
+\item Proposition 6.17 is false: the composition product $\circdot$ of $\Nl$-objects is not associative. Consequently the notions of $\Nl$-operad, of algebra and of module, which are defined in Section 6 as monoids and their modules with respect to $\circdot$, are not well defined as stated. The associativity actually used in Sections 7 and 8 concerns compositions of uniform length on each level, and the definitions are corrected accordingly (\ref{sec:corr:operads}). The indexing by profiles (Definition 6.4) is replaced by leveled trees (\ref{sec:corr:trees}).
+\item Remark 7.9 is false and the proof of Proposition 7.10 is incorrect: for $\Sigma$-copowered $\Cal X$ the comparison map $\theta$ of Section 5.5 is not invertible, so the maps $\mu$ constructed there do not exist. The composition of the coendomorphism operads, of the operad $\Cal A$ of Section 7.15 and the algebra structure on $\Tot\Cal X$ in Section 8.1 all depend on these maps. The repair consists in bracketing iterated box-circle products from the right, for which the maps $\theta$ themselves provide the compositions (\ref{sec:corr:coend}--\ref{sec:corr:prop59}).
+\item The proof of Proposition 7.16 uses cosimplicial maps from a point into $\Delta^\bullet$, which do not exist, and a construction that does not produce maps of $\Nl$-operads; the statement is correct with a different map (\ref{sec:corr:A}). The same non-existent map is used in the proof of Theorem 1.1(b) (\ref{sec:corr:thm1b}).
+\end{enumerate}
+The remaining corrections are of a local nature: a wrong hypothesis in Proposition 3.8, a false sentence in Remark 3.9, a false isomorphism in Example 7.8, a missing unit condition in Definition 6.36, and a number of slips and imprecisions. The construction of the resolution $C(\Cal O)$ and the results of Sections 2--5 are unaffected.
+
+\section*{Section 1}
+\label{sec:s1}
+
+\corr{Display (1) and the sentence following it; first paragraph of Section 4} The Bousfield--Kan resolution of an $\Cal O$-algebra $X$ is $X\to UQX\to(UQ)^2X\to\cdots$, an endofunctor of $\Alg{O}$, whereas $QU$ is the comonad on $\mathsf{Alg}_J$. In display (1) the left-hand side $\partial_*(QU)^{\bullet+1}$ should read $\partial_*(UQ)^{\bullet+1}$; ``whose terms $\partial_*(QU)^{k+1}$'' should read ``whose terms $\partial_*(UQ)^{k+1}$''; in the first paragraph of Section 4, ``the $n$-th derivative of $(QU)^k$'' should read ``of $(UQ)^k$''. Section 1.4 is correct as printed: $\partial_*(QU)\simeq B(\Cal O)$ there refers to the comonad $QU$ on $\mathsf{Alg}_J$, and $QU(Y)=J\circ_{\Cal O}Y\cong(J\circ_{\Cal O}J)\circ_JY$ for a $J$-algebra $Y$.
+
+\corr{Section 1.4, last paragraph} ``see Definition 7.2 along with Propositions 7.4 and 7.13'' should read ``Propositions 7.4 and 7.12'': the statement that $\Oper$-algebras are operads is Proposition 7.12; 7.13 is a corollary about modules.
+
+\corr{Typos} ``occuring'' (Section 1.2; note that the phrase ``naturally occurring'' quoted there is the wording of the abstract, while Theorem 1.1 says ``natural''), ``stabalization'' (Section 1.3), ``proofs regarding of $\Nl$-operads'' (Section 1.6).
+
+\section*{Section 2}
+\label{sec:s2}
+
+\corr{Section 2.2, the tensor of symmetric sequences} In ``where $\pi$ runs over all surjections $\mathbf k=\{1,\dots,n\}\to\{1,\dots,n\}=\mathbf n$'' the source should be $\mathbf k=\{1,\dots,k\}$, and $\pi$ should run over all maps $\mathbf k\to\mathbf n$ (fibres of size $0$ allowed), as in the definition of the tensor of symmetric sequences in the reference [Har-1]; restricting to surjections gives the correct answer only for reduced $Y$. Since the symmetric sequence $\Sigma$ of Definition 7.2 is not reduced ($\Sigma[0]$ is a point) and Corollary 7.13 uses arity $0$, the formulas of Section 2.2, in particular the orbit formula (3), should be understood for arbitrary symmetric sequences, with $k_i\geq0$.
+
+\corr{Remark 2.4} ``let $1\leq d_1\leq\cdots d_m$ be the distinct entries of multiplicity $p_i$'' should read ``let $1\leq d_1<\cdots<d_m$ be the distinct entries, $d_i$ occurring with multiplicity $p_i$''. The identification $H(k_1,\dots,k_n)\cong\Sigma_{d_1}^{\wr p_1}\times\cdots\times\Sigma_{d_m}^{\wr p_m}$ and the orbit formula (3) are correct.
+
+\corr{Section 2.7 and Theorem 1.1} ``we require that the underlying symmetric sequence of $\Cal O[n]$ be $\Sigma$-cofibrant'' should read ``\dots of $\Cal O$ be $\Sigma$-cofibrant''. This standing assumption is used throughout (change-of-operads Quillen equivalences, the factorization $\Cal O\to J\to\tau_1\Cal O$) and should be part of the statement of Theorem 1.1: ``Let $\Cal O$ be a $\Sigma$-cofibrant operad in spectra such that \dots''.
+
+\corr{Section 2.11} ``$\Omega^\infty_{\Alg{O}}$ gives an $\Cal O[1]$-module trivial $\Cal O$-algebra structure above level 2'': the forgetful functor along $\Cal O\to\tau_1\Cal O$ lets $\Cal O[n]$ act trivially for every $n\geq2$; read ``in levels $\geq2$''.
+
+\corr{Typos} ``the category algebras over a reduced operad'' (Section 2, missing ``of''); ``a tensoring of $\mathsf{Top}$ which may be extended to $\mathsf{Top}$ by first adding a disjoint basepoint'' (the first $\mathsf{Top}$ should be $\Top$); ``with with'' (Section 2.2); ``(reflective) coequalizer'' should be ``(reflexive) coequalizer'' (Section 2.10); ``Bousfield-Friendlander'' (Section 2.11).
+
+\section*{Section 3}
+\label{sec:s3}
+
+\corr{Proposition 3.8} As stated (``$M$ a right $\Cal R$-module with $n$ commuting actions of $\Cal R$, i.e., right $\Cal R^{\wedge n}$-module''), the left-hand side $(M\wedge_{\Cal R^{\wedge n}}X^{\wedge n})_{\Sigma_n}$ is not defined, since $\Sigma_n$ acts on $M\wedge_{\Cal R^{\wedge n}}X^{\wedge n}$ only if $M$ carries a right $\Sigma_n$-action compatible with the $\Cal R^{\wedge n}$-action. The statement should read: \emph{Let $\Cal R$ be a ring spectrum, $X$ a left $\Cal R$-module and $M$ a right $\Cal R^{\wr n}$-module. Then $(M\wedge_{\Cal R^{\wedge n}}X^{\wedge n})_{\Sigma_n}\cong M\wedge_{\Cal R^{\wr n}}X^{\wedge n}$.} Proof: $X^{\wedge n}$ is a left $\Cal R^{\wr n}$-module by permutation of the factors, $\Cal R^{\wr n}=(\Sigma_n)_+\wedge\Cal R^{\wedge n}$, and coequalizing the $\Cal R^{\wedge n}$-relations and the $\Sigma_n$-relations in either order yields the same colimit. All applications in the paper have $M=\widetilde{\partial_n}F$, an $(\Cal O[1],\Cal O[1]^{\wr n})$-bimodule, and are unaffected. In the sentence preceding the proposition, ``via the unit map $I\to\Cal R$'' should read ``via the unit map $S\to\Cal R$''.
+
+\corr{Remark 3.9} The second sentence, ``if $X$ is a cofibrant $\Cal O$-algebra, then $\TQ(X)$ is cofibrant in $\mathsf{Mod}_{\Cal O[1]}$ and therefore Proposition 3.8 provides that $\TQ(X)^{\wedge n}$ is a cofibrant as a left $\Cal O[1]^{\wr n}$-module'', is incorrect: Proposition 3.8 says nothing about cofibrancy, and the claim is false in general (for $\Cal O[1]=S$ and $Y=\Sigma^\infty S^k$, the $\Sigma_n$-spectrum $Y^{\wedge n}=\Sigma^\infty S^{nk}$ has fixed points and is not a retract of a cell $(\Sigma_n)_+$-module). What is true is that $\TQ(X)^{\wedge n}$ is a cell $\Cal O[1]^{\wedge n}$-module. Nothing in the paper depends on the sentence: (10) and Proposition 3.11(iii) are stated with derived smash products, computed with $\widetilde{\partial_n}F$, respectively $M[n]$, cofibrant as right modules.
+
+\corr{Proof of Proposition 3.11(ii)} In the display, the middle term ``$i_nM\circ_{\tau_1\Cal O}(\tau_1\circ_{\Cal O}(X))$'' should read ``$i_nM\circ_{\tau_1\Cal O}(\tau_1\Cal O\circ_{\Cal O}(X))$''.
+
+\corr{Typos} ``Since, the theory been recognized'' (Section 3, missing ``has''); ``for a more detail'' (Section 3); ``The above equivalence (10) hold'' (Remark 3.5); ``readibility'' (Section 3.3); ``we are lead to'' (Section 3.13).
+
+\section*{Section 4}
+\label{sec:s4}
+
+\corr{Section 4.6, the sentence after display (16)} ``Note that $J^{(k)}$ is a cofibrant $(\Cal O,\Cal O)$-bimodule'' is asserted without argument; it is what makes Proposition 3.11 applicable to $M=J^{(k)}$ and identifies the point-set iterate $J^{(k)}$ with the derived one. It follows from the fact that $J$ is cofibrant as a left $\Cal O$-module, $\Cal O\to J$ being a cofibration of operads (Harper--Hess, Ching--Harper); a reference should be given.
+
+\corr{Section 4.6, after Proposition 4.7} The sentence ``is an equivalence for $k\geq n\geq1$ as the objects as a corollary to the higher stabilization estimates from Proposition 2.18'' is garbled. It should read: ``is an equivalence for $k\geq n\geq1$: by Proposition 4.7 both sides receive compatible equivalences from $P_n\Id$, so the tower $\{\holim_{\bdel^{\leq k-1}}P_n((UQ)^{\bullet+1})\}_k$ is constant from $k=n$ on, and $\holim_{\bdel}$ is its limit (Section 2.17); similarly for $D_n$ and $\partial_n$.''
+
+\corr{Display (18) and Example 4.8} The terms $(\tau_1\Cal O)^{(m)}[n]$ and $(\tau_1\Cal O\circ_{\Cal O}\tau_1\Cal O)[2]$ are to be read with derived relative composition products ($\tau_1\Cal O$ is not cofibrant over $\Cal O$), equivalently as $J^{(m)}[n]$; the convention ``$\circ$ means $\circ^{\mathsf h}$'' was announced only inside the proof of Proposition 3.11.
+
+\corr{Section 4.1} In the Snaith splitting (14) the orbits are homotopy orbits, $(\Sigma^\infty X^{\wedge n})_{h\Sigma_n}$, and the splitting is for connected $X$. Typo ``enocuntered'' (Section 4.5).
+
+\section*{Section 5}
+\label{sec:s5}
+
+\corr{Example 5.3} ``More generally, there are maps of the form $m_{p,q}\colon J^{(p)}\circ J^{(q)}\to J^{(p+q)}$ for $p+q=n$, $p,q\geq0$'' should read
+\[m_{p,q}\colon J^{(p+1)}\circ J^{(q+1)}\longrightarrow J^{(p+q+1)},\qquad p+q=n,\]
+since $C(\Cal O)^p=J^{(p+1)}$; the maps multiply the last copy of $J$ in the first factor with the first copy in the second, as in the displayed $m_{0,1}$, $m_{1,0}$ and in Section 1.4.
+
+\corr{Section 5.5, unit isomorphisms} ``the inclusion of the vertex $\underline I^0\circ\Cal X^n$ into the diagram defining $(\Cal X\boxcirc\Cal X)^n$'' should read ``\dots defining $(\underline I\boxcirc\Cal X)^n$''.
+
+\corr{Proof of Proposition 5.8} The ``routine calculation'' uses that $J^{(p)}\circ_{\Cal O}(J\circ J)\circ_{\Cal O}J^{(q)}$ is unambiguous, which holds because $(A\circ_{\Cal O}B)\circ C\cong A\circ_{\Cal O}(B\circ C)$ ($(-)\circ C$ preserves colimits) and $A\circ(B\circ_{\Cal O}C)\cong(A\circ B)\circ_{\Cal O}C$ ($A\circ(-)$ preserves reflexive coequalizers, these being sifted colimits), and that $c$ is a map of $(J,J)$-, hence of $(\Cal O,\Cal O)$-bimodules. The proposition is correct.
+
+\corr{Proposition 5.9} The statement is correct; the proof given in Section 8.1 is not, see the corrections to Section 8. The corrected proof is Proposition \ref{cprop:59}.
+
+\corr{Typos} ``cosimplicial objects which admits'' (Section 5); ``coendmorphism'' (Remark 5.4).
+
+\section*{Section 6}
+\label{sec:s6}
+
+\corr{Proposition 6.17} The statement that the category of $\Nl$-objects with the composition product $\circdot$ is monoidal is false: the unit statement is correct, but $(\Cal P\circdot\Cal Q)\circdot\Cal R$ and $\Cal P\circdot(\Cal Q\circdot\Cal R)$ are not isomorphic in general, for two independent reasons. (a) In $(\Cal P\circdot\Cal Q)_\ell$ all nodes on level $j$ of the outer profile are blown up by profiles of the same length $\ell_j$, whereas in $\Cal P\circdot(\Cal Q\circdot\Cal R)$ each node carries the factor $(\Cal Q\circdot\Cal R)_{\ell_j}(\underline u)=\coprod_k\Cal Q_k\tensordot(\Cal R^{\tensorhat k})_{\ell_j}(\underline u)$, and the tensor product over the nodes of these coproducts contains summands in which two nodes of the same level use $\Cal Q_k$ and $\Cal Q_{k'}$ with $k\neq k'$; for $\underline p=(2,(1,1),(1,1))$ the right-hand side has $11$ summands (without inserted unary levels) and the left-hand side $9$. The isomorphism (30) concerns only the summands of uniform length. (b) The composite $\underline p'\circ\underline Q$ of Definition 6.12 records only the levelwise multiset union of the $\underline q^j_i$, so the grouping of the lower levels according to the nodes of $\underline p'$ is lost: for $\underline p'=(2,(4,4))$, $\underline q^2_1=\underline q^2_2=(2,(2,2))$ and $\Cal R$-data $\{A,A,B,B\}$ on the last level with $A=(1,(2))$, $B=(2,(1,1))$, the left-hand side has one summand and the right-hand side two (groupings $\{A,A\},\{B,B\}$ and $\{A,B\},\{A,B\}$) with the same tensor factors. Consequently there is no natural map in either direction defined on all summands. The correct statement is Lemma \ref{clem:assoc}, for the tree-indexed objects of \ref{sec:corr:objects}: the two iterates agree on the summands of uniform length, and the second contains in addition the mixed-length summands. Definitions 6.18, 6.20, 6.28, 6.30, 6.32 (monoids and algebras with respect to $\circdot$) are replaced by Definitions \ref{cdef:operad} and \ref{cdef:algebra}.
+
+\corr{Definitions 6.14 and 6.15} They are stated for reduced $\Nl$-objects, but are applied to the unit $\Cal I$ of Proposition 6.17, which is not reduced ($\Cal I_0(\emptyset;1)$ is initial), and to $\Cal P\circdot\Cal Q$, which is not reduced when some $\Cal P_k(\underline1_k;1)$, $\underline1_k=(1,(1),\dots,(1))$, is nontrivial: $(\Cal P\circdot\Cal Q)_0(\emptyset;1)\cong\Cal P_0(\emptyset;1)\amalg\coprod_{k\geq1}\Cal P_k(\underline1_k;1)$. The definitions should be stated for objects satisfying only the first condition of Definition 6.10. Relatedly, Example 6.16 lists only the summands of $(\Cal P\circdot\Cal Q)_3(\underline p;t)$ with all $\ell_j\geq1$; since $\Ncirc0[1]=\{\emptyset\}$ and $\Cal Q_0(\emptyset;1)=\mathbf1$, every insertion of unary levels into $\underline p$ contributes a further summand, and the coproduct is infinite.
+
+\corr{Section 6.25} ``$\Isym$ is a nonsymmetric $\Nl$-operad whose composition maps are induced by the block matrix inclusions $\Sigma_n\times(\Sigma_{k_1}\times\cdots\times\Sigma_{k_n})\to\Sigma_{k_1+\cdots+k_n}$'': since $\Isym$ is concentrated in level $1$, $(\Isym\circdot\Isym)_\ell$ is nontrivial only for $\ell=1$, where it is $\mathbf\Sigma[n]\otimes\mathbf\Sigma[n]$, and the composition is the group multiplication $\Sigma_n\times\Sigma_n\to\Sigma_n$; this is also what gives $\mathsf{Alg}^\omega_{\Isym}\cong\SymSeq$.
+
+\corr{Propositions 6.22, 6.24 and 6.34} These are stated without proof and concern the monad $\Cal P\circdot(-)$, whose multiplication requires compositions of mixed lengths; in the corrected framework it exists only when the level-contraction maps are invertible, as for $\Oper$ (Remark \ref{crem:monad}). Proposition 6.24 in particular asserts a composition of $\mathbb U\Cal P$ that blows up nodes of one level by profiles of different lengths. None of the three is used in Sections 7 and 8. In the definition of $s(\underline p)$ in Section 6.23, read $j\in\{1,\dots,\ell\}$ and $i\in\mathbf n^{j-1}$.
+
+\corr{Definition 6.36} The unit condition for the $\Cal P$-action is missing: in addition to (32) and (33) one must require $\eta_1\circ(\varepsilon\tensordot_\Sigma\id)=\id_M$ for the unit $\varepsilon\colon\Isym\to\Cal P$, as in Definition 6.20 for algebras; it does not follow from (32) and (33), and without it Corollary 7.13 fails (see the corrections to Section 7). ``If $M$ is concentrated at level $0$'' means concentrated in arity $0$. The corrected definition is Definition \ref{cdef:module}.
+
+\corr{Slips} ``subject equivariance'' (Definition 6.2); in Remark 6.7 the bijection between profiles and the indexing factors of iterated $\circhat$ holds only for profiles with positive entries, and ``(Definition (4))'' refers to an equation; ``$(n^j_1,\dots,n^j_{n^1})_{\Sigma_{n^{j-1}}}$'' should read ``$(n^j_1,\dots,n^j_{n^{j-1}})_{\Sigma_{n^{j-1}}}$'' (Section 6.7); in (29), ``$\bigotimes_{i\in\mathbf n^j}$'' should read ``$\bigotimes_{i\in\mathbf n^{j-1}}$''; ``Note than algebra'' (Section 6.31); ``an algebra $X$ over $\Cal P$ will always be reduced, i.e., $X[0]=\ptC$'' (Section 6.31) is not a consequence of the definition and is false for $\Cal P=\Oper$, whose algebras include non-reduced operads; ``commutitivity'' (Section 6.35).
+
+\section*{Section 7}
+\label{sec:s7}
+
+\corr{Definition 7.2 and Remark 7.3} In Definition 7.2 the exponent should be $\Sigma^{\circ\ell}$, not $\Sigma^{\boxcirc\ell}$, as in (34); and ``for $\underline p\in\Ncirc k[t]$ we set $\Oper_\ell$'' mixes $k$ and $\ell$. In Remark 7.3, ``$\Oper_1(\emptyset;n)\cong\emptyset$ $(n\neq1)$'' should read $\Oper_0(\emptyset;n)$, and in the formula for $\Oper_2$ the group is $\Sigma_{p_1}\times\cdots\times\Sigma_{p_m}$. The formulas themselves are correct.
+
+\corr{Proposition 7.4} The proposition is correct in the corrected framework (Proposition \ref{cprop:oper}), but not as argued. (i) Display (37) identifies $(\Oper_2\tensordot_\Sigma(\Oper_1\circhat\Oper_2))[(n,(\underline p_1,\dots,\underline p_n))]$ with the summand $\Sigma^{\circ3}[(n,(\underline p_1,\dots,\underline p_n))]$ of $\Sigma\circ(\Sigma\circ\Sigma)$; but the object on the left, with $\Sigma^{\circ2}[\underline p']$ for $\underline p'=(n,(s_1,\dots,s_n))$ and the values at the single profiles $\underline p_i$ tensored over an unordered family, is smaller than that summand whenever two of the $\underline p_i$ of equal weight differ: its cardinality is $\frac{t!\,n!}{\prod p_i!}\prod_i|\Sigma^{\circ2}[\underline p_i]|/\prod_is_i!$ (with $p_i$ the multiplicities of the weights), while the summand has cardinality $\frac{n!}{|\mathrm{Aut}\{\underline p_i\}|}\,t!\prod_i|\Sigma^{\circ2}[\underline p_i]|/\prod_is_i!$. Consequently the components of $\xi$ as described are not bijections. The identification holds when the inner factors are the whole symmetric sequences $(\Sigma\circ\Sigma)[s_i]$, which is how the composition domains are defined in \ref{sec:corr:objects}. (ii) The displayed associativity relation equates two maps whose domains, $(\Oper_n\tensordot_\Sigma(\Oper_{k_1}\circhat\cdots))\tensordot_\Sigma(\Oper_{\ell_{1,1}}\circhat\cdots)$ and $\Oper_n\tensordot_\Sigma((\Oper_{k_1}\tensordot_\Sigma(\cdots))\circhat\cdots)$, are identified through Proposition 6.17; the content is the commutativity of the displayed square of isomorphisms. (iii) In the unitality sentence, ``for all $n\geq0$ and $\underline p\in\Ncirc1$'' should refer to $\underline p\in\Ncirc n$.
+
+\corr{Example 7.8} The second half, beginning ``Further, $\coend{\Cal X}$ is quadratic'', and in particular the isomorphism $\coend{\Cal X}_3(\underline p;t)\cong\coend{\Cal X}_2(n,(k_i);k)\otimes_{\Sigma_k}\coend{\Cal X}_2(k,(t_j);t)$ and its generalization (38), are false. Every composite $(\psi_2\boxcirc\id)\circ\psi_1$ lies in $\coend{\Cal X}_3$, but not conversely: for $\Cal X=\Sigma\cdot\Cal Y$ in $\mathsf{Top}$ with connected $\Cal Y[n]$ one has $\coend{\Cal X}_3(\underline p;t)\cong\Oper_3(\underline p)\times\Map_{\Dres}(\Cal Y[t],\Cal Y^{\square3}[\underline p])$, while the right-hand side is $\Oper_3(\underline p)\times\Map_{\Dres}(\Cal Y[k],\Cal Y^{\square2}[n,(k_i)])\times\Map_{\Dres}(\Cal Y[t],\Cal Y^{\square2}[k,(t_j)])$; for $\Cal Y[n]=\Delta^\bullet$ these are $\Map_{\Dres}(\Delta^\bullet,(\Delta^\bullet)^{\square3})$ and $\Map_{\Dres}(\Delta^\bullet,(\Delta^\bullet)^{\square2})^2$, which are not isomorphic. Nothing in the paper depends on this. The sentence should be deleted, or weakened to the statement that the compositions induce maps $\coend{\Cal X}_2\otimes_{\Sigma_k}\coend{\Cal X}_2\to\coend{\Cal X}_3$.
+
+\corr{Remark 7.9 and Proposition 7.10} The claim that $\theta$ has an inverse when $\Cal X$ is $\Sigma$-copowered, and the maps $\mu_{\ell_1,\dots,\ell_k}$ constructed in the proof of Proposition 7.10 as inverses of $\theta$, are incorrect. For $\Cal X=\Sigma\cdot\Cal Y$ the map $\theta$ is, on the factors coming from $\Cal Y$, the natural map $(\bigotimes_iA_i)\square(\bigotimes_iB_i)\to\bigotimes_i(A_i\square B_i)$, from a box product formed with a cosimplicial splitting common to all factors to a tensor product of box products with independent splittings; it is injective but not surjective. For instance, with $\Cal Y[n]$ the cosimplicial set of vertices of $\Delta^\bullet$, the objects $((\Cal X\boxcirc\Cal X)\boxcirc\Cal X)[(2,(1,1),(1,1))]$ and $(\Cal X\boxcirc(\Cal X\boxcirc\Cal X))[(2,((1,(1)),(1,(1))))]$ have $8$ and $10$ elements in cosimplicial degree $1$; for $\Cal Y[n]=\Delta^\bullet$ the same phenomenon occurs. The step in the proof of Proposition 7.10 that identifies $\bigotimes_i\Cal Y^{\square2}[\underline p_i]$ with the corresponding part of $\Cal Y^{\square3}[\underline p]$ is exactly this non-existent inverse. As a result, the composition $\xi$ of $\coend{\Cal X}$, the operad $\Cal A$ of Section 7.15 and the argument of Section 8.1 are not established by the paper. The corrected statement is Proposition \ref{cprop:coend}: with iterated box-circle products bracketed from the right, the maps $\theta$ themselves, which go from the grouped to the flat bracketing, define the composition, and no inverse is needed. Two further points: the symmetric structure described in the first part of the proof does use $\Sigma$-copoweredness (for a general $\Cal X$ the $\Sigma_t$-equivariant maps $\Cal X[t]\to\Cal X^{\boxcirc\ell}[\underline p]$ carry no left $\Sigma_t$-action); and ``$(\Isym\circhat\Isym)(\underline q;k)\cong\Sigma_n\ltimes(\Sigma_{k_1}\times\cdots\times\Sigma_{k_n})\leq\Sigma_k$'' is wrong unless all $k_i$ are equal (the set is $\Sigma_n\times\prod\Sigma_{k_i}$, and the block-permutation part of $H(k_1,\dots,k_n)$ is $\prod_i\Sigma_{p_i}$).
+
+\corr{Corollary 7.13} The equivalence requires the unit condition added to Definition 6.36 (see the corrections to Section 6): with $\Oper_1(0;0)=\Sigma_0=\pt$, the datum $\eta_1\colon M\to M$ is only forced to be idempotent by (32) and (33), while a $\Cal W$-algebra in the usual sense has no such datum. With that condition the argument is correct (Corollary \ref{ccor:713}).
+
+\corr{Proposition 7.16} The statement is correct, but the proof is not. First, ``there are morphisms $\pt\xrightarrow{\sim}\Delta^n\xrightarrow{\sim}\pt$ for all $n\geq0$ (i.e., by inclusion at a vertex)'': the vertex inclusions do not assemble to a map of restricted cosimplicial spaces $\underline\pt\to\Delta^\bullet$, since $d^0$ and $d^1$ send the vertex of $\Delta^0$ to different vertices of $\Delta^1$ (in fact $\lim_{\Dres}\Delta^\bullet=\emptyset$); only the collapse $\Delta^\bullet\to\underline\pt$ is a cosimplicial map. Second, for maps $f\colon X\to Y$ and $r\colon Y\to X$ the assignment $\varphi\mapsto f^{\boxcirc k}\circ\varphi\circ r$ is compatible with the compositions only if $r\circ f=\id_X$ and with the units only if $f\circ r=\id_Y$, so a retract pair induces a map of $\Nl$-operads only when $f$ is an isomorphism. The correct map $\rho$ is the projection of $\coend{\SD}_k(\underline p;t)\cong\mathbf\Sigma^{\circ k}[\underline p]\times\Map_{\Dres}(\Delta^\bullet,\Rr^\Delta_T)$ onto the first factor; its fibres are contractible (Proposition \ref{cprop:rho}). Remark 7.17 is correct.
+
+\section*{Section 8}
+\label{sec:s8}
+
+\corr{Section 8.1 (proof of Proposition 5.9)} The proof uses the maps $\mu_{k_1,\dots,k_n}$ of Proposition 7.10 and the relation $\theta\mu=\id$ for $\SD_+$, which do not exist (see the corrections to Section 7), and it never uses the unit $u\colon\underline I\to\Cal X$ of the $\boxcirc$-monoid, which provides the operad unit $\lambda_0$ of $\Tot\Cal X$ and whose axiom (25) is needed for the compositions involving it. The corrected proof is Proposition \ref{cprop:59}: the iterated multiplication is bracketed from the right and $\theta$ enters through its naturality and the coherence of the $\boxcirc$-monoid (Lemma \ref{clem:iterated}). Also ``$\psi\in\Cal A_2(\underline p;t)$'' should read $\Cal A_2(\underline p;k)$.
+
+\corr{Section 8.2 (proof of Theorem 1.1(b))} The display computing $\Tot\,\underline{\Cal O}$ begins with a map $\Map^{\Spt}_{\Dres}(\Sigma_n\cdot\Delta^\bullet_+,\underline{\Cal O}[n])^{\Sigma_n}\to\Map^{\Spt}_{\Dres}(\Sigma_n\cdot\underline{\Delta^0}_+,\underline{\Cal O}[n])^{\Sigma_n}$, i.e.\ restriction along a cosimplicial map $\underline{\Delta^0}\to\Delta^\bullet$, which does not exist. The comparison goes the other way: the collapse $\Delta^\bullet\to\underline\pt$ induces $c\colon\Cal O[n]\to\Tot\,\underline{\Cal O}[n]$, an equivalence because the restricted totalization of a constant object is $\Map(\|\pt\|_+,-)$ with $\|\pt\|=\operatorname{colim}_{\Dres}\Delta^\bullet$ contractible, and $c$ is a map of $\Cal A$-algebras $\rho^*\Cal O\to\Tot\,\underline{\Cal O}$. The left-hand arrows of the final diagram should accordingly point from $\rho^*\Cal O$ to $\Tot\,\underline{\Cal O}$. The corrected proof, which also depends on the corrected Proposition 5.9, is Theorem \ref{cthm:1b}. It should be noted that ``equivalence of $A_\infty$-operads'' is defined in Section 8.2 as a zigzag of maps of $\Cal A$-algebras that are equivalences of symmetric sequences, and Theorem 1.1(b) is to be read with this definition. Typo: ``is in algebra over $\Cal A$''.
+
+\corr{Section 8.3} ``Though it will follow abstractly from Theorem 8.2'' refers to the subsection; read ``from Theorem 1.1(b)''; ``the following corollary show'' should be ``shows''. Corollary 8.4 holds with the module structure of Definition \ref{cdef:module} (Corollary \ref{ccor:84}).
+
+\section*{References}
+\label{sec:cites}
+
+Three references to specific statements do not match the arXiv versions of the cited papers and should be checked against the published versions: [AC-1, Definition 1.12] is cited for the model category of spectra, but in the arXiv version Definition 1.12 concerns geometric realization and totalization; [Har-1, 3.29] is cited for limits and colimits in categories of algebras, but the arXiv version has no statement 3.29 (the relevant statements there are Propositions 5.7, 5.10 and 5.13); [Ching-Harper-Koszul, \S4] is cited for the box product and [\S7] for the model structure on $\Cal O$-algebras, whereas in the arXiv version \S4 concerns $\TQ$-completion and \S7 the homotopical analysis of cubical diagrams. The other references to specific statements that could be checked (Blomquist 7.1, Goodwillie III 1.2 and 1.6, McClure--Smith 3.1 and \S4, Ching's coherence result 3.4, Elmendorf--Mandell 2.1, Berger--Moerdijk 1.5.1 and 1.5.6, Ching 1.12 and 1.13, Kuhn--Pereira \S2.7, Arone--Ching (1.13)) say what they are used for.
+
+% correction.tex --- the corrected framework for Sections 6-8; input by errata.tex
+\section*{Corrected framework for Sections 6--8}
+\label{sec:corr}
+
+This section replaces the parts of Sections 6--8 of the paper that are affected by the errors described in the corrections to Sections 6--8 above. Three changes are made. (i) Objects ``with levels'' are indexed by leveled trees (\ref{sec:corr:trees}) rather than by the profiles of Definition 6.4, which record only the multiset of arities on each level. (ii) The composition product of Definition 6.15 is not associative (Proposition 6.17 is false); $\Nl$-operads and their algebras are therefore defined through their component maps, with associativity required only for compositions of uniform length on each level (\ref{sec:corr:operads}). This is the form in which the axioms are used in Sections 7 and 8 of the paper. (iii) Iterated box-circle products are bracketed from the right. For right-bracketed iterates the comparison maps $\theta$ of Section 5.5 run from the grouped to the flat bracketing and therefore provide the compositions of coendomorphism $\Nl$-operads (\ref{sec:corr:coend}); the inverse $\mu$ of $\theta$ that the paper constructs in the proof of Proposition 7.10 does not exist (see the corrections to Section 7). With these changes the statements of Sections 7 and 8, in particular Theorem 1.1, hold; the proofs are given in \ref{sec:corr:oper}--\ref{sec:corr:thm1b}, following the paper's arguments wherever they are correct. The notation of the paper is used throughout; $(\mathsf C,\otimes,\mathbf 1)$ is a closed cocomplete symmetric monoidal category with initial object $\ptC$.
+
+\subsection{Leveled trees}
+\label{sec:corr:trees}
+
+\begin{cdefinition}[leveled trees]\label{cdef:trees}
+Put $\Tr_0:=\{\emptyset\}$ and, for $\ell\geq0$, let $\Tr_{\ell+1}$ be the set of pairs $(n;\{T_1,\dots,T_n\})$ consisting of an integer $n\geq0$ and an unordered family (a multiset) of $n$ elements of $\Tr_\ell$. Elements of $\Tr_\ell$ are called \emph{leveled trees with $\ell$ levels}. The \emph{weight} is defined by $\wt(\emptyset):=1$ and $\wt(n;\{T_i\}):=\sum_i\wt(T_i)$; thus $\wt(n;\{\emptyset,\dots,\emptyset\})=n$. Write $\Tr_\ell[t]$ for the trees of weight $t$.
+\end{cdefinition}
+
+A tree $T=(n;\{T_i\})\in\Tr_{\ell+1}$ has a \emph{root}, a node of arity $n$ on level $1$, whose $n$ inputs are the roots of the $T_i$ (on level $2$) when $\ell\geq1$, and are \emph{leaves} when $\ell=0$; the nodes of $T_i$ on level $j$ are nodes of $T$ on level $j+1$. The set of nodes of $T$ is denoted $V(T)$, the arity of a node $v$ by $a_v$ and its level by $j(v)$; the weight of $T$ is its number of leaves. Every node on level $\ell$ has only leaves as inputs. The tree $\emptyset$ has no nodes and one leaf. Forgetting the grouping of the subtrees gives a surjection from $\Tr_\ell$ onto the set $\Ncirc{\ell}$ of profiles of Definition 6.4 (the profile records, level by level, the multiset of arities); it is a bijection for $\ell\leq2$ but not for $\ell\geq3$: the two trees $(2;\{(2;\{\emptyset,\emptyset\}),(2;\{(1;\{\emptyset\}),(1;\{\emptyset\})\})\})$ and $(2;\{(2;\{\emptyset,(1;\{\emptyset\})\}),(2;\{\emptyset,(1;\{\emptyset\})\})\})$, written here with $\emptyset$ for a leaf, have the same profile $(2,(2,2),(1,1))$ but are not isomorphic. Since $V(T)$ is defined for an isomorphism class of trees only up to the automorphisms of $T$, which permute inputs of nodes, all constructions below that involve the set $V(T)$ are made for a chosen representative, and the actions of the groups $\Sigma_{a_v}$ introduced in \ref{sec:corr:objects} make the results independent of the choice.
+
+\begin{cdefinition}[level cuts]\label{cdef:cut}
+Let $T\in\Tr_\ell$ and $0\leq m\leq\ell$. The \emph{top part} $T^{\leq m}\in\Tr_m$ is obtained by deleting all nodes of level $>m$ ($T^{\leq0}=\emptyset$), and $\partial_mT$ denotes the family of the $\wt(T^{\leq m})$ subtrees of $T$ rooted at the nodes of level $m+1$, one for each leaf of $T^{\leq m}$ (a subtree is $\emptyset$ when the leaf is a leaf of $T$); these are elements of $\Tr_{\ell-m}$. For a composition $\underline\ell=(\ell_1,\dots,\ell_k)$ of $\ell$ into $k\geq0$ parts $\ell_j\geq0$ the \emph{quotient tree} $T/\underline\ell\in\Tr_k$ and the \emph{blocks} of $T$ are defined recursively by $T/()=\emptyset$ and
+\[T/\underline\ell:=\big(\wt(T^{\leq\ell_1});\{S/(\ell_2,\dots,\ell_k)\}_{S\in\partial_{\ell_1}T}\big),\]
+the blocks being $T^{\leq\ell_1}$ (the block of the root of $T/\underline\ell$, of \emph{group} $1$) together with the blocks of the trees $S\in\partial_{\ell_1}T$ (their groups shifted by one). The nodes of $T/\underline\ell$ on level $j$ correspond to the blocks of group $j$: the block $T_v$ of a node $v$ of level $j$ lies in $\Tr_{\ell_j}[a_v]$, and the blocks of group $j$ are the maximal subtrees of $T$ spanning the levels $\ell_1+\dots+\ell_{j-1}+1,\dots,\ell_1+\dots+\ell_j$. If $\ell_j=0$ all blocks of group $j$ are $\emptyset$ and all nodes of $T/\underline\ell$ on level $j$ are unary.
+\end{cdefinition}
+
+Thus $V(T)=\coprod_{v\in V(T/\underline\ell)}V(T_v)$, and $T$ is recovered from $T/\underline\ell$ and the blocks together with the way in which the inputs of each node $v$ of $T/\underline\ell$ are attached to the leaves of $T_v$. This attachment is not determined by the isomorphism classes of the blocks: for instance a node of arity $3$ whose block is $(2;\{\emptyset,(2;\{\emptyset,\emptyset\})\})$ can receive its three inputs in two essentially different ways. This is the reason why, in what follows, compositions are indexed by cuts of the resulting tree, and the attachments are encoded in the symmetric group actions; it is also the source of the counting error in display (37) of the paper (see the corrections to Section 7).
+
+\begin{cremark}[right-bracketed iterates]\label{crem:right}
+Let $X_1,\dots,X_\ell$ be symmetric sequences in $\mathsf C$. The right-bracketed iterate $X_1\circ(X_2\circ(\cdots\circ X_\ell))$ decomposes into summands indexed by $\Tr_\ell$: for $\ell=0$ the unit $I$ has the single summand $I[\emptyset]=I[1]=\mathbf 1$, and if $Y=X_2\circ(\cdots\circ X_\ell)$ has been decomposed, $Y[s]=\coprod_{S\in\Tr_{\ell-1}[s]}Y[S]$ with $\Sigma_s$-stable summands, then by the formula of Section 2.2
+\begin{equation}\label{eq:corr:summand}
+(X_1\circ Y)[(n;\{S_1,\dots,S_n\})]:=X_1[n]\otimes_{\Sigma_n}\Big(\coprod_{(S_{\sigma(1)},\dots,S_{\sigma(n)})}\mathbf\Sigma[t]\otimes_{\Sigma_{s_1}\times\cdots\times\Sigma_{s_n}}Y[S_{\sigma(1)}]\otimes\cdots\otimes Y[S_{\sigma(n)}]\Big),
+\end{equation}
+where $s_i=\wt(S_i)$, $t=\sum s_i$, the coproduct runs over the distinct orderings of the family and $\Sigma_n$ permutes the orderings. These summands are $\Sigma_t$-stable and $(X_1\circ Y)[t]=\coprod_{T\in\Tr_\ell[t]}(X_1\circ Y)[T]$. The left-bracketed iterates of the paper are indexed by the coarser profiles (Remark 6.7); the two indexings agree for $\ell\leq2$.
+\end{cremark}
+
+\subsection{Symmetric objects with levels and composition domains}
+\label{sec:corr:objects}
+
+\begin{cdefinition}\label{cdef:object}
+A \emph{symmetric $\Nl$-object} $\Cal P$ in $\mathsf C$ consists of objects $\Cal P_\ell(T;t)\in\mathsf C$ for $\ell\geq0$, $T\in\Tr_\ell$ and $t\geq0$, each equipped with commuting actions of $\Sigma_t$ (on the left) and of the \emph{node group} $\Sigma_T:=\prod_{v\in V(T)}\Sigma_{a_v}$ (on the right). It is \emph{weight-graded} if $\Cal P_\ell(T;t)=\ptC$ unless $t=\wt(T)$, and \emph{reduced} if in addition $\Cal P_0(\emptyset;1)=\mathbf1$. Maps are the equivariant maps. For each $\ell$ the \emph{level-$\ell$ symmetric sequence} of $\Cal P$ is
+\[\widehat{\Cal P}_\ell[t]:=\coprod_{T\in\Tr_\ell[t]}\Cal P_\ell(T;t).\]
+\end{cdefinition}
+
+This is Definition 6.26 with trees in place of profiles: the left action is that of $\Isym$ on the output and the right action of $\Sigma_T$ is that of $\Isym\circhat\cdots\circhat\Isym$ on the inputs of the nodes (Section 6.25 of the paper). For a reduced $\Cal P$ one has $\widehat{\Cal P}_0=I$.
+
+\begin{cdefinition}[composition domains]\label{cdef:domain}
+Let $\Cal P,\Cal Q$ be weight-graded symmetric $\Nl$-objects, $T'\in\Tr_k$ and $\underline\ell=(\ell_1,\dots,\ell_k)$ a composition with $\ell_j\geq0$. The \emph{composition domain} is
+\[\Dm^{\underline\ell}_{T'}(\Cal P,\Cal Q):=\Cal P_k(T')\otimes_{\Sigma_{T'}}\bigotimes_{v\in V(T')}\widehat{\Cal Q}_{\ell_{j(v)}}[a_v],\]
+the coequalizer of the right action of $\Sigma_{T'}$ on $\Cal P_k(T')$ and of its action on the tensor product through the left $\Sigma_{a_v}$-actions on the factors $\widehat{\Cal Q}_{\ell_{j(v)}}[a_v]$. It carries the left action of $\Sigma_{\wt(T')}$ inherited from $\Cal P_k(T')$, and the (\emph{residual}) right actions of the node groups $\Sigma_S$ of the trees $S$ indexing the summands $\Cal Q_{\ell_{j(v)}}(S;a_v)$ of the inner factors. The \emph{composition product} of $\Cal P$ and $\Cal Q$ is the family of symmetric sequences
+\[(\Cal P\circdot_\Sigma\Cal Q)_\ell:=\coprod_{\ell_1+\dots+\ell_k=\ell}\ \coprod_{T'\in\Tr_k}\Dm^{\underline\ell}_{T'}(\Cal P,\Cal Q)\qquad(\ell\geq0).\]
+\end{cdefinition}
+
+The composition domain is the object written $\Cal P_k\tensordot_\Sigma(\Cal Q_{\ell_1}\circhat\cdots\circhat\Cal Q_{\ell_k})$ in Remark 6.29 of the paper, with two differences: the outer factor is indexed by a tree, and the inner factor at a node $v$ is the whole symmetric sequence $\widehat{\Cal Q}_{\ell_{j(v)}}$ in arity $a_v$ rather than the value of $\Cal Q$ at one profile. The second point is essential: two nodes of $T'$ of the same arity may be permuted by $\Sigma_{T'}$, so the coequalizer is only meaningful when the factors attached to them are the same object. The paper's description of the components of $\xi$ tensors the values of $\Cal Q$ at an unordered family of profiles over the nodes; when two profiles of equal weight in the family differ, this is not well defined and, for $\Oper$, undercounts the composition product (see the corrections to Section 7). Expanding the inner factors, $\Dm^{\underline\ell}_{T'}(\Cal P,\Cal Q)$ is the coproduct, over the orbits of $\Sigma_{T'}$ on the families $(S_v)_{v\in V(T')}$ with $S_v\in\Tr_{\ell_{j(v)}}[a_v]$, of $\Cal P_k(T')\otimes_{\Sigma_{T'}}\big(\coprod_{(S_v)\text{ in the orbit}}\bigotimes_v\Cal Q_{\ell_{j(v)}}(S_v;a_v)\big)$; the summand of an orbit is called the summand \emph{of type} $(T';(S_v))$. Substituting the $S_v$ into the nodes of $T'$ produces the trees $T\in\Tr_\ell$ with $T/\underline\ell=T'$ and $T_v=S_v$; there may be several, corresponding to the attachments discussed after Definition \ref{cdef:cut}.
+
+The product $\circdot_\Sigma$ is graded by cuts, not by trees, and it is not associative. This is the correct form of the statement whose incorrect version is Proposition 6.17:
+
+\begin{clemma}\label{clem:assoc}
+Let $\Cal P,\Cal Q,\Cal R$ be weight-graded symmetric $\Nl$-objects, $T'\in\Tr_k$, $\underline\ell$ a composition into $k$ parts, and for each $j$ let $\underline m_j=(m_{j,1},\dots,m_{j,\ell_j})$ be a composition of some $L_j$ into $\ell_j$ parts. Write $\underline m$ for the concatenation of the $\underline m_j$ (a composition into $\ell_1+\dots+\ell_k$ parts) and $\underline L=(L_1,\dots,L_k)$.
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item The \emph{double composition domain}
+\[\Dm^{\underline\ell,\underline m}_{T'}(\Cal P,\Cal Q,\Cal R):=\Cal P_k(T')\otimes_{\Sigma_{T'}}\bigotimes_{v\in V(T')}\Big(\coprod_{S\in\Tr_{\ell_{j(v)}}[a_v]}\Dm^{\underline m_{j(v)}}_{S}(\Cal Q,\Cal R)\Big)\]
+is the summand of $\Dm^{\underline L}_{T'}(\Cal P,\Cal Q\circdot_\Sigma\Cal R)$ in which the inner factor at every node of level $j$ is taken in the summand of $(\Cal Q\circdot_\Sigma\Cal R)_{L_j}$ indexed by the composition $\underline m_j$. The remaining summands of $\Dm^{\underline L}_{T'}(\Cal P,\Cal Q\circdot_\Sigma\Cal R)$ are those in which two nodes of the same level of $T'$ carry inner factors indexed by different compositions of $L_j$ (``mixed lengths'').
+\item If $\Cal P,\Cal Q,\Cal R$ are the tree-indexed objects of sets with pairwise distinct generators and trivial actions, the summands of type $(T';(S_v);(R_w))$ of $\Dm^{\underline\ell,\underline m}_{T'}$ correspond bijectively to the summands of type $(T'';(R_w))$, $T''$ ranging over the trees with $T''/\underline\ell=T'$ and $T''_v=S_v$, of the domains $\Dm^{\underline m}_{T''}(\text{---},\Cal R)$ in which the outer factor is the summand of type $(T';(S_v))$ of $(\Cal P\circdot_\Sigma\Cal Q)_{\ell_1+\dots+\ell_k}$.
+\end{enumerate}
+Consequently, for uniform lengths the two ways of iterating $\circdot_\Sigma$ agree (this is what the associativity axiom of Definition \ref{cdef:operad} refers to), while the second iterate $\Cal P\circdot_\Sigma(\Cal Q\circdot_\Sigma\Cal R)$ contains, in addition, the mixed-length summands; there is no natural isomorphism, in either direction, between the two iterates.
+\end{clemma}
+
+\begin{proof}
+(a) is immediate from the definitions: $(\Cal Q\circdot_\Sigma\Cal R)_{L}[a]=\coprod_{\underline m'}\coprod_{S\in\Tr_{|\underline m'|}[a]}\Dm^{\underline m'}_S(\Cal Q,\Cal R)$, and the tensor product over $v$ of these coproducts is indexed by the choices of one composition $\underline m'$ per node. For (b), a summand of type $(T';(S_v);(R_w))$ on the left is the datum of the blocks $S_v$ of the nodes of $T'$ and of the blocks $R_w$, $w\in V(S_v)$, of the nodes of the $S_v$, modulo the actions of the node groups; on the right it is the datum of a tree $T''$ with $T''/\underline\ell=T'$ and blocks $S_v$, together with blocks $R_w$ at the nodes $w\in V(T'')=\coprod_vV(S_v)$, modulo the same groups. The assignment ``$T''\mapsto$ its cut'' identifies the two data, the attachments of $T''$ being absorbed by the node groups. That the mixed-length summands have no counterpart is clear, and the last assertion follows because a natural map would have to match summands with the same tensor factors. The corresponding statement for index sets was also checked by computer enumeration for all trees with at most three levels and weight at most four.
+\end{proof}
+
+The unit $\Isym$ of Section 6.25, regarded as the tree-indexed object with $\Isym_1((n;\{\emptyset^n\});n)=\mathbf\Sigma[n]$ and $\ptC$ elsewhere, satisfies $\Dm^{(\ell)}_{(t;\{\emptyset^t\})}(\Isym,\Cal Q)=\mathbf\Sigma[t]\otimes_{\Sigma_t}\widehat{\Cal Q}_\ell[t]\cong\widehat{\Cal Q}_\ell[t]$ and $\Dm^{(1,\dots,1)}_{T'}(\Cal P,\Isym)=\Cal P_k(T')\otimes_{\Sigma_{T'}}\bigotimes_v\mathbf\Sigma[a_v]\cong\Cal P_k(T')$, and these are the only nontrivial composition domains with $\Isym$ as one of the factors; in this sense $\Isym$ is a two-sided unit for $\circdot_\Sigma$ (the unit part of Proposition 6.17 is correct).
+
+\subsection{Operads with levels, their algebras and modules}
+\label{sec:corr:operads}
+
+The following definition replaces Definitions 6.18, 6.28 and 6.30 of the paper. Throughout, $t$ denotes the weight of the tree in question, $\underline\ell=(\ell_1,\dots,\ell_k)$ a composition with parts $\ell_j\geq0$, and $|\underline\ell|=\ell_1+\dots+\ell_k$.
+
+\begin{cdefinition}[symmetric $\Nl$-operads]\label{cdef:operad}
+A \emph{symmetric $\Nl$-operad} is a reduced symmetric $\Nl$-object $\Cal P$ together with
+\begin{enumerate}[label=(\roman*),leftmargin=2em]
+\item \emph{composition maps} $\xi^{\underline\ell}_{T'}\colon\Dm^{\underline\ell}_{T'}(\Cal P,\Cal P)\to\widehat{\Cal P}_{|\underline\ell|}[t]$, for all $k\geq0$, $T'\in\Tr_k[t]$ and $\underline\ell$, which are $\Sigma_t$-equivariant and \emph{respect cuts}: the summand of type $(T';(S_v))$ is mapped into $\coprod_T\Cal P_{|\underline\ell|}(T;t)$, the coproduct over the trees $T$ with $T/\underline\ell=T'$ and $T_v=S_v$ for all $v$, equivariantly for the residual right actions of $\prod_v\Sigma_{S_v}=\Sigma_T$;
+\item a \emph{unit} $\varepsilon\colon\Isym\to\Cal P$, i.e.\ maps $\varepsilon_n\colon\mathbf\Sigma[n]\to\Cal P_1((n;\{\emptyset^n\});n)$ equivariant for the left and the right actions of $\Sigma_n$;
+\end{enumerate}
+subject to the following axioms.
+\begin{enumerate}[label=(\Alph*),leftmargin=2em]
+\item[(U1)] For all $\ell$ and $t$ the composite $\widehat{\Cal P}_\ell[t]\cong\mathbf\Sigma[t]\otimes_{\Sigma_t}\widehat{\Cal P}_\ell[t]\xrightarrow{\varepsilon_t\otimes\id}\Dm^{(\ell)}_{(t;\{\emptyset^t\})}(\Cal P,\Cal P)\xrightarrow{\xi}\widehat{\Cal P}_\ell[t]$ is the identity.
+\item[(U2)] For all $T'\in\Tr_k[t]$ the composite $\Cal P_k(T')\cong\Cal P_k(T')\otimes_{\Sigma_{T'}}\bigotimes_v\mathbf\Sigma[a_v]\xrightarrow{\id\otimes\bigotimes\varepsilon}\Dm^{(1,\dots,1)}_{T'}(\Cal P,\Cal P)\xrightarrow{\xi}\widehat{\Cal P}_k[t]$ is the inclusion of the summand $\Cal P_k(T')$.
+\item[(A)] For every $T'\in\Tr_k[t]$, every $\underline\ell$ and every family of compositions $\underline m_j$ of integers $L_j$ into $\ell_j$ parts ($1\leq j\leq k$), with $\underline m$ their concatenation and $\underline L=(L_1,\dots,L_k)$, the two composites
+\[\Dm^{\underline\ell,\underline m}_{T'}(\Cal P,\Cal P,\Cal P)\longrightarrow\widehat{\Cal P}_{|\underline m|}[t]\]
+agree, where the first applies $\xi^{\underline m_{j(v)}}_S$ to the inner factor at every node $v$ (landing in $\widehat{\Cal P}_{L_{j(v)}}[a_v]$) and then $\xi^{\underline L}_{T'}$, and the second applies $\xi^{\underline\ell}_{T'}$ to the outer factor together with the factors $\Cal P_{\ell_{j(v)}}(S_v)$, which by (i) lands in $\coprod_T\Cal P_{|\underline\ell|}(T)\otimes_{\Sigma_T}\bigotimes_{w\in V(T)}\widehat{\Cal P}_{m_{w}}[a_w]=\coprod_T\Dm^{\underline m}_T(\Cal P,\Cal P)$, and then $\xi^{\underline m}_T$ (here $m_w$ is the part of $\underline m$ belonging to the level of $w$).
+\end{enumerate}
+A \emph{map} of symmetric $\Nl$-operads is a map of symmetric $\Nl$-objects commuting with the $\xi$ and $\varepsilon$; it is an \emph{equivalence} if it is a weak equivalence on every $\Cal P_\ell(T;t)$ (Definition 6.38 with trees), and $\Cal P\simeq\Cal Q$ means a zigzag of equivalences.
+\end{cdefinition}
+
+The second composite in (A) is well defined because $\xi$ respects cuts (so it descends to the coequalizers over the node groups of the trees $T$) and is defined on the coequalizer over $\Sigma_{T'}$ (the factors $\widehat{\Cal P}_{m_w}[a_w]$ are inert under $\Sigma_{T'}$). Axiom (A) is associativity for compositions whose lengths are uniform on each level of each block, the ``double compositions'' of Lemma \ref{clem:assoc}; compositions of mixed lengths are not part of the structure. This is exactly the form in which associativity is used in the paper (Propositions 7.4, 7.10, 7.12 and Section 8.1). Compositions with some $\ell_j=0$ are allowed: the inner factor at a node of level $j$ is then $\widehat{\Cal P}_0[a_v]=I[a_v]$, which is $\mathbf1$ for $a_v=1$ and $\ptC$ otherwise, so these components are the \emph{level-contraction maps} $\Cal P_k(T')\to\widehat{\Cal P}_{k-1}[t]$ defined when all nodes of $T'$ on level $j$ are unary. The paper's Definitions 6.14--6.24 (nonsymmetric objects, their composition product, algebras and the forgetful functor to $\mathbf N$-coloured operads) are not needed for the results of Sections 7 and 8 and are not restated; the nonsymmetric notions are obtained from the above by using planar trees and omitting the group actions.
+
+\begin{cdefinition}[algebras]\label{cdef:algebra}
+An \emph{algebra} over a symmetric $\Nl$-operad $\Cal P$ is a symmetric sequence $X$ together with $\Sigma_t$-equivariant maps
+\[\mu_T\colon\Cal P_k(T)\otimes_{\Sigma_T}\bigotimes_{v\in V(T)}X[a_v]\longrightarrow X[t]\qquad(k\geq0,\ T\in\Tr_k[t])\]
+such that
+\begin{enumerate}[leftmargin=2em]
+\item[(AU)] $X[t]\cong\mathbf\Sigma[t]\otimes_{\Sigma_t}X[t]\xrightarrow{\varepsilon_t\otimes\id}\Cal P_1((t;\{\emptyset^t\}))\otimes_{\Sigma_t}X[t]\xrightarrow{\mu}X[t]$ is the identity;
+\item[(AA)] for every $T'\in\Tr_k[t]$ and every $\underline\ell$ the two composites
+\[\Cal P_k(T')\otimes_{\Sigma_{T'}}\bigotimes_{v\in V(T')}\Big(\coprod_{S\in\Tr_{\ell_{j(v)}}[a_v]}\Cal P_{\ell_{j(v)}}(S)\otimes_{\Sigma_S}\bigotimes_{w\in V(S)}X[a_w]\Big)\longrightarrow X[t]\]
+agree, the first applying the $\mu_S$ at the nodes and then $\mu_{T'}$, the second applying $\xi^{\underline\ell}_{T'}$ (which lands in $\coprod_T\Cal P_{|\underline\ell|}(T)\otimes_{\Sigma_T}\bigotimes_{w\in V(T)}X[a_w]$) and then $\mu_T$.
+\end{enumerate}
+Maps of $\Cal P$-algebras are maps of symmetric sequences commuting with the $\mu_T$; the category is denoted $\mathsf{Alg}_{\Cal P}$. For $k=0$ the map $\mu_\emptyset\colon\mathbf1=\Cal P_0(\emptyset;1)\to X[1]$ is the \emph{unit} of $X$, and (AA) with $\ell_j=0$ expresses that it acts as a unit with respect to the level-contraction maps.
+\end{cdefinition}
+
+In the notation of Lemma \ref{clem:assoc}, (AA) is axiom (A) with the third object the symmetric $\Nl$-object $\widehat X$ concentrated in level $0$, $\widehat X_0(\emptyset;a):=X[a]$, and all $m_{j,b}=0$; this is Definition 6.32 of the paper read componentwise. If $\Cal P\simeq\Oper$ (\ref{sec:corr:oper}), a $\Cal P$-algebra is called an \emph{$A_\infty$-operad}, as in Definition 6.38.
+
+\begin{cremark}[the monad $\Cal P\circdot_\Sigma(-)$]\label{crem:monad}
+The functor $X\mapsto\coprod_T\Cal P_k(T)\otimes_{\Sigma_T}\bigotimes_vX[a_v]$ on symmetric sequences carries a monad structure only if compositions of mixed lengths can be formed, i.e.\ if the level-contraction maps admit compatible inverses (this holds for $\Oper$, where they are isomorphisms, Proposition \ref{cprop:oper}). Propositions 6.22, 6.24 and 6.34 and Example 6.33 of the paper concern this monad; for $\Oper$ it is the free operad monad and these statements hold with their usual proofs, while for a general $\Cal P$ the corrected framework does not provide them. They are not used in Sections 7 and 8.
+\end{cremark}
+
+\begin{cdefinition}[modules]\label{cdef:module}
+Let $\Cal W$ be a $\Cal P$-algebra. A \emph{$\Cal W$-module} is a symmetric sequence $M$ with $\Sigma_t$-equivariant maps
+\[\eta_T\colon\Cal P_\ell(T)\otimes_{\Sigma_T}\Big(\bigotimes_{j(v)<\ell}\Cal W[a_v]\otimes\bigotimes_{j(v)=\ell}M[a_v]\Big)\longrightarrow M[t]\qquad(\ell\geq1,\ T\in\Tr_\ell[t])\]
+satisfying the associativity condition (AA) in which the inputs on the last level are taken in $M$ (this is display (32) of the paper), the condition (33) of the paper that the unit $\mu_\emptyset$ of $\Cal W$ acts trivially, and the condition, missing in Definition 6.36, that the unit of $\Cal P$ acts trivially: $\eta_{(t;\{\emptyset^t\})}\circ(\varepsilon_t\otimes\id)=\id_{M[t]}$. If $M$ is concentrated in arity $0$ the object $M[0]$ is called a \emph{$\Cal W$-algebra}; if $\Cal W$ is an $A_\infty$-operad these are the \emph{$A_\infty$-algebras} of Definition 6.38.
+\end{cdefinition}
+
+\subsection{The operad $\Oper$}
+\label{sec:corr:oper}
+
+In this section iterated composition products $X_1\circ X_2\circ\cdots\circ X_k$ of symmetric sequences are bracketed from the right, $X_1\circ(X_2\circ(\cdots\circ X_k))$, and their summands $(X_1\circ\cdots\circ X_k)[T]$, $T\in\Tr_k$, are those of Remark \ref{crem:right}. Let $\Sigma$ be the symmetric sequence of sets with $\Sigma[n]=\Sigma_n$ (Definition 7.2; $\Sigma[0]$ is a point).
+
+\begin{cdefinition}\label{cdef:oper}
+$\Oper$ is the symmetric $\Nl$-object of sets with
+\[\Oper_\ell(T;t):=\hom\big(\Sigma[t],\Sigma^{\circ\ell}[T]\big)^{\Sigma_t}\cong\Sigma^{\circ\ell}[T]\qquad(T\in\Tr_\ell[t]),\]
+and $\ptC=\emptyset$ for $t\neq\wt(T)$, where $\Sigma^{\circ\ell}[T]$ is the summand of the right-bracketed $\ell$-fold composition product; $\Sigma_t$ acts through the factor $\mathbf\Sigma[t]$ of \eqref{eq:corr:summand} and the node group $\Sigma_{a_v}$ of a node $v$ through left multiplication on the factor $\Sigma[a_v]$ that $v$ contributes (the symmetric sequence structure of $\Sigma[a_v]$ being right multiplication). Both actions are free. For a closed symmetric monoidal $\mathsf C$ with finite coproducts, $\Oper^{\mathsf C}$ is obtained by replacing every finite set $E$ by $\coprod_E\mathbf1$ (Remark 7.5).
+\end{cdefinition}
+
+For $\ell\leq2$ this is the paper's $\Oper$; the small examples of Remark 7.3 are correct (with $\Oper_0(\emptyset;n)$ in place of $\Oper_1(\emptyset;n)$ and $\Sigma_{p_1}\times\cdots\times\Sigma_{p_m}$ in the formula for $\Oper_2$). For $T=(n;\{S_1,\dots,S_n\})\in\Tr_{\ell+1}[t]$, $s_i=\wt(S_i)$, formula \eqref{eq:corr:summand} gives
+\begin{equation}\label{eq:corr:opercount}
+|\Oper_{\ell+1}(T;t)|=\frac{n!}{|\mathrm{Aut}\{S_i\}|}\cdot\frac{t!}{\prod_is_i!}\cdot\prod_i|\Oper_\ell(S_i;s_i)|,
+\end{equation}
+where $|\mathrm{Aut}\{S_i\}|$ is the product of the factorials of the multiplicities of the distinct trees among the $S_i$; the summands of $\Sigma^{\circ3}[t]$ indexed by the trees with a given profile $\underline p$ add up to the value $\Sigma^{\circ3}[\underline p]$ of Remark 7.3.
+
+\begin{cproposition}\label{cprop:oper}
+$\Oper$ is a symmetric $\Nl$-operad. Every composition map $\xi^{\underline\ell}_{T'}$ is a bijection of $\Dm^{\underline\ell}_{T'}(\Oper,\Oper)$ onto $\coprod_{T}\Oper_{|\underline\ell|}(T;t)$, the coproduct over the trees $T$ with $T/\underline\ell=T'$; in particular the level-contraction maps are bijections.
+\end{cproposition}
+
+\begin{proof}
+Write $W_j:=\Sigma^{\circ\ell_j}$ and $W:=W_1\circ\cdots\circ W_k$. First, for every $T'\in\Tr_k[t]$,
+\begin{equation}\label{eq:corr:DW}
+\Dm^{\underline\ell}_{T'}(\Oper,\Oper)=\Sigma^{\circ k}[T']\otimes_{\Sigma_{T'}}\bigotimes_{v\in V(T')}W_{j(v)}[a_v]\ \cong\ W[T'],
+\end{equation}
+the summand of $W$ indexed by $T'$ when $W$ is decomposed by Remark \ref{crem:right} with $X_j=W_j$. This is proved by induction on $k$, the case $k=0$ being trivial. For $T'=(n;\{T'_1,\dots,T'_n\})$ the left-hand side is, by \eqref{eq:corr:summand} for $\Sigma^{\circ k}[T']$,
+\[\Big[\Sigma[n]\otimes_{\Sigma_n}\Big(\coprod_{\text{orderings}}\mathbf\Sigma[t]\otimes_{\prod\Sigma_{t_i}}\bigotimes_i\Sigma^{\circ(k-1)}[T'_i]\Big)\Big]\otimes_{\Sigma_n\times\prod_i\Sigma_{T'_i}}\Big(W_1[n]\otimes\bigotimes_i\bigotimes_{v\in V(T'_i)}W_{j(v)+1}[a_v]\Big).\]
+The node group $\Sigma_n$ of the root acts on $\Sigma[n]$ by left multiplication and on $W_1[n]$ through its symmetric sequence structure; since $\Sigma[n]$ is the free $(\Sigma_n,\Sigma_n)$-bimodule, the factor $\Sigma[n]\otimes_{\Sigma_n}(-)$ combined with $(-)\otimes_{\Sigma_n}W_1[n]$ yields $W_1[n]\otimes_{\Sigma_n}(-)$; the factors $\Sigma^{\circ(k-1)}[T'_i]\otimes_{\Sigma_{T'_i}}\bigotimes_{v\in V(T'_i)}W_{j(v)+1}[a_v]$ are $(W_2\circ\cdots\circ W_k)[T'_i]$ by induction, and the result is the right-hand side of \eqref{eq:corr:summand} for $X_1=W_1$ and $Y=W_2\circ\cdots\circ W_k$, i.e.\ $W[T']$. The composition map is defined as the composite
+\[\xi^{\underline\ell}_{T'}\colon\Dm^{\underline\ell}_{T'}(\Oper,\Oper)\cong W[T']\subseteq W[t]\xrightarrow{\ \cong\ }\Sigma^{\circ|\underline\ell|}[t]=\widehat\Oper_{|\underline\ell|}[t],\]
+the last map being the associativity isomorphism of the composition product; by the coherence theorem all such isomorphisms between two bracketings agree, so $\xi$ is well defined. The associativity isomorphisms only reindex the tensor factors, preserving the arities and the levels of the nodes they belong to; hence the summand of type $(T';(S_v))$ of \eqref{eq:corr:DW} is mapped bijectively onto the union of the summands $\Sigma^{\circ|\underline\ell|}[T]$ over the trees $T$ with cut $(T';(S_v))$, equivariantly for the node groups (which act by the free left multiplications on the same factors). So $\xi$ respects cuts, is injective, and has the stated image. The unit is $\varepsilon_n=\id\colon\mathbf\Sigma[n]\to\Oper_1((n;\{\emptyset^n\});n)=\Sigma_n$. Axioms (U1) and (U2) hold because, under \eqref{eq:corr:DW}, the composites in question are the unit isomorphisms $I\circ W\cong W\cong W\circ I$, and (A) holds because both composites are, under \eqref{eq:corr:DW}, the associativity isomorphism from the doubly nested bracketing $W_1'\circ\cdots$ (with $W'_{j}=\Sigma^{\circ m_{j,1}}\circ\cdots\circ\Sigma^{\circ m_{j,\ell_j}}$) to $\Sigma^{\circ|\underline m|}$, again by coherence.
+\end{proof}
+
+This is Proposition 7.4 with two corrections: the components of $\xi$ are injective, not bijective, onto $\widehat\Oper_\ell[t]$ (their images are the summands of the trees with the given cut, and $\widehat\Oper_\ell[t]$ is the disjoint union of these images over all cuts of the same shape), and the identification \eqref{eq:corr:DW} requires the whole symmetric sequences $W_j$ as inner factors; the paper's display (37) with the values at single profiles is not a bijection onto the fine summand (see the corrections to Section 7).
+
+\begin{cproposition}[Proposition 7.12]\label{cprop:operalg}
+The category of $\Oper^{\mathsf C}$-algebras is equivalent to the category of operads in $\mathsf C$.
+\end{cproposition}
+
+\begin{proof}
+For a symmetric sequence $W$ and $T\in\Tr_k[t]$ the argument proving \eqref{eq:corr:DW} gives $\Oper_k(T)\otimes_{\Sigma_T}\bigotimes_vW[a_v]\cong(W^{\circ k})[T]$, the $T$-summand of the right-bracketed $k$-fold composition product; for $k=2$ and $T=(n;\{(k_1;\{\emptyset^{k_1}\}),\dots\})$ this is the identification $\mathbf\Sigma[k]\otimes_{H(k_1,\dots,k_n)}W[n]\otimes W[k_1]\otimes\cdots\otimes W[k_n]$ of the paper's display (43). If $W$ is an operad, $\mu_T$ is defined as the iterated multiplication $(W^{\circ k})[T]\to W[t]$, which is independent of the bracketing by associativity; (AU) and (AA) are the unit and associativity axioms of $W$, transported along $\xi$ using that $\xi$ respects cuts. Conversely, for an $\Oper$-algebra $X$ the maps $\mu_T$ with $T\in\Tr_2$ assemble to $m\colon X\circ X\to X$, $\mu_\emptyset$ is a unit $I\to X$, and the associativity of $m$ is (AA) for $T'=(n;\{(k_i;\{\emptyset^{k_i}\})\})$ and $\underline\ell=(1,2)$, evaluated on the summands of the three-level trees, exactly as in the paper's proof of Proposition 7.12 (the square displayed there is (AA), whose upper horizontal isomorphism is genuine because the inputs carry no trees, and $\xi_{2,(1,2)}$ is injective with image the three-level summands); the unit laws are (AA) with $\underline\ell=(0,1)$ and $(1,0)$. The two constructions are inverse to each other, since an algebra structure is determined by its components in levels $\leq2$ through (AA).
+\end{proof}
+
+\begin{ccorollary}[Corollary 7.13]\label{ccor:713}
+Let $\Cal W$ be an operad in $\mathsf C$ and $M\in\mathsf C$. Then $\Cal W$-module structures on the symmetric sequence $\bar M$ concentrated in arity $0$ with $\bar M[0]=M$ (Definition \ref{cdef:module}) correspond bijectively to $\Cal W$-algebra structures on $M$ in the usual sense.
+\end{ccorollary}
+
+\begin{proof}
+As in the paper: only trees whose nodes on the last level have arity $0$ contribute, $\Oper_2((n;\{(0;\emptyset)^n\});0)\cong\mathbf\Sigma[0]\cong\mathbf1$ because $H(0,\dots,0)=\Sigma_n$, so $\eta$ in level $2$ descends to $\Cal W[n]\otimes_{\Sigma_n}M^{\otimes n}\to M$, and the axioms match. The condition that the unit of $\Oper$ acts trivially, added in Definition \ref{cdef:module}, is needed here: without it $\eta_{(0;\emptyset)}\colon M\to M$ would be an arbitrary idempotent.
+\end{proof}
+
+\subsection{Coendomorphism operads with levels}
+\label{sec:corr:coend}
+
+Let $(\mathsf C,\otimes,\mathbf1)$ be as in Section 5 of the paper and let $\SymSeq^{\bdel}_{\mathsf C}$ be its cosimplicial symmetric sequences with the box-circle product $\boxcirc$ of Section 5.5. For $\Cal X_1,\dots,\Cal X_k\in\SymSeq^{\bdel}_{\mathsf C}$ put
+\[\Rr(\Cal X_1,\dots,\Cal X_k):=\Cal X_1\boxcirc(\Cal X_2\boxcirc(\cdots\boxcirc\Cal X_k)),\qquad\Rr_\ell(\Cal X):=\Rr(\Cal X,\dots,\Cal X)\ (\ell\text{ factors}),\ \Rr_0(\Cal X)=\underline I,\]
+the \emph{right-bracketed} iterates; $\Rr_1(\Cal X)=\Cal X\boxcirc\underline I\cong\Cal X$. Since $(\Cal X\boxcirc\Cal Y)^m=\operatorname{colim}_{a+b=m}\Cal X^a\circ\Cal Y^b$ and the decomposition of Remark \ref{crem:right} is compatible with the maps of the colimit (cofaces and codegeneracies do not change arities), $\Rr(\Cal X_1,\dots,\Cal X_k)[t]$ decomposes into $\Sigma_t$-stable summands $\Rr(\Cal X_1,\dots,\Cal X_k)[T]$, $T\in\Tr_k[t]$, defined recursively by $(\Cal X\boxcirc\Cal Y)[T]^m=\operatorname{colim}_{a+b=m}(\Cal X^a\circ\Cal Y^b)[T]$ with \eqref{eq:corr:summand} applied to the summands of $\Cal Y^b$.
+
+\begin{clemma}\label{clem:copowered}
+Let $\Cal X=\Sigma\cdot\Cal Y$ be $\Sigma$-copowered (Remark 7.9). For $T\in\Tr_\ell[t]$ there is a natural isomorphism of cosimplicial objects
+\[\Rr_\ell(\Cal X)[T]\cong\mathbf\Sigma^{\circ\ell}[T]\otimes\Rr^{\Cal Y}_T,\qquad\Rr^{\Cal Y}_{\emptyset}:=\underline{\mathbf1},\quad\Rr^{\Cal Y}_{(n;\{S_i\})}:=\Cal Y[n]\,\square\,\bigotimes_i\Rr^{\Cal Y}_{S_i},\]
+where $\square$ is the box product of $\mathsf C^{\bdel}$ and $\bigotimes$ the levelwise tensor product, and where $\Sigma_t$ and the node groups act on $\mathbf\Sigma^{\circ\ell}[T]$ as in Definition \ref{cdef:oper}.
+\end{clemma}
+
+\begin{proof}
+Induction on $\ell$. With $\Cal Z=\Rr_{\ell-1}(\Cal X)$ and $\Cal Z^b[S_i]\cong\mathbf\Sigma^{\circ(\ell-1)}[S_i]\otimes(\Rr^{\Cal Y}_{S_i})^b$, formula \eqref{eq:corr:summand} gives $(\Cal X^a\circ\Cal Z^b)[(n;\{S_i\})]\cong\Sigma[n]\otimes_{\Sigma_n}\big(\coprod_{\text{orderings}}A\otimes(\Cal Y[n]^a\otimes\bigotimes_i(\Rr^{\Cal Y}_{S_i})^b)\big)$ with $A=\mathbf\Sigma[t]\otimes_{\prod\Sigma_{s_i}}\bigotimes_i\mathbf\Sigma^{\circ(\ell-1)}[S_i]$, because the symmetric group actions of $\Cal X$ live on the factors $\Sigma[n]$. As $\Sigma[n]$ is free, $\Sigma[n]\otimes_{\Sigma_n}(-)$ is the identity, and the coproduct over the orderings of $A$ is $\mathbf\Sigma^{\circ\ell}[T]$ (the tensor product of the $(\Rr^{\Cal Y}_{S_i})^b$ being the same for all orderings). Hence $(\Cal X^a\circ\Cal Z^b)[T]\cong\mathbf\Sigma^{\circ\ell}[T]\otimes\Cal Y[n]^a\otimes\bigotimes_i(\Rr^{\Cal Y}_{S_i})^b$, and taking the colimit over $a+b=m$ (which commutes with tensoring by the constant object $\mathbf\Sigma^{\circ\ell}[T]$) gives the claim in cosimplicial degree $m$.
+\end{proof}
+
+\begin{cdefinition}\label{cdef:coend}
+Let $\Cal X=\Sigma\cdot\Cal Y\in\SymSeq^{\bdel}_{\mathsf C}$ be $\Sigma$-copowered. The \emph{coendomorphism object} of $\Cal X$ is the symmetric $\Nl$-object $\coend{\Cal X}$ with
+\[\coend{\Cal X}_\ell(T;t):=\Map_{\Dres}\big(\Cal X[t],\Rr_\ell(\Cal X)[T]\big)^{\Sigma_t}\cong\Map_{\Dres}\big(\Cal Y[t],\mathbf\Sigma^{\circ\ell}[T]\otimes\Rr^{\Cal Y}_T\big)\qquad(T\in\Tr_\ell[t]),\]
+$\Sigma_t$ and the node groups acting through their actions on $\mathbf\Sigma^{\circ\ell}[T]$ (Lemma \ref{clem:copowered}); $\coend{\Cal X}_\ell(T;t)=\ptC$ for $t\neq\wt(T)$.
+\end{cdefinition}
+
+The following standing hypothesis guarantees that every $\Sigma_t$-equivariant map $\Cal X[t]\to\Rr_\ell(\Cal X)[t]$ lands in a single summand $\Rr_\ell(\Cal X)[T]$, so that $\widehat{\coend{\Cal X}}_\ell[t]=\Map_{\Dres}(\Cal X[t],\Rr_\ell(\Cal X)[t])^{\Sigma_t}$, and that $\coend{\Cal X}$ is reduced:
+\begin{itemize}[leftmargin=2em]
+\item[(H)] either $\mathsf C=(\mathsf{Set},\times,\pt)$ and $\Cal Y[t]=\underline\pt$ for all $t$ (so $\Cal X=\Sigma$), or $\mathsf C=(\mathsf{Top},\times,\pt)$ and every space $\Cal Y[t]^m$ is nonempty and connected.
+\end{itemize}
+The case $\Cal X=\Sigma$ is $\Oper$ (Definition \ref{cdef:oper}); the case $\Cal Y[t]=\Delta^\bullet$ for all $t$ is the object $\coend{\SD}$ of Section 7.15.
+
+\begin{cproposition}[Proposition 7.10]\label{cprop:coend}
+Under (H), $\coend{\Cal X}$ is a symmetric $\Nl$-operad, with composition maps
+\[\xi^{\underline\ell}_{T'}(\psi;(\psi_v)_{v\in V(T')})=\theta_{T',\underline\ell}\circ\Gamma(\psi_v)\circ\psi\]
+defined as follows. For $\psi\in\coend{\Cal X}_k(T')$ and $\psi_v\in\widehat{\coend{\Cal X}}_{\ell_{j(v)}}[a_v]$, i.e.\ $\psi\colon\Cal X[t]\to\Rr_k(\Cal X)[T']$ and $\psi_v\colon\Cal X[a_v]\to\Rr_{\ell_{j(v)}}(\Cal X)[a_v]$, the map $\Gamma(\psi_v)$ is the map $\Rr_k(\Cal X)[T']\to\Rr(\Rr_{\ell_1}(\Cal X),\dots,\Rr_{\ell_k}(\Cal X))[T']$ induced by applying $\psi_v$ to the factor $\Cal X[a_v]$ contributed by the node $v$ (this is display (41) of the paper); and $\theta_{T',\underline\ell}$ is the composite of instances of the comparison maps $\theta$ of display (23) that moves all brackets to the right, from $\Rr(\Rr_{\ell_1}(\Cal X),\dots,\Rr_{\ell_k}(\Cal X))$ to $\Rr_{|\underline\ell|}(\Cal X)$, restricted to the summand $[T']$. The unit is $\varepsilon_n(\sigma)=$ left multiplication by $\sigma$ on the factor $\Sigma[n]$ of $\Cal X[n]=\Sigma[n]\otimes\Cal Y[n]$, composed with $\Cal X\cong\Rr_1(\Cal X)$.
+\end{cproposition}
+
+\begin{proof}
+The maps $\theta$ are induced by the universal maps (22) and satisfy the pentagon identity by naturality of these; consequently any two composites of instances of $\theta$ between the same two bracketings coincide (coherence for lax associativity, cf.\ [Ching-oplax, \S1]), so $\theta_{T',\underline\ell}$ is well defined. It maps the summand $[T']$ of the grouped product, with the factors $\Rr_{\ell_{j(v)}}(\Cal X)[S_v]$ at the nodes, into $\coprod_T\Rr_{|\underline\ell|}(\Cal X)[T]$ over the trees $T$ with cut $(T';(S_v))$, since $\theta$ only regroups tensor factors, and it is equivariant for the node groups. Under (H) the composite $\theta\circ\Gamma(\psi_v)\circ\psi$ lands in a single summand and is $\Sigma_t$-equivariant, so it is an element of $\widehat{\coend{\Cal X}}_{|\underline\ell|}[t]$ of the right type; the formula is invariant under the coequalizer defining $\Dm^{\underline\ell}_{T'}$, because $\Gamma(\psi_v\circ\sigma)\circ\psi=\Gamma(\psi_v)\circ(\sigma_v\circ\psi)$ for $\sigma\in\Sigma_{a_v}$ acting on the factor $\Cal X[a_v]$ of $\Rr_k(\Cal X)[T']$ (the $\psi_v$ are equivariant). Thus $\xi$ is well defined and respects cuts. (U1) and (U2): for $T'=(t;\{\emptyset^t\})$ the map $\Gamma(\psi)$ is $\psi$ up to the isomorphism $\Rr_1(\Cal X)\cong\Cal X$, and $\theta$ is the unit isomorphism $\Rr_\ell(\Cal X)\boxcirc\underline I\cong\Rr_\ell(\Cal X)$; for $\underline\ell=(1,\dots,1)$ the maps $\Gamma(\varepsilon)$ are identities and $\theta$ is a composite of unit isomorphisms $\underline I\boxcirc(-)\cong(-)$; the unit isomorphisms of Section 5.5 are compatible with $\theta$. (A): with the notation of Definition \ref{cdef:operad}, the first composite is $\theta_{T',\underline L}\circ\Gamma(\theta_{S_v,\underline m_{j(v)}}\circ\Gamma(\psi_w)\circ\psi_v)\circ\psi$ and the second is $\theta_{T,\underline m}\circ\Gamma(\psi_w)\circ\theta_{T',\underline\ell}\circ\Gamma(\psi_v)\circ\psi$. By naturality of $\theta$ in the factors, $\Gamma(\psi_w)\circ\theta_{T',\underline\ell}=\theta'\circ\Gamma'(\psi_w)$, where $\Gamma'$ applies the $\psi_w$ inside the grouped product and $\theta'$ is the corresponding composite of comparison maps; and $\theta_{T,\underline m}\circ\theta'=\theta_{T',\underline L}\circ\Gamma(\theta_{S_v,\underline m_{j(v)}})$, both being composites of instances of $\theta$ from the doubly grouped bracketing to $\Rr_{|\underline m|}(\Cal X)$, by coherence. Hence the two composites agree.
+\end{proof}
+
+This replaces Remark 7.9 and the proof of Proposition 7.10. The composition uses the comparison maps $\theta$ in the direction in which they exist; no inverse of $\theta$ is needed, and none exists in general: for $\Cal X=\Sigma\cdot\Cal Y$ the map $\theta$ is, on the factors $\Rr^{\Cal Y}$, the natural map $(\bigotimes_iA_i)\square(\bigotimes_iB_i)\to\bigotimes_i(A_i\square B_i)$ from a box product with a common cosimplicial splitting to a tensor product of box products with independent splittings, which is not surjective (see the corrections to Section 7). The paper's left-bracketed iterates would require the inverse direction. $\Sigma$-copoweredness is used only to define the actions of $\Sigma_t$ and of the node groups on the mapping objects.
+
+\subsection{The operad $\Cal A$ and the comparison map $\rho$}
+\label{sec:corr:A}
+
+Let $\SD$ be the cosimplicial symmetric sequence in $(\mathsf{Top},\times,\pt)$ with $\SD[t]=\Sigma_t\cdot\Delta^\bullet$, i.e.\ $\Cal Y[t]=\Delta^\bullet$ for all $t$ in the notation of Lemma \ref{clem:copowered}; hypothesis (H) holds. Write $\Rr^\Delta_T:=\Rr^{\Cal Y}_T$, so that $\Rr^\Delta_\emptyset=\underline\pt$ and $\Rr^\Delta_{(n;\{S_i\})}=\Delta^\bullet\square\prod_i\Rr^\Delta_{S_i}$.
+
+\begin{clemma}\label{clem:contractible}
+Call a cosimplicial space $Z$ \emph{cellular} if every $Z^m$ is a finite CW complex, every coface is the inclusion of a subcomplex, and every $Z^m$ is contractible. The class of cellular cosimplicial spaces contains $\underline\pt$ and $\Delta^\bullet$, is closed under finite levelwise products, and is closed under $Z\mapsto\Delta^\bullet\square Z$. Consequently $\Rr^\Delta_T$ is cellular for every leveled tree $T$; in particular $(\Rr^\Delta_T)^m$ is contractible for all $m$.
+\end{clemma}
+
+\begin{proof}
+The first two assertions are clear. Let $Z$ be cellular. In cosimplicial degree $m$, $(\Delta^\bullet\square Z)^m$ is the colimit of the staircase diagram of Remark 5.2 with pieces $P_a=\Delta^a\times Z^{m-a}$, $0\leq a\leq m$, in which $P_a$ and $P_{a+1}$ are glued along $\Delta^a\times Z^{m-a-1}$, embedded in $P_a$ by $\id\times d^0$ and in $P_{a+1}$ by $d^{a+1}\times\id$. All pieces are finite CW complexes and all gluing maps are inclusions of subcomplexes, so the colimit is a finite CW complex containing each $P_a$ as a subcomplex, and the cofaces of $\Delta^\bullet\square Z$, being induced by those of $\Delta^\bullet$ and $Z$ on the pieces, are inclusions of subcomplexes. Contractibility: $P_0$ is contractible; if the union $U_a=P_0\cup\dots\cup P_a$ is contractible, then $U_{a+1}=U_a\cup_{\Delta^a\times Z^{m-a-1}}P_{a+1}$ is the union of two contractible CW complexes along a contractible subcomplex, hence contractible (the inclusion of the subcomplex is a cofibration, so the union is a homotopy pushout). The last assertion follows by induction on the number of levels of $T$.
+\end{proof}
+
+\begin{cproposition}[Proposition 7.16]\label{cprop:rho}
+There is a map of symmetric $\Nl$-operads $\rho\colon\coend{\SD}\to\Oper^{\mathsf{Top}}$ which is a weak equivalence on every $\coend{\SD}_\ell(T;t)$; its fibre over each point of the discrete space $\Oper^{\mathsf{Top}}_\ell(T;t)=\mathbf\Sigma^{\circ\ell}[T]$ is the contractible space $\Map_{\Dres}(\Delta^\bullet,\Rr^\Delta_T)$.
+\end{cproposition}
+
+\begin{proof}
+By Lemma \ref{clem:copowered} and Definition \ref{cdef:coend}, $\coend{\SD}_\ell(T;t)=\Map_{\Dres}(\Delta^\bullet,\mathbf\Sigma^{\circ\ell}[T]\times\Rr^\Delta_T)$. Since the first factor is a constant cosimplicial discrete space and every $\Delta^m$ is connected, the first component of such a map is constant in each degree, and the coface maps force these constants to agree; hence
+\[\coend{\SD}_\ell(T;t)\cong\mathbf\Sigma^{\circ\ell}[T]\times\Map_{\Dres}(\Delta^\bullet,\Rr^\Delta_T),\]
+and $\rho$ is defined as the projection onto the first factor. It is equivariant for $\Sigma_t$ and the node groups, which act on the first factor, and it commutes with the units. It commutes with the compositions: under the isomorphisms of Lemma \ref{clem:copowered}, $\Gamma(\psi_v)$ acts on the factors $\mathbf\Sigma^{\circ\bullet}$ by inserting the elements $\rho(\psi_v)$ at the nodes and $\theta_{T',\underline\ell}$ acts on them by the associativity bijection of the composition product of $\Sigma$ (the universal maps (22) are bijections on constant discrete factors), which is precisely the composition of $\Oper$ (Proposition \ref{cprop:oper}). Finally, $\Rr^\Delta_T$ is cellular (Lemma \ref{clem:contractible}), hence levelwise fibrant and therefore Reedy fibrant as a diagram on the direct category $\Dres$, while $\Delta^\bullet$ is Reedy cofibrant on $\Dres$ (its latching maps are the inclusions $\partial\Delta^m\subset\Delta^m$); so $\Map_{\Dres}(\Delta^\bullet,\Rr^\Delta_T)$ is a model for $\holim_{\Dres}\Rr^\Delta_T$, which is contractible because all $(\Rr^\Delta_T)^m$ are. A map to a discrete space all of whose fibres are contractible is a weak equivalence.
+\end{proof}
+
+As in Remark 7.17, adding disjoint basepoints gives an isomorphism $\coend{\SD_+}\cong\coend{\SD}_+$ of symmetric $\Nl$-operads in $(\Top,\wedge,S^0)$ (the functor $(-)_+$ is strong monoidal, and pointed equivariant maps out of $(\Sigma_t\cdot\Delta^\bullet)_+$ into a wedge of $(-)_+$'s are the unpointed equivariant maps together with the constant map, by connectedness of $\Delta^m$ and coface compatibility). Put
+\[\Cal A:=\coend{\SD}_+,\qquad\rho\colon\Cal A\xrightarrow{\ \sim\ }\Oper^{\Top}=\Oper^{\mathsf{Top}}_+ .\]
+$\Cal A$ acts on symmetric sequences of spectra through the tensoring of $\Spt$ over $\Top$, and an \emph{$A_\infty$-operad} in $\Spt$ is an $\Cal A$-algebra in the sense of Definition \ref{cdef:algebra} (this is Definition 6.38, since $\Cal A\simeq\Oper^{\Top}$).
+
+\subsection{Proof of Proposition 5.9 and of Theorem 1.1(a)}
+\label{sec:corr:prop59}
+
+Let $\Cal X$ be a $\boxcirc$-monoid in $\SymSeq^{\bdel}_{\Spt}$ (Definition 5.6, unchanged), with multiplication $m$ and unit $u\colon\underline I\to\Cal X$, and let $\Tot\Cal X=\Map^{\Spt}_{\Dres}(\SD_+,\Cal X)^\Sigma$ as in Section 8.1, so that $(\Tot\Cal X)[t]=\Map_{\Dres}(\Delta^\bullet_+,\Cal X[t])$. Define the \emph{right-iterated multiplication} $m^{(\ell)}\colon\Rr_\ell(\Cal X)\to\Cal X$ by $m^{(0)}=u$, $m^{(1)}=$ the unit isomorphism $\Cal X\boxcirc\underline I\cong\Cal X$, and $m^{(\ell)}=m\circ(\id\boxcirc m^{(\ell-1)})$ for $\ell\geq2$.
+
+\begin{clemma}\label{clem:iterated}
+For every $k$, every $T'\in\Tr_k$ and every composition $\underline\ell$ into $k$ parts,
+\[m^{(|\underline\ell|)}\circ\theta_{T',\underline\ell}=m^{(k)}\circ\Rr(m^{(\ell_1)},\dots,m^{(\ell_k)})\colon\Rr(\Rr_{\ell_1}(\Cal X),\dots,\Rr_{\ell_k}(\Cal X))[T']\longrightarrow\Cal X[t].\]
+\end{clemma}
+
+\begin{proof}
+By induction on $k$ and $\ell_1$, using the coherence of $\theta$. For $k=2$ and $\ell_1=0$ both sides are $m\circ(u\boxcirc m^{(\ell_2)})$ composed with the unit isomorphism, which agree by (25). For $k=2$ and $\ell_1\geq1$, write $\Rr_{\ell_1}(\Cal X)=\Cal X\boxcirc\Rr_{\ell_1-1}(\Cal X)$; then $\theta_{T',\underline\ell}$ is the composite of $\theta\colon(\Cal X\boxcirc\Rr_{\ell_1-1})\boxcirc\Rr_{\ell_2}\to\Cal X\boxcirc(\Rr_{\ell_1-1}\boxcirc\Rr_{\ell_2})$ with $\id\boxcirc\theta'$, and
+\begin{align*}
+m^{(|\underline\ell|)}\theta_{T',\underline\ell}&=m(\id\boxcirc m^{(|\underline\ell|-1)}\theta')\theta=m\big(\id\boxcirc m(m^{(\ell_1-1)}\boxcirc m^{(\ell_2)})\big)\theta\\
+&=m(\id\boxcirc m)\theta\big((\id\boxcirc m^{(\ell_1-1)})\boxcirc m^{(\ell_2)}\big)=m(m\boxcirc\id)\big((\id\boxcirc m^{(\ell_1-1)})\boxcirc m^{(\ell_2)}\big),
+\end{align*}
+using the induction hypothesis, the naturality of $\theta$ and the associativity axiom (24); the last term is $m(m^{(\ell_1)}\boxcirc m^{(\ell_2)})$. For $k\geq3$ apply the case $k=2$ to the first factor and the remaining product and use the induction hypothesis for the latter.
+\end{proof}
+
+\begin{cproposition}[Proposition 5.9]\label{cprop:59}
+$\Tot\Cal X$ is an $\Cal A$-algebra, hence an $A_\infty$-operad, with structure maps
+\[\mu_T(\psi;(\alpha_v)_{v\in V(T)}):=m^{(k)}\circ\Gamma(\alpha_v)\circ\psi\colon\SD_+[t]\xrightarrow{\ \psi\ }\Rr_k(\SD_+)[T]\xrightarrow{\Gamma(\alpha_v)}\Rr_k(\Cal X)[T]\xrightarrow{m^{(k)}}\Cal X[t]\]
+for $T\in\Tr_k[t]$, $\psi\in\Cal A_k(T)$ and $\alpha_v\in(\Tot\Cal X)[a_v]$, where $\Gamma(\alpha_v)$ applies $\alpha_v$ to the factor $\SD_+[a_v]$ contributed by the node $v$ (the map $\Gamma$ of Section 8.1).
+\end{cproposition}
+
+\begin{proof}
+As in Proposition \ref{cprop:coend}, $\mu_T$ is $\Sigma_t$-equivariant and descends to the coequalizer over $\Sigma_T$ because the $\alpha_v$ are equivariant. (AU): for $\psi=\varepsilon_t(e)$ the composite is $m^{(1)}\circ\alpha=\alpha$ up to the unit isomorphism. (AA): with the notation of Definition \ref{cdef:algebra}, the first composite is $m^{(k)}\circ\Gamma\big(m^{(\ell_{j(v)})}\circ\Gamma(\alpha_w)\circ\psi_v\big)\circ\psi$ and the second is $m^{(|\underline\ell|)}\circ\Gamma(\alpha_w)\circ\theta_{T',\underline\ell}\circ\Gamma(\psi_v)\circ\psi$. By naturality of $\theta$, $\Gamma(\alpha_w)\circ\theta_{T',\underline\ell}=\theta^{\Cal X}_{T',\underline\ell}\circ\Gamma'(\alpha_w)$, where $\Gamma'$ applies the $\alpha_w$ inside the grouped product $\Rr(\Rr_{\ell_1}(\SD_+),\dots)$; by Lemma \ref{clem:iterated}, $m^{(|\underline\ell|)}\circ\theta^{\Cal X}_{T',\underline\ell}=m^{(k)}\circ\Rr(m^{(\ell_j)})$; and $\Rr(m^{(\ell_j)})\circ\Gamma'(\alpha_w)\circ\Gamma(\psi_v)=\Gamma\big(m^{(\ell_{j(v)})}\circ\Gamma(\alpha_w)\circ\psi_v\big)$ by functoriality. Hence the two composites agree. The last assertion is Definition \ref{cdef:algebra} together with $\Cal A\simeq\Oper^{\Top}$ (Proposition \ref{cprop:rho}).
+\end{proof}
+
+This is the argument of Section 8.1 of the paper with two changes: the iterated multiplication is bracketed from the right, and the comparison $\theta$ enters through Lemma \ref{clem:iterated} and its naturality, in the direction in which it exists, instead of through the inverse $\mu$ that the paper uses for $\SD_+$. The construction is natural in maps of $\boxcirc$-monoids: a map $f\colon\Cal X\to\Cal X'$ commuting with $m$ and $u$ induces the map of $\Cal A$-algebras $\Tot f$.
+
+\begin{ctheorem}[Theorem 1.1(a)]\label{cthm:1a}
+$\partial_*\Id_{\Alg{O}}=\Tot C(\Cal O)$ is an $A_\infty$-operad.
+\end{ctheorem}
+
+\begin{proof}
+$C(\Cal O)$ is a $\boxcirc$-monoid by Proposition 5.8 (whose proof is unaffected; see the corrections to Section 5); apply Proposition \ref{cprop:59}.
+\end{proof}
+
+\subsection{Proof of Theorem 1.1(b) and of Corollary 8.4}
+\label{sec:corr:thm1b}
+
+Recall from Section 8.2 of the paper that an \emph{equivalence of $A_\infty$-operads} means a zigzag of maps of $\Cal A$-algebras that are weak equivalences of the underlying symmetric sequences; Theorem 1.1(b) is the statement that $\Cal O$ and $\partial_*\Id_{\Alg{O}}$ are equivalent in this sense, $\Cal O$ being regarded as an $\Cal A$-algebra $\rho^*\Cal O$ by restricting its $\Oper$-algebra structure (Proposition \ref{cprop:operalg}) along $\rho$.
+
+\begin{ctheorem}[Theorem 1.1(b)]\label{cthm:1b}
+There are maps of $\Cal A$-algebras $\rho^*\Cal O\xrightarrow{c}\Tot\,\underline{\Cal O}\xrightarrow{\Tot\varphi}\Tot C(\Cal O)$ which are weak equivalences of symmetric sequences.
+\end{ctheorem}
+
+\begin{proof}
+Let $\underline{\Cal O}$ be the constant cosimplicial symmetric sequence on $\Cal O$. All maps of the staircase diagrams defining $\underline{\Cal O}\boxcirc\underline{\Cal O}$ are identities, so $(\underline{\Cal O}\boxcirc\underline{\Cal O})^m=\Cal O\circ\Cal O$, the maps $\theta$ are the associativity isomorphisms of $\circ$, and the operad structure of $\Cal O$ makes $\underline{\Cal O}$ a $\boxcirc$-monoid; the right-iterated multiplication $m^{(k)}$ is the iterated operad multiplication $(\Cal O^{\circ k})[T]\to\Cal O[t]$. The coaugmentation $\Cal O\to J$ induces $\varphi\colon\underline{\Cal O}\to C(\Cal O)$, a map of $\boxcirc$-monoids since an element of $\Cal O$ may be moved across $\circ_{\Cal O}$ in $J^{(p+q+1)}$; hence $\Tot\varphi$ is a map of $\Cal A$-algebras. The collapse $\Delta^\bullet\to\underline\pt$ induces
+\[c[n]\colon\Cal O[n]\cong\Map^{\Spt}(S^0,\Cal O[n])\longrightarrow\Map^{\Spt}_{\Dres}(\Delta^\bullet_+,\underline{\Cal O}[n])=(\Tot\,\underline{\Cal O})[n],\]
+the inclusion of the constant maps. It is a weak equivalence: the restricted totalization of a constant cosimplicial spectrum $E$ is $\Map(\|\pt\|_+,E)$ with $\|\pt\|=\operatorname{colim}_{\Dres}\Delta^\bullet$ the fat realization of a point, which is contractible. It is a map of $\Cal A$-algebras: for $\psi\in\Cal A_k(T)$ and $x_v\in\Cal O[a_v]$, the map $\Gamma(c(x_v))\circ\psi$ factors through the projection of $\Rr_k(\SD_+)[T]\cong(\mathbf\Sigma^{\circ k}[T]\times\Rr^\Delta_T)_+$ onto $\mathbf\Sigma^{\circ k}[T]_+$, on which $\rho(\psi)$ is the constant value of $\psi$, followed by the map $\mathbf\Sigma^{\circ k}[T]_+\wedge\bigwedge_v\Cal O[a_v]\to(\Cal O^{\circ k})[T]\to\Cal O[t]$, which is the structure map of the $\Oper$-algebra $\Cal O$; so $\mu_T(\psi;(c(x_v)))=c\big(\mu^{\Oper}_T(\rho(\psi);(x_v))\big)$. Finally $\Tot\varphi$ is a weak equivalence: as in the paper, the coface $k$-cubes of $\Cal O\to C(\Cal O)$ and of $\partial_*\Id\to\partial_*(UQ)^{\bullet+1}$ are the cube (17) and its derivatives, which are equivalent by (18); the latter is homotopy cartesian for $k\geq n$ in arity $n$ by Proposition 4.7 for derivatives, hence so is the former, and $\Cal O[n]\to\holim_{\bdel^{\leq k-1}}C(\Cal O)[n]$ is an equivalence for all $k\geq n$, so that $\Cal O[n]\to\holim_{\bdel}C(\Cal O)[n]=\Tot C(\Cal O)[n]$ is an equivalence; this map is $\Tot\varphi\circ c$.
+\end{proof}
+
+The only change with respect to Section 8.2 of the paper is the comparison $c$: the paper restricts along a cosimplicial map $\underline{\Delta^0}\to\Delta^\bullet$, which does not exist (see the corrections to Section 8), whereas $c$ is induced by the collapse and goes in the opposite direction; the zigzag has the same two objects in the middle. The convergence $\Cal O[n]\xrightarrow{\sim}\Tot C(\Cal O)[n]$ needs no hypothesis beyond those of Theorem 1.1.
+
+\begin{ccorollary}[Corollary 8.4]\label{ccor:84}
+Let $X$ be a $0$-connected $\Cal O$-algebra. Then $X\simeq X^\wedge_{\TQ}=\Tot C(X)$, and $X^\wedge_{\TQ}$ is a $\Tot C(\Cal O)$-algebra in the sense of Definition \ref{cdef:module}; thus $X$ is weakly equivalent to an $A_\infty$-algebra over $\partial_*\Id_{\Alg{O}}$.
+\end{ccorollary}
+
+\begin{proof}
+The maps $r_{p,q}\colon J^{(p+1)}\circ(J^{(q+1)}\circ_{\Cal O}X)\to J^{(p+q+1)}\circ_{\Cal O}X$, multiplying the two adjacent copies of $J$, make $C(X)$ a left module over the $\boxcirc$-monoid $C(\Cal O)$: $r\colon C(\Cal O)\boxcirc C(X)\to C(X)$ satisfies $r(m\boxcirc\id)=r(\id\boxcirc r)\theta$ and $r(u\boxcirc\id)=\id$ (the verification is that of Proposition 5.8 with the last factor replaced by $C(X)$; the box-product compatibilities are the same). Define $r^{(\ell)}\colon\Rr(C(\Cal O),\dots,C(\Cal O),C(X))\to C(X)$ by $r^{(1)}=\id$ and $r^{(\ell)}=r(\id\boxcirc r^{(\ell-1)})$; Lemma \ref{clem:iterated} holds with $r^{(\ell)}$ in place of $m^{(\ell)}$ for the last factor, by the same induction. For $T\in\Tr_\ell[0]$ whose nodes on level $\ell$ have arity $0$, put $\eta_T(\psi;(\alpha_v),(\beta_w)):=r^{(\ell)}\circ\Gamma(\alpha_v,\beta_w)\circ\psi$ with $\alpha_v\in\Tot C(\Cal O)[a_v]$ for $j(v)<\ell$ and $\beta_w\in\Tot C(X)[0]$ for $j(w)=\ell$; the axioms of Definition \ref{cdef:module} follow as in Proposition \ref{cprop:59}, and the unit condition holds because $\varepsilon(e)$ acts by the identity. The equivalence $X\simeq X^\wedge_{\TQ}$ for $0$-connected $X$ is Remark 2.14.
+\end{proof}
+
+\end{document}
