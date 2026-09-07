@@ -4,8 +4,6 @@ Research in homotopy theory and selected undergraduate course notes, written by 
 
 ## Research
 
-Both papers concern Goodwillie calculus — specifically, the operad structure carried by the derivatives of the identity functor.
-
 **[On the Goodwillie derivatives of the identity in structured ring spectra](derivatives-id-algO/dac-der-id-algO.pdf)** · 48 pp. · [arXiv:2004.02812](https://arxiv.org/abs/2004.02812) · Tbilisi Math. J., special issue on homotopy theory, spectra, and structured ring spectra.
 Constructs a natural highly homotopy coherent operad structure on the derivatives of the identity on algebras over an operad `O` in spectra, shows every connected `O`-algebra carries a left action of those derivatives, and proves the resulting operad is equivalent to `O` itself. Introduces **N**-colored operads with levels as the framework for the comparison.
 
