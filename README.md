@@ -1,6 +1,9 @@
 # Math
 
-Research in homotopy theory and selected undergraduate course notes, written by Duncan Clark.
+Mathematical writings of Duncan Clark. Two groups here: research and course notes. 
+- Research is two papers I wrote as a graduate student *On the Goodwillie derivatives of the identity in structured ring spectra* and *The partition poset complex and the Goodwillie derivatives of the identity in spaces*, along with my PhD thesis. Both papers were revised in August/September 2026 with the help of Claude Fable 5/5.1, resulting in an errata list (with genuine mathematical corrections) to the former, and a largely expanded version of the second. *The derivatives of the identity and the spectral Lie opera* is an additional memo which asserts equivalence of the operad I produce in the second paper with the well-known spectral Lie operad.
+
+- Course notes consists of three textbooks I compiled for courses I frequently taught at Milwaukee School of Engineering
 
 ## Research
 
